@@ -12,3 +12,4 @@ bin           = @["ministry"]
 # Dependencies
 
 requires "nim >= 0.20.2"
+requires "jester"

@@ -1,0 +1,3 @@
+import ministry
+
+echo "test"
