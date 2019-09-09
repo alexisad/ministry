@@ -1,6 +1,6 @@
 import htmlgen
 import jester
-import db_sqlite, md5
+import db_sqlite, md5, times
 
 var db: DbConn
 
@@ -65,7 +65,7 @@ proc reDb() =
             )""")
       db.exec(sql"""INSERT into user (corpus_id, firstname, lastname, email, password, role_id)
               VALUES(?,?,?,?,?,?)
-            """, 0, "Alexander", "Sadovoy", "sadovoyalexander@yahoo.de", "698d51a19d8a121ce581499d7b701668", 0)
+            """, 1, "Alexander", "Sadovoy", "sadovoyalexander@yahoo.de", "698d51a19d8a121ce581499d7b701668", 1)
   let rows = db.getAllRows(sql"""SELECT 
                 *
                 FROM 
@@ -75,19 +75,38 @@ proc reDb() =
                 name NOT LIKE 'sqlite_%'""")
   for row in rows:
     echo row
-  echo "111".toMD5, " ", "111".getMD5
+  echo "++++++++++ ", "111".toMD5, " ", "111".getMD5
 
 proc login(user, pass: string): bool =
   if pass == "" or user == "":
     return false
-  let row = db.getRow(sql"""SELECT 
+  let rowUser = db.getRow(sql"""SELECT 
                 *
                 FROM 
                 user 
                 WHERE 
                 email = ? AND password= ?""", user, pass.getMD5)
-  echo user, " ", pass, " ", row
-  row[0] != ""
+  let user_id = rowUser[0]
+  if user_id == "":
+    return false
+  db.exec(sql"BEGIN")
+  db.exec(sql"""DELETE FROM 
+                token 
+                WHERE 
+                user_id = ?""", user_id)
+  let token = getMD5(user_id & $now())
+  db.exec(sql"""INSERT into token (token, user_id, date_activity)
+              VALUES(?,?,?)
+            """, token, user_id, $now())
+  if not db.tryExec(sql"COMMIT"):
+    db.exec(sql"ROLLBACK")
+    return false
+  let rowToken = db.getRow(sql"""SELECT 
+                *
+                FROM 
+                token""")
+  echo user, " ", pass, " ", rowToken
+  result = true
 
 proc main() =
   db = open("ministry.db", "", "", "")
@@ -103,6 +122,13 @@ proc main() =
       if not login(@"user", @"pass"):
         halt()
       resp h2 "loged " & @"user" & " " & @"pass"
+    get "/user/@action":
+      if @"token" == "":
+        halt()
+      if @"action" == "new":
+        resp h1("try new user")
+      else:
+        halt()
     #get "/login/@user/pass=@pass":
       #resp h2 "loged " & @"user" & " " & @"pass"
 
