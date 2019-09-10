@@ -1,6 +1,6 @@
 import htmlgen
 import jester
-import db_sqlite, md5, times
+import db_sqlite, md5, times, random, strutils
 
 var db: DbConn
 
@@ -89,23 +89,26 @@ proc login(user, pass: string): bool =
   let user_id = rowUser[0]
   if user_id == "":
     return false
+  randomize()
   db.exec(sql"BEGIN")
   db.exec(sql"""DELETE FROM 
                 token 
                 WHERE 
                 user_id = ?""", user_id)
-  let token = getMD5(user_id & $now())
+  var idChs = $IdentChars
+  shuffle(idChs)
+  let token = getMD5(user_id & idChs & $now())
   db.exec(sql"""INSERT into token (token, user_id, date_activity)
               VALUES(?,?,?)
             """, token, user_id, $now())
   if not db.tryExec(sql"COMMIT"):
     db.exec(sql"ROLLBACK")
     return false
-  let rowToken = db.getRow(sql"""SELECT 
+  let rowsToken = db.getAllRows(sql"""SELECT 
                 *
                 FROM 
                 token""")
-  echo user, " ", pass, " ", rowToken
+  echo user, " ", pass, " table token: ", rowsToken
   result = true
 
 proc main() =
