@@ -1,6 +1,7 @@
 import htmlgen
 import jester
 import db_sqlite, md5, times, random, strutils
+import util/types
 
 var db: DbConn
 
@@ -111,6 +112,70 @@ proc login(user, pass: string): bool =
   echo user, " ", pass, " table token: ", rowsToken
   result = true
 
+
+proc checkAdmin(t: string): tuple[isAdmin: bool, user: User] =
+  let rowUser = db.getRow(sql"""SELECT 
+                *
+                FROM 
+                token 
+                WHERE 
+                token = ? AND date_activity > ? """, t, now() - 10.minutes)
+  let admin_id = rowUser[2]
+  let rowAdmin = db.getRow(sql"""SELECT 
+                user.id, user.corpus_id, role.id
+                FROM user 
+                INNER JOIN role on user.role_id = role.id
+                WHERE user.id = ? AND role.role ="admin" """, admin_id)
+  echo "checkAdmin:: ", rowUser, rowAdmin
+  if rowAdmin[0] != "":
+    result = (isAdmin: true, user: User(id: rowAdmin[0].parseInt, corpus_id: rowAdmin[1].parseInt))
+  else:
+    result = (isAdmin: false, user: User())
+
+proc getUser(id: int64): User = 
+  let rowU = db.getRow(sql"""SELECT 
+          *
+          FROM user 
+          WHERE id = ?""", id)
+  result.id = rowU[0].parseInt
+  result.corpus_id = rowU[1].parseInt
+  result.firstname = rowU[2]
+  result.lastname = rowU[3]
+  result.email = rowU[4]
+  result.password = rowU[5]
+  result.role_id = rowU[6].parseInt
+
+proc addUser(u: User): tuple[isAdded: bool, user: User] =
+  echo "addUser:: ", u
+  let addF = (isAdded: false, user: User())
+  if u.firstname == "" or u.lastname == "" or u.email == "" or u.role == "":
+    return addF
+  else:
+    let rowU = db.getRow(sql"""SELECT 
+                count(*)
+                FROM user 
+                WHERE email = ?""", u.email)
+    if rowU[0].parseInt > 0:
+      return addF
+    let rowRole = db.getRow(sql"""SELECT 
+                role.id
+                FROM role 
+                WHERE role = ?""", u.role)
+    if rowRole[0] == "":
+      return addF
+    db.exec(sql"BEGIN")
+    let uId = db.tryInsertID(sql"""INSERT into user (corpus_id, firstname, lastname, email, password, role_id)
+              VALUES(?,?,?,?,?,?)
+            """, u.corpus_id, u.firstname, u.lastname, u.email, u.password.getMD5, rowRole[0])
+    if uId == -1 or not db.tryExec(sql"COMMIT"):
+      db.exec(sql"ROLLBACK")
+      return addF
+    result.isAdded = true
+    result.user = getUser(uId)
+    
+
+
+
 proc main() =
   db = open("ministry.db", "", "", "")
   echo "db connected!!!!!!!!!!!!!"
@@ -128,8 +193,21 @@ proc main() =
     get "/user/@action":
       if @"token" == "":
         halt()
+      let ifAdmin = checkAdmin(@"token")  
+      if not ifAdmin.isAdmin:
+        halt()
       if @"action" == "new":
-        resp h1("try new user")
+        let ifAdded = addUser User(
+                  firstname: strip(@"firstname"),
+                  lastname: strip(@"lastname"),
+                  email: strip(@"email"),
+                  role: strip(@"role"),
+                  corpus_id: ifAdmin.user.corpus_id,
+                  password: strip(@"password")
+                )
+        if not ifAdded.isAdded:
+          halt()
+        resp h1($ifAdded.user)
       else:
         halt()
     #get "/login/@user/pass=@pass":
