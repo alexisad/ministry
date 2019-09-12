@@ -1,12 +1,14 @@
 import htmlgen
 import jester
-import db_sqlite, md5, times, random, strutils
+import db_sqlite, md5, times, random, strutils, json
 import util/types
 
 var db: DbConn
 
+proc getUser(id: int64, showPass = false): tuple[isOk: bool, user: User]
+
 proc dropTbl(n: string) =
-  echo "n: ", n
+  #echo "n: ", n
   let rows = db.getAllRows(sql"""SELECT 
           *
           FROM 
@@ -18,7 +20,33 @@ proc dropTbl(n: string) =
     db.exec(sql"""DROP TABLE ? """, n)
 
 
+proc getTblRows(n: string): seq[Row] =
+  result = db.getAllRows(sql"""SELECT 
+            *
+            FROM 
+            ?""", n)
+
+
+
 proc reDb() =
+  when true:
+    dropTbl "sector"
+    db.exec(sql"""CREATE TABLE sector (
+              id   INTEGER PRIMARY KEY,
+              sector_id INTEGER NOT NULL,
+              name VARCHAR(100) NOT NULL
+            )""")
+    dropTbl "street"
+    db.exec(sql"""CREATE TABLE street (
+              id   INTEGER PRIMARY KEY,
+              name VARCHAR(500) NOT NULL,
+              sector_id INTEGER NOT NULL,
+              geometry TEXT,
+              FOREIGN KEY (sector_id)
+                REFERENCES sector (id)
+                  ON UPDATE CASCADE
+                  ON DELETE RESTRICT
+            )""")
   when false:
     when true:
       dropTbl "corpus"
@@ -50,37 +78,44 @@ proc reDb() =
               date_activity TEXT,
               FOREIGN KEY (user_id)
                 REFERENCES user (id)
+                  ON UPDATE CASCADE
+                  ON DELETE CASCADE
             )""")
       db.exec(sql"""CREATE TABLE user (
               id   INTEGER PRIMARY KEY,
               corpus_id  INTEGER NOT NULL,
               firstname VARCHAR(50) NOT NULL,
               lastname VARCHAR(50) NOT NULL,
-              email VARCHAR(100) NOT NULL,
+              email VARCHAR(100) UNIQUE NOT NULL,
               password VARCHAR(100) NOT NULL,
               role_id   INTEGER  NOT NULL,
               FOREIGN KEY (corpus_id)
-                REFERENCES corpus (id),
+                REFERENCES corpus (id)
+                  ON UPDATE CASCADE
+                  ON DELETE RESTRICT,
               FOREIGN KEY (role_id)
                 REFERENCES role (id)
+                  ON UPDATE CASCADE
+                  ON DELETE RESTRICT
             )""")
       db.exec(sql"""INSERT into user (corpus_id, firstname, lastname, email, password, role_id)
               VALUES(?,?,?,?,?,?)
             """, 1, "Alexander", "Sadovoy", "sadovoyalexander@yahoo.de", "698d51a19d8a121ce581499d7b701668", 1)
-  let rows = db.getAllRows(sql"""SELECT 
-                *
-                FROM 
-                sqlite_master 
-                WHERE 
-                type ='table' AND 
-                name NOT LIKE 'sqlite_%'""")
-  for row in rows:
-    echo row
-  echo "++++++++++ ", "111".toMD5, " ", "111".getMD5
+    let rows = db.getAllRows(sql"""SELECT 
+                  *
+                  FROM 
+                  sqlite_master 
+                  WHERE 
+                  type ='table' AND 
+                  name NOT LIKE 'sqlite_%'""")
+    for row in rows:
+      echo row
+    echo "++++++++++ ", "111".toMD5, " ", "111".getMD5
 
-proc login(user, pass: string): bool =
+proc login(user, pass: string): tuple[isOk: bool, user: User, token: string] {.gcsafe.} =
+  result.isOk = false
   if pass == "" or user == "":
-    return false
+    return result
   let rowUser = db.getRow(sql"""SELECT 
                 *
                 FROM 
@@ -89,7 +124,7 @@ proc login(user, pass: string): bool =
                 email = ? AND password= ?""", user, pass.getMD5)
   let user_id = rowUser[0]
   if user_id == "":
-    return false
+    return result
   randomize()
   db.exec(sql"BEGIN")
   db.exec(sql"""DELETE FROM 
@@ -104,49 +139,74 @@ proc login(user, pass: string): bool =
             """, token, user_id, $now())
   if not db.tryExec(sql"COMMIT"):
     db.exec(sql"ROLLBACK")
-    return false
+    return result
   let rowsToken = db.getAllRows(sql"""SELECT 
                 *
                 FROM 
                 token""")
-  echo user, " ", pass, " table token: ", rowsToken
-  result = true
+  #echo user, " ", pass, " table token: ", rowsToken
+  {.gcsafe.}:
+    let u = getUser user_id.parseInt
+  if not u.isOk:
+    return result
+  result = (isOk: true, user: u.user, token: token)
 
-
-proc checkAdmin(t: string): tuple[isAdmin: bool, user: User] =
-  let rowUser = db.getRow(sql"""SELECT 
+proc checkToken(t: string): tuple[isOk: bool, rowToken: Row] =
+  let rowToken = db.getRow(sql"""SELECT 
                 *
                 FROM 
                 token 
                 WHERE 
-                token = ? AND date_activity > ? """, t, now() - 10.minutes)
-  let admin_id = rowUser[2]
+                token = ? AND date_activity > ? """, t, $(now() - 10.minutes))
+  if rowToken[2] == "":
+    result.isOk = false
+    return result
+  db.exec(sql"""UPDATE token
+    SET date_activity = ?
+    WHERE token = ?""", $now(), t)
+  (isOk: true, rowToken: rowToken)
+
+proc checkAdmin(t: string): tuple[isAdmin: bool, user: User] =
+  let rChck = checkToken(t)
+  if not rChck.isOk:
+    return (isAdmin: false, user: User())
+  let rowToken = rChck.rowToken
+  let admin_id = rowToken[2]
   let rowAdmin = db.getRow(sql"""SELECT 
                 user.id, user.corpus_id, role.id
                 FROM user 
                 INNER JOIN role on user.role_id = role.id
                 WHERE user.id = ? AND role.role ="admin" """, admin_id)
-  echo "checkAdmin:: ", rowUser, rowAdmin
+  #echo "checkAdmin:: ", rowToken, rowAdmin
   if rowAdmin[0] != "":
     result = (isAdmin: true, user: User(id: rowAdmin[0].parseInt, corpus_id: rowAdmin[1].parseInt))
   else:
-    result = (isAdmin: false, user: User())
+    result.isAdmin = false
 
-proc getUser(id: int64): User = 
-  let rowU = db.getRow(sql"""SELECT 
-          *
-          FROM user 
-          WHERE id = ?""", id)
+proc row2User(rowU: Row, showPass = false): User =
   result.id = rowU[0].parseInt
   result.corpus_id = rowU[1].parseInt
   result.firstname = rowU[2]
   result.lastname = rowU[3]
   result.email = rowU[4]
-  result.password = rowU[5]
+  if showPass:
+    result.password = rowU[5]
   result.role_id = rowU[6].parseInt
 
+proc getUser(id: int64, showPass = false): tuple[isOk: bool, user: User] = 
+  result.isOk = false
+  let rowU = db.getRow(sql"""SELECT 
+          *
+          FROM user 
+          WHERE id = ?""", id)
+  if rowU[0] == "":
+    return result
+  result = (isOk: true, user: row2User(rowU, showPass))
+
+
+
 proc addUser(u: User): tuple[isAdded: bool, user: User] =
-  echo "addUser:: ", u
+  #echo "addUser:: ", u
   let addF = (isAdded: false, user: User())
   if u.firstname == "" or u.lastname == "" or u.email == "" or u.role == "":
     return addF
@@ -171,10 +231,73 @@ proc addUser(u: User): tuple[isAdded: bool, user: User] =
       db.exec(sql"ROLLBACK")
       return addF
     result.isAdded = true
-    result.user = getUser(uId)
-    
+    let u = getUser(uId)
+    if not u.isOk:
+      return addF
+    result.user = u.user
 
 
+proc getUser(t, e: string): tuple[isOk: bool, user: User] =
+  let rChck = checkToken(t)
+  if not rChck.isOk:
+    return (isOk: false, user: User())
+  let rowU = db.getRow(sql"""SELECT 
+          *
+          FROM user 
+          WHERE email = ?""", e)
+  if rowU[0] == "":
+    return (isOk: false, user: User())
+  result = (isOk: true, user: row2User rowU)
+
+proc delUser(e: string): bool =
+  db.exec(sql"BEGIN")
+  db.exec(sql"""DELETE FROM user WHERE email = ?""", e)
+  if not db.tryExec(sql"COMMIT"):
+    db.exec(sql"ROLLBACK")
+    return false
+  result = true
+
+proc updUser(id, firstname, lastname, email, password, role_id: string): bool =
+  if id == "":
+    return false
+  var u = getUser(id.parseBiggestInt, true)
+  if not u.isOk:
+    return false
+  var user = u.user
+  if firstname != "":
+    user.firstname = firstname
+  if lastname != "":
+    user.lastname = lastname
+  if email != "":
+    user.email = email
+  if password != "":
+    user.password = password.getMD5
+  if role_id != "":
+    user.role_id = role_id.parseInt
+  #echo "updUser: ", $u
+  db.exec(sql"BEGIN")
+  db.exec(sql"""UPDATE user
+    SET firstname = ?,
+      lastname = ?,
+      email = ?,
+      password = ?,
+      role_id = ?
+    WHERE id = ?""",
+      user.firstname, user.lastname, user.email,
+      user.password, user.role_id, id
+    )
+  if not db.tryExec(sql"COMMIT"):
+    db.exec(sql"ROLLBACK")
+    return false
+  result = true
+
+  
+template checkAdminToken(ifAdmin: untyped): untyped =
+  if @"token" == "":
+    halt()
+  let ifAdmin = checkAdmin(@"token")  
+  if not ifAdmin.isAdmin:
+    halt()
 
 proc main() =
   db = open("ministry.db", "", "", "")
@@ -187,16 +310,14 @@ proc main() =
     #get "/favicon.ico":
       #resp(Http200, [("Content-Type","image/x-icon")], request.matches[0])
     get "/login":
-      if not login(@"user", @"pass"):
+      let logged = login(@"email", @"pass")
+      if not logged.isOk:
         halt()
-      resp h2 "loged " & @"user" & " " & @"pass"
+      #resp h2 "logged " & $logged.user & logged.token
+      resp Http200, [("Content-Type","application/json")], $(%*{"token": logged.token})
     get "/user/@action":
-      if @"token" == "":
-        halt()
-      let ifAdmin = checkAdmin(@"token")  
-      if not ifAdmin.isAdmin:
-        halt()
       if @"action" == "new":
+        checkAdminToken ifAdmin
         let ifAdded = addUser User(
                   firstname: strip(@"firstname"),
                   lastname: strip(@"lastname"),
@@ -207,11 +328,29 @@ proc main() =
                 )
         if not ifAdded.isAdded:
           halt()
-        resp h1($ifAdded.user)
+        #resp h1($ifAdded.user)
+        resp Http200, [("Content-Type","application/json")], $(%*ifAdded.user)
+      elif @"action" == "delete":
+        checkAdminToken ifAdmin
+        if not delUser @"email":
+          halt()
+        #resp h3 "tokens: " & $getTblRows("token") & "<br/>users: " & $getTblRows("user")
+        resp Http200, [("Content-Type","application/json")], $(%*{"status": true})
+      elif @"action" == "get":
+        let rU = getUser(@"token", @"email")
+        if not rU.isOk:
+          halt()
+        #resp h4 "user: " & $(%*rU.user)
+        resp Http200, [("Content-Type","application/json")], $(%*rU.user)
+      elif @"action" == "update":
+        #resp h4 "boo: "
+        checkAdminToken ifAdmin
+        if not updUser(@"id", @"firstname", @"lastname", @"email", @"password", @"role_id"):
+          halt()
+        let rU = getUser(@"id".parseInt)
+        resp h4 "user: " & $rU
       else:
         halt()
-    #get "/login/@user/pass=@pass":
-      #resp h2 "loged " & @"user" & " " & @"pass"
 
 when isMainModule:
   main()
