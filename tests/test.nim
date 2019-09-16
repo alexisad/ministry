@@ -52,6 +52,10 @@ suite "user API":
         let status = statusJsn.to(StatusResp).status
         require(status)
     
+    test "load data":
+        let d = readFile("Büdingen_2019-09-15T16_52_06+02_00.json")
+        let letdJsn = cast[MinistryArea](parseJson d)
+        require(true)
     echo "suite teardown: run once after the tests"
 
 

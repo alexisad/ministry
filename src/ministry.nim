@@ -5,6 +5,7 @@ import util/types
 
 var db: DbConn
 
+
 proc getUser(id: int64, showPass = false): tuple[isOk: bool, user: User]
 
 proc dropTbl(n: string) =
@@ -45,7 +46,21 @@ proc reDb() =
               FOREIGN KEY (sector_id)
                 REFERENCES sector (id)
                   ON UPDATE CASCADE
-                  ON DELETE RESTRICT
+                  ON DELETE CASCADE
+            )""")
+    dropTbl "rame"
+    db.exec(sql"""CREATE TABLE rame (
+              id   INTEGER PRIMARY KEY,
+              street_id INTEGER NOT NULL,
+              rame_street_id INTEGER NOT NULL,
+              FOREIGN KEY (street_id)
+                REFERENCES street (id)
+                  ON UPDATE CASCADE
+                  ON DELETE CASCADE,
+              FOREIGN KEY (rame_street_id)
+                REFERENCES street (id)
+                  ON UPDATE CASCADE
+                  ON DELETE CASCADE
             )""")
   when false:
     when true:
@@ -299,6 +314,8 @@ template checkAdminToken(ifAdmin: untyped): untyped =
   if not ifAdmin.isAdmin:
     halt()
 
+include sectordb
+
 proc main() =
   db = open("ministry.db", "", "", "")
   echo "db connected!!!!!!!!!!!!!"
@@ -351,7 +368,13 @@ proc main() =
         resp h4 "user: " & $rU
       else:
         halt()
-
+    get "/sector/@action":
+      if @"action" == "new":
+        checkAdminToken ifAdmin
+        if not addSector(@"sectorId", @"name"):
+          halt()
+      else:
+        halt()
 when isMainModule:
   main()
 
