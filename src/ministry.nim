@@ -3,7 +3,7 @@ import jester
 import db_sqlite, md5, times, random, strutils, json
 import util/types
 
-var db: DbConn
+var db*: DbConn
 
 
 proc getUser(id: int64, showPass = false): tuple[isOk: bool, user: User]
@@ -33,9 +33,14 @@ proc reDb() =
   when true:
     dropTbl "sector"
     db.exec(sql"""CREATE TABLE sector (
-              id   INTEGER PRIMARY KEY,
-              sector_id INTEGER NOT NULL,
-              name VARCHAR(100) NOT NULL
+              sector_id  INTEGER PRIMARY KEY,
+              corpus_id  INTEGER NOT NULL,
+              sector_internal_id INTEGER NOT NULL,
+              name VARCHAR(100) NOT NULL,
+              FOREIGN KEY (corpus_id)
+                REFERENCES corpus (id)
+                  ON UPDATE CASCADE
+                  ON DELETE RESTRICT
             )""")
     dropTbl "street"
     db.exec(sql"""CREATE TABLE street (
@@ -44,7 +49,7 @@ proc reDb() =
               sector_id INTEGER NOT NULL,
               geometry TEXT,
               FOREIGN KEY (sector_id)
-                REFERENCES sector (id)
+                REFERENCES sector (sector_id)
                   ON UPDATE CASCADE
                   ON DELETE CASCADE
             )""")
@@ -80,6 +85,9 @@ proc reDb() =
               id   INTEGER PRIMARY KEY,
               role VARCHAR(20) NOT NULL
             )""")
+      db.exec(sql"""INSERT into role (role)
+              VALUES(?)
+            """, "superadmin")
       db.exec(sql"""INSERT into role (role)
               VALUES(?)
             """, "admin")
@@ -191,7 +199,7 @@ proc checkAdmin(t: string): tuple[isAdmin: bool, user: User] =
                 user.id, user.corpus_id, role.id
                 FROM user 
                 INNER JOIN role on user.role_id = role.id
-                WHERE user.id = ? AND role.role ="admin" """, admin_id)
+                WHERE user.id = ? AND (role.role ="admin" OR role.role ="superadmin") """, admin_id)
   #echo "checkAdmin:: ", rowToken, rowAdmin
   if rowAdmin[0] != "":
     result = (isAdmin: true, user: User(id: rowAdmin[0].parseInt, corpus_id: rowAdmin[1].parseInt))
@@ -314,10 +322,11 @@ template checkAdminToken(ifAdmin: untyped): untyped =
   if not ifAdmin.isAdmin:
     halt()
 
-include sectordb
+import sectordb
 
 proc main() =
   db = open("ministry.db", "", "", "")
+  db.exec(sql"PRAGMA foreign_keys = ON")
   echo "db connected!!!!!!!!!!!!!"
 
   routes:
@@ -369,10 +378,12 @@ proc main() =
       else:
         halt()
     get "/sector/@action":
-      if @"action" == "new":
+      if @"action" == "upload":
         checkAdminToken ifAdmin
-        if not addSector(@"sectorId", @"name"):
+        if not uploadSector(db, ifAdmin.user.corpus_id):
           halt()
+        echo $getTblRows("sector")
+        resp Http200, [("Content-Type","application/json")], $(%*{"status": true})
       else:
         halt()
 when isMainModule:

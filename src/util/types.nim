@@ -1,4 +1,4 @@
-import tables
+import tables, strutils
 
 type
   User* = object
@@ -39,7 +39,7 @@ type
       links*: seq[Link]
       sector*: Sector
   Sector* = ref object
-      postalCode, district, city*: string
+      postalCode*, district*, city*: string
       pFix*: int
       streets*: OrderedTable[string, seq[Link]]
       shownOnMap*: bool
@@ -54,4 +54,6 @@ type
       allSectors*: OrderedTable[string, Sector]
       lastPostfix*: tables.Table[string, int]
       
-  
+
+proc name*(s: Sector): string =
+    @[s.postalCode & "-" & $s.pFix, s.city, s.district].join(" ")

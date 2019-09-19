@@ -53,9 +53,9 @@ suite "user API":
         require(status)
     
     test "load data":
-        let d = readFile("Büdingen_2019-09-15T16_52_06+02_00.json")
-        let letdJsn = cast[MinistryArea](parseJson d)
-        require(true)
+        let statusJsn = c.getContent("http://127.0.0.1:5000/sector/upload?token=" & adminToken).parseJson()
+        let status = statusJsn.to(StatusResp).status
+        require(status)
     echo "suite teardown: run once after the tests"
 
 
