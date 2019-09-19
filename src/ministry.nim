@@ -382,7 +382,7 @@ proc main() =
         checkAdminToken ifAdmin
         if not uploadSector(db, ifAdmin.user.corpus_id):
           halt()
-        echo $getTblRows("sector")
+        #echo $getTblRows("sector")
         resp Http200, [("Content-Type","application/json")], $(%*{"status": true})
       else:
         halt()
