@@ -1,4 +1,4 @@
-import tables, strutils
+import tables, strutils, db_sqlite, times
 
 type
   User* = object
@@ -14,6 +14,12 @@ type
     token*: string
   StatusResp* = object
     status*: bool
+  SectorProcess* = object
+    name*: string
+    firstname*, lastname*: string
+    action*: string
+    date_start*, date_finish*: string
+    user_id*, sector_id*, act_id*: int
 
 
 type
@@ -55,5 +61,32 @@ type
       lastPostfix*: tables.Table[string, int]
       
 
+proc startDate*(s: SectorProcess): DateTime =
+  s.date_start.parse(initTimeFormat("yyyy-MM-dd"))
+
+
+proc finishDate*(s: SectorProcess): DateTime =
+  s.date_finish.parse(initTimeFormat("yyyy-MM-dd"))
+
+
 proc name*(s: Sector): string =
-    @[s.postalCode & "-" & $s.pFix, s.city, s.district].join(" ")
+    @[s.postalCode & "-" & $s.pFix, s.city, s.district].join(" ").strip
+
+proc checkToken*(db: DbConn, t: string): tuple[isOk: bool, rowToken: Row] =
+  let rowToken = db.getRow(sql"""SELECT 
+                token.id, token, token.user_id,
+                corpus_id
+                FROM 
+                token
+                INNER JOIN user ON token.user_id = user.id
+                WHERE 
+                token = ? AND date_activity > ? """, t, $(now() - 10.minutes))
+  if rowToken[2] == "":
+    result.isOk = false
+    return result
+  db.exec(sql"""UPDATE token
+    SET date_activity = ?
+    WHERE token = ?""", $now(), t)
+  (isOk: true, rowToken: rowToken)
+
+

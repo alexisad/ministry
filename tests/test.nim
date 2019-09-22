@@ -1,12 +1,14 @@
 #import ministry
 import util/types
-import unittest, httpclient, json
+import unittest, httpclient, json, times, uri
 
 
 suite "user API":
     echo "suite setup: run once before the tests"
     let c = newHttpClient()
-    var adminToken, userToken: string
+    var adminToken, userToken, sectPrId: string
+    let normalDateFmt = initTimeFormat("yyyy-MM-dd")
+    var sectorsPr: seq[SectorProcess]
     
     when false:
         setup:
@@ -46,16 +48,55 @@ suite "user API":
     test "except delete user Pavel by role user":
         expect(HttpRequestError):
             let statusJsn = c.getContent("http://127.0.0.1:5000/user/delete?email=p.tarasow%40gmail.com&token=" & userToken).parseJson()
-            
-    test "delete user Pavel":
-        let statusJsn = c.getContent("http://127.0.0.1:5000/user/delete?email=p.tarasow%40gmail.com&token=" & adminToken).parseJson()
-        let status = statusJsn.to(StatusResp).status
-        require(status)
+                
     
     test "load data":
         let statusJsn = c.getContent("http://127.0.0.1:5000/sector/upload?token=" & adminToken).parseJson()
         let status = statusJsn.to(StatusResp).status
         require(status)
+
+    test "get all sectors in process":
+        let statusJsn = c.getContent("http://127.0.0.1:5000/sector/process?token=" & adminToken).parseJson()
+        let statusJsnU = c.getContent("http://127.0.0.1:5000/sector/process?token=" & userToken).parseJson()
+        sectorsPr = statusJsn.to(seq[SectorProcess])
+        let sectorsPrU = statusJsnU.to(seq[SectorProcess])
+        sectPrId = $(sectorsPr[5].sector_id)
+        require(sectorsPr.len != 0 and sectorsPrU.len != 0)
+
+    test "add new process":
+        let statusJsn = c.getContent("http://127.0.0.1:5000/sector/newProcess?" &
+                                "token=" & adminToken &
+                                "&sectorId=" & sectPrId &
+                                "&startDate=" & encodeUrl( (now() - 10.days).format normalDateFmt )
+                        ).parseJson()
+        let status = statusJsn.to(StatusResp).status
+        require(status)
+
+    test "add new process":
+        let statusJsn = c.getContent("http://127.0.0.1:5000/sector/newProcess?" &
+                                "token=" & adminToken &
+                                "&sectorId=" & $sectorsPr[6].sector_id &
+                                "&userId=" & $2 &
+                                "&startDate=" & encodeUrl( (now() - 10.days).format normalDateFmt )
+                        ).parseJson()
+        let status = statusJsn.to(StatusResp).status
+        require(status)
+
+
+    test "shouldn't add the same sector to process":
+        let statusJsn = c.getContent("http://127.0.0.1:5000/sector/newProcess?" &
+                                "token=" & userToken &
+                                "&sectorId=" & sectPrId &
+                                "&startDate=" & encodeUrl( (now() - 10.days).format normalDateFmt )
+                        ).parseJson()
+        let status = statusJsn.to(StatusResp).status
+        require(status == false)
+    
+    test "delete user Pavel":
+        let statusJsn = c.getContent("http://127.0.0.1:5000/user/delete?email=p.tarasow%40gmail.com&token=" & adminToken).parseJson()
+        let status = statusJsn.to(StatusResp).status
+        require(status)
+
     echo "suite teardown: run once after the tests"
 
 

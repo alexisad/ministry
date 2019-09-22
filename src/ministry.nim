@@ -28,9 +28,33 @@ proc getTblRows(n: string): seq[Row] =
             ?""", n)
 
 
-
 proc reDb() =
   when true:
+    dropTbl "ministry_act"
+    db.exec(sql"""CREATE TABLE ministry_act (
+              id  INTEGER PRIMARY KEY,
+              action VARCHAR(25) NOT NULL
+            )""")
+    db.exec(sql"""INSERT into ministry_act (action)
+                VALUES(?)
+            """, "start")
+    db.exec(sql"""INSERT into ministry_act (action)
+            VALUES(?)
+        """, "finish")
+    dropTbl "user_sector"
+    db.exec(sql"""CREATE TABLE user_sector (
+          id  INTEGER PRIMARY KEY,
+          sector_id INTEGER NOT NULL,
+          user_id INTEGER NOT NULL,
+          act_id INTEGER NOT NULL,
+          date_start TEXT NOT NULL,
+          date_finish TEXT,
+          FOREIGN KEY (sector_id)
+                REFERENCES sector (sector_id)
+                  ON UPDATE CASCADE
+                  ON DELETE CASCADE
+        )""")
+  when false:
     dropTbl "sector"
     db.exec(sql"""CREATE TABLE sector (
               sector_id  INTEGER PRIMARY KEY,
@@ -174,23 +198,8 @@ proc login(user, pass: string): tuple[isOk: bool, user: User, token: string] {.g
     return result
   result = (isOk: true, user: u.user, token: token)
 
-proc checkToken(t: string): tuple[isOk: bool, rowToken: Row] =
-  let rowToken = db.getRow(sql"""SELECT 
-                *
-                FROM 
-                token 
-                WHERE 
-                token = ? AND date_activity > ? """, t, $(now() - 10.minutes))
-  if rowToken[2] == "":
-    result.isOk = false
-    return result
-  db.exec(sql"""UPDATE token
-    SET date_activity = ?
-    WHERE token = ?""", $now(), t)
-  (isOk: true, rowToken: rowToken)
-
 proc checkAdmin(t: string): tuple[isAdmin: bool, user: User] =
-  let rChck = checkToken(t)
+  let rChck = checkToken(db, t)
   if not rChck.isOk:
     return (isAdmin: false, user: User())
   let rowToken = rChck.rowToken
@@ -261,7 +270,7 @@ proc addUser(u: User): tuple[isAdded: bool, user: User] =
 
 
 proc getUser(t, e: string): tuple[isOk: bool, user: User] =
-  let rChck = checkToken(t)
+  let rChck = checkToken(db, t)
   if not rChck.isOk:
     return (isOk: false, user: User())
   let rowU = db.getRow(sql"""SELECT 
@@ -384,6 +393,20 @@ proc main() =
           halt()
         #echo $getTblRows("sector")
         resp Http200, [("Content-Type","application/json")], $(%*{"status": true})
+      elif @"action" == "process":
+        let sectProcess = getSectProcess(db, @"token")
+        if not sectProcess.isOk:
+          halt()
+        resp Http200, [("Content-Type","application/json")], $(%*sectProcess.sectorProcess)
+      elif @"action" == "newProcess":
+        echo "++++++++++++"
+        if @"userId" != "":
+          checkAdminToken ifAdmin
+        let newProcess = newSectProcess(db, @"token",
+                      @"sectorId", @"userId", @"startDate")
+        #if not newProcess:
+          #halt()
+        resp Http200, [("Content-Type","application/json")], $(%*{"status": newProcess})
       else:
         halt()
 when isMainModule:
