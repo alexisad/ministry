@@ -64,7 +64,7 @@ suite "user API":
         require(sectorsPr.len != 0 and sectorsPrU.len != 0)
 
     test "add new process":
-        let statusJsn = c.getContent("http://127.0.0.1:5000/sector/newProcess?" &
+        let statusJsn = c.getContent("http://127.0.0.1:5000/sector/process/new?" &
                                 "token=" & adminToken &
                                 "&sectorId=" & sectPrId &
                                 "&startDate=" & encodeUrl( (now() - 10.days).format normalDateFmt )
@@ -73,7 +73,7 @@ suite "user API":
         require(status)
 
     test "add new process":
-        let statusJsn = c.getContent("http://127.0.0.1:5000/sector/newProcess?" &
+        let statusJsn = c.getContent("http://127.0.0.1:5000/sector/process/new?" &
                                 "token=" & adminToken &
                                 "&sectorId=" & $sectorsPr[6].sector_id &
                                 "&userId=" & $2 &
@@ -84,7 +84,7 @@ suite "user API":
 
 
     test "shouldn't add the same sector to process":
-        let statusJsn = c.getContent("http://127.0.0.1:5000/sector/newProcess?" &
+        let statusJsn = c.getContent("http://127.0.0.1:5000/sector/process/new?" &
                                 "token=" & userToken &
                                 "&sectorId=" & sectPrId &
                                 "&startDate=" & encodeUrl( (now() - 10.days).format normalDateFmt )

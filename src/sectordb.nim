@@ -119,3 +119,7 @@ proc newSectProcess*(db: DbConn, t, sId, uId, startDate: string): bool =
     db.exec(sql"ROLLBACK")
     return result
   result = true
+
+
+proc delProcess*(db: DbConn, t, sId: string): bool =
+  result = false

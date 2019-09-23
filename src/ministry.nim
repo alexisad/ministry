@@ -398,15 +398,18 @@ proc main() =
         if not sectProcess.isOk:
           halt()
         resp Http200, [("Content-Type","application/json")], $(%*sectProcess.sectorProcess)
-      elif @"action" == "newProcess":
-        echo "++++++++++++"
+      else:
+        halt()
+    get "/sector/process/@action":
+      if @"action" == "new":
         if @"userId" != "":
           checkAdminToken ifAdmin
         let newProcess = newSectProcess(db, @"token",
                       @"sectorId", @"userId", @"startDate")
-        #if not newProcess:
-          #halt()
         resp Http200, [("Content-Type","application/json")], $(%*{"status": newProcess})
+      if @"action" == "delete":
+        let delStat = delProcess(db, @"token", @"sectorId")
+        resp Http200, [("Content-Type","application/json")], $(%*{"status": delStat})
       else:
         halt()
 when isMainModule:
