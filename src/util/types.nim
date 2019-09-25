@@ -19,7 +19,7 @@ type
     firstname*, lastname*: string
     action*: string
     date_start*, date_finish*: string
-    user_id*, sector_id*, act_id*: int
+    id*, user_id*, sector_id*, act_id*: int
 
 
 type

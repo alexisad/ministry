@@ -402,14 +402,19 @@ proc main() =
         halt()
     get "/sector/process/@action":
       if @"action" == "new":
-        if @"userId" != "":
+        if @"userId" != "" or @"startDate" != "":
           checkAdminToken ifAdmin
         let newProcess = newSectProcess(db, @"token",
                       @"sectorId", @"userId", @"startDate")
         resp Http200, [("Content-Type","application/json")], $(%*{"status": newProcess})
       if @"action" == "delete":
-        let delStat = delProcess(db, @"token", @"sectorId")
+        checkAdminToken ifAdmin
+        let delStat = delProcess(db, @"sectorId")
         resp Http200, [("Content-Type","application/json")], $(%*{"status": delStat})
+      elif @"action" == "update":
+        checkAdminToken ifAdmin
+        let updStat = updProcess(db, @"processId", @"userId", @"startDate", @"finishDate", @"action")
+        resp Http200, [("Content-Type","application/json")], $(%*{"status": updStat})
       else:
         halt()
 when isMainModule:

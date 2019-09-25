@@ -89,16 +89,19 @@ proc getSectProcess*(db: DbConn, t: string): tuple[isOk: bool, sectorProcess: se
 
 proc newSectProcess*(db: DbConn, t, sId, uId, startDate: string): bool =
   result = false
+  let normalDateFmt = initTimeFormat("yyyy-MM-dd")
   let rChck = checkToken(db, t)
   if not rChck.isOk:
     return result
+  let sDate =
+    if startDate != "": startDate else: now().format normalDateFmt
   let sPrRow = db.getRow(sql"""SELECT * FROM user_sector
                   WHERE
                     sector_id = ? AND
                     (date_finish > ? OR
                     date_finish IS NULL)
                   ORDER BY date_start DESC
-            LIMIT 1""", sId, startDate)
+            LIMIT 1""", sId, sDate)
   if sPrRow[0] != "":
     return result
   db.exec(sql"BEGIN")
@@ -111,15 +114,59 @@ proc newSectProcess*(db: DbConn, t, sId, uId, startDate: string): bool =
   let sPrId =
         if uId != "":
           db.tryInsertID(sqlIns.replace("*??*", "?").sql,
-                uId, sId, startDate)
+                uId, sId, sDate)
         else:
+          #simple user check that already > 4 months
+          let uDate = (now() - 4.months).format normalDateFmt
+          let chkDRow = db.getRow(sql"""SELECT * FROM user_sector
+                  WHERE
+                    user_id = (SELECT user_id FROM token WHERE token = ?) AND
+                    sector_id = ? AND
+                    date_finish > ?
+                  ORDER BY date_finish DESC
+                LIMIT 1""", t, sId, uDate)
+          if chkDRow[0] != "":
+            return result
           db.tryInsertID(sqlIns.replace("*??*", "(SELECT user_id FROM token WHERE token = ?)").sql,
-                t, sId, startDate)
+                t, sId, sDate)
   if sPrId == -1 or not db.tryExec(sql"COMMIT"):
     db.exec(sql"ROLLBACK")
     return result
   result = true
 
 
-proc delProcess*(db: DbConn, t, sId: string): bool =
+proc delProcess*(db: DbConn, sId: string): bool =
   result = false
+
+proc updProcess*(db: DbConn, pId, uId, sDate, fDate, action: string): bool =
+  result = false
+  let sectorPrcRow = db.getRow(sql"""SELECT user_sector.*, ministry_act.action
+                  FROM user_sector
+                  INNER JOIN ministry_act ON ministry_act.id = user_sector.act_id
+                  WHERE user_sector.id = ?
+                  """, pId)
+  if sectorPrcRow[0] == "":
+    return result
+  let vsDate = if sDate == "": sectorPrcRow[4] else: sDate
+  let vfDate = if fDate == "": sectorPrcRow[5] else: fDate
+  let vaction = if action == "": sectorPrcRow[6] else: action
+  if vaction == "finish" and vfDate == "":
+    return result
+  if vaction == "start" and vsDate == "":
+    return result
+  if vsDate > vfDate:
+    return result
+  db.exec(sql"BEGIN")
+  let shOne = db.execAffectedRows(sql"""UPDATE user_sector
+          SET date_start = ?,
+              date_finish = ?,
+              act_id = (SELECT id FROM ministry_act WHERE action = ?),
+          WHERE id = ?""",
+            vsDate, vfDate, vaction)
+  if shOne == 0:
+    db.exec(sql"ROLLBACK")
+    return result
+  if not db.tryExec(sql"COMMIT"):
+    db.exec(sql"ROLLBACK")
+    return false
+  

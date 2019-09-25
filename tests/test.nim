@@ -82,22 +82,31 @@ suite "user API":
         let status = statusJsn.to(StatusResp).status
         require(status)
 
+    test "update process: set finish date":
+        let statusJsn = c.getContent("http://127.0.0.1:5000/sector/process/update?" &
+                                "token=" & adminToken &
+                                "&processId=" & $sectorsPr[6].id &
+                                "&endDate=" & encodeUrl( (now() - 5.days).format normalDateFmt )
+                        ).parseJson()
+        let status = statusJsn.to(StatusResp).status
+        require(status)
+
 
     test "shouldn't add the same sector to process":
         let statusJsn = c.getContent("http://127.0.0.1:5000/sector/process/new?" &
                                 "token=" & userToken &
-                                "&sectorId=" & sectPrId &
-                                "&startDate=" & encodeUrl( (now() - 10.days).format normalDateFmt )
+                                "&sectorId=" & sectPrId
                         ).parseJson()
         let status = statusJsn.to(StatusResp).status
         require(status == false)
     
-    test "delete user Pavel":
-        let statusJsn = c.getContent("http://127.0.0.1:5000/user/delete?email=p.tarasow%40gmail.com&token=" & adminToken).parseJson()
-        let status = statusJsn.to(StatusResp).status
-        require(status)
+    when true:
+        test "delete user Pavel":
+            let statusJsn = c.getContent("http://127.0.0.1:5000/user/delete?email=p.tarasow%40gmail.com&token=" & adminToken).parseJson()
+            let status = statusJsn.to(StatusResp).status
+            require(status)
 
-    echo "suite teardown: run once after the tests"
+    echo "suite teardown: run once after the tests..."
 
 
 when false:
