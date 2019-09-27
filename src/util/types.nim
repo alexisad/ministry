@@ -10,6 +10,7 @@ type
     role_id*: int
     role*: string
     password*: string
+    active*: int
   TokenResp* = object
     token*: string
   StatusResp* = object
@@ -17,9 +18,8 @@ type
   SectorProcess* = object
     name*: string
     firstname*, lastname*: string
-    action*: string
     date_start*, date_finish*: string
-    id*, user_id*, sector_id*, act_id*: int
+    id*, user_id*, sector_id*: int
 
 
 type

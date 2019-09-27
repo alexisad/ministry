@@ -1,20 +1,30 @@
-import json, db_sqlite, times, strutils, tables, strformat
+import json, db_sqlite, times, strutils, tables
 import util/types
 
 proc uploadSector*(db: DbConn, corpusId: int): bool =
   result = false
   let sectorJsn = parseFile("Büdingen_Exp_2019-09-19T11_04_36+02_00.json")
   db.exec(sql"""VACUUM INTO ?""", "ministry_bkp_$1.db" % ($now()).replace(":", "_") )
-  #db.exec(sql"""VACUUM""")
   db.exec(sql"BEGIN")
   for sIntId,v in pairs(sectorJsn):
     var s = Sector(postalCode: v["postalCode"].getStr, pFix: v["pFix"].getInt,
                     city: v["city"].getStr, district: v["district"].getStr
               )
-    db.exec(sql"""DELETE FROM sector WHERE sector_internal_id = ? AND corpus_id = ?""", sIntId, corpusId)
+    try:
+      db.exec(sql"""DELETE FROM sector WHERE sector_internal_id = ? AND corpus_id = ?""", sIntId, corpusId)
+    except:
+      if getCurrentExceptionMsg().toUpperAscii().find("CONSTRAINT") != -1:
+        stderr.writeLine(getCurrentExceptionMsg())
+        db.exec(sql"""UPDATE sector
+          SET inactive = 1
+          WHERE sector_internal_id = ? AND corpus_id = ?""",
+                sIntId, corpusId)
+      else:
+        db.exec(sql"ROLLBACK")
+        return false
     let dbSId = db.tryInsertID(sql"""INSERT INTO sector
-        (corpus_id, sector_internal_id, name)
-        VALUES(?,?,?)
+        (corpus_id, sector_internal_id, name, inactive)
+        VALUES(?,?,?,0)
         """, corpusId, sIntId, s.name)
     var linksStreet = initTable[int, string](8)
     for ns, sv in pairs(v["streets"].getFields):
@@ -59,32 +69,35 @@ proc uploadSector*(db: DbConn, corpusId: int): bool =
   result = true
 
 
-proc getSectProcess*(db: DbConn, t: string): tuple[isOk: bool, sectorProcess: seq[SectorProcess]] =
+proc getSectProcess*(db: DbConn, t, inactive: string): tuple[isOk: bool, sectorProcess: seq[SectorProcess]] =
   result.isOk = false
   result.sectorProcess = newSeq[SectorProcess]()
   let rChck = checkToken(db, t)
   if not rChck.isOk:
     return result
-  let sectRows = db.getAllRows(sql"""SELECT name as sectorName, firstname, lastname,
-              action, date_start, date_finish, user_id,
-              sector.sector_id, act_id
+  let vInactive =
+    if inactive == "": " AND sector.inactive = 0 " else: inactive
+  let sectRows = db.getAllRows("""SELECT name as sectorName, firstname, lastname,
+              date_start, date_finish, user_id,
+              sector.id, user_sector.id
               FROM sector
-              LEFT JOIN user_sector ON sector.sector_id = user_sector.sector_id
+              LEFT JOIN user_sector ON sector.id = user_sector.sector_id
               LEFT JOIN user ON user_sector.user_id = user.id
-              LEFT JOIN ministry_act ON ministry_act.id = user_sector.act_id
-              WHERE sector.corpus_id = ?""", rChck.rowToken[3])
+              WHERE sector.corpus_id = ? {*vInactive*}"""
+        .replace("{*vInactive*}", vInactive)
+        .sql, rChck.rowToken[3])
   if sectRows.len == 0 or sectRows[0][0] == "":
     return result
   result.isOk = true
   result.sectorProcess = newSeqOfCap[SectorProcess](sectRows.len)
   for r in sectRows:
     var sectP = SectorProcess(name: r[0], firstName: r[1], lastName: r[2],
-            action: r[3], date_start: r[4], date_finish: r[5],
-            user_id: -1, sector_id: r[7].parseInt, act_id: -1
+            date_start: r[3], date_finish: r[4],
+            user_id: -1, sector_id: r[6].parseInt, id: -1
         )
     if sectP.firstname != "": #someone took this sector
-      sectP.user_id = r[6].parseInt
-      sectP.act_id = r[8].parseInt
+      sectP.user_id = r[5].parseInt
+      sectP.id = r[7].parseInt
     result.sectorProcess.add sectP
 
 proc newSectProcess*(db: DbConn, t, sId, uId, startDate: string): bool =
@@ -102,14 +115,15 @@ proc newSectProcess*(db: DbConn, t, sId, uId, startDate: string): bool =
                     date_finish IS NULL)
                   ORDER BY date_start DESC
             LIMIT 1""", sId, sDate)
+  echo "begin insert process: ", [sId, uId, startDate].join(" ")
   if sPrRow[0] != "":
     return result
+  echo "begin insert process: ", sPrRow
   db.exec(sql"BEGIN")
   var sqlIns = """INSERT INTO user_sector
-          (user_id, act_id, sector_id, date_start)
-          VALUES(*??*,
-            (SELECT id FROM ministry_act WHERE action = "start"),
-            ?, ?
+          (user_id, sector_id, date_start)
+          VALUES(
+            *??*, ?, ?
           )"""
   let sPrId =
         if uId != "":
@@ -138,35 +152,33 @@ proc newSectProcess*(db: DbConn, t, sId, uId, startDate: string): bool =
 proc delProcess*(db: DbConn, sId: string): bool =
   result = false
 
-proc updProcess*(db: DbConn, pId, uId, sDate, fDate, action: string): bool =
+proc updProcess*(db: DbConn, pId, uId, sDate, fDate: string): bool =
   result = false
-  let sectorPrcRow = db.getRow(sql"""SELECT user_sector.*, ministry_act.action
-                  FROM user_sector
-                  INNER JOIN ministry_act ON ministry_act.id = user_sector.act_id
-                  WHERE user_sector.id = ?
+  let sectorPrcRow = db.getRow(sql"""SELECT usectB.*
+                          FROM user_sector as usectA
+                          LEFT JOIN user_sector as usectB
+                              ON usectA.sector_id = usectB.sector_id
+                          WHERE usectA.id = ?
+                          ORDER BY date_start ASC
                   """, pId)
   if sectorPrcRow[0] == "":
     return result
-  let vsDate = if sDate == "": sectorPrcRow[4] else: sDate
-  let vfDate = if fDate == "": sectorPrcRow[5] else: fDate
-  let vaction = if action == "": sectorPrcRow[6] else: action
-  if vaction == "finish" and vfDate == "":
-    return result
-  if vaction == "start" and vsDate == "":
-    return result
+  let vsDate = if sDate == "": sectorPrcRow[3] else: sDate
+  let vfDate = if fDate == "": sectorPrcRow[4] else: fDate
+  echo "BEGIN::: ", pId, " ", vsDate, " ", vfDate
   if vsDate > vfDate:
     return result
   db.exec(sql"BEGIN")
   let shOne = db.execAffectedRows(sql"""UPDATE user_sector
           SET date_start = ?,
-              date_finish = ?,
-              act_id = (SELECT id FROM ministry_act WHERE action = ?),
+              date_finish = ?
           WHERE id = ?""",
-            vsDate, vfDate, vaction)
+            vsDate, vfDate, pId)
   if shOne == 0:
     db.exec(sql"ROLLBACK")
     return result
   if not db.tryExec(sql"COMMIT"):
     db.exec(sql"ROLLBACK")
     return false
+  result = true
   

@@ -29,7 +29,14 @@ proc getTblRows(n: string): seq[Row] =
 
 
 proc reDb() =
-  when true:
+  when false:
+    db.exec(sql"""CREATE INDEX idx_name_sector
+              ON street (name, sector_id)
+            """)
+    db.exec(sql"""CREATE INDEX idx_street_rame
+            ON rame (street_id, rame_street_id)
+          """)
+  when false:
     dropTbl "ministry_act"
     db.exec(sql"""CREATE TABLE ministry_act (
               id  INTEGER PRIMARY KEY,
@@ -46,26 +53,33 @@ proc reDb() =
           id  INTEGER PRIMARY KEY,
           sector_id INTEGER NOT NULL,
           user_id INTEGER NOT NULL,
-          act_id INTEGER NOT NULL,
           date_start TEXT NOT NULL,
           date_finish TEXT,
           FOREIGN KEY (sector_id)
-                REFERENCES sector (sector_id)
+                REFERENCES sector (id)
                   ON UPDATE CASCADE
-                  ON DELETE CASCADE
+                  ON DELETE RESTRICT,
+          FOREIGN KEY (user_id)
+                REFERENCES user (id)
+                  ON UPDATE CASCADE
+                  ON DELETE RESTRICT
         )""")
   when false:
     dropTbl "sector"
     db.exec(sql"""CREATE TABLE sector (
-              sector_id  INTEGER PRIMARY KEY,
+              id INTEGER PRIMARY KEY,
               corpus_id  INTEGER NOT NULL,
               sector_internal_id INTEGER NOT NULL,
               name VARCHAR(100) NOT NULL,
+              inactive INTEGER NOT NULL,
               FOREIGN KEY (corpus_id)
                 REFERENCES corpus (id)
                   ON UPDATE CASCADE
                   ON DELETE RESTRICT
             )""")
+    db.exec(sql"""CREATE INDEX idx_corp_sector
+            ON sector (corpus_id, sector_internal_id)
+          """)
     dropTbl "street"
     db.exec(sql"""CREATE TABLE street (
               id   INTEGER PRIMARY KEY,
@@ -73,7 +87,7 @@ proc reDb() =
               sector_id INTEGER NOT NULL,
               geometry TEXT,
               FOREIGN KEY (sector_id)
-                REFERENCES sector (sector_id)
+                REFERENCES sector (id)
                   ON UPDATE CASCADE
                   ON DELETE CASCADE
             )""")
@@ -130,12 +144,13 @@ proc reDb() =
             )""")
       db.exec(sql"""CREATE TABLE user (
               id   INTEGER PRIMARY KEY,
-              corpus_id  INTEGER NOT NULL,
+              corpus_id INTEGER NOT NULL,
               firstname VARCHAR(50) NOT NULL,
               lastname VARCHAR(50) NOT NULL,
               email VARCHAR(100) UNIQUE NOT NULL,
               password VARCHAR(100) NOT NULL,
               role_id   INTEGER  NOT NULL,
+              active INTEGER NOT NULL,
               FOREIGN KEY (corpus_id)
                 REFERENCES corpus (id)
                   ON UPDATE CASCADE
@@ -145,9 +160,9 @@ proc reDb() =
                   ON UPDATE CASCADE
                   ON DELETE RESTRICT
             )""")
-      db.exec(sql"""INSERT into user (corpus_id, firstname, lastname, email, password, role_id)
-              VALUES(?,?,?,?,?,?)
-            """, 1, "Alexander", "Sadovoy", "sadovoyalexander@yahoo.de", "698d51a19d8a121ce581499d7b701668", 1)
+      db.exec(sql"""INSERT into user (corpus_id, firstname, lastname, email, password, role_id, active)
+              VALUES(?,?,?,?,?,?,?)
+            """, 1, "Alexander", "Sadovoy", "sadovoyalexander@yahoo.de", "698d51a19d8a121ce581499d7b701668", 1, 1)
     let rows = db.getAllRows(sql"""SELECT 
                   *
                   FROM 
@@ -256,9 +271,9 @@ proc addUser(u: User): tuple[isAdded: bool, user: User] =
     if rowRole[0] == "":
       return addF
     db.exec(sql"BEGIN")
-    let uId = db.tryInsertID(sql"""INSERT into user (corpus_id, firstname, lastname, email, password, role_id)
-              VALUES(?,?,?,?,?,?)
-            """, u.corpus_id, u.firstname, u.lastname, u.email, u.password.getMD5, rowRole[0])
+    let uId = db.tryInsertID(sql"""INSERT into user (corpus_id, firstname, lastname, email, password, role_id, active)
+              VALUES(?,?,?,?,?,?,?)
+            """, u.corpus_id, u.firstname, u.lastname, u.email, u.password.getMD5, rowRole[0], 1)
     if uId == -1 or not db.tryExec(sql"COMMIT"):
       db.exec(sql"ROLLBACK")
       return addF
@@ -283,13 +298,15 @@ proc getUser(t, e: string): tuple[isOk: bool, user: User] =
 
 proc delUser(e: string): bool =
   db.exec(sql"BEGIN")
-  db.exec(sql"""DELETE FROM user WHERE email = ?""", e)
+  if not db.tryExec(sql"""DELETE FROM user WHERE email = ?""", e):
+    db.exec(sql"ROLLBACK")
+    return false
   if not db.tryExec(sql"COMMIT"):
     db.exec(sql"ROLLBACK")
     return false
   result = true
 
-proc updUser(id, firstname, lastname, email, password, role_id: string): bool =
+proc updUser(id, firstname, lastname, email, password, role_id, active: string): bool =
   if id == "":
     return false
   var u = getUser(id.parseBiggestInt, true)
@@ -306,6 +323,8 @@ proc updUser(id, firstname, lastname, email, password, role_id: string): bool =
     user.password = password.getMD5
   if role_id != "":
     user.role_id = role_id.parseInt
+  if active != "":
+    user.active = active.parseInt
   #echo "updUser: ", $u
   db.exec(sql"BEGIN")
   db.exec(sql"""UPDATE user
@@ -313,10 +332,11 @@ proc updUser(id, firstname, lastname, email, password, role_id: string): bool =
       lastname = ?,
       email = ?,
       password = ?,
-      role_id = ?
+      role_id = ?,
+      active = ?
     WHERE id = ?""",
       user.firstname, user.lastname, user.email,
-      user.password, user.role_id, id
+      user.password, user.role_id, id, active
     )
   if not db.tryExec(sql"COMMIT"):
     db.exec(sql"ROLLBACK")
@@ -367,20 +387,19 @@ proc main() =
         resp Http200, [("Content-Type","application/json")], $(%*ifAdded.user)
       elif @"action" == "delete":
         checkAdminToken ifAdmin
-        if not delUser @"email":
-          halt()
+        let status = delUser @"email"
         #resp h3 "tokens: " & $getTblRows("token") & "<br/>users: " & $getTblRows("user")
-        resp Http200, [("Content-Type","application/json")], $(%*{"status": true})
+        resp Http200, [("Content-Type","application/json")], $(%*{"status": status})
       elif @"action" == "get":
         let rU = getUser(@"token", @"email")
-        if not rU.isOk:
-          halt()
+        #if not rU.isOk:
+          #halt()
         #resp h4 "user: " & $(%*rU.user)
         resp Http200, [("Content-Type","application/json")], $(%*rU.user)
       elif @"action" == "update":
         #resp h4 "boo: "
         checkAdminToken ifAdmin
-        if not updUser(@"id", @"firstname", @"lastname", @"email", @"password", @"role_id"):
+        if not updUser(@"id", @"firstname", @"lastname", @"email", @"password", @"role_id", @"active"):
           halt()
         let rU = getUser(@"id".parseInt)
         resp h4 "user: " & $rU
@@ -394,7 +413,7 @@ proc main() =
         #echo $getTblRows("sector")
         resp Http200, [("Content-Type","application/json")], $(%*{"status": true})
       elif @"action" == "process":
-        let sectProcess = getSectProcess(db, @"token")
+        let sectProcess = getSectProcess(db, @"token", @"inactive")
         if not sectProcess.isOk:
           halt()
         resp Http200, [("Content-Type","application/json")], $(%*sectProcess.sectorProcess)
@@ -413,7 +432,8 @@ proc main() =
         resp Http200, [("Content-Type","application/json")], $(%*{"status": delStat})
       elif @"action" == "update":
         checkAdminToken ifAdmin
-        let updStat = updProcess(db, @"processId", @"userId", @"startDate", @"finishDate", @"action")
+        let updStat = updProcess(db, @"processId", @"userId", @"startDate", @"finishDate")
+        echo "updStat:: ", updStat
         resp Http200, [("Content-Type","application/json")], $(%*{"status": updStat})
       else:
         halt()
