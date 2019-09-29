@@ -202,11 +202,11 @@ proc login(user, pass: string): tuple[isOk: bool, user: User, token: string] {.g
   if not db.tryExec(sql"COMMIT"):
     db.exec(sql"ROLLBACK")
     return result
-  let rowsToken = db.getAllRows(sql"""SELECT 
+  #[let rowsToken = db.getAllRows(sql"""SELECT 
                 *
                 FROM 
                 token""")
-  #echo user, " ", pass, " table token: ", rowsToken
+  #echo user, " ", pass, " table token: ", rowsToken]#
   {.gcsafe.}:
     let u = getUser user_id.parseInt
   if not u.isOk:
@@ -274,12 +274,16 @@ proc addUser(u: User): tuple[isAdded: bool, user: User] =
     let uId = db.tryInsertID(sql"""INSERT into user (corpus_id, firstname, lastname, email, password, role_id, active)
               VALUES(?,?,?,?,?,?,?)
             """, u.corpus_id, u.firstname, u.lastname, u.email, u.password.getMD5, rowRole[0], 1)
-    if uId == -1 or not db.tryExec(sql"COMMIT"):
+    if uId == -1:
       db.exec(sql"ROLLBACK")
       return addF
     result.isAdded = true
     let u = getUser(uId)
     if not u.isOk:
+      db.exec(sql"ROLLBACK")
+      return addF
+    if not db.tryExec(sql"COMMIT"):
+      db.exec(sql"ROLLBACK")
       return addF
     result.user = u.user
 
@@ -288,7 +292,7 @@ proc getUser(t, e: string): tuple[isOk: bool, user: User] =
   let rChck = checkToken(db, t)
   if not rChck.isOk:
     return (isOk: false, user: User())
-  let rowU = db.getRow(sql"""SELECT 
+  let rowU = db.getRow(sql"""SELECT
           *
           FROM user 
           WHERE email = ?""", e)
@@ -296,22 +300,24 @@ proc getUser(t, e: string): tuple[isOk: bool, user: User] =
     return (isOk: false, user: User())
   result = (isOk: true, user: row2User rowU)
 
-proc delUser(e: string): bool =
+proc delUser(e: string): StatusResp[int] =
+  result.status = false
   db.exec(sql"BEGIN")
   if not db.tryExec(sql"""DELETE FROM user WHERE email = ?""", e):
     db.exec(sql"ROLLBACK")
-    return false
+    return result
   if not db.tryExec(sql"COMMIT"):
     db.exec(sql"ROLLBACK")
-    return false
-  result = true
+    return result
+  result.status = true
 
-proc updUser(id, firstname, lastname, email, password, role_id, active: string): bool =
+proc updUser(id, firstname, lastname, email, password, role_id, active: string): StatusResp[User] =
+  result.status = false
   if id == "":
-    return false
+    return result
   var u = getUser(id.parseBiggestInt, true)
   if not u.isOk:
-    return false
+    return result
   var user = u.user
   if firstname != "":
     user.firstname = firstname
@@ -327,21 +333,28 @@ proc updUser(id, firstname, lastname, email, password, role_id, active: string):
     user.active = active.parseInt
   #echo "updUser: ", $u
   db.exec(sql"BEGIN")
-  db.exec(sql"""UPDATE user
-    SET firstname = ?,
-      lastname = ?,
-      email = ?,
-      password = ?,
-      role_id = ?,
-      active = ?
-    WHERE id = ?""",
-      user.firstname, user.lastname, user.email,
-      user.password, user.role_id, id, active
-    )
+  if not db.tryExec(sql"""UPDATE user
+          SET firstname = ?,
+            lastname = ?,
+            email = ?,
+            password = ?,
+            role_id = ?,
+            active = ?
+          WHERE id = ?""",
+            user.firstname, user.lastname, user.email,
+            user.password, user.role_id, id, active
+        ):
+    db.exec(sql"ROLLBACK")
+    return result
+  let rU = getUser(id.parseInt)
+  if not rU.isOk:
+    db.exec(sql"ROLLBACK")
+    return result
   if not db.tryExec(sql"COMMIT"):
     db.exec(sql"ROLLBACK")
-    return false
-  result = true
+    return result
+  result.status = rU.isOk
+  result.resp = rU.user
 
   
 template checkAdminToken(ifAdmin: untyped): untyped =
@@ -389,7 +402,7 @@ proc main() =
         checkAdminToken ifAdmin
         let status = delUser @"email"
         #resp h3 "tokens: " & $getTblRows("token") & "<br/>users: " & $getTblRows("user")
-        resp Http200, [("Content-Type","application/json")], $(%*{"status": status})
+        resp Http200, [("Content-Type","application/json")], $(%*status)
       elif @"action" == "get":
         let rU = getUser(@"token", @"email")
         #if not rU.isOk:
@@ -399,42 +412,41 @@ proc main() =
       elif @"action" == "update":
         #resp h4 "boo: "
         checkAdminToken ifAdmin
-        if not updUser(@"id", @"firstname", @"lastname", @"email", @"password", @"role_id", @"active"):
-          halt()
-        let rU = getUser(@"id".parseInt)
-        resp h4 "user: " & $rU
+        let updU = updUser(@"id", @"firstname", @"lastname", @"email", @"password", @"role_id", @"active")
+        resp Http200, [("Content-Type","application/json")], $(%*updU)
       else:
         halt()
     get "/sector/@action":
       if @"action" == "upload":
         checkAdminToken ifAdmin
-        if not uploadSector(db, ifAdmin.user.corpus_id):
+        let resp = uploadSector(db, ifAdmin.user.corpus_id)
+        if resp.status == false:
           halt()
         #echo $getTblRows("sector")
-        resp Http200, [("Content-Type","application/json")], $(%*{"status": true})
+        resp Http200, [("Content-Type","application/json")], $(%*resp)
       elif @"action" == "process":
-        let sectProcess = getSectProcess(db, @"token", @"inactive")
-        if not sectProcess.isOk:
-          halt()
-        resp Http200, [("Content-Type","application/json")], $(%*sectProcess.sectorProcess)
+        let sectProcess = getSectProcess(db, @"token", @"sectorId", @"userId", @"inactive")
+        #if sectProcess.status == false:
+          #halt()
+        resp Http200, [("Content-Type","application/json")], $(%*sectProcess)
       else:
         halt()
     get "/sector/process/@action":
       if @"action" == "new":
         if @"userId" != "" or @"startDate" != "":
           checkAdminToken ifAdmin
-        let newProcess = newSectProcess(db, @"token",
+        let sectProcess = newSectProcess(db, @"token",
                       @"sectorId", @"userId", @"startDate")
-        resp Http200, [("Content-Type","application/json")], $(%*{"status": newProcess})
+        resp Http200, [("Content-Type","application/json")], $(%*sectProcess)
       if @"action" == "delete":
         checkAdminToken ifAdmin
         let delStat = delProcess(db, @"sectorId")
         resp Http200, [("Content-Type","application/json")], $(%*{"status": delStat})
       elif @"action" == "update":
         checkAdminToken ifAdmin
-        let updStat = updProcess(db, @"processId", @"userId", @"startDate", @"finishDate")
+        let updStat = updProcess(db, @"token", @"processId", @"userId", @"startDate", @"finishDate")
         echo "updStat:: ", updStat
-        resp Http200, [("Content-Type","application/json")], $(%*{"status": updStat})
+        resp Http200, [("Content-Type","application/json")], $(%*updStat)
       else:
         halt()
 when isMainModule:

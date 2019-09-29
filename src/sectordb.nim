@@ -1,8 +1,8 @@
 import json, db_sqlite, times, strutils, tables
 import util/types
 
-proc uploadSector*(db: DbConn, corpusId: int): bool =
-  result = false
+proc uploadSector*(db: DbConn, corpusId: int): StatusResp[int] =
+  result.status = false
   let sectorJsn = parseFile("Büdingen_Exp_2019-09-19T11_04_36+02_00.json")
   db.exec(sql"""VACUUM INTO ?""", "ministry_bkp_$1.db" % ($now()).replace(":", "_") )
   db.exec(sql"BEGIN")
@@ -21,7 +21,7 @@ proc uploadSector*(db: DbConn, corpusId: int): bool =
                 sIntId, corpusId)
       else:
         db.exec(sql"ROLLBACK")
-        return false
+        return result
     let dbSId = db.tryInsertID(sql"""INSERT INTO sector
         (corpus_id, sector_internal_id, name, inactive)
         VALUES(?,?,?,0)
@@ -65,31 +65,45 @@ proc uploadSector*(db: DbConn, corpusId: int): bool =
                     """, strRow[0], strNRow[0])
   if not db.tryExec(sql"COMMIT"):
     db.exec(sql"ROLLBACK")
-    return false
-  result = true
+    return result
+  result.status = true
 
 
-proc getSectProcess*(db: DbConn, t, inactive: string): tuple[isOk: bool, sectorProcess: seq[SectorProcess]] =
-  result.isOk = false
-  result.sectorProcess = newSeq[SectorProcess]()
+proc getSectProcess*(db: DbConn, t = "", sId = "", uId = "", inactive = ""): StatusResp[seq[SectorProcess]] =
+  result.status = false
+  result.resp = newSeq[SectorProcess]()
   let rChck = checkToken(db, t)
   if not rChck.isOk:
     return result
   let vInactive =
     if inactive == "": " AND sector.inactive = 0 " else: inactive
-  let sectRows = db.getAllRows("""SELECT name as sectorName, firstname, lastname,
-              date_start, date_finish, user_id,
-              sector.id, user_sector.id
-              FROM sector
-              LEFT JOIN user_sector ON sector.id = user_sector.sector_id
-              LEFT JOIN user ON user_sector.user_id = user.id
-              WHERE sector.corpus_id = ? {*vInactive*}"""
-        .replace("{*vInactive*}", vInactive)
-        .sql, rChck.rowToken[3])
+  let vsId =
+    if sId != "": (" = ", sId) else: (" <> ", "-1")
+  let vuId =
+    if uId != "": (" = ", uId) else: (" <> ", "-1")
+  let sqlStr = """SELECT name as sectorName, firstname, lastname,
+          date_start, date_finish, user_id,
+          sector.id as sector_id, user_sector.id
+          FROM sector
+          LEFT JOIN user_sector ON user_sector.sector_id = sector.id
+          LEFT JOIN user ON user.id = user_sector.user_id
+          WHERE
+            sector.corpus_id = ?
+            {*vInactive*}
+            AND sector.id *vsId_c* ?
+          ORDER BY date_start
+        """
+          .replace("{*vInactive*}", vInactive)
+          .replace("*vsId_c*", vsId[0])
+          .replace("*vuId_c*", vuId[0])
+  echo sId, " -- ", sqlStr
+  let sectRows = db.getAllRows(
+      sqlStr.sql,
+          rChck.rowToken[3], vsId[1], vuId[1])
   if sectRows.len == 0 or sectRows[0][0] == "":
     return result
-  result.isOk = true
-  result.sectorProcess = newSeqOfCap[SectorProcess](sectRows.len)
+  result.status = true
+  result.resp = newSeqOfCap[SectorProcess](sectRows.len)
   for r in sectRows:
     var sectP = SectorProcess(name: r[0], firstName: r[1], lastName: r[2],
             date_start: r[3], date_finish: r[4],
@@ -98,10 +112,10 @@ proc getSectProcess*(db: DbConn, t, inactive: string): tuple[isOk: bool, sectorP
     if sectP.firstname != "": #someone took this sector
       sectP.user_id = r[5].parseInt
       sectP.id = r[7].parseInt
-    result.sectorProcess.add sectP
+    result.resp.add sectP
 
-proc newSectProcess*(db: DbConn, t, sId, uId, startDate: string): bool =
-  result = false
+proc newSectProcess*(db: DbConn, t, sId, uId, startDate: string): StatusResp[seq[SectorProcess]] =
+  result.status = false
   let normalDateFmt = initTimeFormat("yyyy-MM-dd")
   let rChck = checkToken(db, t)
   if not rChck.isOk:
@@ -130,32 +144,36 @@ proc newSectProcess*(db: DbConn, t, sId, uId, startDate: string): bool =
           db.tryInsertID(sqlIns.replace("*??*", "?").sql,
                 uId, sId, sDate)
         else:
-          #simple user check that already > 4 months
-          let uDate = (now() - 4.months).format normalDateFmt
-          let chkDRow = db.getRow(sql"""SELECT * FROM user_sector
-                  WHERE
-                    user_id = (SELECT user_id FROM token WHERE token = ?) AND
-                    sector_id = ? AND
-                    date_finish > ?
-                  ORDER BY date_finish DESC
-                LIMIT 1""", t, sId, uDate)
-          if chkDRow[0] != "":
-            return result
+          #simple user: check that already > 4 months
+          when false:
+            let uDate = (now() - 4.months).format normalDateFmt
+            let chkDRow = db.getRow(sql"""SELECT * FROM user_sector
+                    WHERE
+                      user_id = (SELECT user_id FROM token WHERE token = ?) AND
+                      sector_id = ? AND
+                      date_finish > ?
+                    ORDER BY date_finish DESC
+                  LIMIT 1""", t, sId, uDate)
+            if chkDRow[0] != "":
+              db.exec(sql"ROLLBACK")
+              return result
           db.tryInsertID(sqlIns.replace("*??*", "(SELECT user_id FROM token WHERE token = ?)").sql,
                 t, sId, sDate)
   if sPrId == -1 or not db.tryExec(sql"COMMIT"):
     db.exec(sql"ROLLBACK")
     return result
-  result = true
+  result = db.getSectProcess(t, sId)
 
 
 proc delProcess*(db: DbConn, sId: string): bool =
   result = false
 
-proc updProcess*(db: DbConn, pId, uId, sDate, fDate: string): bool =
-  result = false
+proc updProcess*(db: DbConn, t, pId, uId, sDate, fDate: string): StatusResp[seq[SectorProcess]] =
+  result.status = false
+  echo "updProcess:: ", pId
   let sectorPrcRow = db.getRow(sql"""SELECT usectB.*
                           FROM user_sector as usectA
+                          /*JOIN sector ON sector.inactive = 0*/
                           LEFT JOIN user_sector as usectB
                               ON usectA.sector_id = usectB.sector_id
                           WHERE usectA.id = ?
@@ -179,6 +197,7 @@ proc updProcess*(db: DbConn, pId, uId, sDate, fDate: string): bool =
     return result
   if not db.tryExec(sql"COMMIT"):
     db.exec(sql"ROLLBACK")
-    return false
-  result = true
+    return result
+  let sectorRow = db.getRow(sql"""SELECT sector_id FROM user_sector WHERE id = ?""", pId)
+  result = db.getSectProcess(t, sectorRow[0])
   

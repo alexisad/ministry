@@ -13,8 +13,9 @@ type
     active*: int
   TokenResp* = object
     token*: string
-  StatusResp* = object
+  StatusResp*[T] = object
     status*: bool
+    resp*: T
   SectorProcess* = object
     name*: string
     firstname*, lastname*: string

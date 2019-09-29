@@ -8,7 +8,7 @@ suite "user API":
     let c = newHttpClient()
     var adminToken, userToken, sectPrId: string
     let normalDateFmt = initTimeFormat("yyyy-MM-dd")
-    var sectorsPr: seq[SectorProcess]
+    var sectorsPr: StatusResp[seq[SectorProcess]]
     
     when false:
         setup:
@@ -61,24 +61,27 @@ suite "user API":
     
     test "upload data":
         let statusJsn = c.getContent("http://127.0.0.1:5000/sector/upload?token=" & adminToken).parseJson()
-        let status = statusJsn.to(StatusResp).status
+        let status = statusJsn.to(StatusResp[int]).status
         check(status)
 
     test "get all sectors in process":
         let statusJsn = c.getContent("http://127.0.0.1:5000/sector/process?token=" & adminToken).parseJson()
         let statusJsnU = c.getContent("http://127.0.0.1:5000/sector/process?token=" & userToken).parseJson()
-        sectorsPr = statusJsn.to(seq[SectorProcess])
-        let sectorsPrU = statusJsnU.to(seq[SectorProcess])
-        sectPrId = $(sectorsPr[5].sector_id)
-        check(sectorsPr.len != 0 and sectorsPrU.len != 0)
+        sectorsPr = statusJsn.to(StatusResp[seq[SectorProcess]])
+        let sectorsPrU = statusJsnU.to(StatusResp[seq[SectorProcess]])
+        echo "sectorsPr:: ", sectorsPr.resp.len, " ", sectorsPrU.resp.len
+        #sectPrId = $(sectorsPr[5].sector_id)
+        check(sectorsPr.resp.len != 0 and sectorsPrU.resp.len != 0)
 
     test "add new process":
         let statusJsn = c.getContent("http://127.0.0.1:5000/sector/process/new?" &
                                 "token=" & adminToken &
-                                "&sectorId=" & sectPrId &
+                                "&sectorId=" & $(sectorsPr.resp[5].sector_id) &
                                 "&startDate=" & encodeUrl( (now() - 10.days).format normalDateFmt )
                         ).parseJson()
-        let status = statusJsn.to(StatusResp).status
+        let r = statusJsn.to(StatusResp[seq[SectorProcess]])
+        let status = r.status
+        sectPrId = $r.resp[r.resp.high].id
         check(status)
 
     test "add new process":
@@ -86,47 +89,50 @@ suite "user API":
         var user = usrJsn.to(User)
         let statusJsn = c.getContent("http://127.0.0.1:5000/sector/process/new?" &
                                 "token=" & adminToken &
-                                "&sectorId=" & $sectorsPr[6].sector_id &
+                                "&sectorId=" & $sectorsPr.resp[6].sector_id &
                                 "&userId=" & $user.id &
                                 "&startDate=" & encodeUrl( (now() - 10.days).format normalDateFmt )
                         ).parseJson()
-        let status = statusJsn.to(StatusResp).status
+        let status = statusJsn.to(StatusResp[seq[SectorProcess]]).status
         check(status)
 
     test "get all sectors in process":
-        let statusJsn = c.getContent("http://127.0.0.1:5000/sector/process?token=" & adminToken).parseJson()
+        let statusJsn = c.getContent("http://127.0.0.1:5000/sector/process?" &
+                                        "token=" & adminToken &
+                                        "&sectorId=" & $sectorsPr.resp[5].sector_id
+                            ).parseJson()
         let statusJsnU = c.getContent("http://127.0.0.1:5000/sector/process?token=" & userToken).parseJson()
-        sectorsPr = statusJsn.to(seq[SectorProcess])
-        let sectorsPrU = statusJsnU.to(seq[SectorProcess])
-        sectPrId = $(sectorsPr[5].sector_id)
-        check(sectorsPr.len != 0 and sectorsPrU.len != 0)
+        let sectorsPrById = statusJsn.to(StatusResp[seq[SectorProcess]])
+        echo "sectorsPrById: ", sectorsPrById
+        let sectorsPrU = statusJsnU.to(StatusResp[seq[SectorProcess]])
+        #sectPrId = $(sectorsPr[5].sector_id)
+        check(sectorsPrById.resp.len != 0 and sectorsPrU.resp.len != 0)
 
     test "update process: set finish date":
         let statusJsn = c.getContent("http://127.0.0.1:5000/sector/process/update?" &
                                 "token=" & adminToken &
-                                "&processId=" & $sectorsPr[6].id &
+                                "&processId=" & sectPrId &
                                 "&finishDate=" & encodeUrl( (now() - 5.days).format normalDateFmt )
                         ).parseJson()
-        let status = statusJsn.to(StatusResp).status
+        let status = statusJsn.to(StatusResp[seq[SectorProcess]]).status
         check(status)
-
 
     test "update process: not allow set finish date if it < start":
         let statusJsn = c.getContent("http://127.0.0.1:5000/sector/process/update?" &
                                 "token=" & adminToken &
-                                "&processId=" & $sectorsPr[6].id &
+                                "&processId=" & sectPrId &
                                 "&finishDate=" & encodeUrl( (now() - 11.days).format normalDateFmt )
                         ).parseJson()
-        let status = statusJsn.to(StatusResp).status
+        let status = statusJsn.to(StatusResp[seq[SectorProcess]]).status
         check(not status)
 
     test "add new process for the same sector because prev. is finished":
         let statusJsn = c.getContent("http://127.0.0.1:5000/sector/process/new?" &
                                 "token=" & adminToken &
-                                "&sectorId=" & $sectorsPr[6].sector_id &
+                                "&sectorId=" & $sectorsPr.resp[5].sector_id &
                                 "&startDate=" & encodeUrl( (now() - 3.days).format normalDateFmt )
                         ).parseJson()
-        let status = statusJsn.to(StatusResp).status
+        let status = statusJsn.to(StatusResp[seq[SectorProcess]]).status
         check(status)
 
 
@@ -135,17 +141,17 @@ suite "user API":
                                 "token=" & userToken &
                                 "&sectorId=" & sectPrId
                         ).parseJson()
-        let status = statusJsn.to(StatusResp).status
+        let status = statusJsn.to(StatusResp[seq[SectorProcess]]).status
         check(status == false)
     
     test "impossible delete user Pavel, he has processes":
         let statusJsn = c.getContent("http://127.0.0.1:5000/user/delete?email=p.tarasow%40gmail.com&token=" & adminToken).parseJson()
-        let status = statusJsn.to(StatusResp).status
+        let status = statusJsn.to(StatusResp[int]).status
         check(not status)
 
     test "delete user Michael":
         let statusJsn = c.getContent("http://127.0.0.1:5000/user/delete?email=michi.sadik%40gmail.com&token=" & adminToken).parseJson()
-        let status = statusJsn.to(StatusResp).status
+        let status = statusJsn.to(StatusResp[int]).status
         check(status)
 
     echo "suite teardown: run once after the tests..."
