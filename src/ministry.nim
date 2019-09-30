@@ -374,9 +374,11 @@ proc main() =
   routes:
     get "/":
       reDb()
-      resp h1("Hello world")
-    #get "/favicon.ico":
-      #resp(Http200, [("Content-Type","image/x-icon")], request.matches[0])
+      #resp h1("Hello world")
+      #redirect "/index.html"
+      resp(Http200, [("Content-Type","text/html")], readFile("./public/index.html"))
+    get "/favicon.ico":
+      resp(Http200, [("Content-Type","image/x-icon")], request.matches[0])
     get "/login":
       let logged = login(@"email", @"pass")
       if not logged.isOk:
