@@ -11,6 +11,7 @@ type
     role*: string
     password*: string
     active*: int
+    token*: string
   TokenResp* = object
     token*: string
   StatusResp*[T] = object

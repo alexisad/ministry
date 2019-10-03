@@ -5,6 +5,7 @@ import util/types
 
 var db*: DbConn
 
+include "../index.html.nimf"
 
 proc getUser(id: int64, showPass = false): tuple[isOk: bool, user: User]
 
@@ -376,15 +377,23 @@ proc main() =
       reDb()
       #resp h1("Hello world")
       #redirect "/index.html"
-      resp(Http200, [("Content-Type","text/html")], readFile("./public/index.html"))
+      resp(Http200, [("Content-Type","text/html")], genMainPage())
+    post "/":
+      let logged = login(@"email", @"pass")
+      if not logged.isOk:
+        #halt()
+        resp(Http200, [("Content-Type","text/html")], genMainPage())
+      resp(Http200, [("Content-Type","text/html")], genMainPage(logged.token))
     get "/favicon.ico":
       resp(Http200, [("Content-Type","image/x-icon")], request.matches[0])
-    get "/login":
+    post "/login":
       let logged = login(@"email", @"pass")
       if not logged.isOk:
         halt()
+        #redirect "/index.html"
       #resp h2 "logged " & $logged.user & logged.token
-      resp Http200, [("Content-Type","application/json")], $(%*{"token": logged.token})
+      #resp Http200, [("Content-Type","application/json")], $(%*{"token": logged.token})
+      resp(Http200, [("Content-Type","text/html")], genMainPage(logged.token))
     get "/user/@action":
       if @"action" == "new":
         checkAdminToken ifAdmin
