@@ -22,10 +22,11 @@
 </head>
 
 <body>
-    <input id="token" type="hidden" name="token" value="$token">
     <div class="container-fluid">
+        <input id="token" type="hidden" name="token" value="$token">
         <div id="main-control-container"></div>
     </div>
+    <div id="map-container"></div>
 
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->

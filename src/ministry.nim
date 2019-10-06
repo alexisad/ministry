@@ -1,5 +1,5 @@
 import htmlgen
-import jester
+import asyncdispatch, jester, cookies
 import db_sqlite, md5, times, random, strutils, json
 import util/types
 
@@ -367,99 +367,112 @@ template checkAdminToken(ifAdmin: untyped): untyped =
 
 import sectordb
 
+
+router mrouter:
+  get "/":
+    reDb()
+    #resp h1("Hello world")
+    #redirect "/index.html"
+    let cook = request.cookies
+    var token: string
+    if cook.hasKey "token":
+      token = request.cookies["token"]
+      if not checkToken(db, token).isOk:
+        token = ""
+    resp(Http200, [("Content-Type","text/html")], genMainPage(token))
+    #resp h1("Hello world")
+  post "/":
+    let logged = login(@"email", @"pass")
+    if not logged.isOk:
+      if @"test" == "1":
+        halt()
+      else:
+        resp(Http200, [("Content-Type","text/html")], genMainPage())
+    let ctoken = cookies.setCookie("token", logged.token, daysForward(5)).split(":")
+    if @"test" == "1":
+      resp(%*{"token": logged.token})
+    else:
+      resp(Http200, [("Content-Type","text/html"), (ctoken[0], ctoken[1])], genMainPage(logged.token))
+  get "/favicon.ico":
+    resp(Http200, [("Content-Type","image/x-icon")], request.matches[0])
+  get "/user/@action":
+    if @"action" == "new":
+      checkAdminToken ifAdmin
+      let ifAdded = addUser User(
+                firstname: strip(@"firstname"),
+                lastname: strip(@"lastname"),
+                email: strip(@"email"),
+                role: strip(@"role"),
+                corpus_id: ifAdmin.user.corpus_id,
+                password: strip(@"password")
+              )
+      if not ifAdded.isAdded:
+        halt()
+      #resp h1($ifAdded.user)
+      resp Http200, [("Content-Type","application/json")], $(%*ifAdded.user)
+    elif @"action" == "delete":
+      checkAdminToken ifAdmin
+      let status = delUser @"email"
+      #resp h3 "tokens: " & $getTblRows("token") & "<br/>users: " & $getTblRows("user")
+      resp Http200, [("Content-Type","application/json")], $(%*status)
+    elif @"action" == "get":
+      let rU = getUser(@"token", @"email")
+      #if not rU.isOk:
+        #halt()
+      #resp h4 "user: " & $(%*rU.user)
+      resp Http200, [("Content-Type","application/json")], $(%*rU.user)
+    elif @"action" == "update":
+      #resp h4 "boo: "
+      checkAdminToken ifAdmin
+      let updU = updUser(@"id", @"firstname", @"lastname", @"email", @"password", @"role_id", @"active")
+      resp Http200, [("Content-Type","application/json")], $(%*updU)
+    else:
+      halt()
+  get "/sector/@action":
+    if @"action" == "upload":
+      checkAdminToken ifAdmin
+      let resp = uploadSector(db, ifAdmin.user.corpus_id)
+      if resp.status == false:
+        halt()
+      #echo $getTblRows("sector")
+      resp Http200, [("Content-Type","application/json")], $(%*resp)
+    elif @"action" == "process":
+      let sectProcess = getSectProcess(db, @"token", @"sectorId", @"userId", @"inactive")
+      #if sectProcess.status == false:
+        #halt()
+      resp %*sectProcess
+    else:
+      halt()
+  get "/sector/process/@action":
+    if @"action" == "new":
+      if @"userId" != "" or @"startDate" != "":
+        checkAdminToken ifAdmin
+      let sectProcess = newSectProcess(db, @"token",
+                    @"sectorId", @"userId", @"startDate")
+      resp Http200, [("Content-Type","application/json")], $(%*sectProcess)
+    if @"action" == "delete":
+      checkAdminToken ifAdmin
+      let delStat = delProcess(db, @"sectorId")
+      resp Http200, [("Content-Type","application/json")], $(%*{"status": delStat})
+    elif @"action" == "update":
+      checkAdminToken ifAdmin
+      let updStat = updProcess(db, @"token", @"processId", @"userId", @"startDate", @"finishDate")
+      echo "updStat:: ", updStat
+      resp Http200, [("Content-Type","application/json")], $(%*updStat)
+    else:
+      halt()
+
+
+
 proc main() =
   db = open("ministry.db", "", "", "")
   db.exec(sql"PRAGMA foreign_keys = ON")
   echo "db connected!!!!!!!!!!!!!"
+  let settings = newSettings(port = Port(5000))
+  var jester = initJester(mrouter, settings=settings)
+  jester.serve()
 
-  routes:
-    get "/":
-      reDb()
-      #resp h1("Hello world")
-      #redirect "/index.html"
-      resp(Http200, [("Content-Type","text/html")], genMainPage())
-    post "/":
-      let logged = login(@"email", @"pass")
-      if not logged.isOk:
-        #halt()
-        resp(Http200, [("Content-Type","text/html")], genMainPage())
-      resp(Http200, [("Content-Type","text/html")], genMainPage(logged.token))
-    get "/favicon.ico":
-      resp(Http200, [("Content-Type","image/x-icon")], request.matches[0])
-    post "/login":
-      let logged = login(@"email", @"pass")
-      if not logged.isOk:
-        halt()
-        #redirect "/index.html"
-      #resp h2 "logged " & $logged.user & logged.token
-      #resp Http200, [("Content-Type","application/json")], $(%*{"token": logged.token})
-      resp(Http200, [("Content-Type","text/html")], genMainPage(logged.token))
-    get "/user/@action":
-      if @"action" == "new":
-        checkAdminToken ifAdmin
-        let ifAdded = addUser User(
-                  firstname: strip(@"firstname"),
-                  lastname: strip(@"lastname"),
-                  email: strip(@"email"),
-                  role: strip(@"role"),
-                  corpus_id: ifAdmin.user.corpus_id,
-                  password: strip(@"password")
-                )
-        if not ifAdded.isAdded:
-          halt()
-        #resp h1($ifAdded.user)
-        resp Http200, [("Content-Type","application/json")], $(%*ifAdded.user)
-      elif @"action" == "delete":
-        checkAdminToken ifAdmin
-        let status = delUser @"email"
-        #resp h3 "tokens: " & $getTblRows("token") & "<br/>users: " & $getTblRows("user")
-        resp Http200, [("Content-Type","application/json")], $(%*status)
-      elif @"action" == "get":
-        let rU = getUser(@"token", @"email")
-        #if not rU.isOk:
-          #halt()
-        #resp h4 "user: " & $(%*rU.user)
-        resp Http200, [("Content-Type","application/json")], $(%*rU.user)
-      elif @"action" == "update":
-        #resp h4 "boo: "
-        checkAdminToken ifAdmin
-        let updU = updUser(@"id", @"firstname", @"lastname", @"email", @"password", @"role_id", @"active")
-        resp Http200, [("Content-Type","application/json")], $(%*updU)
-      else:
-        halt()
-    get "/sector/@action":
-      if @"action" == "upload":
-        checkAdminToken ifAdmin
-        let resp = uploadSector(db, ifAdmin.user.corpus_id)
-        if resp.status == false:
-          halt()
-        #echo $getTblRows("sector")
-        resp Http200, [("Content-Type","application/json")], $(%*resp)
-      elif @"action" == "process":
-        let sectProcess = getSectProcess(db, @"token", @"sectorId", @"userId", @"inactive")
-        #if sectProcess.status == false:
-          #halt()
-        resp Http200, [("Content-Type","application/json")], $(%*sectProcess)
-      else:
-        halt()
-    get "/sector/process/@action":
-      if @"action" == "new":
-        if @"userId" != "" or @"startDate" != "":
-          checkAdminToken ifAdmin
-        let sectProcess = newSectProcess(db, @"token",
-                      @"sectorId", @"userId", @"startDate")
-        resp Http200, [("Content-Type","application/json")], $(%*sectProcess)
-      if @"action" == "delete":
-        checkAdminToken ifAdmin
-        let delStat = delProcess(db, @"sectorId")
-        resp Http200, [("Content-Type","application/json")], $(%*{"status": delStat})
-      elif @"action" == "update":
-        checkAdminToken ifAdmin
-        let updStat = updProcess(db, @"token", @"processId", @"userId", @"startDate", @"finishDate")
-        echo "updStat:: ", updStat
-        resp Http200, [("Content-Type","application/json")], $(%*updStat)
-      else:
-        halt()
+
 when isMainModule:
   main()
 

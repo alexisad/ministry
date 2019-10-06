@@ -19,8 +19,15 @@ type
     resp*: T
   SectorProcess* = object
     name*: string
+    sector_internal_id*: string
     firstname*, lastname*: string
     date_start*, date_finish*: string
+    id*, user_id*, sector_id*: int
+  CSectorProcess* = object
+    name*: cstring
+    sector_internal_id*: cstring
+    firstname*, lastname*: cstring
+    date_start*, date_finish*: cstring
     id*, user_id*, sector_id*: int
 
 

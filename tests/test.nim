@@ -19,7 +19,7 @@ suite "user API":
     
     test "check login":
         # give up and stop if this fails
-        let tokenJsn = c.postContent("http://127.0.0.1:5000/login?email=sadovoyalexander%40yahoo.de&pass=111").parseJson()
+        let tokenJsn = c.postContent("http://127.0.0.1:5000?email=sadovoyalexander%40yahoo.de&pass=111&test=1").parseJson()
         adminToken = tokenJsn.to(TokenResp).token
         echo "admin user login token: ", adminToken
         check(adminToken != "")
@@ -49,7 +49,7 @@ suite "user API":
 
     test "check login for Pavel":
         # give up and stop if this fails
-        let tokenJsn = c.postContent("http://127.0.0.1:5000/login?email=p.tarasow%40gmail.com&pass=222").parseJson()
+        let tokenJsn = c.postContent("http://127.0.0.1:5000?email=p.tarasow%40gmail.com&pass=222&test=1").parseJson()
         userToken = tokenJsn.to(TokenResp).token
         echo "user login token: ", userToken
         check(userToken != "")

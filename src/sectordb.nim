@@ -7,6 +7,8 @@ proc uploadSector*(db: DbConn, corpusId: int): StatusResp[int] =
   db.exec(sql"""VACUUM INTO ?""", "ministry_bkp_$1.db" % ($now()).replace(":", "_") )
   db.exec(sql"BEGIN")
   for sIntId,v in pairs(sectorJsn):
+    if v["exclude"].getBool:
+      continue
     var s = Sector(postalCode: v["postalCode"].getStr, pFix: v["pFix"].getInt,
                     city: v["city"].getStr, district: v["district"].getStr
               )
@@ -81,7 +83,7 @@ proc getSectProcess*(db: DbConn, t = "", sId = "", uId = "", inactive = ""): Sta
     if sId != "": (" = ", sId) else: (" <> ", "-1")
   let vuId =
     if uId != "": (" = ", uId) else: (" <> ", "-1")
-  let sqlStr = """SELECT name as sectorName, firstname, lastname,
+  let sqlStr = """SELECT name as sectorName, sector_internal_id, firstname, lastname,
           date_start, date_finish, user_id,
           sector.id as sector_id, user_sector.id
           FROM sector
@@ -91,6 +93,7 @@ proc getSectProcess*(db: DbConn, t = "", sId = "", uId = "", inactive = ""): Sta
             sector.corpus_id = ?
             {*vInactive*}
             AND sector.id *vsId_c* ?
+          GROUP BY sector.id
           ORDER BY date_start
         """
           .replace("{*vInactive*}", vInactive)
@@ -105,13 +108,13 @@ proc getSectProcess*(db: DbConn, t = "", sId = "", uId = "", inactive = ""): Sta
   result.status = true
   result.resp = newSeqOfCap[SectorProcess](sectRows.len)
   for r in sectRows:
-    var sectP = SectorProcess(name: r[0], firstName: r[1], lastName: r[2],
-            date_start: r[3], date_finish: r[4],
-            user_id: -1, sector_id: r[6].parseInt, id: -1
+    var sectP = SectorProcess(name: r[0], sector_internal_id: r[1], firstName: r[2], lastName: r[3],
+            date_start: r[4], date_finish: r[5],
+            user_id: -1, sector_id: r[7].parseInt, id: -1
         )
     if sectP.firstname != "": #someone took this sector
-      sectP.user_id = r[5].parseInt
-      sectP.id = r[7].parseInt
+      sectP.user_id = r[6].parseInt
+      sectP.id = r[8].parseInt
     result.resp.add sectP
 
 proc newSectProcess*(db: DbConn, t, sId, uId, startDate: string): StatusResp[seq[SectorProcess]] =

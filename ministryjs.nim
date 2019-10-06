@@ -3,20 +3,25 @@
 # browser-sync start --proxy "http://127.0.0.1:5000" --files "public/js/*.js"
 
 include karax / prelude
-import jsffi, jsbind, async_http_request, asyncjs
+import jsffi except `&`
+import jsbind, async_http_request, asyncjs
 from sugar import `=>`, `->`
 import src/util/types
-import strformat
+import strformat, strutils
+import utiljs
 
 
 var console {.importjs, nodecl.}: JsObject
-# import the "$" function
+var window {.importjs, nodecl.}: JsObject
+var screen {.importjs, nodecl.}: JsObject
 proc jq(selector: JsObject): JsObject {.importjs: "$$(#)".}
 var JSON {.importjs, nodecl.}: JsObject
 var Kefir {.importjs, nodecl.}: JsObject
 var H {.importjs, nodecl.}: JsObject
 var token = $jq("#token".toJs).val().to(cstring)
 var currUser = User(token: token)
+var allSectProc: seq[CSectorProcess]
+var spinnerOn = false
 
 when false:
     var kPrc = proc(emitter: JsObject): proc() =
@@ -26,7 +31,7 @@ when false:
     var stm = Kefir.stream(kPrc)
     stm.log()
 
-proc sendRequest(meth, url, body: string, headers: openarray[(string, string)]): JsObject =
+proc sendRequest(meth, url: string, body = "", headers: openarray[(string, string)] = @[]): JsObject =
     let hdrs = cast[seq[(string, string)]](headers)
     var rPrc =
             proc(emitter: JsObject): proc() =
@@ -34,7 +39,7 @@ proc sendRequest(meth, url, body: string, headers: openarray[(string, string)]):
                 var reqListener: proc ()
                 reqListener = proc () =
                     jsUnref(reqListener)
-                    console.log("resp:", oReq.`type`.toJs, oReq.status.toJs, oReq.statusText.toJs, oReq.responseText.toJs)
+                    #console.log("resp:", oReq.`type`.toJs, oReq.status.toJs, oReq.statusText.toJs, oReq.responseText.toJs)
                     let stts = oReq.status
                     let resp = Response((oReq.status, $oReq.statusText,  $oReq.responseText))
                     if stts == 0 or stts in {100..199} or stts in {400..600}:
@@ -53,7 +58,7 @@ proc sendRequest(meth, url, body: string, headers: openarray[(string, string)]):
                     oReq.send()
                 else:
                     oReq.send(body)
-                console.log("emitter:", emitter)
+                #console.log("emitter:", emitter)
                 result = proc() =
                     oReq.abort()
                 
@@ -136,10 +141,145 @@ proc loginDialog(): VNode =
             p(class="mt-5 mb-3 text-muted text-center"):
                 text "© 2019"
 
+
+proc showMap(): VNode =
+    result = buildHtml tdiv(class="modal fade", id="mapModal", tabindex="-1", role="dialog", aria-labelledby="mapModalLabel", aria-hidden="true"):
+        tdiv(class="modal-dialog map-modal-dialog", role="document"):
+            tdiv(class="modal-content"):
+                tdiv(class="modal-header"):
+                    h6(class="modal-title", id="mapModalLabel"):
+                        text "Участок:"
+                    button(`type`="button", class="close", data-dismiss="modal", aria-label="Close"):
+                        span(aria-hidden="true"):
+                            text "x"
+                tdiv(class="modal-body map-body"):
+                    #text "Здесь будет карта"
+                    tdiv(id = "bap-container")
+
+
+proc clckModal() =
+    let elC = getElemCoords(jq(".map-body".toJs).get(0))
+    console.log(".map-body:: ", elC)
+    var elMap = jq("#map-container".toJs)[0]
+    
+
+
+
+proc showAllProc(): VNode =
+    #for p in allSectProc:
+        #discard# console.log("p.name:", $(p.name))
+    let clsCol = "card-text"#"col-sm-auto themed-grid-col"
+    result = buildHtml tdiv(class="card-deck"):
+        showMap()
+        for p in allSectProc:
+            #discard console.log("p.name:", p)
+            tdiv(class="card mb-2 c-sect"):
+                tdiv(class="card-header"):
+                    ul(class="nav nav-pills card-header-pills"):
+                        li(class="nav-item"):
+                            a(class="nav-link", href="#mapModal", data-toggle="modal", data-target="#mapModal"):
+                                text "Карта"
+                        li(class="nav-item"):
+                            a(class="nav-link", href="#take"):
+                                text "Взять"
+                tdiv(class="card-body"):
+                    h6(class="card-title"):
+                        text p.name
+                    tdiv(class = clsCol):
+                        text(#["date_start:" & ]#p.date_start)
+                    tdiv(class = clsCol):
+                        text(#["date_end:" & ]#p.date_finish)
+
+
+proc toggleSpinner(): Vnode =
+    result = buildHtml tdiv()
+    if spinnerOn:
+        result = buildHtml tdiv(class="d-flex justify-content-center"):
+            tdiv(class="spinner-border text-primary", role="status"):
+                span(class="sr-only"):
+                    text "Loading..."
+
+
+proc setEventsModalMap() =
+        jq("#mapModal".toJs).on("shown.bs.modal", proc (e: JsObject) =
+            let mapBody = jq(".map-body".toJs).get(0)
+            let elC = getElemCoords(mapBody)
+            console.log(".map-body:: ", elC)
+            var elMap = jq("#map-container".toJs)[0]
+            elMap.style.top = cstring"0px"#($elC.top & "px")
+            elMap.style.left = cstring"0px"#($elC.left & "px")
+            mapBody.style.height = cstring($(screen.height.to(float) - 200.00) & "px")
+            mapBody.appendChild(elMap)
+        )
+
+
 proc createDom(): VNode =
     result = buildHtml tdiv(class = "main-root"):
+        toggleSpinner()
         if currUser.token == "":
             loginDialog()
+        else:
+            showAllProc()
 
 
 setRenderer createDom, "main-control-container"
+
+proc bindMap() =
+    let platform = jsNew(H.service.Platform(
+                JsObject{
+                    app_id: cstring"UHuJLJrJznje69zJ2HB7",
+                    app_code: cstring"HdAoJ-BlDvmvb0eksDYqyg",
+                    useHTTPS: true
+                }
+            )
+        )
+    let pixelRatio = window.devicePixelRatio.to(float)
+    let hidpi = pixelRatio > 1.float
+    var layerOpts = JsObject{
+            tileSize: if hidpi: 512 else: 256,
+            pois: true
+    }
+    if hidpi: layerOpts.ppi = 320
+
+    var mapOpts = JsObject{
+        pixelRatio: if hidpi: 2 else: 1,
+        noWrap: true
+    }
+    let defLayers = platform.createDefaultLayers(layerOpts)
+    var map = jsNew H.Map(
+            jq("#map-container".toJs)[0],
+            defLayers.normal.map,
+            mapOpts
+        )
+    console.log("platform:: ", platform)
+    var behavior = jsNew H.mapevents.Behavior(jsNew H.mapevents.MapEvents(map))
+    var ui = H.ui.UI.createDefault(map, defLayers)
+
+
+
+if currUser.token != "":
+    allSectProc = newSeq[CSectorProcess]()
+    spinnerOn = true
+    redraw()
+    let stmLogin = sendRequest(
+        "GET",
+        "/sector/process?" & &"token={currUser.token}"
+    )
+    stmLogin.observe(
+        proc (value: Response) =
+            console.log("value:", value.statusCode)
+            allSectProc = JSON.parse(value.body).resp.to(seq[CSectorProcess])
+            redraw(),
+        proc (error: Response) =
+            console.log("error:", error.statusCode)
+            redraw(),
+        proc () =
+            #discard
+            console.log("end")
+            spinnerOn = false
+            redraw()
+            bindMap()
+            setEventsModalMap()
+    )
+
+
