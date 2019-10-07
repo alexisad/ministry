@@ -22,10 +22,13 @@
 </head>
 
 <body>
-    <div class="container-fluid">
+    <div class="container-fluid main-container">
         <input id="token" type="hidden" name="token" value="$token">
         <div id="main-control-container"></div>
     </div>
+    <!--div class="container-fluid map-nav">
+        <div id="mapnav-container"></div>
+    </div-->
     <div id="map-container"></div>
 
     <!-- Optional JavaScript -->

@@ -22,6 +22,7 @@ var token = $jq("#token".toJs).val().to(cstring)
 var currUser = User(token: token)
 var allSectProc: seq[CSectorProcess]
 var spinnerOn = false
+var isShowNavMap = false
 
 when false:
     var kPrc = proc(emitter: JsObject): proc() =
@@ -88,31 +89,36 @@ when false:
     )
 
 
-proc login(frmClass: kstring): proc() =
+proc login(btnClass: kstring): proc() =
     result = proc() =
-        let email = jq("#inputEmail".toJs).val().to(cstring)
-        let pass = jq("#inputPassword".toJs).val().to(cstring)
-        let frm = jq(frmClass.toJs)
-        console.log("clicked ", email, pass)
-        let stmLogin = sendRequest(
-            "POST",
-            "/login",
-            &"email={email}&pass={pass}",
-            [("Content-Type", "application/x-www-form-urlencoded")]
-        )
-        stmLogin.observe(
-            proc (value: Response) =
-                console.log("value:", value.statusCode)
-                currUser.token = $JSON.parse(value.body).token.to(cstring)
-                redraw(),
-                #frm.submit(),
-            proc (error: Response) =
-                console.log("error:", error.statusCode)
-                redraw(),
-            proc () =
-                #discard
-                console.log("end")
-        )
+        spinnerOn = true
+        redraw()
+        #let email = jq("#inputEmail".toJs).val().to(cstring)
+        #let pass = jq("#inputPassword".toJs).val().to(cstring)
+        let btn = jq(btnClass.toJs)[0]
+        btn.style.display = cstring"none"
+        console.log("clicked ")
+
+        when false:
+            let stmLogin = sendRequest(
+                "POST",
+                "/login",
+                &"email={email}&pass={pass}",
+                [("Content-Type", "application/x-www-form-urlencoded")]
+            )
+            stmLogin.observe(
+                proc (value: Response) =
+                    console.log("value:", value.statusCode)
+                    currUser.token = $JSON.parse(value.body).token.to(cstring)
+                    redraw(),
+                    #frm.submit(),
+                proc (error: Response) =
+                    console.log("error:", error.statusCode)
+                    redraw(),
+                proc () =
+                    #discard
+                    console.log("end")
+            )
 
 proc loginDialog(): VNode =
     let
@@ -133,10 +139,10 @@ proc loginDialog(): VNode =
             label(`for`="inputPassword"):
                 text plPass
         tdiv(class="checkbox mb-3"):
-            label:
-                input(`type`="checkbox", value="remember-me")
-                text " Запомнить меня"
-            button(class="btn btn-lg btn-primary btn-block", `type`="submit"#[, onclick = login(".form-signin")]#):
+            #label:
+                #input(`type`="checkbox", value="remember-me")
+                #text " Запомнить меня"
+            button(class="btn btn-lg btn-primary btn-block", `type`="submit", onclick = login(".form-signin .btn")):
                 text "Войти"
             p(class="mt-5 mb-3 text-muted text-center"):
                 text "© 2019"
@@ -158,26 +164,41 @@ proc showMap(): VNode =
 
 
 proc clckModal() =
-    let elC = getElemCoords(jq(".map-body".toJs).get(0))
-    console.log(".map-body:: ", elC)
+    #let elC = getElemCoords(jq(".map-body".toJs).get(0))
     var elMap = jq("#map-container".toJs)[0]
-    
+    #elMap.style.top = cstring"0px"
+    #elMap.style.left = cstring"0px"
+    elMap.classList.add(cstring"show-map")
+    isShowNavMap = true
+    var mC = jq(".main-container".toJs)[0]
+    #mC.style.position = cstring"absolute"
+    #mC.style.top = cstring"0px"
+    #mC.style.left = cstring"0px"
+    mC.classList.add(cstring"map-nav")
+    redraw()
+    console.log("clckModal:", elMap)
 
-
+proc closeMap() =
+    isShowNavMap = false
+    var mC = jq(".main-container".toJs)[0]
+    var elMap = jq("#map-container".toJs)[0]
+    mC.classList.remove(cstring"map-nav")
+    elMap.classList.remove(cstring"show-map")
+    redraw()
 
 proc showAllProc(): VNode =
     #for p in allSectProc:
         #discard# console.log("p.name:", $(p.name))
     let clsCol = "card-text"#"col-sm-auto themed-grid-col"
     result = buildHtml tdiv(class="card-deck"):
-        showMap()
+        #showMap()
         for p in allSectProc:
             #discard console.log("p.name:", p)
             tdiv(class="card mb-2 c-sect"):
                 tdiv(class="card-header"):
                     ul(class="nav nav-pills card-header-pills"):
                         li(class="nav-item"):
-                            a(class="nav-link", href="#mapModal", data-toggle="modal", data-target="#mapModal"):
+                            a(class="nav-link", href="#mapModal", data-toggle="modal", data-target="#mapModal", onclick = clckModal):
                                 text "Карта"
                         li(class="nav-item"):
                             a(class="nav-link", href="#take"):
@@ -218,10 +239,22 @@ proc createDom(): VNode =
         toggleSpinner()
         if currUser.token == "":
             loginDialog()
+        elif isShowNavMap:
+            nav(class="navbar navbar-expand-sm navbar-light bg-primary"):
+                span(class="navbar-text"):
+                    text "Uchastok..."
+                button(class="btn btn-outline-success my-2 my-sm-0", `type`="button", onclick = closeMap):
+                    text "X"
         else:
             showAllProc()
 
 
+#proc createMapNav(): VNode =
+    #result = buildHtml tdiv(class = "mapnav-root"):
+        #text "YES!!!"
+
+
+#setRenderer createMapNav, "mapnav-container"
 setRenderer createDom, "main-control-container"
 
 proc bindMap() =
@@ -254,6 +287,7 @@ proc bindMap() =
     console.log("platform:: ", platform)
     var behavior = jsNew H.mapevents.Behavior(jsNew H.mapevents.MapEvents(map))
     var ui = H.ui.UI.createDefault(map, defLayers)
+    window.addEventListener("resize", () => map.getViewPort().resize())
 
 
 
