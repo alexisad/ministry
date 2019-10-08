@@ -441,6 +441,9 @@ router mrouter:
       #if sectProcess.status == false:
         #halt()
       resp %*sectProcess
+    elif @"action" == "streets":
+      let sectStreets = getSectStreets(db, @"token", @"sectorId")
+      resp %*sectStreets
     else:
       halt()
   get "/sector/process/@action":

@@ -20,6 +20,7 @@ var Kefir {.importjs, nodecl.}: JsObject
 var H {.importjs, nodecl.}: JsObject
 var token = $jq("#token".toJs).val().to(cstring)
 var currUser = User(token: token)
+var currProcess: CSectorProcess
 var allSectProc: seq[CSectorProcess]
 var spinnerOn = false
 var isShowNavMap = false
@@ -163,20 +164,16 @@ proc showMap(): VNode =
                     tdiv(id = "bap-container")
 
 
-proc clckModal() =
-    #let elC = getElemCoords(jq(".map-body".toJs).get(0))
-    var elMap = jq("#map-container".toJs)[0]
-    #elMap.style.top = cstring"0px"
-    #elMap.style.left = cstring"0px"
-    elMap.classList.add(cstring"show-map")
-    isShowNavMap = true
-    var mC = jq(".main-container".toJs)[0]
-    #mC.style.position = cstring"absolute"
-    #mC.style.top = cstring"0px"
-    #mC.style.left = cstring"0px"
-    mC.classList.add(cstring"map-nav")
-    redraw()
-    console.log("clckModal:", elMap)
+proc clckOpenMap(p: CSectorProcess): proc() = 
+    result = proc() =
+        currProcess = p
+        var elMap = jq("#map-container".toJs)[0]
+        elMap.classList.add(cstring"show-map")
+        isShowNavMap = true
+        var mC = jq(".main-container".toJs)[0]
+        mC.classList.add(cstring"map-nav")
+        #redraw()
+        console.log("clckOpenMap:", elMap)
 
 proc closeMap() =
     isShowNavMap = false
@@ -198,7 +195,7 @@ proc showAllProc(): VNode =
                 tdiv(class="card-header"):
                     ul(class="nav nav-pills card-header-pills"):
                         li(class="nav-item"):
-                            a(class="nav-link", href="#mapModal", data-toggle="modal", data-target="#mapModal", onclick = clckModal):
+                            a(class="nav-link", href="#mapModal", data-toggle="modal", data-target="#mapModal", onclick = clckOpenMap(p)):
                                 text "Карта"
                         li(class="nav-item"):
                             a(class="nav-link", href="#take"):
@@ -240,11 +237,14 @@ proc createDom(): VNode =
         if currUser.token == "":
             loginDialog()
         elif isShowNavMap:
-            nav(class="navbar navbar-expand-sm navbar-light bg-primary"):
-                span(class="navbar-text"):
-                    text "Uchastok..."
-                button(class="btn btn-outline-success my-2 my-sm-0", `type`="button", onclick = closeMap):
-                    text "X"
+            nav(class="navbar navbar-expand-lg navbar-light bg-light shadow p-1 mb-0 bg-white rounded overflow-auto"):
+                a(class="navbar-brand overflow-auto"):
+                    text currProcess.name
+                ul(class="navbar-nav mr-auto"):
+                    li(class="nav-item"):
+                        a(class="badge badge-info", href="#", data-target="#mapclose", onclick = closeMap):
+                #button(class="btn btn-outline-success my-2 my-sm-0", `type`="button", onclick = closeMap):
+                            text "Закрыть карту"
         else:
             showAllProc()
 
@@ -254,8 +254,8 @@ proc createDom(): VNode =
         #text "YES!!!"
 
 
-#setRenderer createMapNav, "mapnav-container"
 setRenderer createDom, "main-control-container"
+
 
 proc bindMap() =
     let platform = jsNew(H.service.Platform(
@@ -288,7 +288,6 @@ proc bindMap() =
     var behavior = jsNew H.mapevents.Behavior(jsNew H.mapevents.MapEvents(map))
     var ui = H.ui.UI.createDefault(map, defLayers)
     window.addEventListener("resize", () => map.getViewPort().resize())
-
 
 
 if currUser.token != "":

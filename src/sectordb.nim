@@ -203,4 +203,16 @@ proc updProcess*(db: DbConn, t, pId, uId, sDate, fDate: string): StatusResp[seq[
     return result
   let sectorRow = db.getRow(sql"""SELECT sector_id FROM user_sector WHERE id = ?""", pId)
   result = db.getSectProcess(t, sectorRow[0])
-  
+
+
+proc getSectStreets*(db: DbConn, t, sId: string): StatusResp[seq[SectorStreets]] =
+  result.status = false
+  let rChck = checkToken(db, t)
+  if not rChck.isOk:
+    return result
+  let streetRows = db.getAllRows(sql"""SELECT 
+          *
+          FROM street
+          WHERE sector_id = ?""", sId)
+  for s in streetRows:
+    result.resp.add SectorStreets(id: s[0].parseInt, name: s[1], sector_id: s[2].parseInt, geometry: s[3])

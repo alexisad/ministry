@@ -29,6 +29,15 @@ type
     firstname*, lastname*: cstring
     date_start*, date_finish*: cstring
     id*, user_id*, sector_id*: int
+  SectorStreets* = object
+    id*, sector_id*: int
+    name*: string
+    geometry*: string
+  CSectorStreets* = object
+    id*, sector_id*: int
+    name*: cstring
+    geometry*: cstring
+
 
 
 type
