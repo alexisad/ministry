@@ -24,6 +24,8 @@ var currProcess: CSectorProcess
 var allSectProc: seq[CSectorProcess]
 var spinnerOn = false
 var isShowNavMap = false
+var map: JsObject
+var sectStreetGrp = jsNew H.map.Group()
 
 when false:
     var kPrc = proc(emitter: JsObject): proc() =
@@ -174,6 +176,46 @@ proc clckOpenMap(p: CSectorProcess): proc() =
         mC.classList.add(cstring"map-nav")
         #redraw()
         console.log("clckOpenMap:", elMap)
+        spinnerOn = true
+        sectStreetGrp.removeAll()
+        let stmGetStreet = sendRequest(
+            "GET",
+            "/sector/streets?" & &"token={currUser.token}&sectorId={p.sector_id}"
+        )
+        stmGetStreet.observe(
+            proc (value: Response) =
+                console.log("value:", value.statusCode)
+                let sectStrts = JSON.parse(value.body).resp.to(seq[CSectorStreets])
+                for strt in sectStrts:
+                    let coords = strt.geometry.split(";")
+                    for latlng in coords:
+                        var lnStr = jsNew H.geo.LineString()
+                        console.log("latlng:", latlng)
+                        let c = latlng.split(",")
+                        for i in countup(0, c.high, 2):
+                            console.log("geom:", c[i], c[i+1])
+                            lnStr.pushLatLngAlt(c[i].toJs().to(float), c[i+1].toJs().to(float), 1.00)
+                        let pOpt = JsObject{
+                                style: JsObject{
+                                    strokeColor: cstring"rgba(255, 0, 0, 0.2)",
+                                    fillColor: cstring"rgba(255, 0, 0, 0.4)",
+                                    lineWidth: 10
+                                }
+                            }
+                        let pl = jsNew H.map.Polyline(lnStr, pOpt)
+                        sectStreetGrp.addObject pl
+                        console.log("lnStr: ", lnStr)
+                map.setViewBounds(sectStreetGrp.getBounds(), true)
+                redraw(),
+            proc (error: Response) =
+                console.log("error:", error.statusCode)
+                redraw(),
+            proc () =
+                #discard
+                console.log("end")
+                spinnerOn = false
+                redraw()
+        )
 
 proc closeMap() =
     isShowNavMap = false
@@ -191,7 +233,7 @@ proc showAllProc(): VNode =
         #showMap()
         for p in allSectProc:
             #discard console.log("p.name:", p)
-            tdiv(class="card mb-2 c-sect"):
+            tdiv(class="card mb-3 c-sect shadow p-3 bg-white rounded"):
                 tdiv(class="card-header"):
                     ul(class="nav nav-pills card-header-pills"):
                         li(class="nav-item"):
@@ -279,7 +321,7 @@ proc bindMap() =
         noWrap: true
     }
     let defLayers = platform.createDefaultLayers(layerOpts)
-    var map = jsNew H.Map(
+    map = jsNew H.Map(
             jq("#map-container".toJs)[0],
             defLayers.normal.map,
             mapOpts
@@ -288,6 +330,7 @@ proc bindMap() =
     var behavior = jsNew H.mapevents.Behavior(jsNew H.mapevents.MapEvents(map))
     var ui = H.ui.UI.createDefault(map, defLayers)
     window.addEventListener("resize", () => map.getViewPort().resize())
+    map.addObject sectStreetGrp
 
 
 if currUser.token != "":
