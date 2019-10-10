@@ -1,8 +1,8 @@
 import json, db_sqlite, times, strutils, tables
-import util/types
+import util/[types, utils]
 
 proc uploadSector*(db: DbConn, corpusId: int): StatusResp[int] =
-  result.status = false
+  result.status = stUnknown
   let sectorJsn = parseFile("Büdingen_Exp_2019-09-19T11_04_36+02_00.json")
   db.exec(sql"""VACUUM INTO ?""", "ministry_bkp_$1.db" % ($now()).replace(":", "_") )
   db.exec(sql"BEGIN")
@@ -68,15 +68,14 @@ proc uploadSector*(db: DbConn, corpusId: int): StatusResp[int] =
   if not db.tryExec(sql"COMMIT"):
     db.exec(sql"ROLLBACK")
     return result
-  result.status = true
+  result.status = stOk
 
 
 proc getSectProcess*(db: DbConn, t = "", sId = "", uId = "", inactive = ""): StatusResp[seq[SectorProcess]] =
-  result.status = false
+  result.status = stUnknown
   result.resp = newSeq[SectorProcess]()
-  let rChck = checkToken(db, t)
-  if not rChck.isOk:
-    return result
+  var rChck: tuple[isOk: bool, rowToken: Row]
+  resultCheckToken(db, t)
   let vInactive =
     if inactive == "": " AND sector.inactive = 0 " else: inactive
   let vsId =
@@ -105,7 +104,7 @@ proc getSectProcess*(db: DbConn, t = "", sId = "", uId = "", inactive = ""): Sta
           rChck.rowToken[3], vsId[1], vuId[1])
   if sectRows.len == 0 or sectRows[0][0] == "":
     return result
-  result.status = true
+  result.status = stOk
   result.resp = newSeqOfCap[SectorProcess](sectRows.len)
   for r in sectRows:
     var sectP = SectorProcess(name: r[0], sector_internal_id: r[1], firstName: r[2], lastName: r[3],
@@ -118,11 +117,10 @@ proc getSectProcess*(db: DbConn, t = "", sId = "", uId = "", inactive = ""): Sta
     result.resp.add sectP
 
 proc newSectProcess*(db: DbConn, t, sId, uId, startDate: string): StatusResp[seq[SectorProcess]] =
-  result.status = false
+  result.status = stUnknown
   let normalDateFmt = initTimeFormat("yyyy-MM-dd")
-  let rChck = checkToken(db, t)
-  if not rChck.isOk:
-    return result
+  var rChck: tuple[isOk: bool, rowToken: Row]
+  resultCheckToken(db, t)
   let sDate =
     if startDate != "": startDate else: now().format normalDateFmt
   let sPrRow = db.getRow(sql"""SELECT * FROM user_sector
@@ -172,7 +170,7 @@ proc delProcess*(db: DbConn, sId: string): bool =
   result = false
 
 proc updProcess*(db: DbConn, t, pId, uId, sDate, fDate: string): StatusResp[seq[SectorProcess]] =
-  result.status = false
+  result.status = stUnknown
   echo "updProcess:: ", pId
   let sectorPrcRow = db.getRow(sql"""SELECT usectB.*
                           FROM user_sector as usectA
@@ -206,10 +204,9 @@ proc updProcess*(db: DbConn, t, pId, uId, sDate, fDate: string): StatusResp[seq[
 
 
 proc getSectStreets*(db: DbConn, t, sId: string): StatusResp[seq[SectorStreets]] =
-  result.status = false
-  let rChck = checkToken(db, t)
-  if not rChck.isOk:
-    return result
+  result.status = stUnknown
+  var rChck: tuple[isOk: bool, rowToken: Row]
+  resultCheckToken(db, t)
   let streetRows = db.getAllRows(sql"""SELECT 
           *
           FROM street

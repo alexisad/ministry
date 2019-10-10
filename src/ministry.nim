@@ -1,7 +1,8 @@
-import htmlgen
+#import htmlgen
 import asyncdispatch, jester, cookies
 import db_sqlite, md5, times, random, strutils, json
 import util/types
+import util/utils
 
 var db*: DbConn
 
@@ -253,56 +254,58 @@ proc getUser(id: int64, showPass = false): tuple[isOk: bool, user: User] =
 
 
 
-proc addUser(u: User): tuple[isAdded: bool, user: User] =
+proc addUser(u: User): StatusResp[User] =
   #echo "addUser:: ", u
-  let addF = (isAdded: false, user: User())
+  result.status = stUnknown
   if u.firstname == "" or u.lastname == "" or u.email == "" or u.role == "":
-    return addF
+    return result
   else:
     let rowU = db.getRow(sql"""SELECT 
                 count(*)
                 FROM user 
                 WHERE email = ?""", u.email)
     if rowU[0].parseInt > 0:
-      return addF
+      return result
     let rowRole = db.getRow(sql"""SELECT 
                 role.id
                 FROM role 
                 WHERE role = ?""", u.role)
     if rowRole[0] == "":
-      return addF
+      return result
     db.exec(sql"BEGIN")
     let uId = db.tryInsertID(sql"""INSERT into user (corpus_id, firstname, lastname, email, password, role_id, active)
               VALUES(?,?,?,?,?,?,?)
             """, u.corpus_id, u.firstname, u.lastname, u.email, u.password.getMD5, rowRole[0], 1)
     if uId == -1:
       db.exec(sql"ROLLBACK")
-      return addF
-    result.isAdded = true
+      return result
+    result.status = stOk
     let u = getUser(uId)
     if not u.isOk:
       db.exec(sql"ROLLBACK")
-      return addF
+      result.status = stUnknown
+      return result
     if not db.tryExec(sql"COMMIT"):
       db.exec(sql"ROLLBACK")
-      return addF
-    result.user = u.user
+      result.status = stUnknown
+      return result
+    result.resp = u.user
 
 
-proc getUser(t, e: string): tuple[isOk: bool, user: User] =
-  let rChck = checkToken(db, t)
-  if not rChck.isOk:
-    return (isOk: false, user: User())
+proc getUser(t, e: string): StatusResp[User] =
+  result.status = stUnknown
+  var rChck: tuple[isOk: bool, rowToken: Row]
+  resultCheckToken(db, t)
   let rowU = db.getRow(sql"""SELECT
           *
           FROM user 
           WHERE email = ?""", e)
   if rowU[0] == "":
-    return (isOk: false, user: User())
-  result = (isOk: true, user: row2User rowU)
+    return result
+  result.resp = row2User rowU
 
 proc delUser(e: string): StatusResp[int] =
-  result.status = false
+  result.status = stUnknown
   db.exec(sql"BEGIN")
   if not db.tryExec(sql"""DELETE FROM user WHERE email = ?""", e):
     db.exec(sql"ROLLBACK")
@@ -310,10 +313,10 @@ proc delUser(e: string): StatusResp[int] =
   if not db.tryExec(sql"COMMIT"):
     db.exec(sql"ROLLBACK")
     return result
-  result.status = true
+  result.status = stOk
 
 proc updUser(id, firstname, lastname, email, password, role_id, active: string): StatusResp[User] =
-  result.status = false
+  result.status = stUnknown
   if id == "":
     return result
   var u = getUser(id.parseBiggestInt, true)
@@ -354,7 +357,7 @@ proc updUser(id, firstname, lastname, email, password, role_id, active: string):
   if not db.tryExec(sql"COMMIT"):
     db.exec(sql"ROLLBACK")
     return result
-  result.status = rU.isOk
+  result.status = if rU.isOk: stOk else: stUnknown
   result.resp = rU.user
 
   
@@ -406,10 +409,10 @@ router mrouter:
                 corpus_id: ifAdmin.user.corpus_id,
                 password: strip(@"password")
               )
-      if not ifAdded.isAdded:
-        halt()
+      #if not ifAdded.isAdded:
+        #halt()
       #resp h1($ifAdded.user)
-      resp Http200, [("Content-Type","application/json")], $(%*ifAdded.user)
+      resp $(%*ifAdded)
     elif @"action" == "delete":
       checkAdminToken ifAdmin
       let status = delUser @"email"
@@ -420,7 +423,7 @@ router mrouter:
       #if not rU.isOk:
         #halt()
       #resp h4 "user: " & $(%*rU.user)
-      resp Http200, [("Content-Type","application/json")], $(%*rU.user)
+      resp Http200, [("Content-Type","application/json")], $(%*rU)
     elif @"action" == "update":
       #resp h4 "boo: "
       checkAdminToken ifAdmin
@@ -432,8 +435,8 @@ router mrouter:
     if @"action" == "upload":
       checkAdminToken ifAdmin
       let resp = uploadSector(db, ifAdmin.user.corpus_id)
-      if resp.status == false:
-        halt()
+      #if resp.status == false:
+        #halt()
       #echo $getTblRows("sector")
       resp Http200, [("Content-Type","application/json")], $(%*resp)
     elif @"action" == "process":

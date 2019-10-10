@@ -14,8 +14,15 @@ type
     token*: string
   TokenResp* = object
     token*: string
+  StatusType* = enum
+    stOk = "OK", stUnknown = "unknown", stLoggedOut = "loggetout"
+  CStatusType* {.pure.} = enum
+    stOk = cstring"OK", stUnknown = cstring"unknown", stLoggedOut = "loggetout"
+  CStatusResp*[T] = object
+    status*: CStatusType
+    resp*: T
   StatusResp*[T] = object
-    status*: bool
+    status*: StatusType
     resp*: T
   SectorProcess* = object
     name*: string
@@ -90,21 +97,5 @@ proc finishDate*(s: SectorProcess): DateTime =
 proc name*(s: Sector): string =
     @[s.postalCode & "-" & $s.pFix, s.city, s.district].join(" ").strip
 
-proc checkToken*(db: DbConn, t: string): tuple[isOk: bool, rowToken: Row] =
-  let rowToken = db.getRow(sql"""SELECT 
-                token.id, token, token.user_id,
-                corpus_id
-                FROM 
-                token
-                INNER JOIN user ON token.user_id = user.id
-                WHERE 
-                token = ? AND date_activity > ? """, t, $(now() - 10.minutes))
-  if rowToken[2] == "":
-    result.isOk = false
-    return result
-  db.exec(sql"""UPDATE token
-    SET date_activity = ?
-    WHERE token = ?""", $now(), t)
-  (isOk: true, rowToken: rowToken)
 
 

@@ -165,6 +165,9 @@ proc showMap(): VNode =
                     #text "Здесь будет карта"
                     tdiv(id = "bap-container")
 
+proc parseResp(bdy: string, T: typedesc): T =
+    result = cast[T](JSON.parse(bdy))
+
 
 proc clckOpenMap(p: CSectorProcess): proc() = 
     result = proc() =
@@ -185,7 +188,14 @@ proc clckOpenMap(p: CSectorProcess): proc() =
         stmGetStreet.observe(
             proc (value: Response) =
                 console.log("value:", value.statusCode)
-                let sectStrts = JSON.parse(value.body).resp.to(seq[CSectorStreets])
+                let respSect = parseResp(value.body, CStatusResp[seq[CSectorStreets]])
+                let sectStrts = respSect.resp
+                console.log("resp status:", respSect.status, CStatusType.stLoggedOut)
+                if respSect.status == CStatusType.stLoggedOut:
+                    currUser.token = ""
+                    redraw()
+                if sectStrts.len == 0:
+                    return
                 for strt in sectStrts:
                     let coords = strt.geometry.split(";")
                     for latlng in coords:

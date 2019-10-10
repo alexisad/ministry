@@ -1,5 +1,5 @@
 #import ministry
-import util/types
+import util/[types, utils]
 import unittest, httpclient, json, times, uri
 
 
@@ -25,26 +25,26 @@ suite "user API":
         check(adminToken != "")
     
     test "get user":
-        let usrJsn = c.getContent("http://127.0.0.1:5000/user/get?email=sadovoyalexander%40yahoo.de&token=" & adminToken).parseJson()
-        let user = usrJsn.to(User)
+        let respUsrJsn = c.getContent("http://127.0.0.1:5000/user/get?email=sadovoyalexander%40yahoo.de&token=" & adminToken).parseJson()
+        let user = respUsrJsn.to(StatusResp[User]).resp
         check(user.email == "sadovoyalexander@yahoo.de")
 
     test "empty user by corrupted token":
-        let usrJsn = c.getContent("http://127.0.0.1:5000/user/get?email=sadovoyalexander%40yahoo.de&token=5rt4h58").parseJson()
-        let user = usrJsn.to(User)
+        let respUsrJsn = c.getContent("http://127.0.0.1:5000/user/get?email=sadovoyalexander%40yahoo.de&token=5rt4h58").parseJson()
+        let user = respUsrJsn.to(StatusResp[User]).resp
         check(user.email == "")
 
     test "new user if doesn't exist":
-        let usrJsn = c.getContent("http://127.0.0.1:5000/user/get?email=p.tarasow%40gmail.com&token=" & adminToken).parseJson()
-        var user = usrJsn.to(User)
+        let respUsrJsn = c.getContent("http://127.0.0.1:5000/user/get?email=p.tarasow%40gmail.com&token=" & adminToken).parseJson()
+        var user = respUsrJsn.to(StatusResp[User]).resp
         if user.email != "p.tarasow@gmail.com":
-            let usrJsn = c.getContent("http://127.0.0.1:5000/user/new?firstname=Pavel&lastname=Tarasow&email=p.tarasow%40gmail.com&role=user&password=222&token=" & adminToken).parseJson()
-            user = usrJsn.to(User)
+            let respUsrJsn = c.getContent("http://127.0.0.1:5000/user/new?firstname=Pavel&lastname=Tarasow&email=p.tarasow%40gmail.com&role=user&password=222&token=" & adminToken).parseJson()
+            user = respUsrJsn.to(StatusResp[User]).resp
         check(user.email == "p.tarasow@gmail.com")
     
     test "new user":
-        let usrJsn = c.getContent("http://127.0.0.1:5000/user/new?firstname=Michael&lastname=Sadovoy&email=michi.sadik%40gmail.com&role=user&password=333&token=" & adminToken).parseJson()
-        let user = usrJsn.to(User)
+        let respUsrJsn = c.getContent("http://127.0.0.1:5000/user/new?firstname=Michael&lastname=Sadovoy&email=michi.sadik%40gmail.com&role=user&password=333&token=" & adminToken).parseJson()
+        let user = respUsrJsn.to(StatusResp[User]).resp
         check(user.email == "michi.sadik@gmail.com")
 
     test "check login for Pavel":
@@ -62,7 +62,7 @@ suite "user API":
     test "upload data":
         let statusJsn = c.getContent("http://127.0.0.1:5000/sector/upload?token=" & adminToken).parseJson()
         let status = statusJsn.to(StatusResp[int]).status
-        check(status)
+        check(status == stOk)
 
     test "get all sectors in process":
         let statusJsn = c.getContent("http://127.0.0.1:5000/sector/process?token=" & adminToken).parseJson()
@@ -82,11 +82,11 @@ suite "user API":
         let r = statusJsn.to(StatusResp[seq[SectorProcess]])
         let status = r.status
         sectPrId = $r.resp[r.resp.high].id
-        check(status)
+        check(status == stOk)
 
     test "add new process":
-        let usrJsn = c.getContent("http://127.0.0.1:5000/user/get?email=p.tarasow%40gmail.com&token=" & adminToken).parseJson()
-        var user = usrJsn.to(User)
+        let respUsrJsn = c.getContent("http://127.0.0.1:5000/user/get?email=p.tarasow%40gmail.com&token=" & adminToken).parseJson()
+        var user = respUsrJsn.to(StatusResp[User]).resp
         let statusJsn = c.getContent("http://127.0.0.1:5000/sector/process/new?" &
                                 "token=" & adminToken &
                                 "&sectorId=" & $sectorsPr.resp[6].sector_id &
@@ -94,7 +94,7 @@ suite "user API":
                                 "&startDate=" & encodeUrl( (now() - 10.days).format normalDateFmt )
                         ).parseJson()
         let status = statusJsn.to(StatusResp[seq[SectorProcess]]).status
-        check(status)
+        check(status == stOk)
 
     test "get all sectors in process":
         let statusJsn = c.getContent("http://127.0.0.1:5000/sector/process?" &
@@ -115,7 +115,7 @@ suite "user API":
                                 "&finishDate=" & encodeUrl( (now() - 5.days).format normalDateFmt )
                         ).parseJson()
         let status = statusJsn.to(StatusResp[seq[SectorProcess]]).status
-        check(status)
+        check(status == stOk)
 
     test "update process: not allow set finish date if it < start":
         let statusJsn = c.getContent("http://127.0.0.1:5000/sector/process/update?" &
@@ -124,7 +124,7 @@ suite "user API":
                                 "&finishDate=" & encodeUrl( (now() - 11.days).format normalDateFmt )
                         ).parseJson()
         let status = statusJsn.to(StatusResp[seq[SectorProcess]]).status
-        check(not status)
+        check(status != stOk)
 
     test "add new process for the same sector because prev. is finished":
         let statusJsn = c.getContent("http://127.0.0.1:5000/sector/process/new?" &
@@ -133,7 +133,7 @@ suite "user API":
                                 "&startDate=" & encodeUrl( (now() - 3.days).format normalDateFmt )
                         ).parseJson()
         let status = statusJsn.to(StatusResp[seq[SectorProcess]]).status
-        check(status)
+        check(status == stOk)
 
 
     test "shouldn't add the same sector to process if not finished yet":
@@ -142,17 +142,17 @@ suite "user API":
                                 "&sectorId=" & sectPrId
                         ).parseJson()
         let status = statusJsn.to(StatusResp[seq[SectorProcess]]).status
-        check(status == false)
+        check(status != stOk)
     
     test "impossible delete user Pavel, he has processes":
         let statusJsn = c.getContent("http://127.0.0.1:5000/user/delete?email=p.tarasow%40gmail.com&token=" & adminToken).parseJson()
         let status = statusJsn.to(StatusResp[int]).status
-        check(not status)
+        check(status != stOk)
 
     test "delete user Michael":
         let statusJsn = c.getContent("http://127.0.0.1:5000/user/delete?email=michi.sadik%40gmail.com&token=" & adminToken).parseJson()
         let status = statusJsn.to(StatusResp[int]).status
-        check(status)
+        check(status == stOk)
 
     echo "suite teardown: run once after the tests..."
 
