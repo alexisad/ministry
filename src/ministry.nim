@@ -1,3 +1,4 @@
+# --stackTrace:off
 #import htmlgen
 import asyncdispatch, jester, cookies
 import db_sqlite, md5, times, random, strutils, json

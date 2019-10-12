@@ -24,6 +24,7 @@ var currProcess: CSectorProcess
 var allSectProc: seq[CSectorProcess]
 var spinnerOn = false
 var isShowNavMap = false
+var scrollToSectId = 0
 var map: JsObject
 var sectStreetGrp = jsNew H.map.Group()
 
@@ -167,6 +168,12 @@ proc showMap(): VNode =
 
 proc parseResp(bdy: string, T: typedesc): T =
     result = cast[T](JSON.parse(bdy))
+    if $result.status == "loggedOut":
+        currUser.token = ""
+        isShowNavMap = false
+        var elMap = jq("#map-container".toJs)[0]
+        elMap.classList.remove(cstring"show-map")
+        redraw()
 
 
 proc clckOpenMap(p: CSectorProcess): proc() = 
@@ -180,6 +187,7 @@ proc clckOpenMap(p: CSectorProcess): proc() =
         #redraw()
         console.log("clckOpenMap:", elMap)
         spinnerOn = true
+        scrollToSectId = p.sector_id
         sectStreetGrp.removeAll()
         let stmGetStreet = sendRequest(
             "GET",
@@ -190,10 +198,7 @@ proc clckOpenMap(p: CSectorProcess): proc() =
                 console.log("value:", value.statusCode)
                 let respSect = parseResp(value.body, CStatusResp[seq[CSectorStreets]])
                 let sectStrts = respSect.resp
-                console.log("resp status:", respSect.status, CStatusType.stLoggedOut)
-                if respSect.status == CStatusType.stLoggedOut:
-                    currUser.token = ""
-                    redraw()
+                console.log("resp status:", cstring($respSect.status), cstring"loggedOut")
                 if sectStrts.len == 0:
                     return
                 for strt in sectStrts:
@@ -233,7 +238,7 @@ proc closeMap() =
     var elMap = jq("#map-container".toJs)[0]
     mC.classList.remove(cstring"map-nav")
     elMap.classList.remove(cstring"show-map")
-    redraw()
+    #redraw()
 
 proc showAllProc(): VNode =
     #for p in allSectProc:
@@ -243,7 +248,8 @@ proc showAllProc(): VNode =
         #showMap()
         for p in allSectProc:
             #discard console.log("p.name:", p)
-            tdiv(class="card mb-3 c-sect shadow p-3 bg-white rounded"):
+            let sectId = kstring($p.sector_id)
+            tdiv(id=sectId, class="card mb-3 c-sect shadow p-3 bg-white rounded"):
                 tdiv(class="card-header"):
                     ul(class="nav nav-pills card-header-pills"):
                         li(class="nav-item"):
@@ -259,6 +265,8 @@ proc showAllProc(): VNode =
                         text(#["date_start:" & ]#p.date_start)
                     tdiv(class = clsCol):
                         text(#["date_end:" & ]#p.date_finish)
+        
+
 
 
 proc toggleSpinner(): Vnode =
@@ -296,7 +304,7 @@ proc createDom(): VNode =
                     li(class="nav-item"):
                         a(class="badge badge-info", href="#", data-target="#mapclose", onclick = closeMap):
                 #button(class="btn btn-outline-success my-2 my-sm-0", `type`="button", onclick = closeMap):
-                            text "Закрыть карту"
+                            text "Закр. карту"
         else:
             showAllProc()
 
@@ -306,7 +314,18 @@ proc createDom(): VNode =
         #text "YES!!!"
 
 
-setRenderer createDom, "main-control-container"
+setRenderer createDom, "main-control-container", proc() = 
+            if scrollToSectId != 0:
+                let sIdEl = toJs(["#", $scrollToSectId, ".card"].join("")).jq()
+                if sIdEl.length.to(int) == 0:
+                    return
+                scrollToSectId = 0
+                sIdEl[0].scrollIntoView(JsObject{behavior: cstring"auto", `block`: cstring"start", inline: cstring"nearest"})
+                when false:
+                    jq("html, body".toJs).animate(JsObject{
+                                scrollTop: jq(sIdEl).offset().top
+                            }, 2000)
+            #console.log("post render!!!")
 
 
 proc bindMap() =

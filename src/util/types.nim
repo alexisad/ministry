@@ -15,11 +15,11 @@ type
   TokenResp* = object
     token*: string
   StatusType* = enum
-    stOk = "OK", stUnknown = "unknown", stLoggedOut = "loggetout"
+    stOk = "OK", stUnknown = "unknown", stLoggedOut = "loggedOut"
   CStatusType* {.pure.} = enum
-    stOk = cstring"OK", stUnknown = cstring"unknown", stLoggedOut = "loggetout"
+    stOk = "OK", stUnknown = "unknown", stLoggedOut = "loggedOut"
   CStatusResp*[T] = object
-    status*: CStatusType
+    status*: cstring
     resp*: T
   StatusResp*[T] = object
     status*: StatusType
