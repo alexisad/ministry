@@ -456,7 +456,7 @@ router mrouter:
         checkAdminToken ifAdmin
       let sectProcess = newSectProcess(db, @"token",
                     @"sectorId", @"userId", @"startDate")
-      resp Http200, [("Content-Type","application/json")], $(%*sectProcess)
+      resp %*sectProcess
     if @"action" == "delete":
       checkAdminToken ifAdmin
       let delStat = delProcess(db, @"sectorId")
