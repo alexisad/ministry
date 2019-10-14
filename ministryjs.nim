@@ -152,19 +152,46 @@ proc loginDialog(): VNode =
                 text "© 2019"
 
 
-proc showMap(): VNode =
-    result = buildHtml tdiv(class="modal fade", id="mapModal", tabindex="-1", role="dialog", aria-labelledby="mapModalLabel", aria-hidden="true"):
-        tdiv(class="modal-dialog map-modal-dialog", role="document"):
+proc confirmTakeSect(): proc() = 
+    result = proc() =
+        console.log("confirmTakeSect: ", currProcess)
+        let p = currProcess
+        let stmGetStreet = sendRequest(
+            "GET",
+            "/sector/process/new?" & &"token={currUser.token}&sectorId={p.sector_id}"
+        )
+        stmGetStreet.observe(
+            proc (value: Response) =
+                console.log("value:", value.statusCode),
+            proc (error: Response) =
+                console.log("error:", error.statusCode),
+            proc () =
+                redraw()
+                console.log("end")
+        )
+    
+
+
+
+proc showTakeSect(): VNode =
+    result = buildHtml tdiv(class="modal fade", id="takeModal", tabindex="-1", role="dialog", aria-labelledby="takeModalLabel", aria-hidden="true"):
+        tdiv(class="modal-dialog", role="document"):
             tdiv(class="modal-content"):
                 tdiv(class="modal-header"):
-                    h6(class="modal-title", id="mapModalLabel"):
-                        text "Участок:"
+                    h6(class="modal-title", id="takeModalLabel"):
+                        text currProcess.name
                     button(`type`="button", class="close", data-dismiss="modal", aria-label="Close"):
                         span(aria-hidden="true"):
                             text "x"
-                tdiv(class="modal-body map-body"):
-                    #text "Здесь будет карта"
-                    tdiv(id = "bap-container")
+                tdiv(class="modal-body"):
+                    tdiv:
+                        text "Взять участок на обработку?"
+                    tdiv(class="mx-auto"):
+                        button(`type`="button", class="btn btn-success float-left", data-dismiss="modal", onclick = confirmTakeSect()):
+                            text "Да"
+                        button(`type`="button", class="btn btn-danger float-right", data-dismiss="modal"):
+                            text "Нет"
+                    #tdiv(id = "bap-container")
 
 proc parseResp(bdy: string, T: typedesc): T =
     result = cast[T](JSON.parse(bdy))
@@ -240,12 +267,17 @@ proc closeMap() =
     elMap.classList.remove(cstring"show-map")
     #redraw()
 
+proc clckTakeSect(p: CSectorProcess): proc() = 
+    result = proc() =
+        console.log("clckTakeSect: ", p)
+        currProcess = p
+
+
 proc showAllProc(): VNode =
     #for p in allSectProc:
         #discard# console.log("p.name:", $(p.name))
     let clsCol = "card-text"#"col-sm-auto themed-grid-col"
     result = buildHtml tdiv(class="card-deck"):
-        #showMap()
         for p in allSectProc:
             #discard console.log("p.name:", p)
             let sectId = kstring($p.sector_id)
@@ -256,7 +288,7 @@ proc showAllProc(): VNode =
                             a(class="nav-link", href="#mapModal", data-toggle="modal", data-target="#mapModal", onclick = clckOpenMap(p)):
                                 text "Карта"
                         li(class="nav-item"):
-                            a(class="nav-link", href="#take"):
+                            a(class="nav-link", href="#takeModal", data-toggle="modal", data-target="#takeModal", onclick = clckTakeSect(p)):
                                 text "Взять"
                 tdiv(class="card-body"):
                     h6(class="card-title"):
@@ -294,6 +326,7 @@ proc setEventsModalMap() =
 proc createDom(): VNode =
     result = buildHtml tdiv(class = "main-root"):
         toggleSpinner()
+        showTakeSect()
         if currUser.token == "":
             loginDialog()
         elif isShowNavMap:
@@ -301,6 +334,9 @@ proc createDom(): VNode =
                 a(class="navbar-brand overflow-auto"):
                     text currProcess.name
                 ul(class="navbar-nav mr-auto"):
+                    li(class="nav-item"):
+                        a(class="nav-link", href="#takeModal", data-toggle="modal", data-target="#takeModal"#[, onclick = clckTakeSect(p)]#):
+                            text "Взять"
                     li(class="nav-item"):
                         a(class="badge badge-info", href="#", data-target="#mapclose", onclick = closeMap):
                 #button(class="btn btn-outline-success my-2 my-sm-0", `type`="button", onclick = closeMap):
