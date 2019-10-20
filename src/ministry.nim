@@ -1,9 +1,22 @@
-# --stackTrace:off
+# nimble build --stackTrace:off --threads:on --opt:speed -d:release --cpu:amd64 --os:linux --compileOnly --genScript
 #import htmlgen
 import asyncdispatch, jester, cookies
 import db_sqlite, md5, times, random, strutils, json
+import posix, sdnotify
 import util/types
 import util/utils
+
+onSignal(SIGABRT):
+  ## Handle SIGABRT from systemd
+  # Lines printed to stdout will be received by systemd and logged
+  # Start with "<severity>" from 0 to 7
+  echo "<2>Received SIGABRT"
+  quit(1)
+
+let sd = newSDNotify()
+sd.notify_ready()
+# Every 5 seconds in a dedicated thread:
+sd.ping_watchdog()
 
 var db*: DbConn
 
