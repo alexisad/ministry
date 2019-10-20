@@ -2,7 +2,7 @@
 #import htmlgen
 import asyncdispatch, jester, cookies
 import db_sqlite, md5, times, random, strutils, json
-import posix, sdnotify
+import posix#, sdnotify
 import util/types
 import util/utils
 
@@ -13,10 +13,11 @@ onSignal(SIGABRT):
   echo "<2>Received SIGABRT"
   quit(1)
 
-let sd = newSDNotify()
-sd.notify_ready()
-# Every 5 seconds in a dedicated thread:
-sd.ping_watchdog()
+when false:
+  let sd = newSDNotify()
+  sd.notify_ready()
+  # Every 5 seconds in a dedicated thread:
+  sd.ping_watchdog()
 
 var db*: DbConn
 

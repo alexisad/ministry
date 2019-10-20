@@ -330,17 +330,22 @@ proc createDom(): VNode =
         if currUser.token == "":
             loginDialog()
         elif isShowNavMap:
-            nav(class="navbar navbar-expand-lg navbar-light bg-light shadow p-1 mb-0 bg-white rounded overflow-auto"):
-                a(class="navbar-brand overflow-auto"):
+            nav(class="navbar navbar-expand-sm navbar-light bg-light shadow p-1 mb-0 bg-white rounded overflow-auto"):
+                button(class="navbar-toggler", `type`="button", data-toggle="collapse",
+                        data-target="#navbarTogglerMap", aria-controls="navbarTogglerMap", aria-expanded="false", aria-label="Toggle navigation"):
+                    span(class="navbar-toggler-icon")
+                a(class="navbar-brand mw-75 overflow-auto"):
                     text currProcess.name
-                ul(class="navbar-nav mr-auto"):
-                    li(class="nav-item"):
-                        a(class="nav-link", href="#takeModal", data-toggle="modal", data-target="#takeModal"#[, onclick = clckTakeSect(p)]#):
-                            text "Взять"
-                    li(class="nav-item"):
-                        a(class="badge badge-info", href="#", data-target="#mapclose", onclick = closeMap):
-                #button(class="btn btn-outline-success my-2 my-sm-0", `type`="button", onclick = closeMap):
-                            text "Закр. карту"
+                tdiv(class="collapse navbar-collapse", id="navbarTogglerMap"):
+                    ul(class="navbar-nav mr-auto"):
+                        li(class="nav-item"):
+                            a(class="nav-link", href="#takeModal", data-toggle="modal", data-target="#takeModal"#[, onclick = clckTakeSect(p)]#):
+                                text "Взять"
+                        li(class="nav-item"):
+                            #a(class="badge badge-info", href="#", data-target="#mapclose", onclick = closeMap):
+                    #button(class="btn btn-outline-success my-2 my-sm-0", `type`="button", onclick = closeMap):
+                            a(class="nav-link", onclick = closeMap):
+                                text "Закр. карту"
         else:
             showAllProc()
 
