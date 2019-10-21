@@ -93,6 +93,14 @@ proc startDate*(s: SectorProcess): DateTime =
 proc finishDate*(s: SectorProcess): DateTime =
   s.date_finish.parse(initTimeFormat("yyyy-MM-dd"))
 
+proc startDate*(s: CSectorProcess): DateTime =
+  ($s.date_start).parse(initTimeFormat("yyyy-MM-dd"))
+
+
+proc finishDate*(s: CSectorProcess): DateTime =
+  ($s.date_finish).parse(initTimeFormat("yyyy-MM-dd"))
+
+
 
 proc name*(s: Sector): string =
     @[s.postalCode & "-" & $s.pFix, s.city, s.district].join(" ").strip

@@ -7,7 +7,7 @@ import jsffi except `&`
 import jsbind, async_http_request, asyncjs
 from sugar import `=>`, `->`
 import src/util/types
-import strformat, strutils
+import strformat, strutils, times
 import utiljs
 
 
@@ -16,6 +16,7 @@ var window {.importjs, nodecl.}: JsObject
 var screen {.importjs, nodecl.}: JsObject
 proc jq(selector: JsObject): JsObject {.importjs: "$$(#)".}
 var JSON {.importjs, nodecl.}: JsObject
+proc jsonParse(s: cstring): JsObject {.importjs: "JSON.parse(#)".}
 var Kefir {.importjs, nodecl.}: JsObject
 var H {.importjs, nodecl.}: JsObject
 var token = $jq("#token".toJs).val().to(cstring)
@@ -87,7 +88,7 @@ when false:
                     if data.statusCode == 404:
                         StatusResp[TokenResp](status: false)
                     else:
-                        StatusResp[TokenResp](status: true, resp: JSON.parse(data.body).to(TokenResp))
+                        StatusResp[TokenResp](status: true, resp: jsonParse(data.body).to(TokenResp))
                 console.log("resp body:", data.body)
                 console.log("resp:", data.toJs, data.statusCode.toJs, data.status.toJs, result)
     )
@@ -113,7 +114,7 @@ proc login(btnClass: kstring): proc() =
             stmLogin.observe(
                 proc (value: Response) =
                     console.log("value:", value.statusCode)
-                    currUser.token = $JSON.parse(value.body).token.to(cstring)
+                    currUser.token = $jsonParse(value.body).token.to(cstring)
                     redraw(),
                     #frm.submit(),
                 proc (error: Response) =
@@ -194,7 +195,7 @@ proc showTakeSect(): VNode =
                     #tdiv(id = "bap-container")
 
 proc parseResp(bdy: string, T: typedesc): T =
-    result = cast[T](JSON.parse(bdy))
+    result = cast[T](jsonParse(bdy))
     if $result.status == "loggedOut":
         currUser.token = ""
         isShowNavMap = false
@@ -280,6 +281,16 @@ proc showAllProc(): VNode =
     result = buildHtml tdiv(class="card-deck"):
         for p in allSectProc:
             #discard console.log("p.name:", p)
+            let stDate =
+                if p.date_start != "":
+                    "Взят: " & p.startDate.format( initTimeFormat("dd'.'MM'.'yyyy") )
+                else:
+                    ""
+            let finDate =
+                if p.date_finish != "":
+                    "Обраб.: " & p.finishDate.format( initTimeFormat("dd'.'MM'.'yyyy") )
+                else:
+                    ""
             let sectId = kstring($p.sector_id)
             tdiv(id=sectId, class="card mb-3 c-sect shadow p-3 bg-white rounded"):
                 tdiv(class="card-header"):
@@ -294,9 +305,9 @@ proc showAllProc(): VNode =
                     h6(class="card-title"):
                         text p.name
                     tdiv(class = clsCol):
-                        text(#["date_start:" & ]#p.date_start)
+                        text(#["date_start:" & ]#stDate)
                     tdiv(class = clsCol):
-                        text(#["date_end:" & ]#p.date_finish)
+                        text(#["date_end:" & ]#finDate)
         
 
 
@@ -414,7 +425,7 @@ if currUser.token != "":
     stmLogin.observe(
         proc (value: Response) =
             console.log("value:", value.statusCode)
-            allSectProc = JSON.parse(value.body).resp.to(seq[CSectorProcess])
+            allSectProc = jsonParse(value.body).resp.to(seq[CSectorProcess])
             redraw(),
         proc (error: Response) =
             console.log("error:", error.statusCode)
