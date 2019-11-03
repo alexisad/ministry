@@ -46,8 +46,8 @@ proc uploadSector*(db: DbConn, corpusId: int): StatusResp[int] =
         let strRow = db.getRow(sql"""SELECT id FROM street
                 WHERE name = ? AND sector_id = ?""",
                   ns, dbSId)
-        if strRow[0] == "":
-          echo "strRow[0] not found"
+        #if strRow[0] == "":
+          #echo "strRow[0] not found"
         for nLnk in lnk["neighborLinks"].getElems:
           let pnLnk = abs(nLnk.getInt)
           if linksStreet.hasKey pnLnk:
@@ -55,8 +55,8 @@ proc uploadSector*(db: DbConn, corpusId: int): StatusResp[int] =
             let strNRow = db.getRow(sql"""SELECT id FROM street
                       WHERE name = ? AND sector_id = ?""",
                           linksStreet[pnLnk], dbSId)
-            if strNRow[0] == "":
-              echo "strNRow[0] not found"
+            #if strNRow[0] == "":
+              #echo "strNRow[0] not found"
             let strBRow = db.getRow(sql"""SELECT id FROM rame
                         WHERE street_id = ? AND rame_street_id = ?""",
                             strRow[0], strNRow[0])
@@ -82,12 +82,12 @@ proc getSectProcess*(db: DbConn, t = "", sId = "", uId = "", inactive = ""): Sta
     if sId != "": (" = ", sId) else: (" <> ", "-1")
   let vuId =
     if uId != "": (" = ", uId) else: (" <> ", "-1")
-  let sqlStr = """SELECT name as sectorName, sector_internal_id, firstname, lastname,
+  var sqlStr = """SELECT name as sectorName, sector_internal_id, firstname, lastname,
           date_start, date_finish, user_id,
           sector.id as sector_id, user_sector.id
           FROM sector
           LEFT JOIN user_sector ON user_sector.sector_id = sector.id
-          LEFT JOIN user ON user.id = user_sector.user_id
+          LEFT JOIN user ON user.id = user_sector.user_id AND user.id *vuId_c* ?
           WHERE
             sector.corpus_id = ?
             {*vInactive*}
@@ -98,10 +98,13 @@ proc getSectProcess*(db: DbConn, t = "", sId = "", uId = "", inactive = ""): Sta
           .replace("{*vInactive*}", vInactive)
           .replace("*vsId_c*", vsId[0])
           .replace("*vuId_c*", vuId[0])
-  echo sId, " -- ", sqlStr
+  if uId != "":
+    sqlStr = sqlStr.replace("LEFT", "")
+  when not defined(release):
+    echo sId, " -- ", sqlStr
   let sectRows = db.getAllRows(
       sqlStr.sql,
-          rChck.rowToken[3], vsId[1], vuId[1])
+        vuId[1], rChck.rowToken[3], vsId[1] )
   if sectRows.len == 0 or sectRows[0][0] == "":
     return result
   result.status = stOk
@@ -130,10 +133,27 @@ proc newSectProcess*(db: DbConn, t, sId, uId, startDate: string): StatusResp[seq
                     date_finish IS NULL)
                   ORDER BY date_start DESC
             LIMIT 1""", sId, sDate)
-  echo "begin insert process: ", [sId, uId, startDate].join(" ")
+  when not defined(release):
+    echo "begin insert process: ", [sId, uId, startDate].join(" ")
   if sPrRow[0] != "":
     return result
-  echo "begin insert process: ", sPrRow
+  let vUid = 
+    if uId == "": rChck.rowToken[2]
+    else: uId  
+  let sPrCntRow = db.getRow(sql"""SELECT count(*) FROM user_sector
+              INNER JOIN sector ON user_sector.sector_id = sector.id
+              INNER JOIN user ON user.id = user_sector.user_id
+              INNER JOIN role ON user.role_id = role.id
+              WHERE user_sector.user_id = ?
+                AND sector.inactive <> 1
+                AND role.role = 'user'""", vUid)
+  when not defined(release):
+    echo "rChck.rowToken: ", rChck.rowToken
+  let cntOnHand = sPrCntRow[0].parseInt
+  if cntOnHand >= 4:
+    return result
+  when not defined(release):
+    echo "begin insert process: ", sPrRow
   db.exec(sql"BEGIN")
   var sqlIns = """INSERT INTO user_sector
           (user_id, sector_id, date_start)
@@ -171,7 +191,8 @@ proc delProcess*(db: DbConn, sId: string): bool =
 
 proc updProcess*(db: DbConn, t, pId, uId, sDate, fDate: string): StatusResp[seq[SectorProcess]] =
   result.status = stUnknown
-  echo "updProcess:: ", pId
+  when not defined(release):
+    echo "updProcess:: ", pId
   let sectorPrcRow = db.getRow(sql"""SELECT usectB.*
                           FROM user_sector as usectA
                           /*JOIN sector ON sector.inactive = 0*/
@@ -184,7 +205,8 @@ proc updProcess*(db: DbConn, t, pId, uId, sDate, fDate: string): StatusResp[seq[
     return result
   let vsDate = if sDate == "": sectorPrcRow[3] else: sDate
   let vfDate = if fDate == "": sectorPrcRow[4] else: fDate
-  echo "BEGIN::: ", pId, " ", vsDate, " ", vfDate
+  when not defined(release):
+    echo "BEGIN::: ", pId, " ", vsDate, " ", vfDate
   if vsDate > vfDate:
     return result
   db.exec(sql"BEGIN")

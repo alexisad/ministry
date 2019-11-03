@@ -73,3 +73,9 @@ body {
 .mw-75 {
     max-width: 75%;
 }
+
+.nav-link,
+.custom-switch .custom-control-input,
+.custom-switch .custom-control-label {
+    cursor: pointer;
+}

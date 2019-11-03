@@ -2,6 +2,7 @@
 #import htmlgen
 import asyncdispatch, jester, cookies
 import db_sqlite, md5, times, random, strutils, json
+from uri import encodeUrl
 import posix#, sdnotify
 import util/types
 import util/utils
@@ -46,6 +47,14 @@ proc getTblRows(n: string): seq[Row] =
 
 
 proc reDb() =
+  when false:
+    db.exec(sql"""CREATE INDEX idx_inact
+              ON sector (inactive)
+            """)
+  when false:
+    db.exec(sql"""CREATE INDEX idx_usector
+              ON user_sector (user_id, sector_id)
+            """)
   when false:
     db.exec(sql"""CREATE INDEX idx_name_sector
               ON street (name, sector_id)
@@ -187,9 +196,10 @@ proc reDb() =
                   WHERE 
                   type ='table' AND 
                   name NOT LIKE 'sqlite_%'""")
-    for row in rows:
-      echo row
-    echo "++++++++++ ", "111".toMD5, " ", "111".getMD5
+    when not defined(release):
+      for row in rows:
+        echo row
+      echo "++++++++++ ", "111".toMD5, " ", "111".getMD5
 
 proc login(user, pass: string): tuple[isOk: bool, user: User, token: string] {.gcsafe.} =
   result.isOk = false
@@ -317,6 +327,7 @@ proc getUser(t, e: string): StatusResp[User] =
           WHERE email = ?""", e)
   if rowU[0] == "":
     return result
+  result.status = stOk
   result.resp = row2User rowU
 
 proc delUser(e: string): StatusResp[int] =
@@ -397,6 +408,7 @@ router mrouter:
       token = request.cookies["token"]
       if not checkToken(db, token).isOk:
         token = ""
+    #let rU = getUser(token, @"email")
     resp(Http200, [("Content-Type","text/html")], genMainPage(token))
     #resp h1("Hello world")
   post "/":
@@ -407,10 +419,11 @@ router mrouter:
       else:
         resp(Http200, [("Content-Type","text/html")], genMainPage())
     let ctoken = cookies.setCookie("token", logged.token, daysForward(5)).split(":")
+    let rU = getUser(logged.token, @"email")
     if @"test" == "1":
       resp(%*{"token": logged.token})
     else:
-      resp(Http200, [("Content-Type","text/html"), (ctoken[0], ctoken[1])], genMainPage(logged.token))
+      resp(Http200, [("Content-Type","text/html"), (ctoken[0], ctoken[1])], genMainPage(logged.token, encodeUrl $(%*rU)))
   get "/favicon.ico":
     resp(Http200, [("Content-Type","image/x-icon")], request.matches[0])
   get "/user/@action":
@@ -478,7 +491,8 @@ router mrouter:
     elif @"action" == "update":
       checkAdminToken ifAdmin
       let updStat = updProcess(db, @"token", @"processId", @"userId", @"startDate", @"finishDate")
-      echo "updStat:: ", updStat
+      when not defined(release):
+        echo "updStat:: ", updStat
       resp Http200, [("Content-Type","application/json")], $(%*updStat)
     else:
       halt()
@@ -488,7 +502,8 @@ router mrouter:
 proc main() =
   db = open("ministry.db", "", "", "")
   db.exec(sql"PRAGMA foreign_keys = ON")
-  echo "db connected!!!!!!!!!!!!!"
+  when not defined(release):
+    echo "db connected!!!!!!!!!!!!!"
   let settings = newSettings(port = Port(5000))
   var jester = initJester(mrouter, settings=settings)
   jester.serve()

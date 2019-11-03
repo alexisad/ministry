@@ -4,8 +4,9 @@
 
 include karax / prelude
 import jsffi except `&`
-import jsbind, async_http_request, asyncjs
+import jsbind, async_http_request#, asyncjs
 from sugar import `=>`, `->`
+from uri import decodeUrl
 import src/util/types
 import strformat, strutils, times
 import utiljs
@@ -16,11 +17,26 @@ var window {.importjs, nodecl.}: JsObject
 var screen {.importjs, nodecl.}: JsObject
 proc jq(selector: JsObject): JsObject {.importjs: "$$(#)".}
 var JSON {.importjs, nodecl.}: JsObject
+var localStorage {.importjs, nodecl.}: JsObject
 proc jsonParse(s: cstring): JsObject {.importjs: "JSON.parse(#)".}
 var Kefir {.importjs, nodecl.}: JsObject
 var H {.importjs, nodecl.}: JsObject
 var token = $jq("#token".toJs).val().to(cstring)
-var currUser = User(token: token)
+var vUser = jq("#user".toJs).val().to(cstring)
+var currUser = CUser()
+if vUser == "":
+    try:
+        vUser = localStorage.getItem("user").to(cstring)
+        currUser = jsonParse(decodeUrl $vUser).resp.to(CUser)
+    except:
+        discard
+    #if currUser.token != token:
+        #currUser = CUser(token: token)
+        #localStorage.setItem("user", "")
+else:
+    localStorage.setItem("user", vUser)
+    currUser = jsonParse(decodeUrl $vUser).resp.to(CUser)
+currUser.token = token
 var currProcess: CSectorProcess
 var allSectProc: seq[CSectorProcess]
 var spinnerOn = false
@@ -28,6 +44,8 @@ var isShowNavMap = false
 var scrollToSectId = 0
 var map: JsObject
 var sectStreetGrp = jsNew H.map.Group()
+
+proc getAllProccess(myS = false)
 
 when false:
     var kPrc = proc(emitter: JsObject): proc() =
@@ -69,11 +87,6 @@ proc sendRequest(meth, url: string, body = "", headers: openarray[(string, strin
                     oReq.abort()
                 
     result = Kefir.stream(rPrc).take(1).takeErrors(1).toProperty()
-#login("", "").log()
-#sendRequest*(meth, url, body: string, headers: openarray[(string, string)], handler: proc(body: string))
-var hndl: Handler =
-            proc (data: Response) =
-                console.log("resp:", data.body.toJs)
 
 
 when false:
@@ -159,7 +172,7 @@ proc confirmTakeSect(): proc() =
         let p = currProcess
         let stmGetStreet = sendRequest(
             "GET",
-            "/sector/process/new?" & &"token={currUser.token}&sectorId={p.sector_id}"
+            "/sector/process/new?" & &"token={$currUser.token}&sectorId={p.sector_id}"
         )
         stmGetStreet.observe(
             proc (value: Response) =
@@ -273,41 +286,69 @@ proc clckTakeSect(p: CSectorProcess): proc() =
         console.log("clckTakeSect: ", p)
         currProcess = p
 
+proc clckOwnSect(): proc() = 
+    result = proc() =
+        var ownS = jq("#ownSectors".toJs)[0]
+        getAllProccess ownS.checked.to(bool)
+        if ownS.checked.to(bool):
+            console.log("ownSectors: ", ownS.checked)
+
+proc logout() =
+    currUser.token = ""
 
 proc showAllProc(): VNode =
     #for p in allSectProc:
         #discard# console.log("p.name:", $(p.name))
     let clsCol = "card-text"#"col-sm-auto themed-grid-col"
-    result = buildHtml tdiv(class="card-deck"):
-        for p in allSectProc:
-            #discard console.log("p.name:", p)
-            let stDate =
-                if p.date_start != "":
-                    "Взят: " & p.startDate.format( initTimeFormat("dd'.'MM'.'yyyy") )
-                else:
-                    ""
-            let finDate =
-                if p.date_finish != "":
-                    "Обраб.: " & p.finishDate.format( initTimeFormat("dd'.'MM'.'yyyy") )
-                else:
-                    ""
-            let sectId = kstring($p.sector_id)
-            tdiv(id=sectId, class="card mb-3 c-sect shadow p-3 bg-white rounded"):
-                tdiv(class="card-header"):
-                    ul(class="nav nav-pills card-header-pills"):
-                        li(class="nav-item"):
-                            a(class="nav-link", href="#mapModal", data-toggle="modal", data-target="#mapModal", onclick = clckOpenMap(p)):
-                                text "Карта"
-                        li(class="nav-item"):
-                            a(class="nav-link", href="#takeModal", data-toggle="modal", data-target="#takeModal", onclick = clckTakeSect(p)):
-                                text "Взять"
-                tdiv(class="card-body"):
-                    h6(class="card-title"):
-                        text p.name
-                    tdiv(class = clsCol):
-                        text(#["date_start:" & ]#stDate)
-                    tdiv(class = clsCol):
-                        text(#["date_end:" & ]#finDate)
+    result = buildHtml tdiv:
+        nav(class="navbar fixed-top navbar-expand-sm navbar-light bg-light shadow p-1 mb-0 bg-white rounded overflow-auto"):
+            button(class="navbar-toggler", `type`="button", data-toggle="collapse",
+                    data-target="#navbarTogglerSectors", aria-controls="navbarTogglerSectors", aria-expanded="false", aria-label="Toggle navigation"):
+                span(class="navbar-toggler-icon")
+            #a(class="navbar-brand mw-75 overflow-auto"):
+                #text currProcess.name
+            tdiv(class="collapse navbar-collapse", id="navbarTogglerSectors"):
+                tdiv(class="custom-control custom-switch"):
+                    input(`type`="checkbox", class="custom-control-input", id="ownSectors", onclick = clckOwnSect())
+                    label(class="custom-control-label", `for`="ownSectors"):
+                        text "Только мои"
+                ul(class="navbar-nav mr-auto"):
+                    li(class="nav-item"):
+                        a(class="nav-link", onclick = logout):
+                            text "Выйти"
+                    #[li(class="nav-item"):
+                        a(class="nav-link", onclick = closeMap):
+                            text "Закр. карту"]#
+        tdiv(class="card-deck"):
+            for p in allSectProc:
+                #discard console.log("p.name:", p)
+                let stDate =
+                    if p.date_start != "":
+                        "Взят: " & p.startDate.format( initTimeFormat("dd'.'MM'.'yyyy") )
+                    else:
+                        ""
+                let finDate =
+                    if p.date_finish != "":
+                        "Сдан: " & p.finishDate.format( initTimeFormat("dd'.'MM'.'yyyy") )
+                    else:
+                        ""
+                let sectId = kstring($p.sector_id)
+                tdiv(id=sectId, class="card mb-3 c-sect shadow p-3 bg-white rounded"):
+                    tdiv(class="card-header"):
+                        ul(class="nav nav-pills card-header-pills"):
+                            li(class="nav-item"):
+                                a(class="nav-link", href="#mapModal", data-toggle="modal", data-target="#mapModal", onclick = clckOpenMap(p)):
+                                    text "Карта"
+                            li(class="nav-item"):
+                                a(class="nav-link", href="#takeModal", data-toggle="modal", data-target="#takeModal", onclick = clckTakeSect(p)):
+                                    text "Взять"
+                    tdiv(class="card-body"):
+                        h6(class="card-title"):
+                            text p.name
+                        tdiv(class = clsCol):
+                            text(#["date_start:" & ]#stDate)
+                        tdiv(class = clsCol):
+                            text(#["date_end:" & ]#finDate)
         
 
 
@@ -414,29 +455,44 @@ proc bindMap() =
     map.addObject sectStreetGrp
 
 
-if currUser.token != "":
-    allSectProc = newSeq[CSectorProcess]()
+proc getAllProccess(myS = false) =
     spinnerOn = true
+    allSectProc = newSeq[CSectorProcess]()
     redraw()
+    let rUid =
+        if not myS: ""
+        else: &"&userId={currUser.id}"
     let stmLogin = sendRequest(
         "GET",
-        "/sector/process?" & &"token={currUser.token}"
+        "/sector/process?" & &"token={currUser.token}" & rUid
     )
     stmLogin.observe(
         proc (value: Response) =
-            console.log("value:", value.statusCode)
-            allSectProc = jsonParse(value.body).resp.to(seq[CSectorProcess])
-            redraw(),
+            console.log("value:", value.statusCode, value)
+            #allSectProc = jsonParse(value.body).resp.to(seq[CSectorProcess])
+            let allSectProcBdy = parseResp(value.body, CStatusResp[seq[CSectorProcess]])
+            allSectProc = allSectProcBdy.resp
+        ,
+            #redraw(),
         proc (error: Response) =
             console.log("error:", error.statusCode)
-            redraw(),
+        ,
+            #redraw(),
         proc () =
             #discard
             console.log("end")
             spinnerOn = false
             redraw()
-            bindMap()
-            setEventsModalMap()
     )
+
+
+if currUser.token != "":
+    allSectProc = newSeq[CSectorProcess]()
+    spinnerOn = true
+    redraw()
+    bindMap()
+    setEventsModalMap()
+    getAllProccess()
+
 
 

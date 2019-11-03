@@ -12,6 +12,17 @@ type
     password*: string
     active*: int
     token*: string
+  CUser* = object
+    id*: int
+    corpus_id*: int
+    firstname*: cstring
+    lastname*: cstring
+    email*: cstring
+    role_id*: int
+    role*: cstring
+    password*: cstring
+    active*: int
+    token*: cstring
   TokenResp* = object
     token*: string
   StatusType* = enum
