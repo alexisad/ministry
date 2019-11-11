@@ -79,3 +79,7 @@ body {
 .custom-switch .custom-control-label {
     cursor: pointer;
 }
+
+.custom-control.custom-switch {
+    /*border: 1px #ccc solid;*/
+}

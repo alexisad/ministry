@@ -1,6 +1,6 @@
 # nimble build --stackTrace:off --threads:on --opt:speed -d:release --cpu:amd64 --os:linux --compileOnly --genScript
 #import htmlgen
-import asyncdispatch, jester, cookies
+import asyncdispatch, jester
 import db_sqlite, md5, times, random, strutils, json
 from uri import encodeUrl
 import posix#, sdnotify
@@ -93,11 +93,13 @@ proc reDb() =
   when false:
     dropTbl "sector"
     db.exec(sql"""CREATE TABLE sector (
-              id INTEGER PRIMARY KEY,
-              corpus_id  INTEGER NOT NULL,
-              sector_internal_id INTEGER NOT NULL,
-              name VARCHAR(100) NOT NULL,
-              inactive INTEGER NOT NULL,
+                id INTEGER PRIMARY KEY,
+                corpus_id  INTEGER NOT NULL,
+                sector_internal_id INTEGER NOT NULL,
+                name VARCHAR(100) NOT NULL,
+                plz VARCHAR(15) NOT NULL,
+                pfix INTEGER NOT NULL,
+                inactive INTEGER NOT NULL,
               FOREIGN KEY (corpus_id)
                 REFERENCES corpus (id)
                   ON UPDATE CASCADE
@@ -418,12 +420,9 @@ router mrouter:
         halt()
       else:
         resp(Http200, [("Content-Type","text/html")], genMainPage())
-    let ctoken = cookies.setCookie("token", logged.token, daysForward(5)).split(":")
     let rU = getUser(logged.token, @"email")
-    if @"test" == "1":
-      resp(%*{"token": logged.token})
-    else:
-      resp(Http200, [("Content-Type","text/html"), (ctoken[0], ctoken[1])], genMainPage(logged.token, encodeUrl $(%*rU)))
+    setCookie("token", logged.token, expires=daysForward(5), path="/", #[sameSite=Strict, secure=true, domain="www.alexsad.org"]#)
+    resp(Http200, genMainPage(logged.token, encodeUrl $(%*rU)))
   get "/favicon.ico":
     resp(Http200, [("Content-Type","image/x-icon")], request.matches[0])
   get "/user/@action":
@@ -486,11 +485,12 @@ router mrouter:
       resp %*sectProcess
     if @"action" == "delete":
       checkAdminToken ifAdmin
-      let delStat = delProcess(db, @"sectorId")
+      let delStat = delProcess(db, @"token", @"processId")
       resp Http200, [("Content-Type","application/json")], $(%*{"status": delStat})
     elif @"action" == "update":
-      checkAdminToken ifAdmin
-      let updStat = updProcess(db, @"token", @"processId", @"userId", @"startDate", @"finishDate")
+      if @"startDate" != "" or @"finishDate" != "":
+        checkAdminToken ifAdmin
+      let updStat = updProcess(db, @"token", @"processId", @"startDate", @"finishDate")
       when not defined(release):
         echo "updStat:: ", updStat
       resp Http200, [("Content-Type","application/json")], $(%*updStat)

@@ -1,6 +1,6 @@
 #import ministry
 import util/[types, utils]
-import unittest, httpclient, json, times, uri
+import unittest, httpclient, json, times, uri, htmlparser, xmltree, strtabs
 
 
 suite "user API":
@@ -19,9 +19,13 @@ suite "user API":
     
     test "check login":
         # give up and stop if this fails
-        let tokenJsn = c.postContent("http://127.0.0.1:5000?email=sadovoyalexander%40yahoo.de&pass=111&test=1").parseJson()
-        adminToken = tokenJsn.to(TokenResp).token
-        echo "admin user login token: ", adminToken
+        let tokenXml = c.postContent("http://127.0.0.1:5000?email=sadovoyalexander%40yahoo.de&pass=111&test=1").parseHtml()
+        let inpEls = tokenXml.findAll("input")
+        for e in inpEls:
+            if e.attr("id") == "token":
+                adminToken = e.attr("value")
+            break
+        #echo "admin user login token: ", adminToken
         check(adminToken != "")
     
     test "get user":

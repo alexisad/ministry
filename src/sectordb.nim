@@ -1,6 +1,8 @@
 import json, db_sqlite, times, strutils, tables
 import util/[types, utils]
 
+const normalDateFmt = initTimeFormat("yyyy-MM-dd")
+
 proc uploadSector*(db: DbConn, corpusId: int): StatusResp[int] =
   result.status = stUnknown
   let sectorJsn = parseFile("Büdingen_Exp_2019-09-19T11_04_36+02_00.json")
@@ -25,9 +27,9 @@ proc uploadSector*(db: DbConn, corpusId: int): StatusResp[int] =
         db.exec(sql"ROLLBACK")
         return result
     let dbSId = db.tryInsertID(sql"""INSERT INTO sector
-        (corpus_id, sector_internal_id, name, inactive)
-        VALUES(?,?,?,0)
-        """, corpusId, sIntId, s.name)
+        (corpus_id, sector_internal_id, name, inactive, plz, pfix)
+        VALUES(?,?,?,0,?,?)
+        """, corpusId, sIntId, s.name, s.postalCode, s.pFix)
     var linksStreet = initTable[int, string](8)
     for ns, sv in pairs(v["streets"].getFields):
       #echo "street: ", ns
@@ -82,22 +84,25 @@ proc getSectProcess*(db: DbConn, t = "", sId = "", uId = "", inactive = ""): Sta
     if sId != "": (" = ", sId) else: (" <> ", "-1")
   let vuId =
     if uId != "": (" = ", uId) else: (" <> ", "-1")
+  let dFinCond =
+    if uId != "": "AND user_sector.date_finish is NULL" else: ""
   var sqlStr = """SELECT name as sectorName, sector_internal_id, firstname, lastname,
-          date_start, date_finish, user_id,
-          sector.id as sector_id, user_sector.id
+          MAX(date_start), date_finish, user_id,
+          sector.id as sector_id, user_sector.id, plz, pfix
           FROM sector
-          LEFT JOIN user_sector ON user_sector.sector_id = sector.id
+          LEFT JOIN user_sector ON user_sector.sector_id = sector.id {*d_f_c*}
           LEFT JOIN user ON user.id = user_sector.user_id AND user.id *vuId_c* ?
           WHERE
             sector.corpus_id = ?
             {*vInactive*}
             AND sector.id *vsId_c* ?
           GROUP BY sector.id
-          ORDER BY date_start
+          ORDER BY date_start ASC, plz, pfix
         """
           .replace("{*vInactive*}", vInactive)
           .replace("*vsId_c*", vsId[0])
           .replace("*vuId_c*", vuId[0])
+          .replace("{*d_f_c*}", dFinCond)
   if uId != "":
     sqlStr = sqlStr.replace("LEFT", "")
   when not defined(release):
@@ -121,12 +126,12 @@ proc getSectProcess*(db: DbConn, t = "", sId = "", uId = "", inactive = ""): Sta
 
 proc newSectProcess*(db: DbConn, t, sId, uId, startDate: string): StatusResp[seq[SectorProcess]] =
   result.status = stUnknown
-  let normalDateFmt = initTimeFormat("yyyy-MM-dd")
   var rChck: tuple[isOk: bool, rowToken: Row]
   resultCheckToken(db, t)
   let sDate =
     if startDate != "": startDate else: now().format normalDateFmt
   let sPrRow = db.getRow(sql"""SELECT * FROM user_sector
+                  INNER JOIN sector ON user_sector.sector_id = sector.id AND sector.inactive <> 1
                   WHERE
                     sector_id = ? AND
                     (date_finish > ? OR
@@ -136,21 +141,21 @@ proc newSectProcess*(db: DbConn, t, sId, uId, startDate: string): StatusResp[seq
   when not defined(release):
     echo "begin insert process: ", [sId, uId, startDate].join(" ")
   if sPrRow[0] != "":
+    result.message = "Неудачно: неизвестная ошибка " & $sPrRow
     return result
   let vUid = 
     if uId == "": rChck.rowToken[2]
     else: uId  
   let sPrCntRow = db.getRow(sql"""SELECT count(*) FROM user_sector
-              INNER JOIN sector ON user_sector.sector_id = sector.id
-              INNER JOIN user ON user.id = user_sector.user_id
-              INNER JOIN role ON user.role_id = role.id
-              WHERE user_sector.user_id = ?
-                AND sector.inactive <> 1
-                AND role.role = 'user'""", vUid)
+        INNER JOIN sector ON user_sector.sector_id = sector.id AND sector.inactive <> 1
+        INNER JOIN user ON user.id = user_sector.user_id
+        INNER JOIN role ON user.role_id = role.id AND role.role = 'user'
+        WHERE user_sector.user_id = ? AND user_sector.date_finish IS NULL""", vUid)
   when not defined(release):
     echo "rChck.rowToken: ", rChck.rowToken
   let cntOnHand = sPrCntRow[0].parseInt
   if cntOnHand >= 4:
+    result.message = "Неудачно: на руках больше 4-х участков"
     return result
   when not defined(release):
     echo "begin insert process: ", sPrRow
@@ -186,28 +191,54 @@ proc newSectProcess*(db: DbConn, t, sId, uId, startDate: string): StatusResp[seq
   result = db.getSectProcess(t, sId)
 
 
-proc delProcess*(db: DbConn, sId: string): bool =
-  result = false
-
-proc updProcess*(db: DbConn, t, pId, uId, sDate, fDate: string): StatusResp[seq[SectorProcess]] =
+proc delProcess*(db: DbConn, t, pId: string): StatusResp[int] =
   result.status = stUnknown
+  var rChck: tuple[isOk: bool, rowToken: Row]
+  resultCheckToken(db, t)
+  var errMsg: string
+  db.exec(sql"BEGIN")
+  try:
+    db.exec(sql"""DELETE
+          FROM user_sector
+            WHERE id = ?""", pId)
+  except:
+    errMsg = "Ошибка: " & getCurrentExceptionMsg()
+    db.exec(sql"ROLLBACK")
+  if errMsg == "":
+    if not db.tryExec(sql"COMMIT"):
+      db.exec(sql"ROLLBACK")
+      return result
+    else:
+      result.status = stOk
+  else:
+    result.message = errMsg
+
+proc updProcess*(db: DbConn, t, pId, sDate, fDate: string): StatusResp[seq[SectorProcess]] =
+  result.status = stUnknown
+  var rChck: tuple[isOk: bool, rowToken: Row]
+  resultCheckToken(db, t)
   when not defined(release):
     echo "updProcess:: ", pId
-  let sectorPrcRow = db.getRow(sql"""SELECT usectB.*
-                          FROM user_sector as usectA
-                          /*JOIN sector ON sector.inactive = 0*/
-                          LEFT JOIN user_sector as usectB
-                              ON usectA.sector_id = usectB.sector_id
-                          WHERE usectA.id = ?
-                          ORDER BY date_start ASC
+  let sectorPrcRow = db.getRow(sql"""SELECT *
+                            FROM user_sector
+                            WHERE id = ?
                   """, pId)
   if sectorPrcRow[0] == "":
+    result.message = "Процесс обработки " & pId & " не найден"
     return result
   let vsDate = if sDate == "": sectorPrcRow[3] else: sDate
-  let vfDate = if fDate == "": sectorPrcRow[4] else: fDate
+  let vfDate =
+    if fDate == "":
+      if sectorPrcRow[4] == "":
+        now().format normalDateFmt
+      else:
+        sectorPrcRow[4]
+    else:
+      fDate
   when not defined(release):
     echo "BEGIN::: ", pId, " ", vsDate, " ", vfDate
   if vsDate > vfDate:
+    result.message = "Процесс обработки " & pId & ": дата начала - " & vsDate & " > " & " даты сдачи - " & vfDate
     return result
   db.exec(sql"BEGIN")
   let shOne = db.execAffectedRows(sql"""UPDATE user_sector
@@ -217,6 +248,7 @@ proc updProcess*(db: DbConn, t, pId, uId, sDate, fDate: string): StatusResp[seq[
             vsDate, vfDate, pId)
   if shOne == 0:
     db.exec(sql"ROLLBACK")
+    result.message = "Процесс обработки " & pId & " не обновился, причина неизвестна"
     return result
   if not db.tryExec(sql"COMMIT"):
     db.exec(sql"ROLLBACK")

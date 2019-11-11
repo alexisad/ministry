@@ -31,9 +31,11 @@ type
     stOk = "OK", stUnknown = "unknown", stLoggedOut = "loggedOut"
   CStatusResp*[T] = object
     status*: cstring
+    message*: cstring
     resp*: T
   StatusResp*[T] = object
     status*: StatusType
+    message*: string
     resp*: T
   SectorProcess* = object
     name*: string

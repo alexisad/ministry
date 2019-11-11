@@ -11,16 +11,20 @@ import src/util/types
 import strformat, strutils, times
 import utiljs
 
-
+const normalDateFmt = initTimeFormat("yyyy-MM-dd")
+var currDate = now().format normalDateFmt
 var console {.importjs, nodecl.}: JsObject
 var window {.importjs, nodecl.}: JsObject
+var document {.importjs, nodecl.}: JsObject
 var screen {.importjs, nodecl.}: JsObject
 proc jq(selector: JsObject): JsObject {.importjs: "$$(#)".}
+proc jqData(obj: JsObject, hndlrs: cstring): JsObject {.importjs: "$$._data(#,#)".}
 var JSON {.importjs, nodecl.}: JsObject
 var localStorage {.importjs, nodecl.}: JsObject
 proc jsonParse(s: cstring): JsObject {.importjs: "JSON.parse(#)".}
 var Kefir {.importjs, nodecl.}: JsObject
 var H {.importjs, nodecl.}: JsObject
+
 var token = $jq("#token".toJs).val().to(cstring)
 var vUser = jq("#user".toJs).val().to(cstring)
 var currUser = CUser()
@@ -42,10 +46,15 @@ var allSectProc: seq[CSectorProcess]
 var spinnerOn = false
 var isShowNavMap = false
 var scrollToSectId = 0
+var onlyMySectors = false
+var errMsg: string
 var map: JsObject
 var sectStreetGrp = jsNew H.map.Group()
 
 proc getAllProccess(myS = false)
+proc hndlUpdOwnSect()
+proc parseResp(bdy: string, T: typedesc): T
+proc closeMap()
 
 when false:
     var kPrc = proc(emitter: JsObject): proc() =
@@ -165,47 +174,151 @@ proc loginDialog(): VNode =
             p(class="mt-5 mb-3 text-muted text-center"):
                 text "© 2019"
 
+proc updProcc(): proc() =
+    result = proc() =
+        spinnerOn = true
+        allSectProc = newSeq[CSectorProcess]()
+        let p = currProcess
+        let stmUpdPrc = sendRequest(# will set finish date<-(now) to give back
+            "GET",
+            "/sector/process/update?" & &"token={$currUser.token}&processId={p.id}"
+        )
+        stmUpdPrc.observe(
+            proc (value: Response) =
+                console.log("value:", value.statusCode)
+                let respSect = parseResp(value.body, CStatusResp[seq[CSectorProcess]])
+                if respSect.status == "unknown":
+                    #discard
+                    errMsg = $respSect.message
+                let ownSEl = document.getElementById("ownSectors")
+                if ownSEl != nil:
+                    ownSEl.checked = true
+                onlyMySectors = true
+                hndlUpdOwnSect()
+            ,
+            proc (error: Response) =
+                console.log("error:", error.statusCode)
+            ,
+            proc () =
+                redraw()
+                console.log("end")
+        )
+
+
+proc delProcc(): proc() =
+    result = proc() =
+        spinnerOn = true
+        allSectProc = newSeq[CSectorProcess]()
+        let p = currProcess
+        let stmDelPrc = sendRequest(
+            "GET",
+            "/sector/process/delete?" & &"token={$currUser.token}&processId={p.id}"
+        )
+        stmDelPrc.observe(
+            proc (value: Response) =
+                console.log("value:", value.statusCode)
+                let respSect = parseResp(value.body, CStatusResp[int])
+                if respSect.status == "unknown":
+                    #discard
+                    errMsg = $respSect.message
+                let ownSEl = document.getElementById("ownSectors")
+                if ownSEl != nil:
+                    ownSEl.checked = true
+                onlyMySectors = true
+                hndlUpdOwnSect()
+            ,
+            proc (error: Response) =
+                console.log("error:", error.statusCode)
+            ,
+            proc () =
+                redraw()
+                console.log("end")
+        )
+        
+        
 
 proc confirmTakeSect(): proc() = 
     result = proc() =
+        spinnerOn = true
+        allSectProc = newSeq[CSectorProcess]()
         console.log("confirmTakeSect: ", currProcess)
         let p = currProcess
-        let stmGetStreet = sendRequest(
+        let stmNewPrc = sendRequest(
             "GET",
             "/sector/process/new?" & &"token={$currUser.token}&sectorId={p.sector_id}"
         )
-        stmGetStreet.observe(
+        stmNewPrc.observe(
             proc (value: Response) =
-                console.log("value:", value.statusCode),
+                console.log("value:", value.statusCode)
+                let respSect = parseResp(value.body, CStatusResp[seq[CSectorProcess]])
+                if respSect.status == "unknown":
+                    #discard
+                    errMsg = $respSect.message
+                let ownSEl = document.getElementById("ownSectors")
+                if ownSEl != nil:
+                    ownSEl.checked = true
+                onlyMySectors = true
+                hndlUpdOwnSect()
+                closeMap() #any case
+            ,
             proc (error: Response) =
-                console.log("error:", error.statusCode),
+                console.log("error:", error.statusCode)
+            ,
             proc () =
                 redraw()
                 console.log("end")
         )
     
 
+proc takeSectModalBody(): VNode =
+    result = buildHtml tdiv(class="modal-body"):
+        tdiv:
+            text "Взять участок на обработку?"
+        tdiv(class="mx-auto"):
+            button(`type`="button", class="btn btn-success float-left", data-dismiss="modal", onclick = confirmTakeSect()):
+                text "Да"
+            button(`type`="button", class="btn btn-danger float-right", data-dismiss="modal"):
+                text "Нет"
+
+proc giveBackModalBody(): VNode =
+    result = buildHtml tdiv(class="modal-body"):
+        tdiv:
+            text "Уверен, что хочешь сдать участок?"
+        tdiv(class="mx-auto"):
+            button(`type`="button", class="btn btn-success float-left", data-dismiss="modal", data-toggle="modal", data-target="#isProccessedModal"):
+                text "Да"
+            button(`type`="button", class="btn btn-danger float-right", data-dismiss="modal"):
+                text "Нет"
+
+proc proccessedModalBody(): VNode =
+    result = buildHtml tdiv(class="modal-body"):
+        tdiv:
+            text "Был участок обработан?"
+        tdiv(class="mx-auto"):
+            tdiv(class="clearfix"):
+                button(`type`="button", class="btn btn-success float-left", data-dismiss="modal", onclick=updProcc()):
+                    text "Сдать, как обработанный"
+                button(`type`="button", class="btn btn-danger float-right", data-dismiss="modal", onclick=delProcc()):
+                    text "Сдать, как не обработанный"
+            tdiv(class="clearfix"):
+                text "или"
+            button(`type`="button", class="btn btn-secondary", data-dismiss="modal"):
+                text "Не сдавать"
+    
 
 
-proc showTakeSect(): VNode =
-    result = buildHtml tdiv(class="modal fade", id="takeModal", tabindex="-1", role="dialog", aria-labelledby="takeModalLabel", aria-hidden="true"):
+proc showConfirm(modalId: string, bdy: VNode): VNode =
+    let lblM = modalId & "Label"
+    result = buildHtml tdiv(class="modal fade", id=modalId, tabindex="-1", role="dialog", aria-labelledby=lblM, aria-hidden="true"):
         tdiv(class="modal-dialog", role="document"):
             tdiv(class="modal-content"):
                 tdiv(class="modal-header"):
-                    h6(class="modal-title", id="takeModalLabel"):
+                    h6(class="modal-title", id=lblM):
                         text currProcess.name
                     button(`type`="button", class="close", data-dismiss="modal", aria-label="Close"):
                         span(aria-hidden="true"):
                             text "x"
-                tdiv(class="modal-body"):
-                    tdiv:
-                        text "Взять участок на обработку?"
-                    tdiv(class="mx-auto"):
-                        button(`type`="button", class="btn btn-success float-left", data-dismiss="modal", onclick = confirmTakeSect()):
-                            text "Да"
-                        button(`type`="button", class="btn btn-danger float-right", data-dismiss="modal"):
-                            text "Нет"
-                    #tdiv(id = "bap-container")
+                bdy
 
 proc parseResp(bdy: string, T: typedesc): T =
     result = cast[T](jsonParse(bdy))
@@ -281,26 +394,51 @@ proc closeMap() =
     elMap.classList.remove(cstring"show-map")
     #redraw()
 
-proc clckTakeSect(p: CSectorProcess): proc() = 
+proc clckProccSect(p: CSectorProcess): proc() = 
     result = proc() =
-        console.log("clckTakeSect: ", p)
+        console.log("clckProccSect: ", p)
         currProcess = p
 
-proc clckOwnSect(): proc() = 
+proc hndlUpdOwnSect() =
+    console.log("start upd...")
+    var ownS = jq("#ownSectors".toJs)[0]
+    if ownS != nil:
+        onlyMySectors = ownS.checked.to(bool)
+    getAllProccess onlyMySectors
+
+
+
+    
+proc onMsgClck(): proc() = 
     result = proc() =
-        var ownS = jq("#ownSectors".toJs)[0]
-        getAllProccess ownS.checked.to(bool)
-        if ownS.checked.to(bool):
-            console.log("ownSectors: ", ownS.checked)
+        errMsg = ""
+
+
+proc updOwnSect(): proc() = 
+    result = hndlUpdOwnSect
 
 proc logout() =
     currUser.token = ""
+    document.cookie = cstring"token=none;path=/"
+    document.location.replace("/")
+
+proc allowTake(p: CSectorProcess): bool =
+    result = false
+    if p.date_start == "":
+        return true
+    if p.date_finish == "":
+        return false
+    if ((now() - 1.weeks).format normalDateFmt) > $p.date_finish:
+        return true
 
 proc showAllProc(): VNode =
     #for p in allSectProc:
         #discard# console.log("p.name:", $(p.name))
     let clsCol = "card-text"#"col-sm-auto themed-grid-col"
     result = buildHtml tdiv:
+        if errMsg != "":
+            tdiv(class="alert alert-danger fade show", role="alert", onclick = onMsgClck()):
+                text errMsg
         nav(class="navbar fixed-top navbar-expand-sm navbar-light bg-light shadow p-1 mb-0 bg-white rounded overflow-auto"):
             button(class="navbar-toggler", `type`="button", data-toggle="collapse",
                     data-target="#navbarTogglerSectors", aria-controls="navbarTogglerSectors", aria-expanded="false", aria-label="Toggle navigation"):
@@ -309,9 +447,9 @@ proc showAllProc(): VNode =
                 #text currProcess.name
             tdiv(class="collapse navbar-collapse", id="navbarTogglerSectors"):
                 tdiv(class="custom-control custom-switch"):
-                    input(`type`="checkbox", class="custom-control-input", id="ownSectors", onclick = clckOwnSect())
+                    input(`type`="checkbox", class="custom-control-input", id="ownSectors", onchange = updOwnSect())
                     label(class="custom-control-label", `for`="ownSectors"):
-                        text "Только мои"
+                        text "Мои"
                 ul(class="navbar-nav mr-auto"):
                     li(class="nav-item"):
                         a(class="nav-link", onclick = logout):
@@ -339,9 +477,15 @@ proc showAllProc(): VNode =
                             li(class="nav-item"):
                                 a(class="nav-link", href="#mapModal", data-toggle="modal", data-target="#mapModal", onclick = clckOpenMap(p)):
                                     text "Карта"
-                            li(class="nav-item"):
-                                a(class="nav-link", href="#takeModal", data-toggle="modal", data-target="#takeModal", onclick = clckTakeSect(p)):
-                                    text "Взять"
+                            if allowTake(p):
+                                li(class="nav-item"):
+                                    a(class="nav-link", href="#takeModal", data-toggle="modal", data-target="#takeModal", onclick = clckProccSect(p)):
+                                        text "Взять"
+                            elif p.userId == currUser.id and onlyMySectors:
+                                li(class="nav-item"):
+                                    a(class="nav-link", href="#gBackModal", data-toggle="modal", data-target="#gBackModal", onclick = clckProccSect(p)):
+                                        text "Сдать"
+                                discard console.log("currDate > $p.date_finish", currDate, p.date_finish)
                     tdiv(class="card-body"):
                         h6(class="card-title"):
                             text p.name
@@ -359,7 +503,7 @@ proc toggleSpinner(): Vnode =
         result = buildHtml tdiv(class="d-flex justify-content-center"):
             tdiv(class="spinner-border text-primary", role="status"):
                 span(class="sr-only"):
-                    text "Loading..."
+                    text "Загрузка..."
 
 
 proc setEventsModalMap() =
@@ -378,7 +522,9 @@ proc setEventsModalMap() =
 proc createDom(): VNode =
     result = buildHtml tdiv(class = "main-root"):
         toggleSpinner()
-        showTakeSect()
+        showConfirm "takeModal", takeSectModalBody()
+        showConfirm "gBackModal", giveBackModalBody()
+        showConfirm "isProccessedModal", proccessedModalBody()
         if currUser.token == "":
             loginDialog()
         elif isShowNavMap:
@@ -390,12 +536,11 @@ proc createDom(): VNode =
                     text currProcess.name
                 tdiv(class="collapse navbar-collapse", id="navbarTogglerMap"):
                     ul(class="navbar-nav mr-auto"):
+                        if allowTake(currProcess):
+                            li(class="nav-item"):
+                                a(class="nav-link", href="#takeModal", data-toggle="modal", data-target="#takeModal"):
+                                    text "Взять"
                         li(class="nav-item"):
-                            a(class="nav-link", href="#takeModal", data-toggle="modal", data-target="#takeModal"#[, onclick = clckTakeSect(p)]#):
-                                text "Взять"
-                        li(class="nav-item"):
-                            #a(class="badge badge-info", href="#", data-target="#mapclose", onclick = closeMap):
-                    #button(class="btn btn-outline-success my-2 my-sm-0", `type`="button", onclick = closeMap):
                             a(class="nav-link", onclick = closeMap):
                                 text "Закр. карту"
         else:
@@ -407,7 +552,10 @@ proc createDom(): VNode =
         #text "YES!!!"
 
 
-setRenderer createDom, "main-control-container", proc() = 
+setRenderer createDom, "main-control-container", proc() =
+            currDate = now().format normalDateFmt
+            if document.getElementById("ownSectors") != nil:
+                document.getElementById("ownSectors").checked = onlyMySectors
             if scrollToSectId != 0:
                 let sIdEl = toJs(["#", $scrollToSectId, ".card"].join("")).jq()
                 if sIdEl.length.to(int) == 0:
@@ -418,7 +566,7 @@ setRenderer createDom, "main-control-container", proc() =
                     jq("html, body".toJs).animate(JsObject{
                                 scrollTop: jq(sIdEl).offset().top
                             }, 2000)
-            #console.log("post render!!!")
+            console.log("post render!!!")
 
 
 proc bindMap() =
