@@ -74,6 +74,10 @@ body {
     max-width: 75%;
 }
 
+.mw-50 {
+    max-width: 50%;
+}
+
 .nav-link,
 .custom-switch .custom-control-input,
 .custom-switch .custom-control-label {

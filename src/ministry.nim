@@ -467,7 +467,7 @@ router mrouter:
       #echo $getTblRows("sector")
       resp Http200, [("Content-Type","application/json")], $(%*resp)
     elif @"action" == "process":
-      let sectProcess = getSectProcess(db, @"token", @"sectorId", @"userId", @"inactive")
+      let sectProcess = getSectProcess(db, @"token", @"sectorId", @"userId", @"sectorName", @"inactive")
       #if sectProcess.status == false:
         #halt()
       resp %*sectProcess

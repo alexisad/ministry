@@ -48,10 +48,12 @@ var isShowNavMap = false
 var scrollToSectId = 0
 var onlyMySectors = false
 var errMsg: string
+var serchSectByName: string
+var setEvtInpSearchSect = false
 var map: JsObject
 var sectStreetGrp = jsNew H.map.Group()
 
-proc getAllProccess(myS = false)
+proc getAllProccess(myS = false, sectorName = "")
 proc hndlUpdOwnSect()
 proc parseResp(bdy: string, T: typedesc): T
 proc closeMap()
@@ -234,8 +236,22 @@ proc delProcc(): proc() =
                 redraw()
                 console.log("end")
         )
-        
-        
+
+proc sectSearch() : proc() = 
+    result = proc() =
+        let sSect = $jq("#searchSector".toJs).val().to(cstring)
+        if sSect != serchSectByName:
+            if sSect.len >= 3:
+                getAllProccess onlyMySectors, sSect
+            elif sSect.len == 2 and serchSectByName.len == 3:
+                getAllProccess onlyMySectors
+            serchSectByName = sSect
+
+proc inputSectName(inpEl: JsObject): JsObject =
+    proc getValue(): JsObject =
+        return inpEl.value
+    result = Kefir.fromEvents(inpEl, "input", getValue).toProperty(getValue)
+
 
 proc confirmTakeSect(): proc() = 
     result = proc() =
@@ -352,17 +368,17 @@ proc clckOpenMap(p: CSectorProcess): proc() =
                 console.log("value:", value.statusCode)
                 let respSect = parseResp(value.body, CStatusResp[seq[CSectorStreets]])
                 let sectStrts = respSect.resp
-                console.log("resp status:", cstring($respSect.status), cstring"loggedOut")
+                #console.log("resp status:", cstring($respSect.status), cstring"loggedOut")
                 if sectStrts.len == 0:
                     return
                 for strt in sectStrts:
                     let coords = strt.geometry.split(";")
                     for latlng in coords:
                         var lnStr = jsNew H.geo.LineString()
-                        console.log("latlng:", latlng)
+                        #console.log("latlng:", latlng)
                         let c = latlng.split(",")
                         for i in countup(0, c.high, 2):
-                            console.log("geom:", c[i], c[i+1])
+                            #console.log("geom:", c[i], c[i+1])
                             lnStr.pushLatLngAlt(c[i].toJs().to(float), c[i+1].toJs().to(float), 1.00)
                         let pOpt = JsObject{
                                 style: JsObject{
@@ -373,7 +389,7 @@ proc clckOpenMap(p: CSectorProcess): proc() =
                             }
                         let pl = jsNew H.map.Polyline(lnStr, pOpt)
                         sectStreetGrp.addObject pl
-                        console.log("lnStr: ", lnStr)
+                        #console.log("lnStr: ", lnStr)
                 map.setViewBounds(sectStreetGrp.getBounds(), true)
                 redraw(),
             proc (error: Response) =
@@ -450,6 +466,7 @@ proc showAllProc(): VNode =
                     input(`type`="checkbox", class="custom-control-input", id="ownSectors", onchange = updOwnSect())
                     label(class="custom-control-label", `for`="ownSectors"):
                         text "Мои"
+                input(`type`="text", class="form-control mw-50", id="searchSector", aria-describedby="searchHelp", placeholder="искать..."#[, oninput=sectSearch()]#)
                 ul(class="navbar-nav mr-auto"):
                     li(class="nav-item"):
                         a(class="nav-link", onclick = logout):
@@ -547,15 +564,43 @@ proc createDom(): VNode =
             showAllProc()
 
 
-#proc createMapNav(): VNode =
-    #result = buildHtml tdiv(class = "mapnav-root"):
-        #text "YES!!!"
+proc getAllProccess2(myS = false, sectorName = ""): JsObject =
+    spinnerOn = true
+    allSectProc = newSeq[CSectorProcess]()
+    let rUid =
+        if not myS: ""
+        else: &"&userId={currUser.id}"
+    let sName =
+        if sectorName != "":
+            &"&sectorName={sectorName}"
+        else: ""
+    result = sendRequest(
+        "GET",
+        "/sector/process?" & &"token={currUser.token}" & rUid & sName
+    )
 
+proc bindSearchSector() =
+    let inpEl = document.getElementById("searchSector")
+    if inpEl == nil:
+        console.log("searchSector is nil nil nil")
+        setEvtInpSearchSect = false
+        return
+    if setEvtInpSearchSect:
+        return
+    console.log("boooooooooooooooo!!!", inpEl.oninput)
+    let stmInp = inputSectName(inpEl)
+    setEvtInpSearchSect = true
+    proc wrpS(vS: JsObject): JsObject =
+        result = getAllProccess2(onlyMySectors, $vS.to(cstring))
+    let stmResult = stmInp.flatMapLatest(wrpS)
+    stmResult.log()
 
 setRenderer createDom, "main-control-container", proc() =
+            console.log("post render!!!")
             currDate = now().format normalDateFmt
             if document.getElementById("ownSectors") != nil:
-                document.getElementById("ownSectors").checked = onlyMySectors
+                document.getElementById("ownSectors").checked = onlyMySectors    
+            bindSearchSector()
             if scrollToSectId != 0:
                 let sIdEl = toJs(["#", $scrollToSectId, ".card"].join("")).jq()
                 if sIdEl.length.to(int) == 0:
@@ -566,7 +611,7 @@ setRenderer createDom, "main-control-container", proc() =
                     jq("html, body".toJs).animate(JsObject{
                                 scrollTop: jq(sIdEl).offset().top
                             }, 2000)
-            console.log("post render!!!")
+            
 
 
 proc bindMap() =
@@ -603,16 +648,22 @@ proc bindMap() =
     map.addObject sectStreetGrp
 
 
-proc getAllProccess(myS = false) =
+
+
+proc getAllProccess(myS = false, sectorName = "") =
     spinnerOn = true
     allSectProc = newSeq[CSectorProcess]()
     redraw()
     let rUid =
         if not myS: ""
         else: &"&userId={currUser.id}"
+    let sName =
+        if sectorName != "":
+            &"&sectorName={sectorName}"
+        else: ""
     let stmLogin = sendRequest(
         "GET",
-        "/sector/process?" & &"token={currUser.token}" & rUid
+        "/sector/process?" & &"token={currUser.token}" & rUid & sName
     )
     stmLogin.observe(
         proc (value: Response) =

@@ -73,7 +73,7 @@ proc uploadSector*(db: DbConn, corpusId: int): StatusResp[int] =
   result.status = stOk
 
 
-proc getSectProcess*(db: DbConn, t = "", sId = "", uId = "", inactive = ""): StatusResp[seq[SectorProcess]] =
+proc getSectProcess*(db: DbConn, t = "", sId = "", uId = "", sName="", inactive = ""): StatusResp[seq[SectorProcess]] =
   result.status = stUnknown
   result.resp = newSeq[SectorProcess]()
   var rChck: tuple[isOk: bool, rowToken: Row]
@@ -86,6 +86,8 @@ proc getSectProcess*(db: DbConn, t = "", sId = "", uId = "", inactive = ""): Sta
     if uId != "": (" = ", uId) else: (" <> ", "-1")
   let dFinCond =
     if uId != "": "AND user_sector.date_finish is NULL" else: ""
+  let vSearchSect =
+    if sName != "": "AND sector.name LIKE '%" & sName & "%'" else: ""
   var sqlStr = """SELECT name as sectorName, sector_internal_id, firstname, lastname,
           MAX(date_start), date_finish, user_id,
           sector.id as sector_id, user_sector.id, plz, pfix
@@ -95,6 +97,7 @@ proc getSectProcess*(db: DbConn, t = "", sId = "", uId = "", inactive = ""): Sta
           WHERE
             sector.corpus_id = ?
             {*vInactive*}
+            {*v_search_sector*}
             AND sector.id *vsId_c* ?
           GROUP BY sector.id
           ORDER BY date_start ASC, plz, pfix
@@ -103,6 +106,7 @@ proc getSectProcess*(db: DbConn, t = "", sId = "", uId = "", inactive = ""): Sta
           .replace("*vsId_c*", vsId[0])
           .replace("*vuId_c*", vuId[0])
           .replace("{*d_f_c*}", dFinCond)
+          .replace("{*v_search_sector*}", vSearchSect)
   if uId != "":
     sqlStr = sqlStr.replace("LEFT", "")
   when not defined(release):
