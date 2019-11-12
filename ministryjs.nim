@@ -567,6 +567,7 @@ proc createDom(): VNode =
 proc getAllProccess2(myS = false, sectorName = ""): JsObject =
     spinnerOn = true
     allSectProc = newSeq[CSectorProcess]()
+    redraw()
     let rUid =
         if not myS: ""
         else: &"&userId={currUser.id}"
@@ -582,18 +583,30 @@ proc getAllProccess2(myS = false, sectorName = ""): JsObject =
 proc bindSearchSector() =
     let inpEl = document.getElementById("searchSector")
     if inpEl == nil:
-        console.log("searchSector is nil nil nil")
         setEvtInpSearchSect = false
         return
     if setEvtInpSearchSect:
         return
-    console.log("boooooooooooooooo!!!", inpEl.oninput)
     let stmInp = inputSectName(inpEl)
     setEvtInpSearchSect = true
     proc wrpS(vS: JsObject): JsObject =
         result = getAllProccess2(onlyMySectors, $vS.to(cstring))
     let stmResult = stmInp.flatMapLatest(wrpS)
-    stmResult.log()
+    #stmResult.log()
+    stmResult.observe(
+        proc (value: Response) =
+            console.log("value:", value.statusCode, value)
+            allSectProc = parseResp(value.body, CStatusResp[seq[CSectorProcess]]).resp
+            spinnerOn = false
+            redraw()
+        ,
+        proc (error: Response) =
+            console.log("error:", error.statusCode)
+        ,
+        proc () =
+            console.log("end")
+    )
+
 
 setRenderer createDom, "main-control-container", proc() =
             console.log("post render!!!")
@@ -668,9 +681,7 @@ proc getAllProccess(myS = false, sectorName = "") =
     stmLogin.observe(
         proc (value: Response) =
             console.log("value:", value.statusCode, value)
-            #allSectProc = jsonParse(value.body).resp.to(seq[CSectorProcess])
-            let allSectProcBdy = parseResp(value.body, CStatusResp[seq[CSectorProcess]])
-            allSectProc = allSectProcBdy.resp
+            allSectProc = parseResp(value.body, CStatusResp[seq[CSectorProcess]]).resp
         ,
             #redraw(),
         proc (error: Response) =
