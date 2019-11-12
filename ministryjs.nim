@@ -565,9 +565,6 @@ proc createDom(): VNode =
 
 
 proc getAllProccess2(myS = false, sectorName = ""): JsObject =
-    spinnerOn = true
-    allSectProc = newSeq[CSectorProcess]()
-    redraw()
     let rUid =
         if not myS: ""
         else: &"&userId={currUser.id}"
@@ -590,6 +587,9 @@ proc bindSearchSector() =
     let stmInp = inputSectName(inpEl)
     setEvtInpSearchSect = true
     proc wrpS(vS: JsObject): JsObject =
+        spinnerOn = true
+        allSectProc = newSeq[CSectorProcess]()
+        redraw()
         result = getAllProccess2(onlyMySectors, $vS.to(cstring))
     let stmResult = stmInp.flatMapLatest(wrpS)
     #stmResult.log()
