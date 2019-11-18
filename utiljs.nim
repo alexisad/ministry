@@ -1,5 +1,9 @@
 import jsffi
 
+type
+    ContStreamEvts = object
+        inpSearchByName: JsObject
+
 var pageYOffset {.importjs, nodecl.}: JsObject
 var pageXOffset {.importjs, nodecl.}: JsObject
 

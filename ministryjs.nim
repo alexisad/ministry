@@ -237,20 +237,14 @@ proc delProcc(): proc() =
                 console.log("end")
         )
 
-proc sectSearch() : proc() = 
-    result = proc() =
-        let sSect = $jq("#searchSector".toJs).val().to(cstring)
-        if sSect != serchSectByName:
-            if sSect.len >= 3:
-                getAllProccess onlyMySectors, sSect
-            elif sSect.len == 2 and serchSectByName.len == 3:
-                getAllProccess onlyMySectors
-            serchSectByName = sSect
 
-proc inputSectName(inpEl: JsObject): JsObject =
-    proc getValue(): JsObject =
-        return inpEl.value
-    result = Kefir.fromEvents(inpEl, "input", getValue).toProperty(getValue)
+proc chgUiState(chgEl: JsObject): JsObject =
+    proc getValues(): JsObject =
+        onlyMySectors = document.getElementById("ownSectors").checked.to(bool)
+        let uiSt = JsObject{inpSearch: document.getElementById("searchSector").value.to(cstring),
+                    isOwnSect: onlyMySectors}
+        return uiSt
+    result = Kefir.fromEvents(chgEl, "input", getValues).toProperty(getValues)
 
 
 proc confirmTakeSect(): proc() = 
@@ -354,53 +348,10 @@ proc clckOpenMap(p: CSectorProcess): proc() =
         isShowNavMap = true
         var mC = jq(".main-container".toJs)[0]
         mC.classList.add(cstring"map-nav")
-        #redraw()
         console.log("clckOpenMap:", elMap)
         spinnerOn = true
         scrollToSectId = p.sector_id
         sectStreetGrp.removeAll()
-        let stmGetStreet = sendRequest(
-            "GET",
-            "/sector/streets?" & &"token={currUser.token}&sectorId={p.sector_id}"
-        )
-        stmGetStreet.observe(
-            proc (value: Response) =
-                console.log("value:", value.statusCode)
-                let respSect = parseResp(value.body, CStatusResp[seq[CSectorStreets]])
-                let sectStrts = respSect.resp
-                #console.log("resp status:", cstring($respSect.status), cstring"loggedOut")
-                if sectStrts.len == 0:
-                    return
-                for strt in sectStrts:
-                    let coords = strt.geometry.split(";")
-                    for latlng in coords:
-                        var lnStr = jsNew H.geo.LineString()
-                        #console.log("latlng:", latlng)
-                        let c = latlng.split(",")
-                        for i in countup(0, c.high, 2):
-                            #console.log("geom:", c[i], c[i+1])
-                            lnStr.pushLatLngAlt(c[i].toJs().to(float), c[i+1].toJs().to(float), 1.00)
-                        let pOpt = JsObject{
-                                style: JsObject{
-                                    strokeColor: cstring"rgba(255, 0, 0, 0.2)",
-                                    fillColor: cstring"rgba(255, 0, 0, 0.4)",
-                                    lineWidth: 10
-                                }
-                            }
-                        let pl = jsNew H.map.Polyline(lnStr, pOpt)
-                        sectStreetGrp.addObject pl
-                        #console.log("lnStr: ", lnStr)
-                map.setViewBounds(sectStreetGrp.getBounds(), true)
-                redraw(),
-            proc (error: Response) =
-                console.log("error:", error.statusCode)
-                redraw(),
-            proc () =
-                #discard
-                console.log("end")
-                spinnerOn = false
-                redraw()
-        )
 
 proc closeMap() =
     isShowNavMap = false
@@ -463,10 +414,10 @@ proc showAllProc(): VNode =
                 #text currProcess.name
             tdiv(class="collapse navbar-collapse", id="navbarTogglerSectors"):
                 tdiv(class="custom-control custom-switch"):
-                    input(`type`="checkbox", class="custom-control-input", id="ownSectors", onchange = updOwnSect())
+                    input(`type`="checkbox", class="custom-control-input", id="ownSectors"#[, onchange = updOwnSect()]#)
                     label(class="custom-control-label", `for`="ownSectors"):
                         text "Мои"
-                input(`type`="text", class="form-control mw-50", id="searchSector", aria-describedby="searchHelp", placeholder="искать..."#[, oninput=sectSearch()]#)
+                input(`type`="text", class="form-control mw-50", id="searchSector", aria-describedby="searchHelp", placeholder="искать...")
                 ul(class="navbar-nav mr-auto"):
                     li(class="nav-item"):
                         a(class="nav-link", onclick = logout):
@@ -558,7 +509,7 @@ proc createDom(): VNode =
                                 a(class="nav-link", href="#takeModal", data-toggle="modal", data-target="#takeModal"):
                                     text "Взять"
                         li(class="nav-item"):
-                            a(class="nav-link", onclick = closeMap):
+                            a(id="cl-map", class="nav-link", onclick = closeMap):
                                 text "Закр. карту"
         else:
             showAllProc()
@@ -578,21 +529,25 @@ proc getAllProccess2(myS = false, sectorName = ""): JsObject =
     )
 
 proc bindSearchSector() =
-    let inpEl = document.getElementById("searchSector")
-    if inpEl == nil:
+    let searchEl = document.getElementById("searchSector")
+    let isOwnSectEl = document.getElementById("ownSectors")
+    if searchEl == nil:
         setEvtInpSearchSect = false
         return
     if setEvtInpSearchSect:
-        return
-    let stmInp = inputSectName(inpEl)
+        return# input event already set
     setEvtInpSearchSect = true
+    let stmSearchEl = chgUiState(searchEl)
+    let stmOwnSect = chgUiState(isOwnSectEl)
+    #stmOwnSect.log()
+    var stmUiChg = Kefir.merge(toJs [stmSearchEl, stmOwnSect])
+    stmUiChg.log()
     proc wrpS(vS: JsObject): JsObject =
         spinnerOn = true
         allSectProc = newSeq[CSectorProcess]()
         redraw()
-        result = getAllProccess2(onlyMySectors, $vS.to(cstring))
-    let stmResult = stmInp.flatMapLatest(wrpS)
-    #stmResult.log()
+        result = getAllProccess2(vS.isOwnSect.to(bool), $vS.inpSearch.to(cstring))
+    let stmResult = stmUiChg.flatMapLatest(wrpS)
     stmResult.observe(
         proc (value: Response) =
             console.log("value:", value.statusCode, value)
@@ -607,6 +562,67 @@ proc bindSearchSector() =
             console.log("end")
     )
 
+var stmClMap: JsObject
+proc bindEvtsMapScreen() =
+    let clMapEl = document.getElementById("cl-map")
+    if clMapEl == nil:
+        stmClMap = nil
+        return
+    if stmClMap != nil:
+        return
+    proc getStreets(interrupt: bool): JsObject =
+        console.log("getStreets(isStart:", interrupt)
+        if interrupt:
+            return Kefir.never()
+        result = sendRequest(
+            "GET",
+            "/sector/streets?" & &"token={currUser.token}&sectorId={currProcess.sector_id}"
+        )
+    let stmOpenMapScr = Kefir.constant(false)
+    stmClMap = Kefir.fromEvents(clMapEl, "click").map(() => true)
+    let stmGetStreet = Kefir.merge(toJs [stmOpenMapScr, stmClMap]).flatMapLatest(getStreets)
+    stmGetStreet.observe(
+        proc (value: Response) =
+            console.log("value:", value.statusCode)
+            let respSect = parseResp(value.body, CStatusResp[seq[CSectorStreets]])
+            let sectStrts = respSect.resp
+            #console.log("resp status:", cstring($respSect.status), cstring"loggedOut")
+            if sectStrts.len == 0:
+                return
+            for strt in sectStrts:
+                let coords = strt.geometry.split(";")
+                for latlng in coords:
+                    var lnStr = jsNew H.geo.LineString()
+                    #console.log("latlng:", latlng)
+                    let c = latlng.split(",")
+                    for i in countup(0, c.high, 2):
+                        #console.log("geom:", c[i], c[i+1])
+                        lnStr.pushLatLngAlt(c[i].toJs().to(float), c[i+1].toJs().to(float), 1.00)
+                    let pOpt = JsObject{
+                            style: JsObject{
+                                strokeColor: cstring"rgba(255, 0, 0, 0.2)",
+                                fillColor: cstring"rgba(255, 0, 0, 0.4)",
+                                lineWidth: 10
+                            }
+                        }
+                    let pl = jsNew H.map.Polyline(lnStr, pOpt)
+                    sectStreetGrp.addObject pl
+                    #console.log("lnStr: ", lnStr)
+            map.setViewBounds(sectStreetGrp.getBounds(), true)
+            spinnerOn = false
+            redraw(),
+        proc (error: Response) =
+            console.log("error:", error.statusCode)
+            redraw(),
+        proc () =
+            discard
+            #[console.log("end streets")
+            spinnerOn = false
+            redraw()]#
+    )
+    console.log("yes bindEvtsMapScreen")
+
+
 
 setRenderer createDom, "main-control-container", proc() =
             console.log("post render!!!")
@@ -614,6 +630,7 @@ setRenderer createDom, "main-control-container", proc() =
             if document.getElementById("ownSectors") != nil:
                 document.getElementById("ownSectors").checked = onlyMySectors    
             bindSearchSector()
+            bindEvtsMapScreen()
             if scrollToSectId != 0:
                 let sIdEl = toJs(["#", $scrollToSectId, ".card"].join("")).jq()
                 if sIdEl.length.to(int) == 0:
