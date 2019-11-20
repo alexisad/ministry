@@ -50,6 +50,7 @@ var onlyMySectors = false
 var errMsg: string
 var serchSectByName: string
 var setEvtInpSearchSect = false
+var currUiSt = JsObject{inpSearch: kstring""}
 var map: JsObject
 var sectStreetGrp = jsNew H.map.Group()
 
@@ -241,9 +242,9 @@ proc delProcc(): proc() =
 proc chgUiState(chgEl: JsObject): JsObject =
     proc getValues(): JsObject =
         onlyMySectors = document.getElementById("ownSectors").checked.to(bool)
-        let uiSt = JsObject{inpSearch: document.getElementById("searchSector").value.to(cstring),
+        currUiSt = JsObject{inpSearch: document.getElementById("searchSector").value.to(cstring),
                     isOwnSect: onlyMySectors}
-        return uiSt
+        return currUiSt
     result = Kefir.fromEvents(chgEl, "input", getValues).toProperty(getValues)
 
 
@@ -359,7 +360,7 @@ proc closeMap() =
     var elMap = jq("#map-container".toJs)[0]
     mC.classList.remove(cstring"map-nav")
     elMap.classList.remove(cstring"show-map")
-    #redraw()
+    spinnerOn = false
 
 proc clckProccSect(p: CSectorProcess): proc() = 
     result = proc() =
@@ -414,17 +415,17 @@ proc showAllProc(): VNode =
                 #text currProcess.name
             tdiv(class="collapse navbar-collapse", id="navbarTogglerSectors"):
                 tdiv(class="custom-control custom-switch"):
-                    input(`type`="checkbox", class="custom-control-input", id="ownSectors"#[, onchange = updOwnSect()]#)
+                    input(`type`="checkbox", class="custom-control-input", id="ownSectors")
                     label(class="custom-control-label", `for`="ownSectors"):
                         text "Мои"
-                input(`type`="text", class="form-control mw-50", id="searchSector", aria-describedby="searchHelp", placeholder="искать...")
+                input(`type`="text", class="form-control mw-50", id="searchSector",
+                            aria-describedby="searchHelp", placeholder="искать...",
+                            value = currUiSt.inpSearch.to(kstring)
+                    )
                 ul(class="navbar-nav mr-auto"):
                     li(class="nav-item"):
                         a(class="nav-link", onclick = logout):
                             text "Выйти"
-                    #[li(class="nav-item"):
-                        a(class="nav-link", onclick = closeMap):
-                            text "Закр. карту"]#
         tdiv(class="card-deck"):
             for p in allSectProc:
                 #discard console.log("p.name:", p)
@@ -510,7 +511,7 @@ proc createDom(): VNode =
                                     text "Взять"
                         li(class="nav-item"):
                             a(id="cl-map", class="nav-link", onclick = closeMap):
-                                text "Закр. карту"
+                                text "Закр.карту"
         else:
             showAllProc()
 
