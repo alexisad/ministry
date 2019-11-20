@@ -260,6 +260,7 @@ proc confirmTakeSect(): proc() =
         )
         stmNewPrc.observe(
             proc (value: Response) =
+                closeMap() #any case
                 console.log("value:", value.statusCode)
                 let respSect = parseResp(value.body, CStatusResp[seq[CSectorProcess]])
                 if respSect.status == "unknown":
@@ -270,7 +271,6 @@ proc confirmTakeSect(): proc() =
                     ownSEl.checked = true
                 onlyMySectors = true
                 hndlUpdOwnSect()
-                closeMap() #any case
             ,
             proc (error: Response) =
                 console.log("error:", error.statusCode)
