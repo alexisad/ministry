@@ -200,11 +200,13 @@ proc delProcess*(db: DbConn, t, pId: string): StatusResp[int] =
   var rChck: tuple[isOk: bool, rowToken: Row]
   resultCheckToken(db, t)
   var errMsg: string
+  let uId = rChck.rowToken[2]
   db.exec(sql"BEGIN")
   try:
     db.exec(sql"""DELETE
           FROM user_sector
-            WHERE id = ?""", pId)
+            WHERE id = ? AND
+              user_id = ?""", pId, uId)
   except:
     errMsg = "Ошибка: " & getCurrentExceptionMsg()
     db.exec(sql"ROLLBACK")
