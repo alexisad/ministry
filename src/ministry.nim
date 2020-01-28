@@ -198,7 +198,7 @@ proc reDb() =
                   WHERE 
                   type ='table' AND 
                   name NOT LIKE 'sqlite_%'""")
-    when not defined(release):
+    dbg:
       for row in rows:
         echo row
       echo "++++++++++ ", "111".toMD5, " ", "111".getMD5
@@ -491,7 +491,7 @@ router mrouter:
       if @"startDate" != "" or @"finishDate" != "":
         checkAdminToken ifAdmin
       let updStat = updProcess(db, @"token", @"processId", @"startDate", @"finishDate")
-      when not defined(release):
+      dbg:
         echo "updStat:: ", updStat
       resp Http200, [("Content-Type","application/json")], $(%*updStat)
     else:
@@ -502,7 +502,7 @@ router mrouter:
 proc main() =
   db = open("ministry.db", "", "", "")
   db.exec(sql"PRAGMA foreign_keys = ON")
-  when not defined(release):
+  dbg:
     echo "db connected!!!!!!!!!!!!!"
   let settings = newSettings(port = Port(5000))
   var jester = initJester(mrouter, settings=settings)

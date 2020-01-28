@@ -23,7 +23,13 @@ var JSON {.importjs, nodecl.}: JsObject
 var localStorage {.importjs, nodecl.}: JsObject
 proc jsonParse(s: cstring): JsObject {.importjs: "JSON.parse(#)".}
 var Kefir {.importjs, nodecl.}: JsObject
+var navigator {.importjs, nodecl.}: JsObject
 var H {.importjs, nodecl.}: JsObject
+
+let pI = newPositionIndicator(20)
+let currentPos = pI.marker
+pI.toJs().draw = bindMethod draww
+pI.toJs().draw()
 
 var token = $jq("#token".toJs).val().to(cstring)
 var vUser = jq("#user".toJs).val().to(cstring)
@@ -53,6 +59,18 @@ var setEvtInpSearchSect = false
 var currUiSt = JsObject{inpSearch: kstring""}
 var map: JsObject
 var sectStreetGrp = jsNew H.map.Group()
+#https://www.w3schools.com/code/tryit.asp?filename=GBBT9UWJK39Y
+#[var currentPos = jsNew H.map.Circle(
+    JsObject{lat: 0, lng: 0},
+    5,
+    JsObject{
+        style: JsObject{
+            strokeColor: cstring"rgba(0, 0, 0, 1)",
+            fillColor: cstring"rgba(255, 0, 0, 1)",
+            lineWidth: 1
+        }
+    }
+)]#
 
 proc getAllProccess(myS = false, sectorName = "")
 proc hndlUpdOwnSect()
@@ -62,10 +80,11 @@ proc closeMap()
 when false:
     var kPrc = proc(emitter: JsObject): proc() =
                 result = proc() = discard
-                console.log("emitter:", emitter)
+                dbg:
+                    console.log("emitter:", emitter)
                 emitter.emit(1)
     var stm = Kefir.stream(kPrc)
-    stm.log()
+    #stm.log()
 
 proc sendRequest(meth, url: string, body = "", headers: openarray[(string, string)] = @[]): JsObject =
     let hdrs = cast[seq[(string, string)]](headers)
@@ -114,8 +133,9 @@ when false:
                         StatusResp[TokenResp](status: false)
                     else:
                         StatusResp[TokenResp](status: true, resp: jsonParse(data.body).to(TokenResp))
-                console.log("resp body:", data.body)
-                console.log("resp:", data.toJs, data.statusCode.toJs, data.status.toJs, result)
+                dbg:
+                    console.log("resp body:", data.body)
+                    console.log("resp:", data.toJs, data.statusCode.toJs, data.status.toJs, result)
     )
 
 
@@ -127,7 +147,8 @@ proc login(btnClass: kstring): proc() =
         #let pass = jq("#inputPassword".toJs).val().to(cstring)
         let btn = jq(btnClass.toJs)[0]
         btn.style.display = cstring"none"
-        console.log("clicked ")
+        dbg:
+            console.log("clicked ")
 
         when false:
             let stmLogin = sendRequest(
@@ -138,7 +159,7 @@ proc login(btnClass: kstring): proc() =
             )
             stmLogin.observe(
                 proc (value: Response) =
-                    console.log("value:", value.statusCode)
+                    dbg: console.log("value:", value.statusCode)
                     currUser.token = $jsonParse(value.body).token.to(cstring)
                     redraw(),
                     #frm.submit(),
@@ -147,15 +168,16 @@ proc login(btnClass: kstring): proc() =
                     redraw(),
                 proc () =
                     #discard
-                    console.log("end")
+                    dbg: console.log("end")
             )
 
 proc loginDialog(): VNode =
     let
         plEmail = "Email"
         plPass = "Пароль"
-    console.log("plsHolders:", plEmail, plPass)
-    console.log("H.Map:", jsNew H.geo.Point(1, 51))
+    dbg:
+        console.log("plsHolders:", plEmail, plPass)
+        console.log("H.Map:", jsNew H.geo.Point(1, 51))
     result = buildHtml form(class="form-signin", action="", `method` = "post"):
         tdiv(class="text-center mb-4"):
             h1(class="h3 mb-3 font-weight-normal"):
@@ -188,7 +210,7 @@ proc updProcc(): proc() =
         )
         stmUpdPrc.observe(
             proc (value: Response) =
-                console.log("value:", value.statusCode)
+                dbg: console.log("value:", value.statusCode)
                 let respSect = parseResp(value.body, CStatusResp[seq[CSectorProcess]])
                 if respSect.status == "unknown":
                     #discard
@@ -204,7 +226,7 @@ proc updProcc(): proc() =
             ,
             proc () =
                 redraw()
-                console.log("end")
+                dbg: console.log("end")
         )
 
 
@@ -219,7 +241,7 @@ proc delProcc(): proc() =
         )
         stmDelPrc.observe(
             proc (value: Response) =
-                console.log("value:", value.statusCode)
+                dbg: console.log("value:", value.statusCode)
                 let respSect = parseResp(value.body, CStatusResp[int])
                 if respSect.status == "unknown":
                     #discard
@@ -235,7 +257,7 @@ proc delProcc(): proc() =
             ,
             proc () =
                 redraw()
-                console.log("end")
+                dbg: console.log("end")
         )
 
 
@@ -252,7 +274,7 @@ proc confirmTakeSect(): proc() =
     result = proc() =
         spinnerOn = true
         allSectProc = newSeq[CSectorProcess]()
-        console.log("confirmTakeSect: ", currProcess)
+        dbg: console.log("confirmTakeSect: ", currProcess)
         let p = currProcess
         let stmNewPrc = sendRequest(
             "GET",
@@ -261,7 +283,7 @@ proc confirmTakeSect(): proc() =
         stmNewPrc.observe(
             proc (value: Response) =
                 closeMap() #any case
-                console.log("value:", value.statusCode)
+                dbg: console.log("value:", value.statusCode)
                 let respSect = parseResp(value.body, CStatusResp[seq[CSectorProcess]])
                 if respSect.status == "unknown":
                     #discard
@@ -277,7 +299,7 @@ proc confirmTakeSect(): proc() =
             ,
             proc () =
                 redraw()
-                console.log("end")
+                dbg: console.log("end")
         )
     
 
@@ -349,7 +371,7 @@ proc clckOpenMap(p: CSectorProcess): proc() =
         isShowNavMap = true
         var mC = jq(".main-container".toJs)[0]
         mC.classList.add(cstring"map-nav")
-        console.log("clckOpenMap:", elMap)
+        dbg: console.log("clckOpenMap:", elMap)
         spinnerOn = true
         scrollToSectId = p.sector_id
         sectStreetGrp.removeAll()
@@ -364,11 +386,11 @@ proc closeMap() =
 
 proc clckProccSect(p: CSectorProcess): proc() = 
     result = proc() =
-        console.log("clckProccSect: ", p)
+        dbg: console.log("clckProccSect: ", p)
         currProcess = p
 
 proc hndlUpdOwnSect() =
-    console.log("start upd...")
+    dbg: console.log("start upd...")
     var ownS = jq("#ownSectors".toJs)[0]
     if ownS != nil:
         onlyMySectors = ownS.checked.to(bool)
@@ -407,6 +429,7 @@ proc showAllProc(): VNode =
         if errMsg != "":
             tdiv(class="alert alert-danger fade show", role="alert", onclick = onMsgClck()):
                 text errMsg
+                sub: dfn: text " Нажми чтоб убрать"
         nav(class="navbar fixed-top navbar-expand-sm navbar-light bg-light shadow p-1 mb-0 bg-white rounded overflow-auto"):
             button(class="navbar-toggler", `type`="button", data-toggle="collapse",
                     data-target="#navbarTogglerSectors", aria-controls="navbarTogglerSectors", aria-expanded="false", aria-label="Toggle navigation"):
@@ -454,7 +477,8 @@ proc showAllProc(): VNode =
                                 li(class="nav-item"):
                                     a(class="nav-link", href="#gBackModal", data-toggle="modal", data-target="#gBackModal", onclick = clckProccSect(p)):
                                         text "Сдать"
-                                discard console.log("currDate > $p.date_finish", currDate, p.date_finish)
+                                discard dbg:
+                                    console.log("currDate > $p.date_finish", currDate, p.date_finish)
                     tdiv(class="card-body"):
                         h6(class="card-title"):
                             text p.name
@@ -479,7 +503,7 @@ proc setEventsModalMap() =
         jq("#mapModal".toJs).on("shown.bs.modal", proc (e: JsObject) =
             let mapBody = jq(".map-body".toJs).get(0)
             let elC = getElemCoords(mapBody)
-            console.log(".map-body:: ", elC)
+            dbg: console.log(".map-body:: ", elC)
             var elMap = jq("#map-container".toJs)[0]
             elMap.style.top = cstring"0px"#($elC.top & "px")
             elMap.style.left = cstring"0px"#($elC.left & "px")
@@ -529,6 +553,19 @@ proc getAllProccess2(myS = false, sectorName = ""): JsObject =
         "/sector/process?" & &"token={currUser.token}" & rUid & sName
     )
 
+proc bindGps() =
+    #let stmGps = Kefir.fromEvents(chgEl, "input", getValues).toProperty(getValues)
+    proc getPos(position: JsObject) =
+        if map == nil:
+            return
+        currentPos.setPosition(JsObject{
+            lat: position.coords.latitude,
+            lng: position.coords.longitude
+        })
+        dbg: console.log("position: ", map, position, currentPos.getPosition())
+    navigator.geolocation.watchPosition(getPos)
+bindGps()
+
 proc bindSearchSector() =
     let searchEl = document.getElementById("searchSector")
     let isOwnSectEl = document.getElementById("ownSectors")
@@ -542,7 +579,7 @@ proc bindSearchSector() =
     let stmOwnSect = chgUiState(isOwnSectEl)
     #stmOwnSect.log()
     var stmUiChg = Kefir.merge(toJs [stmSearchEl, stmOwnSect])
-    stmUiChg.log()
+    #stmUiChg.log()
     proc wrpS(vS: JsObject): JsObject =
         spinnerOn = true
         allSectProc = newSeq[CSectorProcess]()
@@ -551,7 +588,7 @@ proc bindSearchSector() =
     let stmResult = stmUiChg.flatMapLatest(wrpS)
     stmResult.observe(
         proc (value: Response) =
-            console.log("value:", value.statusCode, value)
+            dbg: console.log("value:", value.statusCode, value)
             allSectProc = parseResp(value.body, CStatusResp[seq[CSectorProcess]]).resp
             spinnerOn = false
             redraw()
@@ -560,7 +597,7 @@ proc bindSearchSector() =
             console.log("error:", error.statusCode)
         ,
         proc () =
-            console.log("end")
+            dbg: console.log("end")
     )
 
 var stmClMap: JsObject
@@ -572,7 +609,7 @@ proc bindEvtsMapScreen() =
     if stmClMap != nil:
         return
     proc getStreets(interrupt: bool): JsObject =
-        console.log("getStreets(isStart:", interrupt)
+        dbg: console.log("getStreets(isStart:", interrupt)
         if interrupt:
             return Kefir.never()
         result = sendRequest(
@@ -584,20 +621,20 @@ proc bindEvtsMapScreen() =
     let stmGetStreet = Kefir.merge(toJs [stmOpenMapScr, stmClMap]).flatMapLatest(getStreets)
     stmGetStreet.observe(
         proc (value: Response) =
-            console.log("value:", value.statusCode)
+            dbg: console.log("value:", value.statusCode)
             let respSect = parseResp(value.body, CStatusResp[seq[CSectorStreets]])
             let sectStrts = respSect.resp
-            #console.log("resp status:", cstring($respSect.status), cstring"loggedOut")
+            #dbg: console.log("resp status:", cstring($respSect.status), cstring"loggedOut")
             if sectStrts.len == 0:
                 return
             for strt in sectStrts:
                 let coords = strt.geometry.split(";")
                 for latlng in coords:
                     var lnStr = jsNew H.geo.LineString()
-                    #console.log("latlng:", latlng)
+                    #dbg: console.log("latlng:", latlng)
                     let c = latlng.split(",")
                     for i in countup(0, c.high, 2):
-                        #console.log("geom:", c[i], c[i+1])
+                        #dbg: console.log("geom:", c[i], c[i+1])
                         lnStr.pushLatLngAlt(c[i].toJs().to(float), c[i+1].toJs().to(float), 1.00)
                     let pOpt = JsObject{
                             style: JsObject{
@@ -608,7 +645,7 @@ proc bindEvtsMapScreen() =
                         }
                     let pl = jsNew H.map.Polyline(lnStr, pOpt)
                     sectStreetGrp.addObject pl
-                    #console.log("lnStr: ", lnStr)
+                    #dbg: console.log("lnStr: ", lnStr)
             map.setViewBounds(sectStreetGrp.getBounds(), true)
             spinnerOn = false
             redraw(),
@@ -621,12 +658,12 @@ proc bindEvtsMapScreen() =
             spinnerOn = false
             redraw()]#
     )
-    console.log("yes bindEvtsMapScreen")
+    dbg: console.log("yes bindEvtsMapScreen")
 
 
 
 setRenderer createDom, "main-control-container", proc() =
-            console.log("post render!!!")
+            dbg: console.log("post render!!!")
             currDate = now().format normalDateFmt
             if document.getElementById("ownSectors") != nil:
                 document.getElementById("ownSectors").checked = onlyMySectors    
@@ -672,10 +709,11 @@ proc bindMap() =
             defLayers.normal.map,
             mapOpts
         )
-    console.log("platform:: ", platform)
+    dbg: console.log("platform:: ", platform)
     var behavior = jsNew H.mapevents.Behavior(jsNew H.mapevents.MapEvents(map))
     var ui = H.ui.UI.createDefault(map, defLayers)
     window.addEventListener("resize", () => map.getViewPort().resize())
+    map.addObject currentPos
     map.addObject sectStreetGrp
 
 
@@ -698,7 +736,7 @@ proc getAllProccess(myS = false, sectorName = "") =
     )
     stmLogin.observe(
         proc (value: Response) =
-            console.log("value:", value.statusCode, value)
+            dbg: console.log("value:", value.statusCode, value)
             allSectProc = parseResp(value.body, CStatusResp[seq[CSectorProcess]]).resp
         ,
             #redraw(),
@@ -708,7 +746,7 @@ proc getAllProccess(myS = false, sectorName = "") =
             #redraw(),
         proc () =
             #discard
-            console.log("end")
+            dbg: console.log("end")
             spinnerOn = false
             redraw()
     )

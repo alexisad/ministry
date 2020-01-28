@@ -1,6 +1,8 @@
 import db_sqlite, times, types
 
-
+template dbg*(x: untyped): untyped =
+    when not defined(release):
+        x
 
 proc checkToken*(db: DbConn, t: string): tuple[isOk: bool, rowToken: Row] =
     let rowToken = db.getRow(sql"""SELECT 

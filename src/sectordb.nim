@@ -109,7 +109,7 @@ proc getSectProcess*(db: DbConn, t = "", sId = "", uId = "", sName="", inactive 
           .replace("{*v_search_sector*}", vSearchSect)
   if uId != "":
     sqlStr = sqlStr.replace("LEFT", "")
-  when not defined(release):
+  dbg:
     echo sId, " -- ", sqlStr
   let sectRows = db.getAllRows(
       sqlStr.sql,
@@ -142,7 +142,7 @@ proc newSectProcess*(db: DbConn, t, sId, uId, startDate: string): StatusResp[seq
                     date_finish IS NULL)
                   ORDER BY date_start DESC
             LIMIT 1""", sId, sDate)
-  when not defined(release):
+  dbg:
     echo "begin insert process: ", [sId, uId, startDate].join(" ")
   if sPrRow[0] != "":
     result.message = "Неудачно: неизвестная ошибка " & $sPrRow
@@ -155,13 +155,13 @@ proc newSectProcess*(db: DbConn, t, sId, uId, startDate: string): StatusResp[seq
         INNER JOIN user ON user.id = user_sector.user_id
         INNER JOIN role ON user.role_id = role.id AND role.role = 'user'
         WHERE user_sector.user_id = ? AND user_sector.date_finish IS NULL""", vUid)
-  when not defined(release):
+  dbg:
     echo "rChck.rowToken: ", rChck.rowToken
   let cntOnHand = sPrCntRow[0].parseInt
   if cntOnHand >= 4:
     result.message = "Неудачно: на руках больше 4-х участков"
     return result
-  when not defined(release):
+  dbg:
     echo "begin insert process: ", sPrRow
   db.exec(sql"BEGIN")
   var sqlIns = """INSERT INTO user_sector
@@ -223,7 +223,7 @@ proc updProcess*(db: DbConn, t, pId, sDate, fDate: string): StatusResp[seq[Secto
   result.status = stUnknown
   var rChck: tuple[isOk: bool, rowToken: Row]
   resultCheckToken(db, t)
-  when not defined(release):
+  dbg:
     echo "updProcess:: ", pId
   let sectorPrcRow = db.getRow(sql"""SELECT *
                             FROM user_sector
@@ -241,7 +241,7 @@ proc updProcess*(db: DbConn, t, pId, sDate, fDate: string): StatusResp[seq[Secto
         sectorPrcRow[4]
     else:
       fDate
-  when not defined(release):
+  dbg:
     echo "BEGIN::: ", pId, " ", vsDate, " ", vfDate
   if vsDate > vfDate:
     result.message = "Процесс обработки " & pId & ": дата начала - " & vsDate & " > " & " даты сдачи - " & vfDate
