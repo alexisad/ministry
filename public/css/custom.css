@@ -78,6 +78,22 @@ body {
     max-width: 50%;
 }
 
+.vh-85 {
+    height: 85vh!important;
+}
+
+.vh-75 {
+    height: 75vh!important;
+}
+
+.vh-80 {
+    height: 80vh!important;
+}
+
+.mt-6 {
+    margin-top: 4rem!important;
+}
+
 .nav-link,
 .custom-switch .custom-control-input,
 .custom-switch .custom-control-label {

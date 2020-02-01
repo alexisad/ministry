@@ -23,22 +23,25 @@ template dbg*(x: untyped): untyped =
     when not defined(release):
         x
 
+var pIndicator*: PositionIndicator
 
-proc draww*(that: JsObject) =
-    let size = that.size.to(int)
+proc draw*() =
+    let size = pIndicator.size
     var window {.importjs, nodecl.}: JsObject
     let time = jsNew window.Date()
-    var ctx = that.canvas.getContext(cstring"2d")
+    pIndicator.marker.setVisibility(false)
+    var ctx = pIndicator.canvas.getContext(cstring"2d")
     ctx.clearRect(0, 0, size, size)
     let op = time.getMilliseconds().to(int)/1000
-    #ctx.fillStyle = cstring("rgba(255, 0, 0, " & $op & ")")
-    ctx.fillStyle = cstring("rgba(255, 0, 0, 1)")
+    ctx.fillStyle = cstring("rgba(255, 0, 0, " & $op & ")")
+    #ctx.fillStyle = cstring("rgba(255, 0, 0, 1)")
     ctx.strokeStyle = cstring"white"
     ctx.beginPath()
     ctx.arc(size/2, size/2, size/2-1, 0, 2 * PI)
     ctx.fill()
     ctx.stroke()
-    window.requestAnimationFrame(draww)
+    pIndicator.marker.setVisibility(true)
+    window.requestAnimationFrame(draw)
         
 
 proc newPositionIndicator*(size: Natural): PositionIndicator =

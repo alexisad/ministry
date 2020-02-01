@@ -29,6 +29,10 @@ type
     stOk = "OK", stUnknown = "unknown", stLoggedOut = "loggedOut"
   CStatusType* {.pure.} = enum
     stOk = "OK", stUnknown = "unknown", stLoggedOut = "loggedOut"
+  StreetStatus* = enum
+    strFinished = "finished", strStarted = "started", strNotStarted = "notStarted"
+  CStreetStatus* {.pure.} = enum
+    strFinished = "finished", strStarted = "started", strNotStarted = "notStarted"
   CStatusResp*[T] = object
     status*: cstring
     message*: cstring

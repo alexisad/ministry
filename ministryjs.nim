@@ -26,10 +26,11 @@ var Kefir {.importjs, nodecl.}: JsObject
 var navigator {.importjs, nodecl.}: JsObject
 var H {.importjs, nodecl.}: JsObject
 
-let pI = newPositionIndicator(20)
-let currentPos = pI.marker
-pI.toJs().draw = bindMethod draww
-pI.toJs().draw()
+let pIndicator* = newPositionIndicator(20)
+let currentPos = pIndicator.marker
+#pI.toJs().draw = bindMethod draww
+utiljs.pIndicator = pIndicator
+draw()
 
 var token = $jq("#token".toJs).val().to(cstring)
 var vUser = jq("#user".toJs).val().to(cstring)
@@ -49,6 +50,8 @@ else:
 currUser.token = token
 var currProcess: CSectorProcess
 var allSectProc: seq[CSectorProcess]
+var currStreets: seq[CSectorStreets]
+var showStreetsEnabled = false
 var spinnerOn = false
 var isShowNavMap = false
 var scrollToSectId = 0
@@ -384,6 +387,21 @@ proc closeMap() =
     elMap.classList.remove(cstring"show-map")
     spinnerOn = false
 
+proc showStreetsEnable() =
+    showStreetsEnabled = true
+
+proc showStreets(): VNode =
+    result = buildHtml tdiv(class="d-flex justify-content-center mt-6"):
+        tdiv(class="overflow-auto px-3 vh-75 w-75 bg-light shadow-lg border rounded-lg"):
+            for str in currStreets:
+                tdiv(class="py-2"):
+                    span(class="text-danger"):
+                        text str.name
+                    button(`type`="button", class="ml-2 btn btn-outline-success btn-sm"):
+                        text "пройдена"
+            button(`type`="button", class="btn btn-success btn"):
+                text "OK"
+    
 proc clckProccSect(p: CSectorProcess): proc() = 
     result = proc() =
         dbg: console.log("clckProccSect: ", p)
@@ -521,7 +539,7 @@ proc createDom(): VNode =
         if currUser.token == "":
             loginDialog()
         elif isShowNavMap:
-            nav(class="navbar navbar-expand-sm navbar-light bg-light shadow p-1 mb-0 bg-white rounded overflow-auto"):
+            nav(class="navbar fixed-top navbar-expand-sm navbar-light bg-light shadow p-1 mb-0 bg-white rounded overflow-auto"):
                 button(class="navbar-toggler", `type`="button", data-toggle="collapse",
                         data-target="#navbarTogglerMap", aria-controls="navbarTogglerMap", aria-expanded="false", aria-label="Toggle navigation"):
                     span(class="navbar-toggler-icon")
@@ -534,8 +552,13 @@ proc createDom(): VNode =
                                 a(class="nav-link", href="#takeModal", data-toggle="modal", data-target="#takeModal"):
                                     text "Взять"
                         li(class="nav-item"):
+                            a(id="show-streets", class="nav-link", onclick = showStreetsEnable):
+                                text "Улицы"
+                        li(class="nav-item"):
                             a(id="cl-map", class="nav-link", onclick = closeMap):
                                 text "Закр.карту"
+            if showStreetsEnabled:
+                showStreets()
         else:
             showAllProc()
 
@@ -563,7 +586,9 @@ proc bindGps() =
             lng: position.coords.longitude
         })
         dbg: console.log("position: ", map, position, currentPos.getPosition())
-    navigator.geolocation.watchPosition(getPos)
+    proc errorHandler(errorObj: JsObject) = 
+        console.log cstring($errorObj.code.to(int) & ": " & errorObj.message.to(cstring))
+    navigator.geolocation.watchPosition(getPos, errorHandler)
 bindGps()
 
 proc bindSearchSector() =
@@ -624,10 +649,12 @@ proc bindEvtsMapScreen() =
             dbg: console.log("value:", value.statusCode)
             let respSect = parseResp(value.body, CStatusResp[seq[CSectorStreets]])
             let sectStrts = respSect.resp
+            currStreets = sectStrts
             #dbg: console.log("resp status:", cstring($respSect.status), cstring"loggedOut")
             if sectStrts.len == 0:
                 return
             for strt in sectStrts:
+                dbg: console.log("street:", strt.name)
                 let coords = strt.geometry.split(";")
                 for latlng in coords:
                     var lnStr = jsNew H.geo.LineString()
