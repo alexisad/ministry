@@ -1,4 +1,4 @@
-# nimble build --stackTrace:off --threads:on --opt:speed -d:release --cpu:amd64 --os:linux --compileOnly --genScript
+# nimble build --stackTrace:off --threads:on --opt:speed -d:noSignalHandler -d:release --cpu:amd64 --os:linux --compileOnly --genScript
 #import htmlgen
 import asyncdispatch, jester
 import db_sqlite, md5, times, random, strutils, json

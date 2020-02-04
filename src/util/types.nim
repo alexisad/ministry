@@ -27,12 +27,10 @@ type
     token*: string
   StatusType* = enum
     stOk = "OK", stUnknown = "unknown", stLoggedOut = "loggedOut"
-  CStatusType* {.pure.} = enum
-    stOk = "OK", stUnknown = "unknown", stLoggedOut = "loggedOut"
+  #CStatusType* {.pure.} = enum
+    #stOk = "OK", stUnknown = "unknown", stLoggedOut = "loggedOut"
   StreetStatus* = enum
-    strFinished = "finished", strStarted = "started", strNotStarted = "notStarted"
-  CStreetStatus* {.pure.} = enum
-    strFinished = "finished", strStarted = "started", strNotStarted = "notStarted"
+    strNotStarted = "strNotStarted", strStarted = "strStarted", strFinished = "strFinished"
   CStatusResp*[T] = object
     status*: cstring
     message*: cstring
@@ -57,10 +55,12 @@ type
     id*, sector_id*: int
     name*: string
     geometry*: string
+    status*: StreetStatus
   CSectorStreets* = object
     id*, sector_id*: int
     name*: cstring
     geometry*: cstring
+    status*: cstring
 
 
 

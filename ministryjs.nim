@@ -79,6 +79,7 @@ proc getAllProccess(myS = false, sectorName = "")
 proc hndlUpdOwnSect()
 proc parseResp(bdy: string, T: typedesc): T
 proc closeMap()
+proc onMsgClck(): proc()
 
 when false:
     var kPrc = proc(emitter: JsObject): proc() =
@@ -387,20 +388,59 @@ proc closeMap() =
     elMap.classList.remove(cstring"show-map")
     spinnerOn = false
 
+proc showErrMsg(): VNode =
+    result = buildHtml span:
+        discard
+    if errMsg == "":
+        return
+    result = buildHtml tdiv(class="alert alert-danger fade show", role="alert", onclick = onMsgClck()):
+            text errMsg
+            sub: dfn: text " Нажми чтоб убрать"
+    
+
 proc showStreetsEnable() =
     showStreetsEnabled = true
 
+proc setStrStatus(iStr: int): proc() =
+    result = proc() =
+        dbg: console.log("currStreets:", iStr, currStreets, currStreets[iStr].status)
+        #if currStreets[iStr].status.toJs().isUndefined:
+            #currStreets[iStr].status = StreetStatus.strNotStarted
+        let curSt = parseEnum[StreetStatus]($currStreets[iStr].status)
+        if curSt == StreetStatus.strFinished: 
+            currStreets[iStr].status = $StreetStatus.strNotStarted
+        else:
+            dbg: console.log("currStreets:", currStreets[iStr].status)
+            currStreets[iStr].status = $succ(curSt)
+            dbg: console.log("currStreets:", currStreets[iStr].status)
+
+proc saveStrStatus(): proc() =
+    result = proc() =
+        showStreetsEnabled = false
+        errMsg = "Сохранение статуса улиц пока не работает..."
+
 proc showStreets(): VNode =
-    result = buildHtml tdiv(class="d-flex justify-content-center mt-6"):
-        tdiv(class="overflow-auto px-3 vh-75 w-75 bg-light shadow-lg border rounded-lg"):
-            for str in currStreets:
-                tdiv(class="py-2"):
-                    span(class="text-danger"):
-                        text str.name
-                    button(`type`="button", class="ml-2 btn btn-outline-success btn-sm"):
-                        text "пройдена"
-            button(`type`="button", class="btn btn-success btn"):
-                text "OK"
+    var strSt = (color: "danger", stDescr: " - не пройдена")
+    result = buildHtml tdiv:
+        tdiv(class="d-flex justify-content-center mt-6"):
+            tdiv(class="overflow-auto px-3 vh-75 w-75 bg-light shadow-lg border rounded-lg"):
+                for i,str in currStreets.pairs:
+                    let sSt = parseEnum[StreetStatus]($str.status)
+                    if sSt == StreetStatus.strStarted:
+                        strSt = (color: "primary", stDescr: " - не закончена")
+                    elif sSt == StreetStatus.strFinished:
+                        strSt = (color: "success", stDescr: " - пройдена")
+                    else:
+                        strSt = (color: "danger", stDescr: " - не начата")
+                    tdiv(class="py-2"):
+                        button(`type`="button", class="ml-2 btn btn-outline-" & strSt.color & " btn-sm", onclick = setStrStatus(i)):
+                            text str.name
+                            discard dbg: console.log("street:", str)
+                        span:
+                            text strSt.stDescr
+            tdiv:
+                button(`type`="button", class="btn btn-success btn", onclick = saveStrStatus()):
+                    text "сохр."
     
 proc clckProccSect(p: CSectorProcess): proc() = 
     result = proc() =
@@ -439,15 +479,13 @@ proc allowTake(p: CSectorProcess): bool =
     if ((now() - 1.weeks).format normalDateFmt) > $p.date_finish:
         return true
 
+
 proc showAllProc(): VNode =
     #for p in allSectProc:
         #discard# console.log("p.name:", $(p.name))
     let clsCol = "card-text"#"col-sm-auto themed-grid-col"
     result = buildHtml tdiv:
-        if errMsg != "":
-            tdiv(class="alert alert-danger fade show", role="alert", onclick = onMsgClck()):
-                text errMsg
-                sub: dfn: text " Нажми чтоб убрать"
+        showErrMsg()
         nav(class="navbar fixed-top navbar-expand-sm navbar-light bg-light shadow p-1 mb-0 bg-white rounded overflow-auto"):
             button(class="navbar-toggler", `type`="button", data-toggle="collapse",
                     data-target="#navbarTogglerSectors", aria-controls="navbarTogglerSectors", aria-expanded="false", aria-label="Toggle navigation"):
@@ -551,12 +589,14 @@ proc createDom(): VNode =
                             li(class="nav-item"):
                                 a(class="nav-link", href="#takeModal", data-toggle="modal", data-target="#takeModal"):
                                     text "Взять"
-                        li(class="nav-item"):
-                            a(id="show-streets", class="nav-link", onclick = showStreetsEnable):
-                                text "Улицы"
+                        if onlyMySectors:
+                            li(class="nav-item"):
+                                a(id="show-streets", class="nav-link", onclick = showStreetsEnable):
+                                    text "Улицы"
                         li(class="nav-item"):
                             a(id="cl-map", class="nav-link", onclick = closeMap):
                                 text "Закр.карту"
+                showErrMsg()
             if showStreetsEnabled:
                 showStreets()
         else:
