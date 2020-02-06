@@ -22,7 +22,7 @@ when false:
 
 var db*: DbConn
 
-include "../index.html.nimf"
+include "../index31.html.nimf"
 
 proc getUser(id: int64, showPass = false): tuple[isOk: bool, user: User]
 
@@ -48,14 +48,12 @@ proc getTblRows(n: string): seq[Row] =
 
 proc reDb() =
   when false:
-    db.exec(sql"""CREATE INDEX idx_inact
-              ON sector (inactive)
-            """)
-  when false:
     db.exec(sql"""CREATE INDEX idx_usector
               ON user_sector (user_id, sector_id)
             """)
-  when false:
+    db.exec(sql"""CREATE INDEX idx_inact
+              ON sector (inactive)
+            """)
     db.exec(sql"""CREATE INDEX idx_name_sector
               ON street (name, sector_id)
             """)
@@ -108,11 +106,21 @@ proc reDb() =
     db.exec(sql"""CREATE INDEX idx_corp_sector
             ON sector (corpus_id, sector_internal_id)
           """)
+    dropTbl "status_street"
+    db.exec(sql"""CREATE TABLE status_street (
+              id   INTEGER PRIMARY KEY,
+              name VARCHAR(30) NOT NULL
+            )""")
+    db.exec(sql"""INSERT into status_street (id, name)
+        VALUES
+          (?,?), (?,?), (?,?)
+            """, 0, "strNotStarted", 1, "strStarted", 2, "strFinished")
     dropTbl "street"
     db.exec(sql"""CREATE TABLE street (
               id   INTEGER PRIMARY KEY,
               name VARCHAR(500) NOT NULL,
               sector_id INTEGER NOT NULL,
+              status_street_id INTEGER,
               geometry TEXT,
               FOREIGN KEY (sector_id)
                 REFERENCES sector (id)
@@ -474,6 +482,12 @@ router mrouter:
     elif @"action" == "streets":
       let sectStreets = getSectStreets(db, @"token", @"sectorId")
       resp %*sectStreets
+    else:
+      halt()
+  get "/streets/status/@action":
+    if @"action" == "update":
+      let res = setStatusStreets(db, @"token", @"streets")
+      resp %*res
     else:
       halt()
   get "/sector/process/@action":

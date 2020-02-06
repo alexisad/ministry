@@ -61,6 +61,5 @@ proc newPositionIndicator*(size: Natural): PositionIndicator =
             icon: jsNew H.map.Icon(canvas)
         }
     )
-    #result.draw()
 
 

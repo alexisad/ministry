@@ -413,11 +413,39 @@ proc setStrStatus(iStr: int): proc() =
             dbg: console.log("currStreets:", currStreets[iStr].status)
             currStreets[iStr].status = $succ(curSt)
             dbg: console.log("currStreets:", currStreets[iStr].status)
+        dbg: console.log("ord status: ", ord(parseEnum[StreetStatus]($currStreets[iStr].status)))
 
 proc saveStrStatus(): proc() =
     result = proc() =
         showStreetsEnabled = false
-        errMsg = "Сохранение статуса улиц пока не работает..."
+        var streets: seq[string]
+        let polyStrts = sectStreetGrp.getObjects()
+        for str in currStreets:
+            let id = str.id
+            let nSt = ord(parseEnum[StreetStatus]($str.status))
+            streets.add [$str.id, $str.sector_id, $nSt].join(",")
+            for p in polyStrts:
+                let pStrtId = p.getData().to(int)
+                if id == pStrtId:
+                    p.setStyle()
+        let setStr = streets.join(";")
+        dbg: console.log("setStr:", setStr)
+        let stmUpd = sendRequest(
+            "GET",
+            "/streets/status/update?" & &"token={$currUser.token}&streets={setStr}"
+        )
+        stmUpd.observe(
+            proc (value: Response) =
+                dbg: console.log("value:", value.statusCode)
+            ,
+            proc (error: Response) =
+                console.log("error:", error.statusCode)
+            ,
+            proc () =
+                redraw()
+                dbg: console.log("end")
+        )
+        #errMsg = "Сохранение статуса улиц пока не работает..."
 
 proc showStreets(): VNode =
     var strSt = (color: "danger", stDescr: " - не пройдена")
@@ -440,7 +468,7 @@ proc showStreets(): VNode =
                             text strSt.stDescr
             tdiv:
                 button(`type`="button", class="btn btn-success btn", onclick = saveStrStatus()):
-                    text "сохр."
+                    text "X"
     
 proc clckProccSect(p: CSectorProcess): proc() = 
     result = proc() =
@@ -621,11 +649,11 @@ proc bindGps() =
     proc getPos(position: JsObject) =
         if map == nil:
             return
-        currentPos.setPosition(JsObject{
+        currentPos.setGeometry(JsObject{
             lat: position.coords.latitude,
             lng: position.coords.longitude
         })
-        dbg: console.log("position: ", map, position, currentPos.getPosition())
+        dbg: console.log("position: ", map, position, currentPos.getGeometry())
     proc errorHandler(errorObj: JsObject) = 
         console.log cstring($errorObj.code.to(int) & ": " & errorObj.message.to(cstring))
     navigator.geolocation.watchPosition(getPos, errorHandler)
@@ -695,7 +723,15 @@ proc bindEvtsMapScreen() =
                 return
             for strt in sectStrts:
                 dbg: console.log("street:", strt.name)
+                let stStat = ord parseEnum[StreetStatus]($strt.status)
                 let coords = strt.geometry.split(";")
+                let mClr =
+                    if stStat == 0:
+                        "255, 0, 0"
+                    elif stStat == 1:
+                        "0, 0, 255"
+                    else:
+                        "0, 255, 0"
                 for latlng in coords:
                     var lnStr = jsNew H.geo.LineString()
                     #dbg: console.log("latlng:", latlng)
@@ -705,15 +741,19 @@ proc bindEvtsMapScreen() =
                         lnStr.pushLatLngAlt(c[i].toJs().to(float), c[i+1].toJs().to(float), 1.00)
                     let pOpt = JsObject{
                             style: JsObject{
-                                strokeColor: cstring"rgba(255, 0, 0, 0.2)",
-                                fillColor: cstring"rgba(255, 0, 0, 0.4)",
+                                strokeColor: cstring"rgba(" & mClr & ", 0.2)",
+                                fillColor: cstring"rgba(" & mClr & ", 0.4)",
                                 lineWidth: 10
-                            }
+                            },
+                            data: strt.id
                         }
                     let pl = jsNew H.map.Polyline(lnStr, pOpt)
                     sectStreetGrp.addObject pl
                     #dbg: console.log("lnStr: ", lnStr)
-            map.setViewBounds(sectStreetGrp.getBounds(), true)
+            #map.setViewBounds(sectStreetGrp.getBounds(), true)
+            map.getViewModel().setLookAtData(JsObject{
+                bounds: sectStreetGrp.getBoundingBox()
+            });
             spinnerOn = false
             redraw(),
         proc (error: Response) =
@@ -752,13 +792,13 @@ setRenderer createDom, "main-control-container", proc() =
 proc bindMap() =
     let platform = jsNew(H.service.Platform(
                 JsObject{
-                    app_id: cstring"UHuJLJrJznje69zJ2HB7",
-                    app_code: cstring"HdAoJ-BlDvmvb0eksDYqyg",
+                    apikey: cstring"7RkSXUEsqZEnQ0aJ6yLlWQa_xcMVzE38XwQudJmojEw",
+                    #app_code: cstring"HdAoJ-BlDvmvb0eksDYqyg",
                     useHTTPS: true
                 }
             )
         )
-    let pixelRatio = window.devicePixelRatio.to(float)
+    let pixelRatio = if window.devicePixelRatio.isUndefined: 1.float else: window.devicePixelRatio.to(float)
     let hidpi = pixelRatio > 1.float
     var layerOpts = JsObject{
             tileSize: if hidpi: 512 else: 256,
@@ -767,13 +807,15 @@ proc bindMap() =
     if hidpi: layerOpts.ppi = 320
 
     var mapOpts = JsObject{
-        pixelRatio: if hidpi: 2 else: 1,
+        engineType: H.map.render.RenderEngine.EngineType.P2D,
+        #pixelRatio: if hidpi: 2 else: 1,
+        pixelRatio: pixelRatio,
         noWrap: true
     }
     let defLayers = platform.createDefaultLayers(layerOpts)
     map = jsNew H.Map(
             jq("#map-container".toJs)[0],
-            defLayers.normal.map,
+            defLayers.raster.normal.map,
             mapOpts
         )
     dbg: console.log("platform:: ", platform)

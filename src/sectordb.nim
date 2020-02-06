@@ -164,6 +164,10 @@ proc newSectProcess*(db: DbConn, t, sId, uId, startDate: string): StatusResp[seq
   dbg:
     echo "begin insert process: ", sPrRow
   db.exec(sql"BEGIN")
+  db.exec(sql"""UPDATE street
+        SET status_street_id = 0
+            WHERE sector_id = ?""",
+                sId)
   var sqlIns = """INSERT INTO user_sector
           (user_id, sector_id, date_start)
           VALUES(
@@ -268,8 +272,27 @@ proc getSectStreets*(db: DbConn, t, sId: string): StatusResp[seq[SectorStreets]]
   var rChck: tuple[isOk: bool, rowToken: Row]
   resultCheckToken(db, t)
   let streetRows = db.getAllRows(sql"""SELECT 
-          *
-          FROM street
+          s.id, s.name, s.sector_id, status_street.name, s.geometry
+          FROM street as s
+          LEFT JOIN status_street ON status_street.id = s.status_street_id
           WHERE sector_id = ?""", sId)
+  #dbg: echo "streetRows:", streetRows
   for s in streetRows:
-    result.resp.add SectorStreets(id: s[0].parseInt, name: s[1], sector_id: s[2].parseInt, geometry: s[3])
+    let st = if s[3] != "": s[3] else: "strNotStarted"
+    result.resp.add SectorStreets(id: s[0].parseInt,
+              name: s[1], sector_id: s[2].parseInt, status: parseEnum[StreetStatus](st),
+              geometry: s[4])
+
+
+proc setStatusStreets*(db: DbConn, t, strsStatus: string): StatusResp[int] =
+  result.status = stUnknown
+  var rChck: tuple[isOk: bool, rowToken: Row]
+  resultCheckToken(db, t)
+  for str in strsStatus.split(';'):
+    let strF = str.split","
+    db.exec(sql"""UPDATE street
+        SET status_street_id = ?
+            WHERE id = ? AND sector_id = ?""",
+            strF[2], strF[0], strF[1])
+  result.status = stOk
+              
