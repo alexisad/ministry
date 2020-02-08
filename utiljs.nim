@@ -1,5 +1,6 @@
-import jsffi
+import jsffi, strutils
 from math import PI
+import src/util/types
 
 type
     ContStreamEvts = object
@@ -61,5 +62,20 @@ proc newPositionIndicator*(size: Natural): PositionIndicator =
             icon: jsNew H.map.Icon(canvas)
         }
     )
+
+proc setPolyStyleByStat*(p: JsObject, stat: cstring) =
+    let stStat = ord parseEnum[StreetStatus]($stat)
+    let mClr =
+        if stStat == 0:
+            "255, 0, 0"
+        elif stStat == 1:
+            "0, 0, 255"
+        else:
+            "0, 255, 0"
+    p.setStyle(JsObject{
+        strokeColor: cstring"rgba(" & mClr & ", 0.2)",
+        fillColor: cstring"rgba(" & mClr & ", 0.4)",
+        lineWidth: 10
+    })
 
 

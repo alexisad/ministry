@@ -427,7 +427,7 @@ proc saveStrStatus(): proc() =
             for p in polyStrts:
                 let pStrtId = p.getData().to(int)
                 if id == pStrtId:
-                    p.setStyle()
+                    setPolyStyleByStat(p, str.status)
         let setStr = streets.join(";")
         dbg: console.log("setStr:", setStr)
         let stmUpd = sendRequest(
@@ -521,7 +521,7 @@ proc showAllProc(): VNode =
             #a(class="navbar-brand mw-75 overflow-auto"):
                 #text currProcess.name
             tdiv(class="collapse navbar-collapse", id="navbarTogglerSectors"):
-                tdiv(class="custom-control custom-switch"):
+                tdiv(class="custom-control custom-switch py-3"):
                     input(`type`="checkbox", class="custom-control-input", id="ownSectors")
                     label(class="custom-control-label", `for`="ownSectors"):
                         text "Мои"
@@ -725,13 +725,6 @@ proc bindEvtsMapScreen() =
                 dbg: console.log("street:", strt.name)
                 let stStat = ord parseEnum[StreetStatus]($strt.status)
                 let coords = strt.geometry.split(";")
-                let mClr =
-                    if stStat == 0:
-                        "255, 0, 0"
-                    elif stStat == 1:
-                        "0, 0, 255"
-                    else:
-                        "0, 255, 0"
                 for latlng in coords:
                     var lnStr = jsNew H.geo.LineString()
                     #dbg: console.log("latlng:", latlng)
@@ -740,16 +733,12 @@ proc bindEvtsMapScreen() =
                         #dbg: console.log("geom:", c[i], c[i+1])
                         lnStr.pushLatLngAlt(c[i].toJs().to(float), c[i+1].toJs().to(float), 1.00)
                     let pOpt = JsObject{
-                            style: JsObject{
-                                strokeColor: cstring"rgba(" & mClr & ", 0.2)",
-                                fillColor: cstring"rgba(" & mClr & ", 0.4)",
-                                lineWidth: 10
-                            },
                             data: strt.id
                         }
                     let pl = jsNew H.map.Polyline(lnStr, pOpt)
+                    setPolyStyleByStat(pl, strt.status)
                     sectStreetGrp.addObject pl
-                    #dbg: console.log("lnStr: ", lnStr)
+                    dbg: console.log("pOpt:", pl.getData())
             #map.setViewBounds(sectStreetGrp.getBounds(), true)
             map.getViewModel().setLookAtData(JsObject{
                 bounds: sectStreetGrp.getBoundingBox()
