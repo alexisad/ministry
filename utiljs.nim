@@ -2,6 +2,8 @@ import jsffi, strutils
 from math import PI
 import src/util/types
 
+var console* {.importjs, nodecl.}: JsObject
+
 type
     ContStreamEvts = object
         inpSearchByName: JsObject
@@ -25,24 +27,39 @@ template dbg*(x: untyped): untyped =
         x
 
 var pIndicator*: PositionIndicator
-
+var window {.importjs, nodecl.}: JsObject
+var animMSec = (jsNew window.Date()).getMilliseconds().to(int)
+var animCnt = 0
+var opa = 0.00
+var sopa = 1.00
 proc draw*() =
-    let size = pIndicator.size
-    var window {.importjs, nodecl.}: JsObject
     let time = jsNew window.Date()
-    pIndicator.marker.setVisibility(false)
-    var ctx = pIndicator.canvas.getContext(cstring"2d")
-    ctx.clearRect(0, 0, size, size)
-    let op = time.getMilliseconds().to(int)/1000
-    ctx.fillStyle = cstring("rgba(255, 0, 0, " & $op & ")")
-    #ctx.fillStyle = cstring("rgba(255, 0, 0, 1)")
-    ctx.strokeStyle = cstring"white"
-    ctx.beginPath()
-    ctx.arc(size/2, size/2, size/2-1, 0, 2 * PI)
-    ctx.fill()
-    ctx.stroke()
-    pIndicator.marker.setVisibility(true)
-    window.requestAnimationFrame(draw)
+    let op = time.getMilliseconds().to(int)
+    #dbg: console.log("op-animMSec:", op-animMSec)
+    if animCnt == 8:
+        animCnt = 0
+        #animMSec = op
+        let size = pIndicator.size
+        pIndicator.marker.setVisibility(false)
+        var ctx = pIndicator.canvas.getContext(cstring"2d")
+        ctx.clearRect(0, 0, size, size)
+        ctx.fillStyle = cstring("rgba(255, 0, 0, " & $opa & ")")
+        #ctx.fillStyle = cstring("rgba(255, 0, 0, 1)")
+        ctx.strokeStyle = cstring"white"
+        ctx.beginPath()
+        ctx.arc(size/2, size/2, size/2-1, 0, 2 * PI)
+        ctx.fill()
+        ctx.stroke()
+        pIndicator.marker.setVisibility(true)
+        #dbg: console.log("opa", opa)
+        if opa > 1 and sopa == 1:
+            sopa = -1.00    
+        elif opa < 0 and sopa == -1:
+            sopa = 1.00
+        opa = opa + sopa * 0.25
+    inc animCnt
+    #window.requestAnimationFrame(draw)
+    #draw()
         
 
 proc newPositionIndicator*(size: Natural): PositionIndicator =
@@ -59,7 +76,8 @@ proc newPositionIndicator*(size: Natural): PositionIndicator =
     result.marker = jsNew H.map.Marker(
         JsObject{lat: 0, lng: 0},
         JsObject{
-            icon: jsNew H.map.Icon(canvas)
+            icon: jsNew H.map.Icon(canvas),
+            volatility: true
         }
     )
 

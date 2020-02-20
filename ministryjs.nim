@@ -3,6 +3,7 @@
 # browser-sync start --proxy "http://127.0.0.1:5000" --files "public/js/*.js"
 
 include karax / prelude
+import karax / [vstyles]
 import jsffi except `&`
 import jsbind, async_http_request#, asyncjs
 from sugar import `=>`, `->`
@@ -13,7 +14,6 @@ import utiljs
 
 const normalDateFmt = initTimeFormat("yyyy-MM-dd")
 var currDate = now().format normalDateFmt
-var console {.importjs, nodecl.}: JsObject
 var window {.importjs, nodecl.}: JsObject
 var document {.importjs, nodecl.}: JsObject
 var screen {.importjs, nodecl.}: JsObject
@@ -30,7 +30,20 @@ let pIndicator* = newPositionIndicator(20)
 let currentPos = pIndicator.marker
 #pI.toJs().draw = bindMethod draww
 utiljs.pIndicator = pIndicator
-draw()
+let stmAnime = Kefir.interval(10, 1)
+stmAnime.observe(
+    proc (value: int) =
+        #dbg: console.log("stmAnime:", value)
+        draw()
+    ,
+    proc (error: JsObject) =
+        console.log("error:", error.statusCode)
+    ,
+    proc () =
+        #discard
+        dbg: console.log("stmAnime end:")
+)
+#
 
 var token = $jq("#token".toJs).val().to(cstring)
 var vUser = jq("#user".toJs).val().to(cstring)
@@ -48,11 +61,15 @@ else:
     localStorage.setItem("user", vUser)
     currUser = jsonParse(decodeUrl $vUser).resp.to(CUser)
 currUser.token = token
+var timeStamp: string
 var currProcess: CSectorProcess
 var allSectProc: seq[CSectorProcess]
 var currStreets: seq[CSectorStreets]
 var showStreetsEnabled = false
-var spinnerOn = false
+var
+    spinnerOn = false
+    progressOn = false
+    progressProc: int
 var isShowNavMap = false
 var scrollToSectId = 0
 var onlyMySectors = false
@@ -90,6 +107,9 @@ when false:
     var stm = Kefir.stream(kPrc)
     #stm.log()
 
+proc setTs() =
+    timeStamp = $toUnix getTime()
+
 proc sendRequest(meth, url: string, body = "", headers: openarray[(string, string)] = @[]): JsObject =
     let hdrs = cast[seq[(string, string)]](headers)
     var rPrc =
@@ -109,7 +129,7 @@ proc sendRequest(meth, url: string, body = "", headers: openarray[(string, strin
                 oReq.addEventListener("load", reqListener)
                 oReq.addEventListener("error", reqListener)
                 #emitter.emit(1)
-                oReq.open(meth, url)
+                oReq.open(meth, url & "&tst=" & timeStamp)
                 oReq.responseType = "text"
                 for h in hdrs:
                     oReq.setRequestHeader(h[0], h[1])
@@ -208,6 +228,7 @@ proc updProcc(): proc() =
         spinnerOn = true
         allSectProc = newSeq[CSectorProcess]()
         let p = currProcess
+        setTs()
         let stmUpdPrc = sendRequest(# will set finish date<-(now) to give back
             "GET",
             "/sector/process/update?" & &"token={$currUser.token}&processId={p.id}"
@@ -239,6 +260,7 @@ proc delProcc(): proc() =
         spinnerOn = true
         allSectProc = newSeq[CSectorProcess]()
         let p = currProcess
+        setTs()
         let stmDelPrc = sendRequest(
             "GET",
             "/sector/process/delete?" & &"token={$currUser.token}&processId={p.id}"
@@ -280,6 +302,7 @@ proc confirmTakeSect(): proc() =
         allSectProc = newSeq[CSectorProcess]()
         dbg: console.log("confirmTakeSect: ", currProcess)
         let p = currProcess
+        setTs()
         let stmNewPrc = sendRequest(
             "GET",
             "/sector/process/new?" & &"token={$currUser.token}&sectorId={p.sector_id}"
@@ -430,6 +453,7 @@ proc saveStrStatus(): proc() =
                     setPolyStyleByStat(p, str.status)
         let setStr = streets.join(";")
         dbg: console.log("setStr:", setStr)
+        setTs()
         let stmUpd = sendRequest(
             "GET",
             "/streets/status/update?" & &"token={$currUser.token}&streets={setStr}"
@@ -577,28 +601,55 @@ proc showAllProc(): VNode =
 proc toggleSpinner(): Vnode =
     result = buildHtml tdiv()
     if spinnerOn:
-        result = buildHtml tdiv(class="d-flex justify-content-center"):
+        result = buildHtml tdiv(class="d-flex justify-content-center mt-6"):
             tdiv(class="spinner-border text-primary", role="status"):
                 span(class="sr-only"):
                     text "Загрузка..."
 
+proc toggleProgress(): Vnode =
+    result = buildHtml tdiv()
+    if progressOn:
+        result = buildHtml tdiv(class="progress mt-6"):
+            tdiv(class="progress-bar", role="progressbar", style = style((StyleAttr.width, cstring($progressProc & "%")))#[, `style`=cstring("width: " & $progressProc & "%;")]#,
+                aria-valuenow = $progressProc, aria-valuemin="0", aria-valuemax="100"):
+                text $progressProc & "%"
+                #text "gggg"
+
+
+proc mapDownload() =
+    let max = map.getBaseLayer().getProvider().max.to(int)
+    map.storeContent(proc(r: JsObject) =
+        let
+            prgsT = r.getTotal().to(int)
+            prgsP = r.getProcessed().to(int)
+        progressOn = prgsT > prgsP
+        progressProc = int(prgsP * 100 / prgsT)
+        redraw()
+        dbg: console.log("dwnld progress:", r.getTotal(), " ", r.getProcessed(), " ", r.getState(), " ", max),
+        sectStreetGrp.getBoundingBox(),
+        max - 4,
+        max
+    )
+
+
 
 proc setEventsModalMap() =
-        jq("#mapModal".toJs).on("shown.bs.modal", proc (e: JsObject) =
-            let mapBody = jq(".map-body".toJs).get(0)
-            let elC = getElemCoords(mapBody)
-            dbg: console.log(".map-body:: ", elC)
-            var elMap = jq("#map-container".toJs)[0]
-            elMap.style.top = cstring"0px"#($elC.top & "px")
-            elMap.style.left = cstring"0px"#($elC.left & "px")
-            mapBody.style.height = cstring($(screen.height.to(float) - 200.00) & "px")
-            mapBody.appendChild(elMap)
-        )
+    jq("#mapModal".toJs).on("shown.bs.modal", proc (e: JsObject) =
+        let mapBody = jq(".map-body".toJs).get(0)
+        let elC = getElemCoords(mapBody)
+        dbg: console.log(".map-body:: ", elC)
+        var elMap = jq("#map-container".toJs)[0]
+        elMap.style.top = cstring"0px"#($elC.top & "px")
+        elMap.style.left = cstring"0px"#($elC.left & "px")
+        mapBody.style.height = cstring($(screen.height.to(float) - 200.00) & "px")
+        mapBody.appendChild(elMap)
+    )
 
 
 proc createDom(): VNode =
     result = buildHtml tdiv(class = "main-root"):
         toggleSpinner()
+        toggleProgress()
         showConfirm "takeModal", takeSectModalBody()
         showConfirm "gBackModal", giveBackModalBody()
         showConfirm "isProccessedModal", proccessedModalBody()
@@ -621,6 +672,9 @@ proc createDom(): VNode =
                             li(class="nav-item"):
                                 a(id="show-streets", class="nav-link", onclick = showStreetsEnable):
                                     text "Улицы"
+                            li(class="nav-item"):
+                                a(id="map-download", class="nav-link", onclick = mapDownload):
+                                    text "Скачать"
                         li(class="nav-item"):
                             a(id="cl-map", class="nav-link", onclick = closeMap):
                                 text "Закр.карту"
@@ -790,7 +844,7 @@ proc bindMap() =
     let pixelRatio = if window.devicePixelRatio.isUndefined: 1.float else: window.devicePixelRatio.to(float)
     let hidpi = pixelRatio > 1.float
     var layerOpts = JsObject{
-            tileSize: if hidpi: 512 else: 256,
+            tileSize: 512, #if hidpi: 512 else: 256,
             pois: true
     }
     if hidpi: layerOpts.ppi = 320
