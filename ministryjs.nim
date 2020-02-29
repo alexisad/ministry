@@ -15,7 +15,6 @@ import utiljs
 const normalDateFmt = initTimeFormat("yyyy-MM-dd")
 var currDate = now().format normalDateFmt
 var window {.importjs, nodecl.}: JsObject
-var document {.importjs, nodecl.}: JsObject
 var screen {.importjs, nodecl.}: JsObject
 proc jq(selector: JsObject): JsObject {.importjs: "$$(#)".}
 proc jqData(obj: JsObject, hndlrs: cstring): JsObject {.importjs: "$$._data(#,#)".}
@@ -24,26 +23,63 @@ var localStorage {.importjs, nodecl.}: JsObject
 proc jsonParse(s: cstring): JsObject {.importjs: "JSON.parse(#)".}
 var Kefir {.importjs, nodecl.}: JsObject
 var navigator {.importjs, nodecl.}: JsObject
-var H {.importjs, nodecl.}: JsObject
+
+
+curEngineType = localStorage.getItem("engineType").to(cstring).parseInt()
+curEngineType =
+    if localStorage.hasOwnProperty("engineType"):
+        curEngineType
+    else:
+        engineTypes.WEBGL.to(int)
+localStorage.setItem("engineType", curEngineType)
+
+proc sendRequest(meth, url: string, body = "", headers: openarray[(string, string)] = @[]): JsObject
+proc bindMap(engineType: int = curEngineType)
+
 
 let pIndicator* = newPositionIndicator(20)
-let currentPos = pIndicator.marker
-#pI.toJs().draw = bindMethod draww
+let currentPosM = pIndicator.marker
+
 utiljs.pIndicator = pIndicator
-let stmAnime = Kefir.interval(10, 1)
+let stmAnime = Kefir.interval(20, 1)
 stmAnime.observe(
     proc (value: int) =
         #dbg: console.log("stmAnime:", value)
-        draw()
-    ,
+        drawInd()
+    #[,
     proc (error: JsObject) =
         console.log("error:", error.statusCode)
     ,
     proc () =
         #discard
-        dbg: console.log("stmAnime end:")
+        dbg: console.log("stmAnime end:")]#
 )
-#
+
+let stmCheckInternet = Kefir.interval(5_000, 1)
+stmCheckInternet.observe(
+    proc (value: int) =
+        let stm = sendRequest(
+            "HEAD",
+            ""
+        )
+        stm.observe(
+            proc (value: Response) =
+                dbg: console.log("value:", value.statusCode, value)
+                let old = isInternet
+                isInternet = true
+                if old != isInternet:
+                    redraw()
+            ,
+            proc (error: Response) =
+                #console.log("error:", error.statusCode)
+                let old = isInternet
+                isInternet = false
+                if old != isInternet: redraw()
+        )
+)
+
+
+
 
 var token = $jq("#token".toJs).val().to(cstring)
 var vUser = jq("#user".toJs).val().to(cstring)
@@ -73,14 +109,17 @@ var
 var isShowNavMap = false
 var scrollToSectId = 0
 var onlyMySectors = false
-var errMsg: string
+var
+    errMsg: string
 var serchSectByName: string
 var setEvtInpSearchSect = false
 var currUiSt = JsObject{inpSearch: kstring""}
-var map: JsObject
+var map {.exportc.}: JsObject
+var ui {.exportc.}: JsObject
 var sectStreetGrp = jsNew H.map.Group()
+var noMyMsgEl: JsObject
 #https://www.w3schools.com/code/tryit.asp?filename=GBBT9UWJK39Y
-#[var currentPos = jsNew H.map.Circle(
+#[var currentPosM = jsNew H.map.Circle(
     JsObject{lat: 0, lng: 0},
     5,
     JsObject{
@@ -97,6 +136,12 @@ proc hndlUpdOwnSect()
 proc parseResp(bdy: string, T: typedesc): T
 proc closeMap()
 proc onMsgClck(): proc()
+proc showNoMyMsg() =
+    if not onlyMySectors:
+        noMyMsgEl.innerHTML = cstring"Внимание: этот участок не твой!"
+    else:
+        noMyMsgEl.innerHTML = cstring""
+
 
 when false:
     var kPrc = proc(emitter: JsObject): proc() =
@@ -129,7 +174,7 @@ proc sendRequest(meth, url: string, body = "", headers: openarray[(string, strin
                 oReq.addEventListener("load", reqListener)
                 oReq.addEventListener("error", reqListener)
                 #emitter.emit(1)
-                oReq.open(meth, url & "&tst=" & timeStamp)
+                oReq.open(meth, if url != "": url & "&tst=" & timeStamp else: "")
                 oReq.responseType = "text"
                 for h in hdrs:
                     oReq.setRequestHeader(h[0], h[1])
@@ -411,6 +456,15 @@ proc closeMap() =
     elMap.classList.remove(cstring"show-map")
     spinnerOn = false
 
+
+proc noInternet(): VNode =
+    result = buildHtml span:
+        discard
+    if isInternet:
+        return
+    result = buildHtml span(class="badge badge-pill badge-danger"): text "Нет интернета"
+
+
 proc showErrMsg(): VNode =
     result = buildHtml span:
         discard
@@ -523,6 +577,7 @@ proc logout() =
     document.location.replace("/")
 
 proc allowTake(p: CSectorProcess): bool =
+    showNoMyMsg()
     result = false
     if p.date_start == "":
         return true
@@ -557,6 +612,7 @@ proc showAllProc(): VNode =
                     li(class="nav-item"):
                         a(class="nav-link", onclick = logout):
                             text "Выйти"
+            noInternet()
         tdiv(class="card-deck"):
             for p in allSectProc:
                 #discard console.log("p.name:", p)
@@ -608,12 +664,13 @@ proc toggleSpinner(): Vnode =
 
 proc toggleProgress(): Vnode =
     result = buildHtml tdiv()
+    let cText = if progressProc < 5: "text-dark" else: ""
     if progressOn:
         result = buildHtml tdiv(class="progress mt-6"):
-            tdiv(class="progress-bar", role="progressbar", style = style((StyleAttr.width, cstring($progressProc & "%")))#[, `style`=cstring("width: " & $progressProc & "%;")]#,
+            tdiv(class="progress-bar progress-bar-striped progress-bar-animated " & cText, role="progressbar", style = style((StyleAttr.width, cstring($progressProc & "%")))#[, `style`=cstring("width: " & $progressProc & "%;")]#,
                 aria-valuenow = $progressProc, aria-valuemin="0", aria-valuemax="100"):
                 text $progressProc & "%"
-                #text "gggg"
+
 
 
 proc mapDownload() =
@@ -624,8 +681,8 @@ proc mapDownload() =
             prgsP = r.getProcessed().to(int)
         progressOn = prgsT > prgsP
         progressProc = int(prgsP * 100 / prgsT)
-        redraw()
-        dbg: console.log("dwnld progress:", r.getTotal(), " ", r.getProcessed(), " ", r.getState(), " ", max),
+        redraw(),
+        #dbg: console.log("dwnld progress:", r.getTotal(), " ", r.getProcessed(), " ", r.getState(), " ", max),
         sectStreetGrp.getBoundingBox(),
         max - 4,
         max
@@ -678,6 +735,7 @@ proc createDom(): VNode =
                         li(class="nav-item"):
                             a(id="cl-map", class="nav-link", onclick = closeMap):
                                 text "Закр.карту"
+                noInternet()
                 showErrMsg()
             if showStreetsEnabled:
                 showStreets()
@@ -703,11 +761,19 @@ proc bindGps() =
     proc getPos(position: JsObject) =
         if map == nil:
             return
-        currentPos.setGeometry(JsObject{
+        let newGeoPos = JsObject{
             lat: position.coords.latitude,
             lng: position.coords.longitude
-        })
-        dbg: console.log("position: ", map, position, currentPos.getGeometry())
+        }
+        if curEngineType == engineTypes.P2D.to(int) and #if P2D then change marker pos if > 10 meter diff 
+                    currentPosM.getGeometry().distance(newGeoPos).to(float) > 10.00 and
+                    not isInternet: #and only if no internet
+            currentPosM.setGeometry(newGeoPos)
+        elif curEngineType == engineTypes.P2D.to(int) and isInternet:
+            currentPosM.setGeometry(newGeoPos)
+        if curEngineType == engineTypes.WEBGL.to(int):
+            currentPosM.setGeometry(newGeoPos)
+        dbg: console.log("position: ", map, position, currentPosM.getGeometry(), map.geoToScreen(currentPosM.getGeometry()))
     proc errorHandler(errorObj: JsObject) = 
         console.log cstring($errorObj.code.to(int) & ": " & errorObj.message.to(cstring))
     navigator.geolocation.watchPosition(getPos, errorHandler)
@@ -832,7 +898,7 @@ setRenderer createDom, "main-control-container", proc() =
             
 
 
-proc bindMap() =
+proc bindMap(engineType: int = curEngineType) =
     let platform = jsNew(H.service.Platform(
                 JsObject{
                     apikey: cstring"7RkSXUEsqZEnQ0aJ6yLlWQa_xcMVzE38XwQudJmojEw",
@@ -848,24 +914,57 @@ proc bindMap() =
             pois: true
     }
     if hidpi: layerOpts.ppi = 320
-
     var mapOpts = JsObject{
-        engineType: H.map.render.RenderEngine.EngineType.P2D,
+        engineType: engineType,
         #pixelRatio: if hidpi: 2 else: 1,
         pixelRatio: pixelRatio,
         noWrap: true
     }
     let defLayers = platform.createDefaultLayers(layerOpts)
+    let mapContainer = jq("#map-container".toJs)[0]
+    mapContainer.innerHTML = ""
     map = jsNew H.Map(
-            jq("#map-container".toJs)[0],
+            mapContainer,
             defLayers.raster.normal.map,
             mapOpts
         )
+    #map.setBaseLayer(custBaseLayer)
+    map.getBaseLayer().setMax(20)
     dbg: console.log("platform:: ", platform)
     var behavior = jsNew H.mapevents.Behavior(jsNew H.mapevents.MapEvents(map))
-    var ui = H.ui.UI.createDefault(map, defLayers)
+    ui = H.ui.UI.createDefault(map, defLayers)
+    ui.removeControl("zoom")
+    var
+        cntrRMap = jsNew H.ui.Control()
+        cntrNoMy = jsNew H.ui.Control()
+    cntrRMap.setAlignment(H.ui.LayoutAlignment.RIGHT_BOTTOM)
+    cntrNoMy.setAlignment(H.ui.LayoutAlignment.TOP_CENTER)
+    var
+        cntrRMapBtn = (jsNew H.ui.base.PushButton(JsObject{label: cstring"<h6>Растр</h6>"}))
+            .addClass(cstring"d-flex align-items-center justify-content-center")
+        noMyMsg = jsNew H.ui.base.Element(cstring"h5", cstring"d-flex align-items-center justify-content-center pt-4 text-danger")
+    cntrRMap.addChild cntrRMapBtn
+    cntrNoMy.addChild noMyMsg
+    ui.addControl("rastr", cntrRMap)
+    ui.addControl("noMyMsg", cntrNoMy)
+    noMyMsgEl = noMyMsg.getElement()
+    showNoMyMsg()
+    dbg: console.log("noMyMsg:", noMyMsg.getElement())
+    cntrRMapBtn.setState(
+        if curEngineType == engineTypes.WEBGL.to(int): H.ui.base.Button.State.UP
+        else: H.ui.base.Button.State.DOWN
+    )
+    cntrRMapBtn.addEventListener("statechange", proc(evt: JsObject) =
+            if evt.target.getState() == H.ui.base.Button.State.UP:
+                curEngineType = engineTypes.WEBGL.to(int)
+            else:
+                curEngineType = engineTypes.P2D.to(int)
+            localStorage.setItem("engineType", curEngineType)
+            dbg: console.log("statechange:", evt.target.getState())
+            bindMap()
+    )
     window.addEventListener("resize", () => map.getViewPort().resize())
-    map.addObject currentPos
+    map.addObject currentPosM
     map.addObject sectStreetGrp
 
 

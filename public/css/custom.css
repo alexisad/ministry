@@ -54,6 +54,10 @@ body {
     left: 0px;
 }
 
+.H_ctl .rastr-btn {
+    text-align: center;
+}
+
 .map-nav {
     position: absolute;
     left: 0px;
@@ -76,6 +80,10 @@ body {
 
 .mw-50 {
     max-width: 50%;
+}
+
+.mw-30 {
+    max-width: 30%;
 }
 
 .vh-85 {

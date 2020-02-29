@@ -408,6 +408,8 @@ import sectordb
 
 
 router mrouter:
+  head "/":
+    resp(Http200)
   get "/":
     reDb()
     #resp h1("Hello world")

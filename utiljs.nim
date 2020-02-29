@@ -3,6 +3,12 @@ from math import PI
 import src/util/types
 
 var console* {.importjs, nodecl.}: JsObject
+var document* {.importjs, nodecl.}: JsObject
+var H* {.importjs, nodecl.}: JsObject
+
+#{.emit: "function inherits(B,A) { function I() {}; I.prototype = A.prototype; B.prototype = new I(); B.prototype.constructor = B; return B;}".}
+#proc inherits*(a: JsObject, b: JsObject): JsObject {.importjs: "inherits(#,#)".}
+proc getRemoteProvider(): JsObject {.importjs: "getCustomRemoteProvider()".}
 
 type
     ContStreamEvts = object
@@ -15,6 +21,8 @@ type
 
 var pageYOffset {.importjs, nodecl.}: JsObject
 var pageXOffset {.importjs, nodecl.}: JsObject
+var engineTypes* = H.map.render.RenderEngine.EngineType
+var curEngineType*: int
 
 proc  getElemCoords*(elem: JsObject): tuple[top, left: float] =
     let box = elem.getBoundingClientRect();
@@ -26,46 +34,55 @@ template dbg*(x: untyped): untyped =
     when not defined(release):
         x
 
+var isInternet* = true
 var pIndicator*: PositionIndicator
 var window {.importjs, nodecl.}: JsObject
 var animMSec = (jsNew window.Date()).getMilliseconds().to(int)
 var animCnt = 0
 var opa = 0.00
 var sopa = 1.00
-proc draw*() =
+
+proc redrawIndCtx(pIndicator: PositionIndicator, opa: float) =
+    var ctx = pIndicator.canvas.getContext(cstring"2d")
+    let size = pIndicator.size
+    ctx.clearRect(0, 0, size, size)
+    ctx.fillStyle = cstring("rgba(255, 0, 0, " & $opa & ")")
+    #ctx.fillStyle = cstring("rgba(255, 0, 0, 1)")
+    ctx.strokeStyle = cstring"white"
+    ctx.beginPath()
+    ctx.arc(size/2, size/2, size/2-1, 0, 2 * PI)
+    ctx.fill()
+    ctx.stroke()
+
+
+proc drawInd*() =
+    if curEngineType == engineTypes.P2D.to(int): #avoid tiles reload while indicator animated
+        if not isInternet and not pIndicator.marker.getVisibility.to(bool):
+            pIndicator.marker.setVisibility(true)
+        if not isInternet:
+            pIndicator.redrawIndCtx(1.00)
+            return
     let time = jsNew window.Date()
     let op = time.getMilliseconds().to(int)
     #dbg: console.log("op-animMSec:", op-animMSec)
     if animCnt == 8:
         animCnt = 0
         #animMSec = op
-        let size = pIndicator.size
         pIndicator.marker.setVisibility(false)
-        var ctx = pIndicator.canvas.getContext(cstring"2d")
-        ctx.clearRect(0, 0, size, size)
-        ctx.fillStyle = cstring("rgba(255, 0, 0, " & $opa & ")")
-        #ctx.fillStyle = cstring("rgba(255, 0, 0, 1)")
-        ctx.strokeStyle = cstring"white"
-        ctx.beginPath()
-        ctx.arc(size/2, size/2, size/2-1, 0, 2 * PI)
-        ctx.fill()
-        ctx.stroke()
+        pIndicator.redrawIndCtx(opa)
         pIndicator.marker.setVisibility(true)
         #dbg: console.log("opa", opa)
         if opa > 1 and sopa == 1:
-            sopa = -1.00    
+            sopa = -1.00 #begin reverse opacity   
         elif opa < 0 and sopa == -1:
             sopa = 1.00
         opa = opa + sopa * 0.25
     inc animCnt
-    #window.requestAnimationFrame(draw)
-    #draw()
+    #window.requestAnimationFrame(drawInd)
+    #drawInd()
         
 
 proc newPositionIndicator*(size: Natural): PositionIndicator =
-    var document {.importjs, nodecl.}: JsObject
-    var H {.importjs, nodecl.}: JsObject
-    var console {.importjs, nodecl.}: JsObject
     result.size = size
     result.canvas = document.createElement(cstring"canvas")
     result.canvas.width = size
@@ -96,4 +113,13 @@ proc setPolyStyleByStat*(p: JsObject, stat: cstring) =
         lineWidth: 10
     })
 
-
+#[
+var rProv = getRemoteProvider()
+rProv.it.prototype.requestInternal = toJs(proc (x, y, level: int, onSuccess: proc(img: JsObject): JsObject, onError: proc(): JsObject): JsObject =
+    dbg: console.log("x, y, level:", x, y, level)
+)
+dbg: console.log("inherits:", rProv.it.prototype)
+var rProvObj = jsNew rProv.it
+dbg: console.log("inherits:", rProvObj)
+var custBaseLayer* = jsNew H.map.layer.TileLayer(rProvObj)
+]#

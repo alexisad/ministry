@@ -1,6 +1,6 @@
 //This is the service worker with the Advanced caching
 
-const CACHE = "pwabuilder-adv-cache-v0.2.9";
+const CACHE = "pwabuilder-adv-cache-v0.3.15";
 const precacheFiles = [
     /* Add an array of files to precache for your app */
     './',
@@ -19,7 +19,7 @@ const offlineFallbackPage = "offline.html";
 const networkFirstPaths = [
     /* Add an array of regex of paths that should go network first */
     // Example: /\/api\/.*/
-    /js.api.*/
+    // /js.api.*/
 ];
 
 const avoidCachingPaths = [
@@ -32,7 +32,8 @@ const avoidCachingPaths = [
 ];
 
 const avoidFetchingPaths = [
-    /\/maptile\//
+    /\/maptile\//,
+    /\&sectorName=/
 ];
 
 function pathComparer(requestUrl, pathRegEx) {
