@@ -1,6 +1,6 @@
 //This is the service worker with the Advanced caching
 
-const CACHE = "pwabuilder-adv-cache-v0.3.15";
+const CACHE = "pwabuilder-adv-cache-v0.3.20";
 const precacheFiles = [
     /* Add an array of files to precache for your app */
     './',
@@ -10,7 +10,13 @@ const precacheFiles = [
     './js/popper.min.js',
     './js/jquery-3.3.1.slim.min.js',
     './css/bootstrap.min.css',
-    '//js.api.here.com/v3/3.1/mapsjs-core.js'
+    '//js.api.here.com/v3/3.1/mapsjs-ui.css',
+    '//js.api.here.com/v3/3.1/mapsjs-core.js',
+    '//js.api.here.com/v3/3.1/mapsjs-core-legacy.js',
+    '//js.api.here.com/v3/3.1/mapsjs-service.js',
+    '//js.api.here.com/v3/3.1/mapsjs-service-legacy.js',
+    '//js.api.here.com/v3/3.1/mapsjs-ui.js',
+    '//js.api.here.com/v3/3.1/mapsjs-mapevents.js'
 ];
 
 // TODO: replace the following with the correct offline fallback page i.e.: const offlineFallbackPage = "offline.html";
