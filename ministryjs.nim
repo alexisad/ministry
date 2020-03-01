@@ -138,7 +138,7 @@ proc closeMap()
 proc onMsgClck(): proc()
 proc showNoMyMsg() =
     if not onlyMySectors:
-        noMyMsgEl.innerHTML = cstring"Внимание: этот участок не твой!"
+        noMyMsgEl.innerHTML = cstring"<span>Внимание: этот участок&nbsp;</span><strong>не твой!</strong>"
     else:
         noMyMsgEl.innerHTML = cstring""
 
@@ -593,7 +593,7 @@ proc showAllProc(): VNode =
     let clsCol = "card-text"#"col-sm-auto themed-grid-col"
     result = buildHtml tdiv:
         showErrMsg()
-        nav(class="navbar fixed-top navbar-expand-sm navbar-light bg-light shadow p-1 mb-0 bg-white rounded overflow-auto"):
+        nav(class="navbar fixed-top navbar-expand navbar-light bg-light shadow p-1 mb-0 bg-white rounded overflow-auto"):
             button(class="navbar-toggler", `type`="button", data-toggle="collapse",
                     data-target="#navbarTogglerSectors", aria-controls="navbarTogglerSectors", aria-expanded="false", aria-label="Toggle navigation"):
                 span(class="navbar-toggler-icon")
@@ -713,7 +713,7 @@ proc createDom(): VNode =
         if currUser.token == "":
             loginDialog()
         elif isShowNavMap:
-            nav(class="navbar fixed-top navbar-expand-sm navbar-light bg-light shadow p-1 mb-0 bg-white rounded overflow-auto"):
+            nav(class="navbar fixed-top navbar-expand navbar-light bg-light shadow p-1 mb-0 bg-white rounded overflow-auto"):
                 button(class="navbar-toggler", `type`="button", data-toggle="collapse",
                         data-target="#navbarTogglerMap", aria-controls="navbarTogglerMap", aria-expanded="false", aria-label="Toggle navigation"):
                     span(class="navbar-toggler-icon")
