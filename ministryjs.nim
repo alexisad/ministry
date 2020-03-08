@@ -242,7 +242,7 @@ proc login(btnClass: kstring): proc() =
 
 proc loginDialog(): VNode =
     let
-        plEmail = "Email"
+        plEmail = "Пользователь"
         plPass = "Пароль"
     dbg:
         console.log("plsHolders:", plEmail, plPass)
@@ -266,7 +266,7 @@ proc loginDialog(): VNode =
             button(class="btn btn-lg btn-primary btn-block", `type`="submit", onclick = login(".form-signin .btn")):
                 text "Войти"
             p(class="mt-5 mb-3 text-muted text-center"):
-                text "© 2019"
+                text "© 2019-2020"
 
 proc updProcc(): proc() =
     result = proc() =
@@ -531,6 +531,7 @@ proc showStreets(): VNode =
         tdiv(class="d-flex justify-content-center mt-6"):
             tdiv(class="overflow-auto px-3 vh-75 w-75 bg-light shadow-lg border rounded-lg"):
                 for i,str in currStreets.pairs:
+                    let tf = str.totalFamilies
                     let sSt = parseEnum[StreetStatus]($str.status)
                     if sSt == StreetStatus.strStarted:
                         strSt = (color: "primary", stDescr: " - не закончена")
@@ -538,12 +539,13 @@ proc showStreets(): VNode =
                         strSt = (color: "success", stDescr: " - пройдена")
                     else:
                         strSt = (color: "danger", stDescr: " - не начата")
-                    tdiv(class="py-2"):
-                        button(`type`="button", class="ml-2 btn btn-outline-" & strSt.color & " btn-sm", onclick = setStrStatus(i)):
+                    tdiv(class="py-2 row"):
+                        button(`type`="button", class="col text-nowrap overflow-auto ml-2 mr-2 btn btn-outline-" & strSt.color & " btn-sm", onclick = setStrStatus(i)):
                             text str.name
                             discard dbg: console.log("street:", str)
-                        span:
-                            text strSt.stDescr
+                        input(`type`="text", class="col-2 mr-2 px-1", value = $tf)
+                    tdiv(class="overflow-auto text-nowrap border-bottom"):
+                        text strSt.stDescr
             tdiv:
                 button(`type`="button", class="btn btn-success btn", onclick = saveStrStatus()):
                     text "X"

@@ -47,101 +47,7 @@ proc getTblRows(n: string): seq[Row] =
 
 
 proc reDb() =
-  when false:
-    db.exec(sql"""CREATE INDEX idx_usector
-              ON user_sector (user_id, sector_id)
-            """)
-    db.exec(sql"""CREATE INDEX idx_inact
-              ON sector (inactive)
-            """)
-    db.exec(sql"""CREATE INDEX idx_name_sector
-              ON street (name, sector_id)
-            """)
-    db.exec(sql"""CREATE INDEX idx_street_rame
-            ON rame (street_id, rame_street_id)
-          """)
-  when false:
-    dropTbl "ministry_act"
-    db.exec(sql"""CREATE TABLE ministry_act (
-              id  INTEGER PRIMARY KEY,
-              action VARCHAR(25) NOT NULL
-            )""")
-    db.exec(sql"""INSERT into ministry_act (action)
-                VALUES(?)
-            """, "start")
-    db.exec(sql"""INSERT into ministry_act (action)
-            VALUES(?)
-        """, "finish")
-    dropTbl "user_sector"
-    db.exec(sql"""CREATE TABLE user_sector (
-          id  INTEGER PRIMARY KEY,
-          sector_id INTEGER NOT NULL,
-          user_id INTEGER NOT NULL,
-          date_start TEXT NOT NULL,
-          date_finish TEXT,
-          FOREIGN KEY (sector_id)
-                REFERENCES sector (id)
-                  ON UPDATE CASCADE
-                  ON DELETE RESTRICT,
-          FOREIGN KEY (user_id)
-                REFERENCES user (id)
-                  ON UPDATE CASCADE
-                  ON DELETE RESTRICT
-        )""")
-  when false:
-    dropTbl "sector"
-    db.exec(sql"""CREATE TABLE sector (
-                id INTEGER PRIMARY KEY,
-                corpus_id  INTEGER NOT NULL,
-                sector_internal_id INTEGER NOT NULL,
-                name VARCHAR(100) NOT NULL,
-                plz VARCHAR(15) NOT NULL,
-                pfix INTEGER NOT NULL,
-                inactive INTEGER NOT NULL,
-              FOREIGN KEY (corpus_id)
-                REFERENCES corpus (id)
-                  ON UPDATE CASCADE
-                  ON DELETE RESTRICT
-            )""")
-    db.exec(sql"""CREATE INDEX idx_corp_sector
-            ON sector (corpus_id, sector_internal_id)
-          """)
-    dropTbl "status_street"
-    db.exec(sql"""CREATE TABLE status_street (
-              id   INTEGER PRIMARY KEY,
-              name VARCHAR(30) NOT NULL
-            )""")
-    db.exec(sql"""INSERT into status_street (id, name)
-        VALUES
-          (?,?), (?,?), (?,?)
-            """, 0, "strNotStarted", 1, "strStarted", 2, "strFinished")
-    dropTbl "street"
-    db.exec(sql"""CREATE TABLE street (
-              id   INTEGER PRIMARY KEY,
-              name VARCHAR(500) NOT NULL,
-              sector_id INTEGER NOT NULL,
-              status_street_id INTEGER,
-              geometry TEXT,
-              FOREIGN KEY (sector_id)
-                REFERENCES sector (id)
-                  ON UPDATE CASCADE
-                  ON DELETE CASCADE
-            )""")
-    dropTbl "rame"
-    db.exec(sql"""CREATE TABLE rame (
-              id   INTEGER PRIMARY KEY,
-              street_id INTEGER NOT NULL,
-              rame_street_id INTEGER NOT NULL,
-              FOREIGN KEY (street_id)
-                REFERENCES street (id)
-                  ON UPDATE CASCADE
-                  ON DELETE CASCADE,
-              FOREIGN KEY (rame_street_id)
-                REFERENCES street (id)
-                  ON UPDATE CASCADE
-                  ON DELETE CASCADE
-            )""")
-  when false:
+  when true:
     when true:
       dropTbl "corpus"
       dropTbl "role"
@@ -210,6 +116,103 @@ proc reDb() =
       for row in rows:
         echo row
       echo "++++++++++ ", "111".toMD5, " ", "111".getMD5
+  block x1:
+    when true:
+      dropTbl "sector"
+      db.exec(sql"""CREATE TABLE sector (
+                  id INTEGER PRIMARY KEY,
+                  corpus_id  INTEGER NOT NULL,
+                  sector_internal_id INTEGER NOT NULL,
+                  name VARCHAR(100) NOT NULL,
+                  plz VARCHAR(15) NOT NULL,
+                  pfix INTEGER NOT NULL,
+                  inactive INTEGER NOT NULL,
+                FOREIGN KEY (corpus_id)
+                  REFERENCES corpus (id)
+                    ON UPDATE CASCADE
+                    ON DELETE RESTRICT
+              )""")
+      db.exec(sql"""CREATE INDEX idx_corp_sector
+              ON sector (corpus_id, sector_internal_id)
+            """)
+      dropTbl "status_street"
+      db.exec(sql"""CREATE TABLE status_street (
+                id   INTEGER PRIMARY KEY,
+                name VARCHAR(30) NOT NULL
+              )""")
+      db.exec(sql"""INSERT into status_street (id, name)
+          VALUES
+            (?,?), (?,?), (?,?)
+              """, 0, "strNotStarted", 1, "strStarted", 2, "strFinished")
+      dropTbl "street"
+      db.exec(sql"""CREATE TABLE street (
+                id   INTEGER PRIMARY KEY,
+                name VARCHAR(500) NOT NULL,
+                sector_id INTEGER NOT NULL,
+                status_street_id INTEGER,
+                geometry TEXT,
+                total_families INTEGER,
+                FOREIGN KEY (sector_id)
+                  REFERENCES sector (id)
+                    ON UPDATE CASCADE
+                    ON DELETE CASCADE
+              )""")
+      dropTbl "rame"
+      db.exec(sql"""CREATE TABLE rame (
+                id   INTEGER PRIMARY KEY,
+                street_id INTEGER NOT NULL,
+                rame_street_id INTEGER NOT NULL,
+                FOREIGN KEY (street_id)
+                  REFERENCES street (id)
+                    ON UPDATE CASCADE
+                    ON DELETE CASCADE,
+                FOREIGN KEY (rame_street_id)
+                  REFERENCES street (id)
+                    ON UPDATE CASCADE
+                    ON DELETE CASCADE
+              )""")
+  block x2:
+    when true:
+      dropTbl "ministry_act"
+      db.exec(sql"""CREATE TABLE ministry_act (
+                id  INTEGER PRIMARY KEY,
+                action VARCHAR(25) NOT NULL
+              )""")
+      db.exec(sql"""INSERT into ministry_act (action)
+                  VALUES(?)
+              """, "start")
+      db.exec(sql"""INSERT into ministry_act (action)
+              VALUES(?)
+          """, "finish")
+      dropTbl "user_sector"
+      db.exec(sql"""CREATE TABLE user_sector (
+            id  INTEGER PRIMARY KEY,
+            sector_id INTEGER NOT NULL,
+            user_id INTEGER NOT NULL,
+            date_start TEXT NOT NULL,
+            date_finish TEXT,
+            FOREIGN KEY (sector_id)
+                  REFERENCES sector (id)
+                    ON UPDATE CASCADE
+                    ON DELETE RESTRICT,
+            FOREIGN KEY (user_id)
+                  REFERENCES user (id)
+                    ON UPDATE CASCADE
+                    ON DELETE RESTRICT
+          )""")
+  when true:
+    db.exec(sql"""CREATE INDEX idx_usector
+              ON user_sector (user_id, sector_id)
+            """)
+    db.exec(sql"""CREATE INDEX idx_inact
+              ON sector (inactive)
+            """)
+    db.exec(sql"""CREATE INDEX idx_name_sector
+              ON street (name, sector_id)
+            """)
+    db.exec(sql"""CREATE INDEX idx_street_rame
+            ON rame (street_id, rame_street_id)
+          """)
 
 proc login(user, pass: string): tuple[isOk: bool, user: User, token: string] {.gcsafe.} =
   result.isOk = false
@@ -411,9 +414,7 @@ router mrouter:
   head "/":
     resp(Http200)
   get "/":
-    reDb()
-    #resp h1("Hello world")
-    #redirect "/index.html"
+    #reDb()
     let cook = request.cookies
     var token: string
     if cook.hasKey "token":

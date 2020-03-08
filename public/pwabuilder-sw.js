@@ -1,6 +1,6 @@
 //This is the service worker with the Advanced caching
 
-const CACHE = "pwabuilder-adv-cache-v0.3.20";
+const CACHE = "pwabuilder-adv-cache-v0.3.32";
 const precacheFiles = [
     /* Add an array of files to precache for your app */
     './',
@@ -34,6 +34,7 @@ const avoidCachingPaths = [
     /process\/new/,
     /process\/delete/,
     /process\/update/,
+    /sector\/upload/,
     /\/maptile\//
 ];
 

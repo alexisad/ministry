@@ -1,11 +1,50 @@
-import json, db_sqlite, times, strutils, tables
+import json, db_sqlite, times, strutils, tables, hashes, parsecsv, streams, unicode
 import util/[types, utils]
 
 const normalDateFmt = initTimeFormat("yyyy-MM-dd")
 
+proc hash(x: Street): Hash =
+  ## Piggyback on the already available string hash proc.
+  ##
+  ## Without this proc nothing works!
+  #proc uHash(s: string): Hash =
+    #result = unicode.toLower(unicode.strip s).hash
+  template uHash(s: string): untyped =
+    unicode.toLower(unicode.strip s).hash
+  result = x.name.uHash !& x.sector.postalCode.uHash !&
+      x.sector.city.uHash !& x.sector.district.uHash
+  result = !$result
+
+proc initTblTotFamByStreet(): Table[Hash, Natural] =
+  result = initTable[Hash, Natural]()
+  var
+    parser: CsvParser
+    fn = "resAllStreets.csv"
+    strm = newFileStream(fn, fmRead)
+
+  parser.open(strm, fn, '|', '0')
+  ## Need calling `readHeaderRow`.
+  parser.readHeaderRow()
+  while parser.readRow():
+    let strN = parser.rowEntry("Street")
+    if strN == "": continue
+    let city = parser.rowEntry("City")
+    let dstr = parser.rowEntry("District")
+    let district =
+      if dstr == city:
+        ""
+      else: dstr
+    let sector = Sector(postalCode: parser.rowEntry("Plz"), city: city, district: district)
+    let street = Street(name: strN, sector: sector)
+    result[street.hash] = parser.rowEntry("TotalFamilies").parseInt
+  parser.close()
+  strm.close()
+
+
 proc uploadSector*(db: DbConn, corpusId: int): StatusResp[int] =
   result.status = stUnknown
-  let sectorJsn = parseFile("Büdingen_Exp_2019-09-19T11_04_36+02_00.json")
+  let tblTotFam = initTblTotFamByStreet()
+  let sectorJsn = parseFile("Büdingen_Exp_2020-03-05T22_27_39+01_00.json")
   db.exec(sql"""VACUUM INTO ?""", "ministry_bkp_$1.db" % ($now()).replace(":", "_") )
   db.exec(sql"BEGIN")
   for sIntId,v in pairs(sectorJsn):
@@ -39,10 +78,18 @@ proc uploadSector*(db: DbConn, corpusId: int): StatusResp[int] =
         let ix = lnk["linkId"].getInt()
         #echo "ix:: ", $ix
         discard linksStreet.hasKeyOrPut(ix, ns)
+      let streetObj = Street(name: ns, sector: s)
+      let k = streetObj
+      #echo "kkkkkkkkkkkk"
+      #echo [k.sector.postalCode, k.sector.city, k.sector.district, k.name].join", "
+      let totalFam =
+        if tblTotFam.hasKey(streetObj.hash):
+          tblTotFam[streetObj.hash]
+        else: 0
       db.exec(sql"""INSERT INTO street
-              (sector_id, name, geometry)
-              VALUES(?,?,?)
-        """, dbSId, ns, lnksGeo.join ";")
+              (sector_id, name, geometry, total_families)
+              VALUES(?,?,?,?)
+        """, dbSId, ns, lnksGeo.join ";", totalFam)
     for ns, sv in pairs(v["streets"].getFields):
       for lnk in sv:
         let strRow = db.getRow(sql"""SELECT id FROM street
@@ -272,7 +319,7 @@ proc getSectStreets*(db: DbConn, t, sId: string): StatusResp[seq[SectorStreets]]
   var rChck: tuple[isOk: bool, rowToken: Row]
   resultCheckToken(db, t)
   let streetRows = db.getAllRows(sql"""SELECT 
-          s.id, s.name, s.sector_id, status_street.name, s.geometry
+          s.id, s.name, s.sector_id, status_street.name, s.geometry, s.total_families
           FROM street as s
           LEFT JOIN status_street ON status_street.id = s.status_street_id
           WHERE sector_id = ?""", sId)
@@ -281,7 +328,7 @@ proc getSectStreets*(db: DbConn, t, sId: string): StatusResp[seq[SectorStreets]]
     let st = if s[3] != "": s[3] else: "strNotStarted"
     result.resp.add SectorStreets(id: s[0].parseInt,
               name: s[1], sector_id: s[2].parseInt, status: parseEnum[StreetStatus](st),
-              geometry: s[4])
+              geometry: s[4], totalFamilies: s[5].parseInt().Natural)
 
 
 proc setStatusStreets*(db: DbConn, t, strsStatus: string): StatusResp[int] =

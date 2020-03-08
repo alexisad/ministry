@@ -55,11 +55,13 @@ type
     id*, sector_id*: int
     name*: string
     geometry*: string
+    totalFamilies*: Natural
     status*: StreetStatus
   CSectorStreets* = object
     id*, sector_id*: int
     name*: cstring
     geometry*: cstring
+    totalFamilies*: Natural
     status*: cstring
 
 
@@ -86,6 +88,7 @@ type
       name*: string
       links*: seq[Link]
       sector*: Sector
+      totalFamilies: Natural
   Sector* = ref object
       postalCode*, district*, city*: string
       pFix*: int
