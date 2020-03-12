@@ -101,6 +101,7 @@ var timeStamp: string
 var currProcess: CSectorProcess
 var allSectProc: seq[CSectorProcess]
 var currStreets: seq[CSectorStreets]
+var currStreetsTmp: seq[CSectorStreets]
 var showStreetsEnabled = false
 var
     spinnerOn = false
@@ -158,34 +159,33 @@ proc setTs() =
 proc sendRequest(meth, url: string, body = "", headers: openarray[(string, string)] = @[]): JsObject =
     let hdrs = cast[seq[(string, string)]](headers)
     var rPrc =
-            proc(emitter: JsObject): proc() =
-                let oReq = newXMLHTTPRequest()
-                var reqListener: proc ()
-                reqListener = proc () =
-                    jsUnref(reqListener)
-                    #console.log("resp:", oReq.`type`.toJs, oReq.status.toJs, oReq.statusText.toJs, oReq.responseText.toJs)
-                    let stts = oReq.status
-                    let resp = Response((oReq.status, $oReq.statusText,  $oReq.responseText))
-                    if stts == 0 or stts in {100..199} or stts in {400..600}:
-                        emitter.error(resp)
-                    else:    
-                        emitter.emit(resp)
-                jsRef(reqListener)
-                oReq.addEventListener("load", reqListener)
-                oReq.addEventListener("error", reqListener)
-                #emitter.emit(1)
-                oReq.open(meth, if url != "": url & "&tst=" & timeStamp else: "")
-                oReq.responseType = "text"
-                for h in hdrs:
-                    oReq.setRequestHeader(h[0], h[1])
-                if body.len == 0:
-                    oReq.send()
-                else:
-                    oReq.send(body)
-                #console.log("emitter:", emitter)
-                result = proc() =
-                    oReq.abort()
-                
+        proc(emitter: JsObject): proc() =
+            let oReq = newXMLHTTPRequest()
+            var reqListener: proc ()
+            reqListener = proc () =
+                jsUnref(reqListener)
+                #console.log("resp:", oReq.`type`.toJs, oReq.status.toJs, oReq.statusText.toJs, oReq.responseText.toJs)
+                let stts = oReq.status
+                let resp = Response((oReq.status, $oReq.statusText,  $oReq.responseText))
+                if stts == 0 or stts in {100..199} or stts in {400..600}:
+                    emitter.error(resp)
+                else:    
+                    emitter.emit(resp)
+            jsRef(reqListener)
+            oReq.addEventListener("load", reqListener)
+            oReq.addEventListener("error", reqListener)
+            #emitter.emit(1)
+            oReq.open(meth, if url != "": url & "&tst=" & timeStamp else: "")
+            oReq.responseType = "text"
+            for h in hdrs:
+                oReq.setRequestHeader(h[0], h[1])
+            if body.len == 0:
+                oReq.send()
+            else:
+                oReq.send(body)
+            #console.log("emitter:", emitter)
+            result = proc() =
+                oReq.abort()
     result = Kefir.stream(rPrc).take(1).takeErrors(1).toProperty()
 
 
@@ -492,15 +492,22 @@ proc setStrStatus(iStr: int): proc() =
             dbg: console.log("currStreets:", currStreets[iStr].status)
         dbg: console.log("ord status: ", ord(parseEnum[StreetStatus]($currStreets[iStr].status)))
 
-proc saveStrStatus(): proc() =
+proc setStrTotFam(iStr: int): proc(ev: Event; n: VNode) =
+    result = proc(ev: Event; n: VNode) =
+        currStreetsTmp[iStr].totalFamilies = if n.text == "": 0 else: n.text.parseInt
+        dbg: console.log("currStreets:", iStr, n.text.parseInt, currStreets[iStr].totalFamilies)
+
+
+proc saveStreets(): proc() =
     result = proc() =
         showStreetsEnabled = false
         var streets: seq[string]
         let polyStrts = sectStreetGrp.getObjects()
-        for str in currStreets:
+        for i,str in currStreets:
             let id = str.id
             let nSt = ord(parseEnum[StreetStatus]($str.status))
-            streets.add [$str.id, $str.sector_id, $nSt].join(",")
+            currStreets[i].totalFamilies = currStreetsTmp[i].totalFamilies
+            streets.add [$str.id, $str.sector_id, $nSt, $currStreets[i].totalFamilies].join(",")
             for p in polyStrts:
                 let pStrtId = p.getData().to(int)
                 if id == pStrtId:
@@ -540,15 +547,16 @@ proc showStreets(): VNode =
                     else:
                         strSt = (color: "danger", stDescr: " - не начата")
                     tdiv(class="py-2 row"):
-                        button(`type`="button", class="col text-nowrap overflow-auto ml-2 mr-2 btn btn-outline-" & strSt.color & " btn-sm", onclick = setStrStatus(i)):
+                        button(`type`="button", class="col text-nowrap overflow-auto ml-2 mr-2 btn btn-outline-" &
+                                    strSt.color & " btn-sm", onclick = setStrStatus(i)):
                             text str.name
-                            discard dbg: console.log("street:", str)
-                        input(`type`="text", class="col-2 mr-2 px-1", value = $tf)
-                    tdiv(class="overflow-auto text-nowrap border-bottom"):
+                            #discard dbg: console.log("street:->", str)
+                        input(`type`="number", #[inputmode="numeric",]# class="col-2 mr-2 px-1", id="strfam" & $i & $tf, value = $tf, oninput = setStrTotFam(i))
+                    tdiv(class="overflow-auto text-nowrap border-bottom pb-2 mt-n3"):
                         text strSt.stDescr
             tdiv:
-                button(`type`="button", class="btn btn-success btn", onclick = saveStrStatus()):
-                    text "X"
+                button(`type`="button", class="btn btn-success btn", onclick = saveStreets()):
+                    text "ok"
     
 proc clckProccSect(p: CSectorProcess): proc() = 
     result = proc() =
@@ -727,16 +735,17 @@ proc createDom(): VNode =
                             li(class="nav-item"):
                                 a(class="nav-link", href="#takeModal", data-toggle="modal", data-target="#takeModal"):
                                     text "Взять"
-                        if onlyMySectors:
+                        if onlyMySectors and not showStreetsEnabled:
                             li(class="nav-item"):
                                 a(id="show-streets", class="nav-link", onclick = showStreetsEnable):
                                     text "Улицы"
                             li(class="nav-item"):
                                 a(id="map-download", class="nav-link", onclick = mapDownload):
                                     text "Скачать"
-                        li(class="nav-item"):
-                            a(id="cl-map", class="nav-link", onclick = closeMap):
-                                text "Закр.карту"
+                        if not showStreetsEnabled:
+                            li(class="nav-item"):
+                                a(id="cl-map", class="nav-link", onclick = closeMap):
+                                    text "Закр.карту"
                 noInternet()
                 showErrMsg()
             if showStreetsEnabled:
@@ -840,6 +849,7 @@ proc bindEvtsMapScreen() =
             let respSect = parseResp(value.body, CStatusResp[seq[CSectorStreets]])
             let sectStrts = respSect.resp
             currStreets = sectStrts
+            currStreetsTmp = sectStrts
             #dbg: console.log("resp status:", cstring($respSect.status), cstring"loggedOut")
             if sectStrts.len == 0:
                 return

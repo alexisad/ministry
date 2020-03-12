@@ -338,8 +338,8 @@ proc setStatusStreets*(db: DbConn, t, strsStatus: string): StatusResp[int] =
   for str in strsStatus.split(';'):
     let strF = str.split","
     db.exec(sql"""UPDATE street
-        SET status_street_id = ?
+        SET status_street_id = ?, total_families = ?
             WHERE id = ? AND sector_id = ?""",
-            strF[2], strF[0], strF[1])
+            strF[2], strF[3], strF[0], strF[1])
   result.status = stOk
               
