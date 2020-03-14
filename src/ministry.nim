@@ -457,13 +457,18 @@ router mrouter:
     if @"action" == "new":
       checkAdminToken ifAdmin
       let email = parseUserName([@"firstname", @"lastname"].join" ")
+      let pass =
+        if strip(@"password") == "":
+          genPassword()
+        else:
+          strip(@"password")
       let ifAdded = addUser User(
                 firstname: strip(@"firstname"),
                 lastname: strip(@"lastname"),
                 email: email[0],
                 role: strip(@"role"),
                 corpus_id: ifAdmin.user.corpus_id,
-                password: strip(@"password")
+                password: pass
               )
       #if not ifAdded.isAdded:
         #halt()

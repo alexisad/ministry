@@ -1,4 +1,7 @@
-import db_sqlite, times, types
+import db_sqlite, times, types, random
+
+const
+    PasswordLetters = {'A'..'H', 'J'..'N', 'P'..'Z', 'a'..'h', 'j'..'n', 'p'..'z', '2'..'9'}
 
 template dbg*(x: untyped): untyped =
     when not defined(release):
@@ -27,3 +30,9 @@ template resultCheckToken*(db: DbConn, t: string): untyped =
     if not rChck.isOk:
         result.status = stLoggedOut
         return result
+
+proc genPassword*(cnt = 5): string =
+    #randomize()
+    result = $PasswordLetters
+    shuffle(result)
+    result = result[0..cnt-1]
