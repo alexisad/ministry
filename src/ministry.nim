@@ -6,6 +6,7 @@ from uri import encodeUrl
 import posix#, sdnotify
 import util/types
 import util/utils
+import sectordb
 
 onSignal(SIGABRT):
   ## Handle SIGABRT from systemd
@@ -104,7 +105,7 @@ proc reDb() =
             )""")
       db.exec(sql"""INSERT into user (corpus_id, firstname, lastname, email, password, role_id, active)
               VALUES(?,?,?,?,?,?,?)
-            """, 1, "Alexander", "Sadovoy", "sadovoyalexander@yahoo.de", "698d51a19d8a121ce581499d7b701668", 1, 1)
+            """, 1, "Alexander", "Sadovoy", "alexander.sadovoy@m2414.de", "698d51a19d8a121ce581499d7b701668", 1, 1)
     let rows = db.getAllRows(sql"""SELECT 
                   *
                   FROM 
@@ -214,16 +215,33 @@ proc reDb() =
             ON rame (street_id, rame_street_id)
           """)
 
+proc parseUserName(un: string): tuple[a: string, b: string] =
+  let dn = "@m2414.de"
+  var r = un.strip.toLowerAscii
+  while true:
+    let len = r.len
+    r = r.replace(" ".repeat(2), " ")
+    if r.len == len:
+      break
+  let rSeq = r.split" "
+  if rSeq.len != 2: return# return empty tuple, name should be from two parts
+  result = (a: rseq.join"." & dn, b: [rSeq[1], rSeq[0]].join"." & dn)
+  dbg: echo "parseUserName:", result
+
+
 proc login(user, pass: string): tuple[isOk: bool, user: User, token: string] {.gcsafe.} =
   result.isOk = false
   if pass == "" or user == "":
     return result
+  let twoUsName = parseUserName user
+  let pMD5 = pass.getMD5
   let rowUser = db.getRow(sql"""SELECT 
                 *
                 FROM 
                 user 
                 WHERE 
-                email = ? AND password= ?""", user, pass.getMD5)
+                (email = ? AND password= ?) OR (email = ? AND password= ?)""",
+                  twoUsName[0], pMD5, twoUsName[1], pMD5)
   let user_id = rowUser[0]
   if user_id == "":
     return result
@@ -293,7 +311,7 @@ proc getUser(id: int64, showPass = false): tuple[isOk: bool, user: User] =
 
 
 proc addUser(u: User): StatusResp[User] =
-  #echo "addUser:: ", u
+  dbg: echo "addUser:: ", u
   result.status = stUnknown
   if u.firstname == "" or u.lastname == "" or u.email == "" or u.role == "":
     return result
@@ -407,7 +425,6 @@ template checkAdminToken(ifAdmin: untyped): untyped =
   if not ifAdmin.isAdmin:
     halt()
 
-import sectordb
 
 
 router mrouter:
@@ -431,7 +448,7 @@ router mrouter:
         halt()
       else:
         resp(Http200, [("Content-Type","text/html")], genMainPage())
-    let rU = getUser(logged.token, @"email")
+    let rU = getUser(logged.token, logged.user.email)
     setCookie("token", logged.token, expires=daysForward(5), path="/", #[sameSite=Strict, secure=true, domain="www.alexsad.org"]#)
     resp(Http200, genMainPage(logged.token, encodeUrl $(%*rU)))
   get "/favicon.ico":
@@ -439,10 +456,11 @@ router mrouter:
   get "/user/@action":
     if @"action" == "new":
       checkAdminToken ifAdmin
+      let email = parseUserName([@"firstname", @"lastname"].join" ")
       let ifAdded = addUser User(
                 firstname: strip(@"firstname"),
                 lastname: strip(@"lastname"),
-                email: strip(@"email"),
+                email: email[0],
                 role: strip(@"role"),
                 corpus_id: ifAdmin.user.corpus_id,
                 password: strip(@"password")
@@ -453,11 +471,13 @@ router mrouter:
       resp $(%*ifAdded)
     elif @"action" == "delete":
       checkAdminToken ifAdmin
-      let status = delUser @"email"
+      let email = parseUserName(@"email")
+      let status = delUser email[0]
       #resp h3 "tokens: " & $getTblRows("token") & "<br/>users: " & $getTblRows("user")
       resp Http200, [("Content-Type","application/json")], $(%*status)
     elif @"action" == "get":
-      let rU = getUser(@"token", @"email")
+      let email = parseUserName(@"email")
+      let rU = getUser(@"token", email[0])
       #if not rU.isOk:
         #halt()
       #resp h4 "user: " & $(%*rU.user)
@@ -465,7 +485,8 @@ router mrouter:
     elif @"action" == "update":
       #resp h4 "boo: "
       checkAdminToken ifAdmin
-      let updU = updUser(@"id", @"firstname", @"lastname", @"email", @"password", @"role_id", @"active")
+      let email = parseUserName(@"email")
+      let updU = updUser(@"id", @"firstname", @"lastname", email[0], @"password", @"role_id", @"active")
       resp Http200, [("Content-Type","application/json")], $(%*updU)
     else:
       halt()

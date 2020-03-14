@@ -9,6 +9,13 @@ suite "user API":
     var adminToken, userToken, sectPrId: string
     let normalDateFmt = initTimeFormat("yyyy-MM-dd")
     var sectorsPr: StatusResp[seq[SectorProcess]]
+    let
+        emailSadAlex = "alexander.sadovoy@m2414.de"
+        uNameSadAlex = "Alexander Sadovoy"
+        emailPaul = "paul.tarasow@m2414.de"
+        uNamePaul = "Paul Tarasow"
+        emailSadMich = "michael.sadovoy@m2414.de"
+        uNameSadMich = "Michael Sadovoy"
     
     when false:
         setup:
@@ -18,9 +25,9 @@ suite "user API":
             echo "run after each test"
     
     test "check login":
-        # give up and stop if this fails
-        let tokenXml = c.postContent("http://127.0.0.1:5000?email=sadovoyalexander%40yahoo.de&pass=111&test=1").parseHtml()
+        let tokenXml = c.postContent("http://127.0.0.1:5000?email=" & uNameSadAlex.encodeUrl & "&pass=111&test=1").parseHtml()
         let inpEls = tokenXml.findAll("input")
+        #echo "inpEls:", inpEls
         for e in inpEls:
             if e.attr("id") == "token":
                 adminToken = e.attr("value")
@@ -29,38 +36,43 @@ suite "user API":
         check(adminToken != "")
     
     test "get user":
-        let respUsrJsn = c.getContent("http://127.0.0.1:5000/user/get?email=sadovoyalexander%40yahoo.de&token=" & adminToken).parseJson()
+        let respUsrJsn = c.getContent("http://127.0.0.1:5000/user/get?email=" & uNameSadAlex.encodeUrl & "&token=" & adminToken).parseJson()
         let user = respUsrJsn.to(StatusResp[User]).resp
-        check(user.email == "sadovoyalexander@yahoo.de")
+        check(user.email == emailSadAlex)
 
     test "empty user by corrupted token":
-        let respUsrJsn = c.getContent("http://127.0.0.1:5000/user/get?email=sadovoyalexander%40yahoo.de&token=5rt4h58").parseJson()
+        let respUsrJsn = c.getContent("http://127.0.0.1:5000/user/get?email=" & uNameSadAlex.encodeUrl & "&token=5rt4h58").parseJson()
         let user = respUsrJsn.to(StatusResp[User]).resp
         check(user.email == "")
 
     test "new user if doesn't exist":
-        let respUsrJsn = c.getContent("http://127.0.0.1:5000/user/get?email=p.tarasow%40gmail.com&token=" & adminToken).parseJson()
+        let respUsrJsn = c.getContent("http://127.0.0.1:5000/user/get?email=" & uNamePaul.encodeUrl & "&token=" & adminToken).parseJson()
         var user = respUsrJsn.to(StatusResp[User]).resp
-        if user.email != "p.tarasow@gmail.com":
-            let respUsrJsn = c.getContent("http://127.0.0.1:5000/user/new?firstname=Pavel&lastname=Tarasow&email=p.tarasow%40gmail.com&role=user&password=222&token=" & adminToken).parseJson()
+        if user.email != emailPaul:
+            let respUsrJsn = c.getContent("http://127.0.0.1:5000/user/new?firstname=Paul&lastname=Tarasow&role=user&password=222&token=" & adminToken).parseJson()
             user = respUsrJsn.to(StatusResp[User]).resp
-        check(user.email == "p.tarasow@gmail.com")
+        check(user.email == emailPaul)
     
     test "new user":
-        let respUsrJsn = c.getContent("http://127.0.0.1:5000/user/new?firstname=Michael&lastname=Sadovoy&email=michi.sadik%40gmail.com&role=user&password=333&token=" & adminToken).parseJson()
+        let respUsrJsn = c.getContent("http://127.0.0.1:5000/user/new?firstname=Michael&lastname=Sadovoy&role=user&password=333&token=" & adminToken).parseJson()
         let user = respUsrJsn.to(StatusResp[User]).resp
-        check(user.email == "michi.sadik@gmail.com")
+        check(user.email == emailSadMich)
 
-    test "check login for Pavel":
+    test "check login for Paul":
         # give up and stop if this fails
-        let tokenJsn = c.postContent("http://127.0.0.1:5000?email=p.tarasow%40gmail.com&pass=222&test=1").parseJson()
-        userToken = tokenJsn.to(TokenResp).token
+        let tokenXml = c.postContent("http://127.0.0.1:5000?email=" & uNamePaul.encodeUrl & "&pass=222&test=1").parseHtml()
+        let inpEls = tokenXml.findAll("input")
+        #echo "inpEls:", inpEls
+        for e in inpEls:
+            if e.attr("id") == "token":
+                userToken = e.attr("value")
+            break
         echo "user login token: ", userToken
         check(userToken != "")
 
-    test "except delete user Pavel by role user":
+    test "except delete user Paul by role user":
         expect(HttpRequestError):
-            let statusJsn = c.getContent("http://127.0.0.1:5000/user/delete?email=p.tarasow%40gmail.com&token=" & userToken).parseJson()
+            let statusJsn = c.getContent("http://127.0.0.1:5000/user/delete?email=" & uNamePaul.encodeUrl & "&token=" & userToken).parseJson()
                 
     
     test "upload data":
@@ -89,7 +101,7 @@ suite "user API":
         check(status == stOk)
 
     test "add new process":
-        let respUsrJsn = c.getContent("http://127.0.0.1:5000/user/get?email=p.tarasow%40gmail.com&token=" & adminToken).parseJson()
+        let respUsrJsn = c.getContent("http://127.0.0.1:5000/user/get?email=" & uNamePaul.encodeUrl & "&token=" & adminToken).parseJson()
         var user = respUsrJsn.to(StatusResp[User]).resp
         let statusJsn = c.getContent("http://127.0.0.1:5000/sector/process/new?" &
                                 "token=" & adminToken &
@@ -148,13 +160,13 @@ suite "user API":
         let status = statusJsn.to(StatusResp[seq[SectorProcess]]).status
         check(status != stOk)
     
-    test "impossible delete user Pavel, he has processes":
-        let statusJsn = c.getContent("http://127.0.0.1:5000/user/delete?email=p.tarasow%40gmail.com&token=" & adminToken).parseJson()
+    test "impossible delete user Paul, he has processes":
+        let statusJsn = c.getContent("http://127.0.0.1:5000/user/delete?email=" & uNamePaul.encodeUrl & "&token=" & adminToken).parseJson()
         let status = statusJsn.to(StatusResp[int]).status
         check(status != stOk)
 
     test "delete user Michael":
-        let statusJsn = c.getContent("http://127.0.0.1:5000/user/delete?email=michi.sadik%40gmail.com&token=" & adminToken).parseJson()
+        let statusJsn = c.getContent("http://127.0.0.1:5000/user/delete?email=" & uNameSadMich.encodeUrl & "&token=" & adminToken).parseJson()
         let status = statusJsn.to(StatusResp[int]).status
         check(status == stOk)
 

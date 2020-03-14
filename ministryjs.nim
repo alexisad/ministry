@@ -211,7 +211,7 @@ when false:
 proc login(btnClass: kstring): proc() =
     result = proc() =
         spinnerOn = true
-        redraw()
+        #redraw()
         #let email = jq("#inputEmail".toJs).val().to(cstring)
         #let pass = jq("#inputPassword".toJs).val().to(cstring)
         let btn = jq(btnClass.toJs)[0]
@@ -252,7 +252,7 @@ proc loginDialog(): VNode =
             h1(class="h3 mb-3 font-weight-normal"):
                 text "Войти"
         tdiv(class="form-label-group"):
-            input(`type`="email", name = "email", id="inputEmail", class="form-control", placeholder = plEmail, required="", autofocus="")
+            input(`type`="text", name = "email", id="inputEmail", class="form-control", placeholder = plEmail, required="", autofocus="")
             label(`for`="inputEmail"):
                 text plEmail
         tdiv(class="form-label-group"):
