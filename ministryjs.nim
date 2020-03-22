@@ -2,6 +2,7 @@
 # nim -o:public/js/ministry.js js --debuginfo:on --oldgensym:on ministryjs.nim
 # browser-sync start --proxy "http://127.0.0.1:5000" --files "public/js/*.js"
 
+import utiljs
 include karax / prelude
 import karax / [vstyles]
 import jsffi except `&`
@@ -10,18 +11,14 @@ from sugar import `=>`, `->`
 from uri import decodeUrl
 import src/util/types
 import strformat, strutils, times
-import utiljs
+import usersjs
 
 const normalDateFmt = initTimeFormat("yyyy-MM-dd")
 var currDate = now().format normalDateFmt
 var window {.importjs, nodecl.}: JsObject
 var screen {.importjs, nodecl.}: JsObject
-proc jq(selector: JsObject): JsObject {.importjs: "$$(#)".}
-proc jqData(obj: JsObject, hndlrs: cstring): JsObject {.importjs: "$$._data(#,#)".}
 var JSON {.importjs, nodecl.}: JsObject
 var localStorage {.importjs, nodecl.}: JsObject
-proc jsonParse(s: cstring): JsObject {.importjs: "JSON.parse(#)".}
-var Kefir {.importjs, nodecl.}: JsObject
 var navigator {.importjs, nodecl.}: JsObject
 
 
@@ -33,7 +30,6 @@ curEngineType =
         engineTypes.WEBGL.to(int)
 localStorage.setItem("engineType", curEngineType)
 
-proc sendRequest(meth, url: string, body = "", headers: openarray[(string, string)] = @[]): JsObject
 proc bindMap(engineType: int = curEngineType)
 
 
@@ -83,7 +79,6 @@ stmCheckInternet.observe(
 
 var token = $jq("#token".toJs).val().to(cstring)
 var vUser = jq("#user".toJs).val().to(cstring)
-var currUser = CUser()
 if vUser == "":
     try:
         vUser = localStorage.getItem("user").to(cstring)
@@ -97,7 +92,6 @@ else:
     localStorage.setItem("user", vUser)
     currUser = jsonParse(decodeUrl $vUser).resp.to(CUser)
 currUser.token = token
-var timeStamp: string
 var currProcess: CSectorProcess
 var allSectProc: seq[CSectorProcess]
 var currStreets: seq[CSectorStreets]
@@ -107,11 +101,8 @@ var
     spinnerOn = false
     progressOn = false
     progressProc: int
-var isShowNavMap = false
 var scrollToSectId = 0
 var onlyMySectors = false
-var
-    errMsg: string
 var serchSectByName: string
 var setEvtInpSearchSect = false
 var currUiSt = JsObject{inpSearch: kstring""}
@@ -134,7 +125,6 @@ var noMyMsgEl: JsObject
 
 proc getAllProccess(myS = false, sectorName = "")
 proc hndlUpdOwnSect()
-proc parseResp(bdy: string, T: typedesc): T
 proc closeMap()
 proc onMsgClck(): proc()
 proc showNoMyMsg() =
@@ -155,38 +145,6 @@ when false:
 
 proc setTs() =
     timeStamp = $toUnix getTime()
-
-proc sendRequest(meth, url: string, body = "", headers: openarray[(string, string)] = @[]): JsObject =
-    let hdrs = cast[seq[(string, string)]](headers)
-    var rPrc =
-        proc(emitter: JsObject): proc() =
-            let oReq = newXMLHTTPRequest()
-            var reqListener: proc ()
-            reqListener = proc () =
-                jsUnref(reqListener)
-                #console.log("resp:", oReq.`type`.toJs, oReq.status.toJs, oReq.statusText.toJs, oReq.responseText.toJs)
-                let stts = oReq.status
-                let resp = Response((oReq.status, $oReq.statusText,  $oReq.responseText))
-                if stts == 0 or stts in {100..199} or stts in {400..600}:
-                    emitter.error(resp)
-                else:    
-                    emitter.emit(resp)
-            jsRef(reqListener)
-            oReq.addEventListener("load", reqListener)
-            oReq.addEventListener("error", reqListener)
-            #emitter.emit(1)
-            oReq.open(meth, if url != "": url & "&tst=" & timeStamp else: "")
-            oReq.responseType = "text"
-            for h in hdrs:
-                oReq.setRequestHeader(h[0], h[1])
-            if body.len == 0:
-                oReq.send()
-            else:
-                oReq.send(body)
-            #console.log("emitter:", emitter)
-            result = proc() =
-                oReq.abort()
-    result = Kefir.stream(rPrc).take(1).takeErrors(1).toProperty()
 
 
 when false:
@@ -425,15 +383,6 @@ proc showConfirm(modalId: string, bdy: VNode): VNode =
                             text "x"
                 bdy
 
-proc parseResp(bdy: string, T: typedesc): T =
-    result = cast[T](jsonParse(bdy))
-    if $result.status == "loggedOut":
-        currUser.token = ""
-        isShowNavMap = false
-        var elMap = jq("#map-container".toJs)[0]
-        elMap.classList.remove(cstring"show-map")
-        redraw()
-
 
 proc clckOpenMap(p: CSectorProcess): proc() = 
     result = proc() =
@@ -620,46 +569,53 @@ proc showAllProc(): VNode =
                     )
                 ul(class="navbar-nav mr-auto"):
                     li(class="nav-item"):
+                        a(class="nav-link", onclick = editUsers()):
+                            text "Возвещатели"
+                ul(class="navbar-nav mr-auto"):
+                    li(class="nav-item"):
                         a(class="nav-link", onclick = logout):
                             text "Выйти"
             noInternet()
-        tdiv(class="card-deck"):
-            for p in allSectProc:
-                #discard console.log("p.name:", p)
-                let stDate =
-                    if p.date_start != "":
-                        "Взят: " & p.startDate.format( initTimeFormat("dd'.'MM'.'yyyy") )
-                    else:
-                        ""
-                let finDate =
-                    if p.date_finish != "":
-                        "Сдан: " & p.finishDate.format( initTimeFormat("dd'.'MM'.'yyyy") )
-                    else:
-                        ""
-                let sectId = kstring($p.sector_id)
-                tdiv(id=sectId, class="card mb-3 c-sect shadow p-3 bg-white rounded"):
-                    tdiv(class="card-header"):
-                        ul(class="nav nav-pills card-header-pills"):
-                            li(class="nav-item"):
-                                a(class="nav-link", href="#mapModal", data-toggle="modal", data-target="#mapModal", onclick = clckOpenMap(p)):
-                                    text "Карта"
-                            if allowTake(p):
+        if isShowUsers:
+            showUsers()
+        else:
+            tdiv(class="card-deck"):
+                for p in allSectProc:
+                    #discard console.log("p.name:", p)
+                    let stDate =
+                        if p.date_start != "":
+                            "Взят: " & p.startDate.format( initTimeFormat("dd'.'MM'.'yyyy") )
+                        else:
+                            ""
+                    let finDate =
+                        if p.date_finish != "":
+                            "Сдан: " & p.finishDate.format( initTimeFormat("dd'.'MM'.'yyyy") )
+                        else:
+                            ""
+                    let sectId = kstring($p.sector_id)
+                    tdiv(id=sectId, class="card mb-3 c-sect shadow p-3 bg-white rounded"):
+                        tdiv(class="card-header"):
+                            ul(class="nav nav-pills card-header-pills"):
                                 li(class="nav-item"):
-                                    a(class="nav-link", href="#takeModal", data-toggle="modal", data-target="#takeModal", onclick = clckProccSect(p)):
-                                        text "Взять"
-                            elif p.userId == currUser.id and onlyMySectors:
-                                li(class="nav-item"):
-                                    a(class="nav-link", href="#gBackModal", data-toggle="modal", data-target="#gBackModal", onclick = clckProccSect(p)):
-                                        text "Сдать"
-                                discard dbg:
-                                    console.log("currDate > $p.date_finish", currDate, p.date_finish)
-                    tdiv(class="card-body"):
-                        h6(class="card-title"):
-                            text p.name
-                        tdiv(class = clsCol):
-                            text(#["date_start:" & ]#stDate)
-                        tdiv(class = clsCol):
-                            text(#["date_end:" & ]#finDate)
+                                    a(class="nav-link", href="#mapModal", data-toggle="modal", data-target="#mapModal", onclick = clckOpenMap(p)):
+                                        text "Карта"
+                                if allowTake(p):
+                                    li(class="nav-item"):
+                                        a(class="nav-link", href="#takeModal", data-toggle="modal", data-target="#takeModal", onclick = clckProccSect(p)):
+                                            text "Взять"
+                                elif p.userId == currUser.id and onlyMySectors:
+                                    li(class="nav-item"):
+                                        a(class="nav-link", href="#gBackModal", data-toggle="modal", data-target="#gBackModal", onclick = clckProccSect(p)):
+                                            text "Сдать"
+                                    discard dbg:
+                                        console.log("currDate > $p.date_finish", currDate, p.date_finish)
+                        tdiv(class="card-body"):
+                            h6(class="card-title"):
+                                text p.name
+                            tdiv(class = clsCol):
+                                text(#["date_start:" & ]#stDate)
+                            tdiv(class = clsCol):
+                                text(#["date_end:" & ]#finDate)
         
 
 

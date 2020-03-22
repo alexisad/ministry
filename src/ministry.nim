@@ -41,7 +41,7 @@ proc dropTbl(n: string) =
 
 
 proc getTblRows(n: string): seq[Row] =
-  result = db.getAllRows(sql"""SELECT 
+  result = db.getAllRows(sql"""SELECT
             *
             FROM 
             ?""", n)
@@ -251,7 +251,7 @@ proc login(user, pass: string): tuple[isOk: bool, user: User, token: string] {.g
                 token 
                 WHERE 
                 user_id = ?""", user_id)
-  var idChs = $IdentChars
+  var idChs = PasswordLetters
   shuffle(idChs)
   let token = getMD5(user_id & idChs & $now())
   db.exec(sql"""INSERT into token (token, user_id, date_activity)
@@ -288,25 +288,29 @@ proc checkAdmin(t: string): tuple[isAdmin: bool, user: User] =
   else:
     result.isAdmin = false
 
-proc row2User(rowU: Row, showPass = false): User =
-  result.id = rowU[0].parseInt
-  result.corpus_id = rowU[1].parseInt
-  result.firstname = rowU[2]
-  result.lastname = rowU[3]
-  result.email = rowU[4]
-  if showPass:
-    result.password = rowU[5]
-  result.role_id = rowU[6].parseInt
 
 proc getUser(id: int64, showPass = false): tuple[isOk: bool, user: User] = 
   result.isOk = false
   let rowU = db.getRow(sql"""SELECT 
-          *
-          FROM user 
-          WHERE id = ?""", id)
+          user.*, role.role
+          FROM user, role 
+          WHERE user.role_id = role.id AND user.id = ?""", id)
   if rowU[0] == "":
     return result
   result = (isOk: true, user: row2User(rowU, showPass))
+
+proc getUser(uName: string): tuple[isOk: bool, user: User] = 
+  result.isOk = false
+  let twoUsName = parseUserName uName
+  let rowU = db.getRow(sql"""SELECT 
+                user.*, role.role
+                FROM user, role 
+                WHERE 
+                user.role_id = role.id AND (email = ? OR email = ?)""",
+                  twoUsName[0], twoUsName[1])
+  if rowU[0] == "":
+    return result
+  result = (isOk: true, user: row2User(rowU))
 
 
 
@@ -336,8 +340,9 @@ proc addUser(u: User): StatusResp[User] =
       db.exec(sql"ROLLBACK")
       return result
     result.status = stOk
-    let u = getUser(uId)
-    if not u.isOk:
+    var usr = getUser(uId)
+    usr.user.password = u.password
+    if not usr.isOk:
       db.exec(sql"ROLLBACK")
       result.status = stUnknown
       return result
@@ -345,7 +350,7 @@ proc addUser(u: User): StatusResp[User] =
       db.exec(sql"ROLLBACK")
       result.status = stUnknown
       return result
-    result.resp = u.user
+    result.resp = usr.user
 
 
 proc getUser(t, e: string): StatusResp[User] =
@@ -353,9 +358,9 @@ proc getUser(t, e: string): StatusResp[User] =
   var rChck: tuple[isOk: bool, rowToken: Row]
   resultCheckToken(db, t)
   let rowU = db.getRow(sql"""SELECT
-          *
-          FROM user 
-          WHERE email = ?""", e)
+          user.*, role.role
+          FROM user, role 
+          WHERE user.role_id = role.id AND email = ?""", e)
   if rowU[0] == "":
     return result
   result.status = stOk
@@ -374,9 +379,11 @@ proc delUser(e: string): StatusResp[int] =
 
 proc updUser(id, firstname, lastname, email, password, role_id, active: string): StatusResp[User] =
   result.status = stUnknown
-  if id == "":
-    return result
-  var u = getUser(id.parseBiggestInt, true)
+  var u =
+    if id == "":
+      getUser(email)
+    else:
+      getUser(id.parseBiggestInt, true)
   if not u.isOk:
     return result
   var user = u.user
@@ -384,15 +391,13 @@ proc updUser(id, firstname, lastname, email, password, role_id, active: string):
     user.firstname = firstname
   if lastname != "":
     user.lastname = lastname
-  if email != "":
-    user.email = email
-  if password != "":
-    user.password = password.getMD5
+  #if email != "":
+    #user.email = email
+  user.password = password.getMD5
   if role_id != "":
     user.role_id = role_id.parseInt
   if active != "":
     user.active = active.parseInt
-  #echo "updUser: ", $u
   db.exec(sql"BEGIN")
   if not db.tryExec(sql"""UPDATE user
           SET firstname = ?,
@@ -402,18 +407,20 @@ proc updUser(id, firstname, lastname, email, password, role_id, active: string):
             role_id = ?,
             active = ?
           WHERE id = ?""",
-            user.firstname, user.lastname, user.email,
-            user.password, user.role_id, id, active
+            user.firstname, user.lastname, [user.firstname, user.lastname].join".".toLowerAscii() & "@m2414.de",
+            user.password, user.role_id, user.active, user.id
         ):
     db.exec(sql"ROLLBACK")
     return result
-  let rU = getUser(id.parseInt)
+  var rU = getUser(user.id)
+  rU.user.password = password
   if not rU.isOk:
     db.exec(sql"ROLLBACK")
     return result
   if not db.tryExec(sql"COMMIT"):
     db.exec(sql"ROLLBACK")
     return result
+  dbg: echo "updUser: ", user
   result.status = if rU.isOk: stOk else: stUnknown
   result.resp = rU.user
 
@@ -457,11 +464,8 @@ router mrouter:
     if @"action" == "new":
       checkAdminToken ifAdmin
       let email = parseUserName([@"firstname", @"lastname"].join" ")
-      let pass =
-        if strip(@"password") == "":
-          genPassword()
-        else:
-          strip(@"password")
+      var pass: string
+      genPassword(pass, @"pass")
       let ifAdded = addUser User(
                 firstname: strip(@"firstname"),
                 lastname: strip(@"lastname"),
@@ -487,11 +491,16 @@ router mrouter:
         #halt()
       #resp h4 "user: " & $(%*rU.user)
       resp Http200, [("Content-Type","application/json")], $(%*rU)
+    elif @"action" == "list":
+      checkAdminToken ifAdmin
+      let rUs = getUserList(db, ifAdmin.user.corpus_id)
+      resp Http200, [("Content-Type","application/json")], $(%*rUs)
     elif @"action" == "update":
       #resp h4 "boo: "
       checkAdminToken ifAdmin
-      let email = parseUserName(@"email")
-      let updU = updUser(@"id", @"firstname", @"lastname", email[0], @"password", @"role_id", @"active")
+      var pass: string
+      genPassword(pass, @"pass")
+      let updU = updUser(@"id", @"firstname", @"lastname", @"email", pass, @"role_id", @"active")
       resp Http200, [("Content-Type","application/json")], $(%*updU)
     else:
       halt()

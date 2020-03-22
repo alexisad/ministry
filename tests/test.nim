@@ -1,7 +1,15 @@
 #import ministry
 import util/[types, utils]
-import unittest, httpclient, json, times, uri, htmlparser, xmltree, strtabs
+import unittest, httpclient, json, times, uri, htmlparser, xmltree, strutils
 
+
+proc tokenFromHtml(hTxtx: string): string =
+    let inpEls = hTxtx.parseHtml().findAll("input")
+    #echo "inpEls:", inpEls
+    for e in inpEls:
+        if e.attr("id") == "token":
+            result = e.attr("value")
+        break
 
 suite "user API":
     echo "suite setup: run once before the tests"
@@ -16,6 +24,8 @@ suite "user API":
         uNamePaul = "Paul Tarasow"
         emailSadMich = "michael.sadovoy@m2414.de"
         uNameSadMich = "Michael Sadovoy"
+        emailVasPup = "vasja.pupkin@m2414.de"
+        uNameVasPup = "Vasja Pupkin"
     
     when false:
         setup:
@@ -25,13 +35,8 @@ suite "user API":
             echo "run after each test"
     
     test "check login":
-        let tokenXml = c.postContent("http://127.0.0.1:5000?email=" & uNameSadAlex.encodeUrl & "&pass=111&test=1").parseHtml()
-        let inpEls = tokenXml.findAll("input")
-        #echo "inpEls:", inpEls
-        for e in inpEls:
-            if e.attr("id") == "token":
-                adminToken = e.attr("value")
-            break
+        let tokenXml = c.postContent("http://127.0.0.1:5000?email=" & uNameSadAlex.encodeUrl & "&pass=111&test=1")
+        adminToken = tokenFromHtml tokenXml
         #echo "admin user login token: ", adminToken
         check(adminToken != "")
     
@@ -49,24 +54,29 @@ suite "user API":
         let respUsrJsn = c.getContent("http://127.0.0.1:5000/user/get?email=" & uNamePaul.encodeUrl & "&token=" & adminToken).parseJson()
         var user = respUsrJsn.to(StatusResp[User]).resp
         if user.email != emailPaul:
-            let respUsrJsn = c.getContent("http://127.0.0.1:5000/user/new?firstname=Paul&lastname=Tarasow&role=user&password=222&token=" & adminToken).parseJson()
+            let respUsrJsn = c.getContent("http://127.0.0.1:5000/user/new?firstname=Paul&lastname=Tarasow&role=user&pass=222&token=" & adminToken).parseJson()
             user = respUsrJsn.to(StatusResp[User]).resp
         check(user.email == emailPaul)
     
     test "new user":
-        let respUsrJsn = c.getContent("http://127.0.0.1:5000/user/new?firstname=Michael&lastname=Sadovoy&role=user&password=333&token=" & adminToken).parseJson()
+        let respUsrJsn = c.getContent("http://127.0.0.1:5000/user/new?firstname=Michael&lastname=Sadovoy&role=user&pass=333&token=" & adminToken).parseJson()
         let user = respUsrJsn.to(StatusResp[User]).resp
+        echo "newUser: ", user
         check(user.email == emailSadMich)
+
+    test "new user " & uNameVasPup:
+        let uNvasja = uNameVasPup.split" " 
+        let respUsrJsn = c.getContent("http://127.0.0.1:5000/user/new?firstname=" & uNvasja[0] & "&lastname=" & uNvasja[1] & "&role=user&token=" & adminToken).parseJson()
+        let user = respUsrJsn.to(StatusResp[User]).resp
+        echo "newUser: ", user
+        let tokenXml = c.postContent("http://127.0.0.1:5000?email=" & uNameVasPup.encodeUrl & "&pass=" & user.password & "&test=1")
+        check(user.email == emailVasPup and (tokenFromHtml tokenXml) != "")
+    
 
     test "check login for Paul":
         # give up and stop if this fails
-        let tokenXml = c.postContent("http://127.0.0.1:5000?email=" & uNamePaul.encodeUrl & "&pass=222&test=1").parseHtml()
-        let inpEls = tokenXml.findAll("input")
-        #echo "inpEls:", inpEls
-        for e in inpEls:
-            if e.attr("id") == "token":
-                userToken = e.attr("value")
-            break
+        let tokenXml = c.postContent("http://127.0.0.1:5000?email=" & uNamePaul.encodeUrl & "&pass=222&test=1")
+        userToken = tokenFromHtml tokenXml
         echo "user login token: ", userToken
         check(userToken != "")
 
@@ -165,10 +175,22 @@ suite "user API":
         let status = statusJsn.to(StatusResp[int]).status
         check(status != stOk)
 
-    test "delete user Michael":
-        let statusJsn = c.getContent("http://127.0.0.1:5000/user/delete?email=" & uNameSadMich.encodeUrl & "&token=" & adminToken).parseJson()
+    test "update user " & uNameSadMich:
+        let respUsrJsn = c.getContent("http://127.0.0.1:5000/user/update?email=" & uNameSadMich.encodeUrl & "&firstname=Michael&lastname=Sadovoy&token=" & adminToken).parseJson()
+        let user = respUsrJsn.to(StatusResp[User]).resp
+        echo "updated user:", user
+        check(true)
+
+    #test "delete user " & uNameSadMich:
+        #let statusJsn = c.getContent("http://127.0.0.1:5000/user/delete?email=" & uNameSadMich.encodeUrl & "&token=" & adminToken).parseJson()
+        #let status = statusJsn.to(StatusResp[int]).status
+        #check(status == stOk)
+
+    test "delete user " & uNameVasPup:
+        let statusJsn = c.getContent("http://127.0.0.1:5000/user/delete?email=" & uNameVasPup.encodeUrl & "&token=" & adminToken).parseJson()
         let status = statusJsn.to(StatusResp[int]).status
         check(status == stOk)
+
 
     echo "suite teardown: run once after the tests..."
 

@@ -1,10 +1,20 @@
-import jsffi, strutils
+include karax / prelude
+import karax / [vstyles]
+import jsffi except `&`
+import strutils
 from math import PI
 import src/util/types
+import jsbind, async_http_request
+
 
 var console* {.importjs, nodecl.}: JsObject
 var document* {.importjs, nodecl.}: JsObject
 var H* {.importjs, nodecl.}: JsObject
+var Kefir* {.importjs, nodecl.}: JsObject
+proc jsonParse*(s: cstring): JsObject {.importjs: "JSON.parse(#)".}
+proc jq*(selector: JsObject): JsObject {.importjs: "$$(#)".}
+proc jqData*(obj: JsObject, hndlrs: cstring): JsObject {.importjs: "$$._data(#,#)".}
+
 
 #{.emit: "function inherits(B,A) { function I() {}; I.prototype = A.prototype; B.prototype = new I(); B.prototype.constructor = B; return B;}".}
 #proc inherits*(a: JsObject, b: JsObject): JsObject {.importjs: "inherits(#,#)".}
@@ -19,6 +29,13 @@ type
         marker*: JsObject
         canvas: JsObject
 
+var
+    currUser* = CUser()
+    timeStamp*: string
+    errMsg*: string
+    isShowUsers* = false
+    isShowNavMap* = false
+    allUsers*: seq[CUser]
 var pageYOffset {.importjs, nodecl.}: JsObject
 var pageXOffset {.importjs, nodecl.}: JsObject
 var engineTypes* = H.map.render.RenderEngine.EngineType
@@ -41,6 +58,51 @@ var animMSec = (jsNew window.Date()).getMilliseconds().to(int)
 var animCnt = 0
 var opa = 0.00
 var sopa = 1.00
+
+
+proc sendRequest*(meth, url: string, body = "", headers: openarray[(string, string)] = @[]): JsObject =
+    let hdrs = cast[seq[(string, string)]](headers)
+    var rPrc =
+        proc(emitter: JsObject): proc() =
+            let oReq = newXMLHTTPRequest()
+            var reqListener: proc ()
+            reqListener = proc () =
+                jsUnref(reqListener)
+                #console.log("resp:", oReq.`type`.toJs, oReq.status.toJs, oReq.statusText.toJs, oReq.responseText.toJs)
+                let stts = oReq.status
+                let resp = Response((oReq.status, $oReq.statusText,  $oReq.responseText))
+                if stts == 0 or stts in {100..199} or stts in {400..600}:
+                    emitter.error(resp)
+                else:    
+                    emitter.emit(resp)
+            jsRef(reqListener)
+            oReq.addEventListener("load", reqListener)
+            oReq.addEventListener("error", reqListener)
+            #emitter.emit(1)
+            oReq.open(meth, if url != "": url & "&tst=" & timeStamp else: "")
+            oReq.responseType = "text"
+            for h in hdrs:
+                oReq.setRequestHeader(h[0], h[1])
+            if body.len == 0:
+                oReq.send()
+            else:
+                oReq.send(body)
+            #console.log("emitter:", emitter)
+            result = proc() =
+                oReq.abort()
+    result = Kefir.stream(rPrc).take(1).takeErrors(1).toProperty()
+
+proc parseResp*(bdy: string, T: typedesc): T =
+    result = cast[T](jsonParse(bdy))
+    if $result.status == "loggedOut":
+        currUser.token = ""
+        isShowNavMap = false
+        var elMap = jq("#map-container".toJs)[0]
+        elMap.classList.remove(cstring"show-map")
+        redraw()
+
+
+
 
 proc redrawIndCtx(pIndicator: PositionIndicator, opa: float) =
     var ctx = pIndicator.canvas.getContext(cstring"2d")

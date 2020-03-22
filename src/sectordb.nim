@@ -342,4 +342,13 @@ proc setStatusStreets*(db: DbConn, t, strsStatus: string): StatusResp[int] =
             WHERE id = ? AND sector_id = ?""",
             strF[2], strF[3], strF[0], strF[1])
   result.status = stOk
-              
+
+proc getUserList*(db: DbConn, corpus_id: int): StatusResp[seq[User]] = 
+  result.status = stUnknown
+  let rowUs = db.getAllRows(sql"""SELECT 
+                user.*, role.role
+                FROM user, role 
+                WHERE user.role_id = role.id AND corpus_id = ?""", corpus_id)
+  for u in rowUs:
+    result.resp.add(row2User(u))
+  #result = (isOk: true, user: row2User(rowU))              
