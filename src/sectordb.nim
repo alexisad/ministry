@@ -137,7 +137,8 @@ proc getSectProcess*(db: DbConn, t = "", sId = "", uId = "", sName="", inactive 
     if sName != "": "AND sector.name LIKE '%" & sName & "%'" else: ""
   var sqlStr = """SELECT name as sectorName, sector_internal_id, firstname, lastname,
           MAX(date_start), date_finish, user_id,
-          sector.id as sector_id, user_sector.id, plz, pfix
+          sector.id as sector_id, user_sector.id, plz, pfix,
+          (SELECT SUM(total_families) FROM street WHERE sector_id = sector.id) as total_families
           FROM sector
           LEFT JOIN user_sector ON user_sector.sector_id = sector.id {*d_f_c*}
           LEFT JOIN user ON user.id = user_sector.user_id AND user.id *vuId_c* ?
@@ -168,7 +169,8 @@ proc getSectProcess*(db: DbConn, t = "", sId = "", uId = "", sName="", inactive 
   for r in sectRows:
     var sectP = SectorProcess(name: r[0], sector_internal_id: r[1], firstName: r[2], lastName: r[3],
             date_start: r[4], date_finish: r[5],
-            user_id: -1, sector_id: r[7].parseInt, id: -1
+            user_id: -1, sector_id: r[7].parseInt, id: -1,
+            totalFamilies: r[11].parseInt
         )
     if sectP.firstname != "": #someone took this sector
       sectP.user_id = r[6].parseInt
@@ -206,7 +208,18 @@ proc newSectProcess*(db: DbConn, t, sId, uId, startDate: string): StatusResp[seq
     echo "rChck.rowToken: ", rChck.rowToken
   let cntOnHand = sPrCntRow[0].parseInt
   if cntOnHand >= 4:
-    result.message = "Неудачно: на руках больше 4-х участков"
+    result.message = "Неудачно: на руках не может быть больше 4-х участков"
+    return result
+  let
+    fDate = (now() - 2.days).format normalDateFmt
+    finPrCntRow = db.getRow(sql"""SELECT count(*) FROM user_sector
+      INNER JOIN sector ON user_sector.sector_id = sector.id AND sector.inactive <> 1
+      INNER JOIN user ON user.id = user_sector.user_id
+      INNER JOIN role ON user.role_id = role.id AND role.role = 'user'
+      WHERE user_sector.user_id = ? AND user_sector.date_finish > ?""", vUid, fDate)
+  let cntGiveBack = finPrCntRow[0].parseInt
+  if cntGiveBack >= 2:
+    result.message = "Неудачно: c " & fDate & " сдано много участков: " & $cntGiveBack
     return result
   dbg:
     echo "begin insert process: ", sPrRow

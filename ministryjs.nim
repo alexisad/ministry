@@ -567,10 +567,11 @@ proc showAllProc(): VNode =
                             aria-describedby="searchHelp", placeholder="искать...",
                             value = currUiSt.inpSearch.to(kstring)
                     )
-                ul(class="navbar-nav mr-auto"):
-                    li(class="nav-item"):
-                        a(class="nav-link", onclick = editUsers()):
-                            text "Возвещатели"
+                if currUser.role == "superadmin":
+                    ul(class="navbar-nav mr-auto"):
+                        li(class="nav-item"):
+                            a(class="nav-link", onclick = editUsers()):
+                                text "Возвещатели"
                 ul(class="navbar-nav mr-auto"):
                     li(class="nav-item"):
                         a(class="nav-link", onclick = logout):
@@ -613,9 +614,13 @@ proc showAllProc(): VNode =
                             h6(class="card-title"):
                                 text p.name
                             tdiv(class = clsCol):
-                                text(#["date_start:" & ]#stDate)
+                                text(stDate)
                             tdiv(class = clsCol):
-                                text(#["date_end:" & ]#finDate)
+                                text(finDate)
+                            tdiv(class = clsCol & " d-flex justify-content-end"):
+                                h5:
+                                    span(class = "badge badge-primary"):
+                                        text kstring($p.totalFamilies)
         
 
 

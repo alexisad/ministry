@@ -45,12 +45,14 @@ type
     firstname*, lastname*: string
     date_start*, date_finish*: string
     id*, user_id*, sector_id*: int
+    totalFamilies*: int
   CSectorProcess* = object
     name*: cstring
     sector_internal_id*: cstring
     firstname*, lastname*: cstring
     date_start*, date_finish*: cstring
     id*, user_id*, sector_id*: int
+    totalFamilies*: int
   SectorStreets* = object
     id*, sector_id*: int
     name*: string
