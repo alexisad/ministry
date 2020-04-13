@@ -44,7 +44,7 @@ proc initTblTotFamByStreet(): Table[Hash, Natural] =
 proc uploadSector*(db: DbConn, corpusId: int): StatusResp[int] =
   result.status = stUnknown
   let tblTotFam = initTblTotFamByStreet()
-  let sectorJsn = parseFile("Büdingen_Exp_2020-03-05T22_27_39+01_00.json")
+  let sectorJsn = parseFile("Büdingen_Exp_2020-04-10T23_11_24+02_00.json")
   db.exec(sql"""VACUUM INTO ?""", "ministry_bkp_$1.db" % ($now()).replace(":", "_") )
   db.exec(sql"BEGIN")
   for sIntId,v in pairs(sectorJsn):

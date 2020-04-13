@@ -17,17 +17,21 @@ proc chgUser(u: CUser): proc() =
             cntr = ".list-users .frm" & $u.id
             inpFirstNameId = cstring [cntr, "#inputFirstName" & $u.id].join" "
             inpLastNameId = cstring [cntr, "#inputLastName" & $u.id].join" "
+            inpApiKeyId = cstring [cntr, "#inpApiKey" & $u.id].join" "
         edU.firstName = jq(inpFirstNameId.toJs)[0].value.to(cstring)
         edU.lastName = jq(inpLastNameId.toJs)[0].value.to(cstring)
+        edU.apiKey = jq(inpApiKeyId.toJs)[0].value.to(cstring)
         let uName = [edU.firstName, edU.lastName].join" "
         dbg: console.log(cstring"User", u, edU)
         let
             uNameEnc =  ($uName).encodeUrl()
             firstNameEnc = ($edU.firstName).encodeUrl()
             lastNameEnc = ($edU.lastName).encodeUrl()
+            apiKeyEnc = ($edU.apiKey).encodeUrl()
         let updStm = sendRequest(
             "GET",
-            &"/user/update?id={u.id}&email={uNameEnc}&firstname={firstNameEnc}&lastname={lastNameEnc}&token={currUser.token}"
+            &"/user/update?id={u.id}&email={uNameEnc}&firstname={firstNameEnc}" &
+                &"&apiKey={apiKeyEnc}&lastname={lastNameEnc}&token={currUser.token}"
         )
         updStm.observe(
             proc (value: Response) =
@@ -54,6 +58,7 @@ proc showUsers*(): VNode =
                 uName = [u.firstname, u.lastname].join" "
                 inpFirstNameId = "inputFirstName" & $u.id
                 inpLastNameId = "inputLastName" & $u.id
+                inpApiKeyId = "inpApiKey" & $u.id
                 frmId = "frm" & $u.id
             tdiv(class="card"):
                 tdiv( class="card-header", id = headingId):
@@ -72,6 +77,10 @@ proc showUsers*(): VNode =
                             label(`for` = inpLastNameId):
                                 text "Фамилия"
                             input(`type`="text", class="form-control", id = inpLastNameId, placeholder="Фамилия", value = u.lastname)
+                        tdiv(class="form-group"):
+                            label(`for` = inpApiKeyId):
+                                text "apiKey"
+                            input(`type`="text", class="form-control", id = inpApiKeyId, placeholder="HERE apiKey", value = u.apiKey)
                         if u.password != "":
                             tdiv(class="form-group"):
                                 span():

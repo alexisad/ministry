@@ -12,6 +12,7 @@ type
     password*: string
     active*: int
     token*: string
+    apiKey*: string
   CUser* = object
     id*: int
     corpus_id*: int
@@ -23,6 +24,7 @@ type
     password*: cstring
     active*: int
     token*: cstring
+    apiKey*: cstring
   TokenResp* = object
     token*: string
   StatusType* = enum
@@ -92,7 +94,7 @@ type
       sector*: Sector
       totalFamilies: Natural
   Sector* = ref object
-      postalCode*, district*, city*: string
+      postalCode*, district*, folkDistrict*, city*: string
       pFix*: int
       streets*: OrderedTable[string, seq[Link]]
       shownOnMap*: bool
@@ -125,7 +127,8 @@ proc finishDate*(s: CSectorProcess): DateTime =
 
 
 proc name*(s: Sector): string =
-    @[s.postalCode & "-" & $s.pFix, s.city, s.district].join(" ").strip
+    @[s.postalCode & "-" & $s.pFix,
+          s.city, if s.folkDistrict != "": s.folkDistrict else: s.district].join(" ").strip
 
 
 

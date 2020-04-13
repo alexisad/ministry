@@ -10,7 +10,7 @@ import jsbind, async_http_request#, asyncjs
 from sugar import `=>`, `->`
 from uri import decodeUrl
 import src/util/types
-import strformat, strutils, times
+import strformat, strutils, times, sequtils
 import usersjs
 
 const normalDateFmt = initTimeFormat("yyyy-MM-dd")
@@ -29,6 +29,15 @@ curEngineType =
     else:
         engineTypes.WEBGL.to(int)
 localStorage.setItem("engineType", curEngineType)
+dwnloadedMaps = jsonParse(localStorage.getItem("dwnloadedMaps").to(cstring)).to(seq[string])
+dwnloadedMaps =
+    if localStorage.hasOwnProperty("dwnloadedMaps"):
+        dwnloadedMaps
+    else:
+        newSeq[string]()
+#dwnloadedMaps.add cstring"bebe"
+dbg: console.log("dwnloadedMaps:", dwnloadedMaps)
+localStorage.setItem("dwnloadedMaps", jsonStringify dwnloadedMaps)
 
 proc bindMap(engineType: int = curEngineType)
 
@@ -567,6 +576,7 @@ proc showAllProc(): VNode =
                             aria-describedby="searchHelp", placeholder="искать...",
                             value = currUiSt.inpSearch.to(kstring)
                     )
+                discard dbg: console.log("currUser:", currUser)
                 if currUser.role == "superadmin":
                     ul(class="navbar-nav mr-auto"):
                         li(class="nav-item"):
@@ -592,7 +602,7 @@ proc showAllProc(): VNode =
                         if p.date_finish != "":
                             "Сдан: " & p.finishDate.format( initTimeFormat("dd'.'MM'.'yyyy") )
                         else:
-                            ""
+                            [p.firstname, p.lastname].join(" ")
                     let sectId = kstring($p.sector_id)
                     tdiv(id=sectId, class="card mb-3 c-sect shadow p-3 bg-white rounded"):
                         tdiv(class="card-header"):
@@ -651,6 +661,10 @@ proc mapDownload() =
             prgsT = r.getTotal().to(int)
             prgsP = r.getProcessed().to(int)
         progressOn = prgsT > prgsP
+        if not progressOn:
+            dbg: console.log("currProcess:", currProcess)
+            dwnloadedMaps.add $currProcess.sector_internal_id
+            localStorage.setItem("dwnloadedMaps", jsonStringify dwnloadedMaps)
         progressProc = int(prgsP * 100 / prgsT)
         redraw(),
         #dbg: console.log("dwnld progress:", r.getTotal(), " ", r.getProcessed(), " ", r.getState(), " ", max),
@@ -700,9 +714,10 @@ proc createDom(): VNode =
                             li(class="nav-item"):
                                 a(id="show-streets", class="nav-link", onclick = showStreetsEnable):
                                     text "Улицы"
-                            li(class="nav-item"):
-                                a(id="map-download", class="nav-link", onclick = mapDownload):
-                                    text "Скачать"
+                            if dwnloadedMaps.count($currProcess.sector_internal_id) == 0:
+                                li(class="nav-item"):
+                                    a(id="map-download", class="nav-link", onclick = mapDownload):
+                                        text "Скачать"
                         if not showStreetsEnabled:
                             li(class="nav-item"):
                                 a(id="cl-map", class="nav-link", onclick = closeMap):
@@ -874,8 +889,7 @@ setRenderer createDom, "main-control-container", proc() =
 proc bindMap(engineType: int = curEngineType) =
     let platform = jsNew(H.service.Platform(
                 JsObject{
-                    apikey: cstring"7RkSXUEsqZEnQ0aJ6yLlWQa_xcMVzE38XwQudJmojEw",
-                    #app_code: cstring"HdAoJ-BlDvmvb0eksDYqyg",
+                    apikey: currUser.apiKey,
                     useHTTPS: true
                 }
             )

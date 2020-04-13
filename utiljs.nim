@@ -12,6 +12,7 @@ var document* {.importjs, nodecl.}: JsObject
 var H* {.importjs, nodecl.}: JsObject
 var Kefir* {.importjs, nodecl.}: JsObject
 proc jsonParse*(s: cstring): JsObject {.importjs: "JSON.parse(#)".}
+proc jsonStringify*[T](o: T): cstring {.importcpp: "JSON.stringify(#)".}
 proc jq*(selector: JsObject): JsObject {.importjs: "$$(#)".}
 proc jqData*(obj: JsObject, hndlrs: cstring): JsObject {.importjs: "$$._data(#,#)".}
 
@@ -40,6 +41,7 @@ var pageYOffset {.importjs, nodecl.}: JsObject
 var pageXOffset {.importjs, nodecl.}: JsObject
 var engineTypes* = H.map.render.RenderEngine.EngineType
 var curEngineType*: int
+var dwnloadedMaps*: seq[string]
 
 proc  getElemCoords*(elem: JsObject): tuple[top, left: float] =
     let box = elem.getBoundingClientRect();

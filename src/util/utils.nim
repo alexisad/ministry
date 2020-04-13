@@ -52,7 +52,8 @@ proc row2User*(rowU: Row, showPass = false): User =
     result.lastname = rowU[3]
     result.email = rowU[4]
     result.active = rowU[7].parseInt
-    result.role = rowU[8]
+    result.apiKey = rowU[8]
+    result.role = rowU[9]
     if showPass:
         result.password = rowU[5]
     result.role_id = rowU[6].parseInt

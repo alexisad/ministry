@@ -8,12 +8,12 @@ import util/types
 import util/utils
 import sectordb
 
-onSignal(SIGABRT):
+#[onSignal(SIGABRT):
   ## Handle SIGABRT from systemd
   # Lines printed to stdout will be received by systemd and logged
   # Start with "<severity>" from 0 to 7
   echo "<2>Received SIGABRT"
-  quit(1)
+  quit(1)]#
 
 when false:
   let sd = newSDNotify()
@@ -94,6 +94,7 @@ proc reDb() =
               password VARCHAR(100) NOT NULL,
               role_id   INTEGER  NOT NULL,
               active INTEGER NOT NULL,
+              api_key VARCHAR(100) NOT NULL,
               FOREIGN KEY (corpus_id)
                 REFERENCES corpus (id)
                   ON UPDATE CASCADE
@@ -103,9 +104,9 @@ proc reDb() =
                   ON UPDATE CASCADE
                   ON DELETE RESTRICT
             )""")
-      db.exec(sql"""INSERT into user (corpus_id, firstname, lastname, email, password, role_id, active)
-              VALUES(?,?,?,?,?,?,?)
-            """, 1, "Alexander", "Sadovoy", "alexander.sadovoy@m2414.de", "698d51a19d8a121ce581499d7b701668", 1, 1)
+      db.exec(sql"""INSERT into user (corpus_id, firstname, lastname, email, password, role_id, active, api_key)
+              VALUES(?,?,?,?,?,?,?,?)
+            """, 1, "Alexander", "Sadovoy", "alexander.sadovoy@m2414.de", "698d51a19d8a121ce581499d7b701668", 1, 1, "")
     let rows = db.getAllRows(sql"""SELECT 
                   *
                   FROM 
@@ -333,9 +334,9 @@ proc addUser(u: User): StatusResp[User] =
     if rowRole[0] == "":
       return result
     db.exec(sql"BEGIN")
-    let uId = db.tryInsertID(sql"""INSERT into user (corpus_id, firstname, lastname, email, password, role_id, active)
-              VALUES(?,?,?,?,?,?,?)
-            """, u.corpus_id, u.firstname, u.lastname, u.email, u.password.getMD5, rowRole[0], 1)
+    let uId = db.tryInsertID(sql"""INSERT into user (corpus_id, firstname, lastname, email, password, role_id, active, api_key)
+              VALUES(?,?,?,?,?,?,?,?)
+            """, u.corpus_id, u.firstname, u.lastname, u.email, u.password.getMD5, rowRole[0], 1, u.apiKey)
     if uId == -1:
       db.exec(sql"ROLLBACK")
       return result
@@ -377,7 +378,7 @@ proc delUser(e: string): StatusResp[int] =
     return result
   result.status = stOk
 
-proc updUser(id, firstname, lastname, email, password, role_id, active: string): StatusResp[User] =
+proc updUser(id, firstname, lastname, email, password, role_id, active, apiKey: string): StatusResp[User] =
   result.status = stUnknown
   var u =
     if id == "":
@@ -398,6 +399,8 @@ proc updUser(id, firstname, lastname, email, password, role_id, active: string):
     user.role_id = role_id.parseInt
   if active != "":
     user.active = active.parseInt
+  if apiKey != "":
+    user.apiKey = apiKey
   db.exec(sql"BEGIN")
   if not db.tryExec(sql"""UPDATE user
           SET firstname = ?,
@@ -405,10 +408,11 @@ proc updUser(id, firstname, lastname, email, password, role_id, active: string):
             email = ?,
             password = ?,
             role_id = ?,
-            active = ?
+            active = ?,
+            api_key = ?
           WHERE id = ?""",
             user.firstname, user.lastname, [user.firstname, user.lastname].join".".toLowerAscii() & "@m2414.de",
-            user.password, user.role_id, user.active, user.id
+            user.password, user.role_id, user.active, user.apiKey, user.id
         ):
     db.exec(sql"ROLLBACK")
     return result
@@ -472,7 +476,8 @@ router mrouter:
                 email: email[0],
                 role: strip(@"role"),
                 corpus_id: ifAdmin.user.corpus_id,
-                password: pass
+                password: pass,
+                apiKey: strip(@"apiKey")
               )
       #if not ifAdded.isAdded:
         #halt()
@@ -500,7 +505,7 @@ router mrouter:
       checkAdminToken ifAdmin
       var pass: string
       genPassword(pass, @"pass")
-      let updU = updUser(@"id", @"firstname", @"lastname", @"email", pass, @"role_id", @"active")
+      let updU = updUser(@"id", @"firstname", @"lastname", @"email", pass, @"role_id", @"active", @"apiKey")
       resp Http200, [("Content-Type","application/json")], $(%*updU)
     else:
       halt()
