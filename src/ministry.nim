@@ -54,7 +54,7 @@ proc reDb() =
       dropTbl "role"
       dropTbl "token"
       dropTbl "user"
-    when true:
+    when false:
       db.exec(sql"""CREATE TABLE corpus (
               id   INTEGER PRIMARY KEY,
               name VARCHAR(50) NOT NULL
@@ -119,7 +119,7 @@ proc reDb() =
         echo row
       echo "++++++++++ ", "111".toMD5, " ", "111".getMD5
   block x1:
-    when true:
+    when false:
       dropTbl "sector"
       db.exec(sql"""CREATE TABLE sector (
                   id INTEGER PRIMARY KEY,
@@ -174,7 +174,7 @@ proc reDb() =
                     ON DELETE CASCADE
               )""")
   block x2:
-    when true:
+    when false:
       dropTbl "ministry_act"
       db.exec(sql"""CREATE TABLE ministry_act (
                 id  INTEGER PRIMARY KEY,
@@ -202,7 +202,7 @@ proc reDb() =
                     ON UPDATE CASCADE
                     ON DELETE RESTRICT
           )""")
-  when true:
+  when false:
     db.exec(sql"""CREATE INDEX idx_usector
               ON user_sector (user_id, sector_id)
             """)
@@ -543,7 +543,7 @@ router mrouter:
     if @"action" == "delete":
       #checkAdminToken ifAdmin
       let delStat = delProcess(db, @"token", @"processId")
-      resp Http200, [("Content-Type","application/json")], $(%*{"status": delStat})
+      resp Http200, [("Content-Type","application/json")], $(%*delStat)
     elif @"action" == "update":
       if @"startDate" != "" or @"finishDate" != "":
         checkAdminToken ifAdmin

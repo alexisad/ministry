@@ -1,5 +1,6 @@
 import json, db_sqlite, times, strutils, tables, hashes, parsecsv, streams, unicode
 import util/[types, utils]
+import flatty, supersnappy
 
 const normalDateFmt = initTimeFormat("yyyy-MM-dd")
 
@@ -41,7 +42,69 @@ proc initTblTotFamByStreet(): Table[Hash, Natural] =
   strm.close()
 
 
-proc uploadSector*(db: DbConn, corpusId: int): StatusResp[int] =
+proc uploadSector*(db: DbConn, corpusId: int,
+                          sData = openFileStream "areaSectors.data",
+                          admName = "63654 Büdingen",
+                          userid = 36,
+                          fromDate = "2021-02-01",
+                          toDate = "2021-03-01"): StatusResp[int] =
+  result.status = stUnknown
+  #let tblTotFam = initTblTotFamByStreet()
+  #let sData = openFileStream "areaSectors.data"
+  let areaSectors = sData.readAll().uncompress().fromFlatty(AreaSectors)
+  db.exec(sql"""VACUUM INTO ?""", "ministry_bkp_$1.db" % ($now()).replace(":", "_") )
+  db.exec(sql"BEGIN")
+  let sectInAdmName = areaSectors.sectorsInAdminNames[admName]
+  for sectName in sectInAdmName:
+    echo "sectName:", sectName
+    let
+      pFix = sectName.split" "[0].split"-"[1].parseInt
+      sIntId = sectName.split" "[0]
+      sector = areaSectors.sectors[sectName]
+      postalCode = sector.streets[0].postalCode
+      city = sector.streets[0].city
+      district = sector.streets[0].district
+    try:
+      db.exec(sql"""DELETE FROM sector WHERE sector_internal_id = ? AND corpus_id = ?""", sIntId, corpusId)
+    except:
+      if getCurrentExceptionMsg().toUpperAscii().find("CONSTRAINT") != -1:
+        stderr.writeLine(getCurrentExceptionMsg())
+        db.exec(sql"""UPDATE sector
+          SET inactive = 1
+          WHERE sector_internal_id = ? AND corpus_id = ?""",
+                sIntId, corpusId)
+      else:
+        db.exec(sql"ROLLBACK")
+        return result
+    let dbSId = db.tryInsertID(sql"""INSERT INTO sector
+        (corpus_id, sector_internal_id, name, inactive, plz, pfix)
+        VALUES(?,?,?,0,?,?)
+        """, corpusId, sIntId, sectName, postalCode, pFix)
+    db.exec(sql"""INSERT INTO user_sector
+              (sector_id, user_id, date_start, date_finish)
+              VALUES(?,?,?,?)
+        """, dbSId, userId, fromDate, toDate)
+    for street in sector.streets:
+      let ns = street.street
+      var streetCoords = newSeqOfCap[string](street.roadlinks.len)
+      for link in street.roadlinks:
+        var lnkCoords = newSeqOfCap[string](link.coords.len)
+        for p in link.coords:
+          lnkCoords.add [p.y, p.x].join","
+        streetCoords.add lnkCoords.join","
+      let totalFam = 0
+      db.exec(sql"""INSERT INTO street
+              (sector_id, name, geometry, total_families)
+              VALUES(?,?,?,?)
+        """, dbSId, ns, streetCoords.join ";", totalFam)
+
+  if not db.tryExec(sql"COMMIT"):
+    db.exec(sql"ROLLBACK")
+    return result
+  result.status = stOk
+
+
+proc uploadSectorOld*(db: DbConn, corpusId: int): StatusResp[int] =
   result.status = stUnknown
   let tblTotFam = initTblTotFamByStreet()
   let sectorJsn = parseFile("Büdingen_Exp_2020-04-10T23_11_24+02_00.json")
@@ -332,16 +395,18 @@ proc getSectStreets*(db: DbConn, t, sId: string): StatusResp[seq[SectorStreets]]
   var rChck: tuple[isOk: bool, rowToken: Row]
   resultCheckToken(db, t)
   let streetRows = db.getAllRows(sql"""SELECT 
-          s.id, s.name, s.sector_id, status_street.name, s.geometry, s.total_families
+          s.id, s.name, s.sector_id, status_street.name, s.geometry, s.total_families, sector.name as sectorName
           FROM street as s
           LEFT JOIN status_street ON status_street.id = s.status_street_id
+          INNER JOIN sector ON sector.id = s.sector_id
           WHERE sector_id = ?""", sId)
   #dbg: echo "streetRows:", streetRows
   for s in streetRows:
     let st = if s[3] != "": s[3] else: "strNotStarted"
     result.resp.add SectorStreets(id: s[0].parseInt,
               name: s[1], sector_id: s[2].parseInt, status: parseEnum[StreetStatus](st),
-              geometry: s[4], totalFamilies: s[5].parseInt().Natural)
+              geometry: s[4], totalFamilies: s[5].parseInt().Natural,
+              sectorName: s[6])
 
 
 proc setStatusStreets*(db: DbConn, t, strsStatus: string): StatusResp[int] =

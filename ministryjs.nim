@@ -3,14 +3,14 @@
 # browser-sync start --proxy "http://127.0.0.1:5000" --files "public/js/*.js"
 
 import utiljs
-include karax / prelude
-import karax / [vstyles]
-import jsffi except `&`
-import jsbind, async_http_request#, asyncjs
+#include karax / prelude
+import karax / [kbase, karaxdsl, vstyles, karax, vdom, jstrutils]
+import std/jsffi except `&`
+import #[jsbind,]# async_http_request#, asyncjs
 from sugar import `=>`, `->`
-from uri import decodeUrl
+from uri import decodeUrl, encodeUrl
 import src/util/types
-import strformat, strutils, times, sequtils
+import strformat, strutils, times, sequtils, json
 import usersjs
 
 const normalDateFmt = initTimeFormat("yyyy-MM-dd")
@@ -22,12 +22,13 @@ var localStorage {.importjs, nodecl.}: JsObject
 var navigator {.importjs, nodecl.}: JsObject
 
 
-curEngineType = localStorage.getItem("engineType").to(cstring).parseInt()
+let savedEngineType = localStorage.getItem("engineType").to(cstring).parseInt()
+curEngineType = if savedEngineType == engineTypes.P2D.to(int): engineTypes.P2D else: engineTypes.WEBGL
 curEngineType =
     if localStorage.hasOwnProperty("engineType"):
         curEngineType
     else:
-        engineTypes.WEBGL.to(int)
+        engineTypes.WEBGL
 localStorage.setItem("engineType", curEngineType)
 dwnloadedMaps = jsonParse(localStorage.getItem("dwnloadedMaps").to(cstring)).to(seq[string])
 dwnloadedMaps =
@@ -39,7 +40,7 @@ dwnloadedMaps =
 dbg: console.log("dwnloadedMaps:", dwnloadedMaps)
 localStorage.setItem("dwnloadedMaps", jsonStringify dwnloadedMaps)
 
-proc bindMap(engineType: int = curEngineType)
+proc bindMap(engineType: JsObject = curEngineType)
 
 
 let pIndicator* = newPositionIndicator(20)
@@ -91,20 +92,19 @@ var vUser = jq("#user".toJs).val().to(cstring)
 if vUser == "":
     try:
         vUser = localStorage.getItem("user").to(cstring)
-        currUser = jsonParse(decodeUrl $vUser).resp.to(CUser)
+        currUser = (decodeUrl $vUser).parseJson()["resp"].to(User)
+        console.log("1.currUser.role:", currUser.role.cstring)
     except:
         discard
-    #if currUser.token != token:
-        #currUser = CUser(token: token)
-        #localStorage.setItem("user", "")
 else:
     localStorage.setItem("user", vUser)
-    currUser = jsonParse(decodeUrl $vUser).resp.to(CUser)
-currUser.token = token
-var currProcess: CSectorProcess
-var allSectProc: seq[CSectorProcess]
-var currStreets: seq[CSectorStreets]
-var currStreetsTmp: seq[CSectorStreets]
+    currUser = (decodeUrl $vUser).parseJson()["resp"].to(User)
+    console.log("2.currUser.role:", currUser.role.cstring)
+currUser.token = token#.cstring
+var currProcess: SectorProcess
+var allSectProc: seq[SectorProcess]
+var currStreets: seq[SectorStreets]
+var currStreetsTmp: seq[SectorStreets]
 var showStreetsEnabled = false
 var
     spinnerOn = false
@@ -116,7 +116,7 @@ var serchSectByName: string
 var setEvtInpSearchSect = false
 var currUiSt = JsObject{inpSearch: kstring""}
 var map {.exportc.}: JsObject
-var ui {.exportc.}: JsObject
+var glbUi {.exportc.}: JsObject
 var sectStreetGrp = jsNew H.map.Group()
 var noMyMsgEl: JsObject
 #https://www.w3schools.com/code/tryit.asp?filename=GBBT9UWJK39Y
@@ -209,8 +209,8 @@ proc login(btnClass: kstring): proc() =
 
 proc loginDialog(): VNode =
     let
-        plEmail = "Пользователь"
-        plPass = "Пароль"
+        plEmail = "Пользователь".cstring
+        plPass = "Пароль".cstring
     dbg:
         console.log("plsHolders:", plEmail, plPass)
         console.log("H.Map:", jsNew H.geo.Point(1, 51))
@@ -233,12 +233,12 @@ proc loginDialog(): VNode =
             button(class="btn btn-lg btn-primary btn-block", `type`="submit", onclick = login(".form-signin .btn")):
                 text "Войти"
             p(class="mt-5 mb-3 text-muted text-center"):
-                text "© 2019-2020"
+                text "© 2019-2021"
 
 proc updProcc(): proc() =
     result = proc() =
         spinnerOn = true
-        allSectProc = newSeq[CSectorProcess]()
+        allSectProc = newSeq[SectorProcess]()
         let p = currProcess
         setTs()
         let stmUpdPrc = sendRequest(# will set finish date<-(now) to give back
@@ -248,8 +248,8 @@ proc updProcc(): proc() =
         stmUpdPrc.observe(
             proc (value: Response) =
                 dbg: console.log("value:", value.statusCode)
-                let respSect = parseResp(value.body, CStatusResp[seq[CSectorProcess]])
-                if respSect.status == "unknown":
+                let respSect = parseResp(value.body, StatusResp[seq[SectorProcess]])
+                if respSect.status == StatusType.stUnknown:
                     #discard
                     errMsg = $respSect.message
                 let ownSEl = document.getElementById("ownSectors")
@@ -270,7 +270,7 @@ proc updProcc(): proc() =
 proc delProcc(): proc() =
     result = proc() =
         spinnerOn = true
-        allSectProc = newSeq[CSectorProcess]()
+        allSectProc = newSeq[SectorProcess]()
         let p = currProcess
         setTs()
         let stmDelPrc = sendRequest(
@@ -280,8 +280,8 @@ proc delProcc(): proc() =
         stmDelPrc.observe(
             proc (value: Response) =
                 dbg: console.log("value:", value.statusCode)
-                let respSect = parseResp(value.body, CStatusResp[int])
-                if respSect.status == "unknown":
+                let respSect = parseResp(value.body, StatusResp[int])
+                if respSect.status == stUnknown:
                     #discard
                     errMsg = $respSect.message
                 let ownSEl = document.getElementById("ownSectors")
@@ -311,7 +311,7 @@ proc chgUiState(chgEl: JsObject): JsObject =
 proc confirmTakeSect(): proc() = 
     result = proc() =
         spinnerOn = true
-        allSectProc = newSeq[CSectorProcess]()
+        allSectProc = newSeq[SectorProcess]()
         dbg: console.log("confirmTakeSect: ", currProcess)
         let p = currProcess
         setTs()
@@ -323,8 +323,8 @@ proc confirmTakeSect(): proc() =
             proc (value: Response) =
                 closeMap() #any case
                 dbg: console.log("value:", value.statusCode)
-                let respSect = parseResp(value.body, CStatusResp[seq[CSectorProcess]])
-                if respSect.status == "unknown":
+                let respSect = parseResp(value.body, StatusResp[seq[SectorProcess]])
+                if respSect.status == stUnknown:
                     #discard
                     errMsg = $respSect.message
                 let ownSEl = document.getElementById("ownSectors")
@@ -380,7 +380,7 @@ proc proccessedModalBody(): VNode =
 
 
 proc showConfirm(modalId: string, bdy: VNode): VNode =
-    let lblM = modalId & "Label"
+    let lblM = (modalId & "Label").cstring
     result = buildHtml tdiv(class="modal fade", id=modalId, tabindex="-1", role="dialog", aria-labelledby=lblM, aria-hidden="true"):
         tdiv(class="modal-dialog", role="document"):
             tdiv(class="modal-content"):
@@ -393,7 +393,7 @@ proc showConfirm(modalId: string, bdy: VNode): VNode =
                 bdy
 
 
-proc clckOpenMap(p: CSectorProcess): proc() = 
+proc clckOpenMap(p: SectorProcess): proc() = 
     result = proc() =
         currProcess = p
         var elMap = jq("#map-container".toJs)[0]
@@ -443,10 +443,10 @@ proc setStrStatus(iStr: int): proc() =
             #currStreets[iStr].status = StreetStatus.strNotStarted
         let curSt = parseEnum[StreetStatus]($currStreets[iStr].status)
         if curSt == StreetStatus.strFinished: 
-            currStreets[iStr].status = $StreetStatus.strNotStarted
+            currStreets[iStr].status = StreetStatus.strNotStarted
         else:
             dbg: console.log("currStreets:", currStreets[iStr].status)
-            currStreets[iStr].status = $succ(curSt)
+            currStreets[iStr].status = succ(curSt)
             dbg: console.log("currStreets:", currStreets[iStr].status)
         dbg: console.log("ord status: ", ord(parseEnum[StreetStatus]($currStreets[iStr].status)))
 
@@ -491,32 +491,45 @@ proc saveStreets(): proc() =
         #errMsg = "Сохранение статуса улиц пока не работает..."
 
 proc showStreets(): VNode =
-    var strSt = (color: "danger", stDescr: " - не пройдена")
+    var strSt = (color: "danger".cstring, stDescr: " - не пройдена".cstring)
     result = buildHtml tdiv:
         tdiv(class="d-flex justify-content-center mt-6"):
             tdiv(class="overflow-auto px-3 vh-75 w-75 bg-light shadow-lg border rounded-lg"):
                 for i,str in currStreets.pairs:
-                    let tf = str.totalFamilies
+                    let tf = ($str.totalFamilies).cstring
                     let sSt = parseEnum[StreetStatus]($str.status)
+                    let
+                        arrSectName = str.sectorName.split" "
+                        pc = arrSectName[0].split"-"[0]
+                        cityName = arrSectName[1]
+                        ci = encodeUrl(fmt"{pc} {cityName}")
+                        st = encodeUrl(str.name, true)
                     if sSt == StreetStatus.strStarted:
-                        strSt = (color: "primary", stDescr: " - не закончена")
+                        strSt = (color: "primary".cstring, stDescr: " - не закончена".cstring)
                     elif sSt == StreetStatus.strFinished:
-                        strSt = (color: "success", stDescr: " - пройдена")
+                        strSt = (color: "success".cstring, stDescr: " - пройдена".cstring)
                     else:
-                        strSt = (color: "danger", stDescr: " - не начата")
+                        strSt = (color: "danger".cstring, stDescr: " - не начата".cstring)
                     tdiv(class="py-2 row"):
-                        button(`type`="button", class="col text-nowrap overflow-auto ml-2 mr-2 btn btn-outline-" &
-                                    strSt.color & " btn-sm", onclick = setStrStatus(i)):
+                        button(`type`="button",
+                                    class=fmt"text-nowrap overflow-auto ml-2 mr-2 btn btn-outline-{strSt.color} btn-sm".cstring,
+                                    onclick = setStrStatus(i)
+                                ):
                             text str.name
+                        span(class = "tel-book"):
+                            a(href = fmt"https://www.dasoertliche.de/?zvo_ok=0&ci={ci}&st={st}&radius=0&form_name=search_nat_ext".cstring,
+                                    target = "_blank"):
+                                text "das Örtl."
                             #discard dbg: console.log("street:->", str)
-                        input(`type`="number", #[inputmode="numeric",]# class="col-2 mr-2 px-1", id="strfam" & $i & $tf, value = $tf, oninput = setStrTotFam(i))
-                    tdiv(class="overflow-auto text-nowrap border-bottom pb-2 mt-n3"):
-                        text strSt.stDescr
+                        #[input(`type`="number", #[inputmode="numeric",]# class="col-1 mr-2 px-1", id="strfam" & ($i & $tf).cstring,
+                                                value = tf, oninput = setStrTotFam(i))]#
+                    #[tdiv(class="overflow-auto text-nowrap border-bottom pb-2 mt-n3"):
+                        text strSt.stDescr]#
             tdiv:
                 button(`type`="button", class="btn btn-success btn", onclick = saveStreets()):
                     text "ok"
     
-proc clckProccSect(p: CSectorProcess): proc() = 
+proc clckProccSect(p: SectorProcess): proc() = 
     result = proc() =
         dbg: console.log("clckProccSect: ", p)
         currProcess = p
@@ -544,7 +557,7 @@ proc logout() =
     document.cookie = cstring"token=none;path=/"
     document.location.replace("/")
 
-proc allowTake(p: CSectorProcess): bool =
+proc allowTake(p: SectorProcess): bool =
     showNoMyMsg()
     result = false
     if p.date_start == "":
@@ -558,7 +571,12 @@ proc allowTake(p: CSectorProcess): bool =
 proc showAllProc(): VNode =
     #for p in allSectProc:
         #discard# console.log("p.name:", $(p.name))
-    let clsCol = "card-text"#"col-sm-auto themed-grid-col"
+    #currUser.role = "superadmin".cstring
+    console.log("role:".cstring, currUser.role.cstring)
+    let
+        clsCol = "card-text".cstring#"col-sm-auto themed-grid-col"
+        superadmin = "superadmin".cstring
+        uRole = currUser.role.cstring
     result = buildHtml tdiv:
         showErrMsg()
         nav(class="navbar fixed-top navbar-expand navbar-light bg-light shadow p-1 mb-0 bg-white rounded overflow-auto"):
@@ -576,8 +594,8 @@ proc showAllProc(): VNode =
                             aria-describedby="searchHelp", placeholder="искать...",
                             value = currUiSt.inpSearch.to(kstring)
                     )
-                discard dbg: console.log("currUser:", currUser)
-                if currUser.role == "superadmin":
+                #discard dbg: console.log("currUser:", currUser)
+                if uRole == superadmin:
                     ul(class="navbar-nav mr-auto"):
                         li(class="nav-item"):
                             a(class="nav-link", onclick = editUsers()):
@@ -618,8 +636,8 @@ proc showAllProc(): VNode =
                                     li(class="nav-item"):
                                         a(class="nav-link", href="#gBackModal", data-toggle="modal", data-target="#gBackModal", onclick = clckProccSect(p)):
                                             text "Сдать"
-                                    discard dbg:
-                                        console.log("currDate > $p.date_finish", currDate, p.date_finish)
+                                    #discard dbg:
+                                        #console.log("currDate > $p.date_finish", currDate, p.date_finish)
                         tdiv(class="card-body"):
                             h6(class="card-title"):
                                 text p.name
@@ -645,11 +663,11 @@ proc toggleSpinner(): Vnode =
 
 proc toggleProgress(): Vnode =
     result = buildHtml tdiv()
-    let cText = if progressProc < 5: "text-dark" else: ""
+    let cText = if progressProc < 5: "text-dark".cstring else: "".cstring
     if progressOn:
         result = buildHtml tdiv(class="progress mt-6"):
             tdiv(class="progress-bar progress-bar-striped progress-bar-animated " & cText, role="progressbar", style = style((StyleAttr.width, cstring($progressProc & "%")))#[, `style`=cstring("width: " & $progressProc & "%;")]#,
-                aria-valuenow = $progressProc, aria-valuemin="0", aria-valuemax="100"):
+                aria-valuenow = ($progressProc).cstring, aria-valuemin="0", aria-valuemax="100"):
                 text $progressProc & "%"
 
 
@@ -752,17 +770,19 @@ proc bindGps() =
             lat: position.coords.latitude,
             lng: position.coords.longitude
         }
-        if curEngineType == engineTypes.P2D.to(int) and #if P2D then change marker pos if > 10 meter diff 
-                    currentPosM.getGeometry().distance(newGeoPos).to(float) > 10.00 and
+        let dist = currentPosM.getGeometry().distance(newGeoPos).to(float)
+        if curEngineType == engineTypes.P2D and #if P2D then change marker pos if > 10 meter diff 
+                    dist > 10.00 and
                     not isInternet: #and only if no internet
             currentPosM.setGeometry(newGeoPos)
-        elif curEngineType == engineTypes.P2D.to(int) and isInternet:
+        elif curEngineType == engineTypes.P2D and isInternet:
             currentPosM.setGeometry(newGeoPos)
-        if curEngineType == engineTypes.WEBGL.to(int):
+        if curEngineType == engineTypes.WEBGL:
             currentPosM.setGeometry(newGeoPos)
         dbg: console.log("position: ", map, position, currentPosM.getGeometry(), map.geoToScreen(currentPosM.getGeometry()))
-    proc errorHandler(errorObj: JsObject) = 
-        console.log cstring($errorObj.code.to(int) & ": " & errorObj.message.to(cstring))
+    proc errorHandler(errorObj: JsObject) =
+        #discard
+        console.log cstring($errorObj.code.to(int) & ": " & $errorObj.message.to(cstring))
     navigator.geolocation.watchPosition(getPos, errorHandler)
 bindGps()
 
@@ -782,14 +802,14 @@ proc bindSearchSector() =
     #stmUiChg.log()
     proc wrpS(vS: JsObject): JsObject =
         spinnerOn = true
-        allSectProc = newSeq[CSectorProcess]()
+        allSectProc = newSeq[SectorProcess]()
         redraw()
         result = getAllProccess2(vS.isOwnSect.to(bool), $vS.inpSearch.to(cstring))
     let stmResult = stmUiChg.flatMapLatest(wrpS)
     stmResult.observe(
         proc (value: Response) =
             dbg: console.log("value:", value.statusCode, value)
-            allSectProc = parseResp(value.body, CStatusResp[seq[CSectorProcess]]).resp
+            allSectProc = parseResp(value.body, StatusResp[seq[SectorProcess]]).resp
             spinnerOn = false
             redraw()
         ,
@@ -817,12 +837,13 @@ proc bindEvtsMapScreen() =
             "/sector/streets?" & &"token={currUser.token}&sectorId={currProcess.sector_id}"
         )
     let stmOpenMapScr = Kefir.constant(false)
-    stmClMap = Kefir.fromEvents(clMapEl, "click").map(() => true)
+    stmClMap = Kefir.fromEvents(clMapEl, "click")#.map(() => true) #redifination "helper" compile error
+    stmClMap = stmClMap.map(() => true)
     let stmGetStreet = Kefir.merge(toJs [stmOpenMapScr, stmClMap]).flatMapLatest(getStreets)
     stmGetStreet.observe(
         proc (value: Response) =
             dbg: console.log("value:", value.statusCode)
-            let respSect = parseResp(value.body, CStatusResp[seq[CSectorStreets]])
+            let respSect = parseResp(value.body, StatusResp[seq[SectorStreets]])
             let sectStrts = respSect.resp
             currStreets = sectStrts
             currStreetsTmp = sectStrts
@@ -886,10 +907,10 @@ setRenderer createDom, "main-control-container", proc() =
             
 
 
-proc bindMap(engineType: int = curEngineType) =
+proc bindMap(engineType: JsObject = curEngineType) =
     let platform = jsNew(H.service.Platform(
                 JsObject{
-                    apikey: currUser.apiKey,
+                    apikey: currUser.apiKey.cstring,
                     useHTTPS: true
                 }
             )
@@ -907,50 +928,66 @@ proc bindMap(engineType: int = curEngineType) =
         pixelRatio: pixelRatio,
         noWrap: true
     }
-    let defLayers = platform.createDefaultLayers(layerOpts)
-    let mapContainer = jq("#map-container".toJs)[0]
+    let
+        defLayers = platform.createDefaultLayers(layerOpts)
+        mapContainer = jq("#map-container".toJs)[0]
+        mapType = 
+            if engineType == engineTypes.P2D:
+                defLayers.raster.normal
+            else:
+                defLayers.vector.normal
     mapContainer.innerHTML = ""
     map = jsNew H.Map(
             mapContainer,
-            defLayers.raster.normal.map,
+            mapType.map,
             mapOpts
         )
     #map.setBaseLayer(custBaseLayer)
     map.getBaseLayer().setMax(20)
     dbg: console.log("platform:: ", platform)
     var behavior = jsNew H.mapevents.Behavior(jsNew H.mapevents.MapEvents(map))
-    ui = H.ui.UI.createDefault(map, defLayers)
-    ui.removeControl("zoom")
+    let hUi = H.ui
+    glbUi = hUi.UI.createDefault(map, defLayers)
+    glbUi.removeControl("zoom")
     var
-        cntrRMap = jsNew H.ui.Control()
-        cntrNoMy = jsNew H.ui.Control()
-    cntrRMap.setAlignment(H.ui.LayoutAlignment.RIGHT_BOTTOM)
-    cntrNoMy.setAlignment(H.ui.LayoutAlignment.TOP_CENTER)
+        cntrRMap = jsNew hUi.Control()
+        cntrNoMy = jsNew hUi.Control()
+    let
+        layoutAligm = hUi.LayoutAlignment
+        uiBase = hUi.base
+    cntrRMap.setAlignment(layoutAligm.RIGHT_BOTTOM)
+    cntrNoMy.setAlignment(layoutAligm.TOP_CENTER)
     var
-        cntrRMapBtn = (jsNew H.ui.base.PushButton(JsObject{label: cstring"<h6>Растр</h6>"}))
+        cntrRMapBtn = (jsNew uiBase.PushButton(JsObject{label: cstring"<h6>Растр</h6>"}))
             .addClass(cstring"d-flex align-items-center justify-content-center")
-        noMyMsg = jsNew H.ui.base.Element(cstring"h5", cstring"d-flex align-items-center justify-content-center pt-4 text-danger")
+        noMyMsg = jsNew uiBase.Element(cstring"h5", cstring"d-flex align-items-center justify-content-center pt-4 text-danger")
     cntrRMap.addChild cntrRMapBtn
     cntrNoMy.addChild noMyMsg
-    ui.addControl("rastr", cntrRMap)
-    ui.addControl("noMyMsg", cntrNoMy)
+    glbUi.addControl("rastr", cntrRMap)
+    glbUi.addControl("noMyMsg", cntrNoMy)
     noMyMsgEl = noMyMsg.getElement()
     showNoMyMsg()
     dbg: console.log("noMyMsg:", noMyMsg.getElement())
+    let uiButton = uiBase.Button
     cntrRMapBtn.setState(
-        if curEngineType == engineTypes.WEBGL.to(int): H.ui.base.Button.State.UP
-        else: H.ui.base.Button.State.DOWN
+        if curEngineType == engineTypes.WEBGL: uiButton.State.UP
+        else: uiButton.State.DOWN
     )
     cntrRMapBtn.addEventListener("statechange", proc(evt: JsObject) =
-            if evt.target.getState() == H.ui.base.Button.State.UP:
-                curEngineType = engineTypes.WEBGL.to(int)
+            if evt.target.getState() == uiButton.State.UP:
+                curEngineType = engineTypes.WEBGL
             else:
-                curEngineType = engineTypes.P2D.to(int)
+                curEngineType = engineTypes.P2D
             localStorage.setItem("engineType", curEngineType)
             dbg: console.log("statechange:", evt.target.getState())
             bindMap()
     )
-    window.addEventListener("resize", () => map.getViewPort().resize())
+    let mpRef = map
+    #window.addEventListener("resize", () => mpRef.getViewPort().resize())
+    window.addEventListener("resize", proc () =
+                                let vp = map.getViewPort()
+                                vp.resize()
+                            )
     map.addObject currentPosM
     map.addObject sectStreetGrp
 
@@ -959,7 +996,7 @@ proc bindMap(engineType: int = curEngineType) =
 
 proc getAllProccess(myS = false, sectorName = "") =
     spinnerOn = true
-    allSectProc = newSeq[CSectorProcess]()
+    allSectProc = newSeq[SectorProcess]()
     redraw()
     let rUid =
         if not myS: ""
@@ -975,7 +1012,7 @@ proc getAllProccess(myS = false, sectorName = "") =
     stmLogin.observe(
         proc (value: Response) =
             dbg: console.log("value:", value.statusCode, value)
-            allSectProc = parseResp(value.body, CStatusResp[seq[CSectorProcess]]).resp
+            allSectProc = parseResp(value.body, StatusResp[seq[SectorProcess]]).resp
         ,
             #redraw(),
         proc (error: Response) =
@@ -991,7 +1028,7 @@ proc getAllProccess(myS = false, sectorName = "") =
 
 
 if currUser.token != "":
-    allSectProc = newSeq[CSectorProcess]()
+    allSectProc = newSeq[SectorProcess]()
     spinnerOn = true
     redraw()
     bindMap()

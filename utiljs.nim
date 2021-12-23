@@ -1,10 +1,10 @@
-include karax / prelude
-import karax / [vstyles]
+import karax / [vstyles, karax, vdom, jstrutils]
 import jsffi except `&`
-import strutils
+import json, strformat
 from math import PI
 import src/util/types
-import jsbind, async_http_request
+import async_http_request
+import jsbind
 
 
 var console* {.importjs, nodecl.}: JsObject
@@ -19,11 +19,11 @@ proc jqData*(obj: JsObject, hndlrs: cstring): JsObject {.importjs: "$$._data(#,#
 
 #{.emit: "function inherits(B,A) { function I() {}; I.prototype = A.prototype; B.prototype = new I(); B.prototype.constructor = B; return B;}".}
 #proc inherits*(a: JsObject, b: JsObject): JsObject {.importjs: "inherits(#,#)".}
-proc getRemoteProvider(): JsObject {.importjs: "getCustomRemoteProvider()".}
+#proc getRemoteProvider(): JsObject {.importjs: "getCustomRemoteProvider()".}
 
-type
-    ContStreamEvts = object
-        inpSearchByName: JsObject
+#type
+    #ContStreamEvts = object
+        #inpSearchByName: JsObject
 type
     PositionIndicator* = object
         size*: Natural
@@ -31,16 +31,16 @@ type
         canvas: JsObject
 
 var
-    currUser* = CUser()
+    currUser* = User()
     timeStamp*: string
     errMsg*: string
     isShowUsers* = false
     isShowNavMap* = false
-    allUsers*: seq[CUser]
+    allUsers*: seq[User]
 var pageYOffset {.importjs, nodecl.}: JsObject
 var pageXOffset {.importjs, nodecl.}: JsObject
 var engineTypes* = H.map.render.RenderEngine.EngineType
-var curEngineType*: int
+var curEngineType*: JsObject
 var dwnloadedMaps*: seq[string]
 
 proc  getElemCoords*(elem: JsObject): tuple[top, left: float] =
@@ -55,15 +55,15 @@ template dbg*(x: untyped): untyped =
 
 var isInternet* = true
 var pIndicator*: PositionIndicator
-var window {.importjs, nodecl.}: JsObject
-var animMSec = (jsNew window.Date()).getMilliseconds().to(int)
+#var window {.importjs, nodecl.}: JsObject
+#var animMSec = (jsNew window.Date()).getMilliseconds().to(int)
 var animCnt = 0
 var opa = 0.00
 var sopa = 1.00
 
 
 proc sendRequest*(meth, url: string, body = "", headers: openarray[(string, string)] = @[]): JsObject =
-    let hdrs = cast[seq[(string, string)]](headers)
+    let hdrs = cast[seq[(cstring, cstring)]](headers)
     var rPrc =
         proc(emitter: JsObject): proc() =
             let oReq = newXMLHTTPRequest()
@@ -81,7 +81,7 @@ proc sendRequest*(meth, url: string, body = "", headers: openarray[(string, stri
             oReq.addEventListener("load", reqListener)
             oReq.addEventListener("error", reqListener)
             #emitter.emit(1)
-            oReq.open(meth, if url != "": url & "&tst=" & timeStamp else: "")
+            oReq.open(meth.cstring, (if url != "": url & "&tst=" & timeStamp else: "").cstring)
             oReq.responseType = "text"
             for h in hdrs:
                 oReq.setRequestHeader(h[0], h[1])
@@ -91,11 +91,13 @@ proc sendRequest*(meth, url: string, body = "", headers: openarray[(string, stri
                 oReq.send(body)
             #console.log("emitter:", emitter)
             result = proc() =
-                oReq.abort()
+                async_http_request.abort(oReq)
     result = Kefir.stream(rPrc).take(1).takeErrors(1).toProperty()
 
+
 proc parseResp*(bdy: string, T: typedesc): T =
-    result = cast[T](jsonParse(bdy))
+    dbg: log("parseResp bdy:".cstring, bdy.cstring)
+    result = bdy.parseJson.to(T)
     if $result.status == "loggedOut":
         currUser.token = ""
         isShowNavMap = false
@@ -120,14 +122,14 @@ proc redrawIndCtx(pIndicator: PositionIndicator, opa: float) =
 
 
 proc drawInd*() =
-    if curEngineType == engineTypes.P2D.to(int): #avoid tiles reload while indicator animated
+    if curEngineType == engineTypes.P2D: #avoid tiles reload while indicator animated
         if not isInternet and not pIndicator.marker.getVisibility.to(bool):
             pIndicator.marker.setVisibility(true)
         if not isInternet:
             pIndicator.redrawIndCtx(1.00)
             return
-    let time = jsNew window.Date()
-    let op = time.getMilliseconds().to(int)
+    #let time = jsNew window.Date()
+    #let op = time.getMilliseconds().to(int)
     #dbg: console.log("op-animMSec:", op-animMSec)
     if animCnt == 8:
         animCnt = 0
@@ -162,18 +164,23 @@ proc newPositionIndicator*(size: Natural): PositionIndicator =
         }
     )
 
-proc setPolyStyleByStat*(p: JsObject, stat: cstring) =
-    let stStat = ord parseEnum[StreetStatus]($stat)
+proc setPolyStyleByStat*(p: JsObject, stat: StreetStatus) =
+    #let stStat = ord parseEnum[StreetStatus]($stat)
     let mClr =
-        if stStat == 0:
+        if stat == strNotStarted:
             "255, 0, 0"
-        elif stStat == 1:
+        elif stat == strStarted:
             "0, 0, 255"
         else:
             "0, 255, 0"
+    let opas =
+        if curEngineType == engineTypes.P2D:
+            "0.3"
+        else:
+            "0.5"
     p.setStyle(JsObject{
-        strokeColor: cstring"rgba(" & mClr & ", 0.2)",
-        fillColor: cstring"rgba(" & mClr & ", 0.4)",
+        strokeColor: fmt"rgba({mClr}, {opas})".cstring,
+        #fillColor: cstring"rgba(" & mClr & ", 0.4)",
         lineWidth: 10
     })
 

@@ -1,4 +1,4 @@
-import tables, strutils, db_sqlite, times
+import tables, strutils, #[db_sqlite,]# times
 
 type
   User* = object
@@ -13,18 +13,6 @@ type
     active*: int
     token*: string
     apiKey*: string
-  CUser* = object
-    id*: int
-    corpus_id*: int
-    firstname*: cstring
-    lastname*: cstring
-    email*: cstring
-    role_id*: int
-    role*: cstring
-    password*: cstring
-    active*: int
-    token*: cstring
-    apiKey*: cstring
   TokenResp* = object
     token*: string
   StatusType* = enum
@@ -33,10 +21,6 @@ type
     #stOk = "OK", stUnknown = "unknown", stLoggedOut = "loggedOut"
   StreetStatus* = enum
     strNotStarted = "strNotStarted", strStarted = "strStarted", strFinished = "strFinished"
-  CStatusResp*[T] = object
-    status*: cstring
-    message*: cstring
-    resp*: T
   StatusResp*[T] = object
     status*: StatusType
     message*: string
@@ -48,27 +32,18 @@ type
     date_start*, date_finish*: string
     id*, user_id*, sector_id*: int
     totalFamilies*: int
-  CSectorProcess* = object
-    name*: cstring
-    sector_internal_id*: cstring
-    firstname*, lastname*: cstring
-    date_start*, date_finish*: cstring
-    id*, user_id*, sector_id*: int
-    totalFamilies*: int
   SectorStreets* = object
     id*, sector_id*: int
     name*: string
     geometry*: string
     totalFamilies*: Natural
+    sectorName*: string
     status*: StreetStatus
-  CSectorStreets* = object
-    id*, sector_id*: int
-    name*: cstring
-    geometry*: cstring
-    totalFamilies*: Natural
-    status*: cstring
 
-
+type
+    Point* = object
+        x*: float
+        y*: float
 
 type
   Latitude* = range[-90.00..90.00]
@@ -77,6 +52,55 @@ type
   Coord* = ref object
       lat*: Latitude
       lng*: Longitude
+  AdmSector* = ref object
+    name*: string
+    streets*: seq[AdminStreet]
+  AreaSectors* = ref object
+    sectorsInAdminNames*: TableRef[string, seq[string]]
+    sectors*: OrderedTableRef[string, AdmSector]
+  City* = ref object
+    id*: string
+    name*: string
+    pdeName*: seq[PdeName]
+  District* = ref object
+    id*: string
+    name*: string
+    pdeName*: seq[PdeName]
+    polygonOuter*: seq[float]
+    outerPoints*: seq[Point]
+  AdminStreet* = ref object
+    city*: City
+    postalCode*: string
+    district*: District
+    street*: string
+    isStrNameEmpty*: bool
+    roadlinks*: seq[RoadLink]
+  RoadLink* = ref object
+    linkId*: string
+    name*: seq[PdeName]
+    isStrNameEmpty*: bool
+    districtId*: string
+    cityId*: string
+    coords*: seq[Point]
+    refNodeCoord*: Point
+    nonRefNodeCoord*: Point
+    linkLen*: float
+    refLinks*: seq[string]
+    nonRefLinks*: seq[string]
+    postalCode*: string
+    addresses*: seq[string]
+  PdeNameType* = enum
+    abbreviation = "A - abbreviation", baseName = "B - base name",
+    exonym = "E - exonym", shortenedName = "K - shortened name",
+    synonym = "S - synonym", unknown = "unknown"
+  PdeNameKind* = enum
+    name, translit, phoneme
+  PdeName* = ref object
+    name*: string
+    lang*: LangCode
+    nameType*: PdeNameType
+    nameKind*: PdeNameKind
+  LangCode* = distinct string
   Link* = ref object
       linkId*: int
       name*: string
@@ -117,12 +141,14 @@ proc startDate*(s: SectorProcess): DateTime =
 proc finishDate*(s: SectorProcess): DateTime =
   s.date_finish.parse(initTimeFormat("yyyy-MM-dd"))
 
-proc startDate*(s: CSectorProcess): DateTime =
-  ($s.date_start).parse(initTimeFormat("yyyy-MM-dd"))
+#[
+  proc startDate*(s: SectorProcess): DateTime =
+  (s.date_start).parse(initTimeFormat("yyyy-MM-dd"))
 
 
-proc finishDate*(s: CSectorProcess): DateTime =
-  ($s.date_finish).parse(initTimeFormat("yyyy-MM-dd"))
+proc finishDate*(s: SectorProcess): DateTime =
+  (s.date_finish).parse(initTimeFormat("yyyy-MM-dd"))
+]#
 
 
 

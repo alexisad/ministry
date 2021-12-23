@@ -13,3 +13,5 @@ bin           = @["ministry"]
 
 requires "nim >= 0.20.2"
 requires "jester >= 0.4.3"
+requires "flatty"
+requires "supersnappy"
