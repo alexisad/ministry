@@ -512,7 +512,12 @@ router mrouter:
   get "/sector/@action":
     if @"action" == "upload":
       checkAdminToken ifAdmin
-      let resp = uploadSector(db, ifAdmin.user.corpus_id)
+      let resp = db.uploadSector(corpusId = ifAdmin.user.corpus_id,
+                  admName = @"admName",
+                  userId = (@"userId").parseInt,
+                  fromDate = @"fromDate",
+                  toDate = @"toDate"
+              )
       #if resp.status == false:
         #halt()
       #echo $getTblRows("sector")

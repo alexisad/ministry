@@ -44,11 +44,13 @@ proc initTblTotFamByStreet(): Table[Hash, Natural] =
 
 proc uploadSector*(db: DbConn, corpusId: int,
                           sData = openFileStream "areaSectors.data",
-                          admName = "63654 Büdingen",
-                          userid = 36,
-                          fromDate = "2021-02-01",
-                          toDate = "2021-03-01"): StatusResp[int] =
+                          admName: string,
+                          userId: int,
+                          fromDate: string,
+                          toDate: string): StatusResp[int] =
   result.status = stUnknown
+  if admName == "" or fromDate == "" or toDate == "" or userId == 0:
+    return result
   #let tblTotFam = initTblTotFamByStreet()
   #let sData = openFileStream "areaSectors.data"
   let areaSectors = sData.readAll().uncompress().fromFlatty(AreaSectors)
