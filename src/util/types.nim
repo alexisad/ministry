@@ -89,6 +89,7 @@ type
     nonRefLinks*: seq[string]
     postalCode*: string
     addresses*: seq[string]
+    urban*: string
   PdeNameType* = enum
     abbreviation = "A - abbreviation", baseName = "B - base name",
     exonym = "E - exonym", shortenedName = "K - shortened name",

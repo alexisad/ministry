@@ -54,11 +54,21 @@ proc uploadSector*(db: DbConn, corpusId: int,
   #let tblTotFam = initTblTotFamByStreet()
   #let sData = openFileStream "areaSectors.data"
   let areaSectors = sData.readAll().uncompress().fromFlatty(AreaSectors)
-  db.exec(sql"""VACUUM INTO ?""", "ministry_bkp_$1.db" % ($now()).replace(":", "_") )
-  db.exec(sql"BEGIN")
   let sectInAdmName = areaSectors.sectorsInAdminNames[admName]
+  #for sectName in sectInAdmName:
+    #result.message &= sectName & ","
+  #select sqlite_version()
+  #let sqlVerRows = db.getAllRows(sql"""SELECT sqlite_version()""")
+  #for r in sqlVerRows:
+    #result.message &= r[0] & ","
+  #return result
+  #let bkpName = "./ministry_bkp_$1.db" % (now().format("yyyy-MM-dd'_'HH'_'mm'_'ss"))
+  #db.exec(sql"""VACUUM main INTO ?""", "bkpName")
+  #result.message &= "after Vacuum"
+  #return result
+  db.exec(sql"BEGIN")
   for sectName in sectInAdmName:
-    echo "sectName:", sectName
+    #echo "sectName:", sectName
     let
       pFix = sectName.split" "[0].split"-"[1].parseInt
       sIntId = sectName.split" "[0]
@@ -283,7 +293,7 @@ proc newSectProcess*(db: DbConn, t, sId, uId, startDate: string): StatusResp[seq
       INNER JOIN role ON user.role_id = role.id AND role.role = 'user'
       WHERE user_sector.user_id = ? AND user_sector.date_finish > ?""", vUid, fDate)
   let cntGiveBack = finPrCntRow[0].parseInt
-  if cntGiveBack >= 2:
+  if cntGiveBack >= 50:
     result.message = "Неудачно: c " & fDate & " сдано много участков: " & $cntGiveBack
     return result
   dbg:
