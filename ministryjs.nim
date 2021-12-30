@@ -645,10 +645,11 @@ proc showAllProc(): VNode =
                                 text(stDate)
                             tdiv(class = clsCol):
                                 text(finDate)
-                            tdiv(class = clsCol & " d-flex justify-content-end"):
-                                h5:
-                                    span(class = "badge badge-primary"):
-                                        text kstring($p.totalFamilies)
+                            when false:
+                                tdiv(class = clsCol & " d-flex justify-content-end"):
+                                    h5:
+                                        span(class = "badge badge-primary"):
+                                            text kstring($p.totalFamilies)
         
 
 
