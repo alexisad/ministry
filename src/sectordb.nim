@@ -223,7 +223,7 @@ proc getSectProcess*(db: DbConn, t = "", sId = "", uId = "", sName="", inactive 
             {*v_search_sector*}
             AND sector.id *vsId_c* ?
           GROUP BY sector.id
-          ORDER BY date_start ASC, plz, pfix
+          ORDER BY date_finish ASC, plz, pfix
         """
           .replace("{*vInactive*}", vInactive)
           .replace("*vsId_c*", vsId[0])
