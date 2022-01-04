@@ -242,6 +242,8 @@ proc getSectProcess*(db: DbConn, t = "", sId = "", uId = "", sName="", inactive 
   result.status = stOk
   result.resp = newSeqOfCap[SectorProcess](sectRows.len)
   for r in sectRows:
+    if uId == "" and r[5] == "": #in case show all should no show sector if is not returned yet
+      continue
     var sectP = SectorProcess(name: r[0], sector_internal_id: r[1], firstName: r[2], lastName: r[3],
             date_start: r[4], date_finish: r[5],
             user_id: -1, sector_id: r[7].parseInt, id: -1,
