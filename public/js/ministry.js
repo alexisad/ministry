@@ -3,8 +3,8 @@ var framePtr = null;
 var excHandler = 0;
 var lastJSError = null;
 var NTI620757021 = {size: 0, kind: 18, base: null, node: null, finalizer: null};
-var NTI486541075 = {size: 0, kind: 24, base: null, node: null, finalizer: null};
-var NTI486541080 = {size: 0, kind: 18, base: null, node: null, finalizer: null};
+var NTI486541072 = {size: 0, kind: 24, base: null, node: null, finalizer: null};
+var NTI486541077 = {size: 0, kind: 18, base: null, node: null, finalizer: null};
 var NTI1543504783 = {size: 0, kind: 17, base: null, node: null, finalizer: null};
 var NTI33555080 = {size: 0,kind: 41,base: null,node: null,finalizer: null};
 var NTI1543504962 = {size: 0, kind: 24, base: null, node: null, finalizer: null};
@@ -19,20 +19,20 @@ var NTI1543504782 = {size: 0, kind: 17, base: null, node: null, finalizer: null}
 var NTI1761607754 = {size: 0, kind: 18, base: null, node: null, finalizer: null};
 var NTI1761608086 = {size: 0, kind: 24, base: null, node: null, finalizer: null};
 var NTI1761608091 = {size: 0, kind: 18, base: null, node: null, finalizer: null};
-var NTI486540343 = {size: 0, kind: 18, base: null, node: null, finalizer: null};
+var NTI486540334 = {size: 0, kind: 18, base: null, node: null, finalizer: null};
 var NTI687866230 = {size: 0, kind: 24, base: null, node: null, finalizer: null};
 var NTI1526726662 = {size: 0, kind: 14, base: null, node: null, finalizer: null};
 var NTI1526726665 = {size: 0, kind: 18, base: null, node: null, finalizer: null};
 var NTI1543503907 = {size: 0, kind: 18, base: null, node: null, finalizer: null};
 var NTI1543505957 = {size: 0, kind: 18, base: null, node: null, finalizer: null};
-var NTI486539860 = {size: 0, kind: 18, base: null, node: null, finalizer: null};
-var NTI486539683 = {size: 0, kind: 24, base: null, node: null, finalizer: null};
+var NTI486539851 = {size: 0, kind: 18, base: null, node: null, finalizer: null};
+var NTI486539674 = {size: 0, kind: 24, base: null, node: null, finalizer: null};
 var NTI1526726661 = {size: 0, kind: 14, base: null, node: null, finalizer: null};
-var NTI486539688 = {size: 0, kind: 18, base: null, node: null, finalizer: null};
+var NTI486539679 = {size: 0, kind: 18, base: null, node: null, finalizer: null};
 var NTI889192520 = {size: 0,kind: 31,base: null,node: null,finalizer: null};
 var NTI889192527 = {size: 0, kind: 18, base: null, node: null, finalizer: null};
 var NTI1526726664 = {size: 0, kind: 18, base: null, node: null, finalizer: null};
-var NTI486539669 = {size: 0, kind: 24, base: null, node: null, finalizer: null};
+var NTI486539660 = {size: 0, kind: 24, base: null, node: null, finalizer: null};
 var NTI1140850957 = {size: 0, kind: 24, base: null, node: null, finalizer: null};
 var NTI1526726659 = {size: 0, kind: 18, base: null, node: null, finalizer: null};
 var NTI1392508936 = {size: 0, kind: 17, base: null, node: null, finalizer: null};
@@ -159,6 +159,7 @@ var NTI33554466 = {size: 0,kind: 1,base: null,node: null,finalizer: null};
 var NTI1543503931 = {size: 0,kind: 31,base: null,node: null,finalizer: null};
 var NTI1543503900 = {size: 0, kind: 20, base: null, node: null, finalizer: null};
 var NTI1543503890 = {size: 0, kind: 14, base: null, node: null, finalizer: null};
+var NTI33554456 = {size: 0,kind: 31,base: null,node: null,finalizer: null};
 var NTI1543503919 = {size: 0,kind: 31,base: null,node: null,finalizer: null};
 var NTI1543503897 = {size: 0, kind: 20, base: null, node: null, finalizer: null};
 var NTI1543503923 = {size: 0,kind: 31,base: null,node: null,finalizer: null};
@@ -173,8 +174,6 @@ var NTI33555128 = {size: 0, kind: 17, base: null, node: null, finalizer: null};
 var NTI33555130 = {size: 0, kind: 17, base: null, node: null, finalizer: null};
 var NTI33555120 = {size: 0, kind: 17, base: null, node: null, finalizer: null};
 var NTI33555122 = {size: 0, kind: 17, base: null, node: null, finalizer: null};
-var NTI33554456 = {size: 0,kind: 31,base: null,node: null,finalizer: null};
-var NTI33555919 = {size: 0, kind: 18, base: null, node: null, finalizer: null};
 var NTI33555083 = {size: 0, kind: 17, base: null, node: null, finalizer: null};
 var NTI33555165 = {size: 0, kind: 22, base: null, node: null, finalizer: null};
 var NTI33554440 = {size: 0,kind: 29,base: null,node: null,finalizer: null};
@@ -200,10 +199,6 @@ NTI33555083.node = NNI33555083;
 NTI33555112.base = NTI33555083;
 NTI33555113.base = NTI33555112;
 NTI33555124.base = NTI33555113;
-var NNI33555919 = {kind: 2, len: 3, offset: 0, typ: null, name: null, sons: [{kind: 1, offset: "Field0", len: 0, typ: NTI33554440, name: "Field0", sons: null}, 
-{kind: 1, offset: "Field1", len: 0, typ: NTI33554456, name: "Field1", sons: null}, 
-{kind: 1, offset: "Field2", len: 0, typ: NTI33554440, name: "Field2", sons: null}]};
-NTI33555919.node = NNI33555919;
 var NNI33555122 = {kind: 2, len: 0, offset: 0, typ: null, name: null, sons: []};
 NTI33555122.node = NNI33555122;
 var NNI33555120 = {kind: 2, len: 0, offset: 0, typ: null, name: null, sons: []};
@@ -1133,7 +1128,7 @@ var NNI1526726664 = {kind: 2, len: 10, offset: 0, typ: null, name: null, sons: [
 {kind: 1, offset: "sector_id", len: 0, typ: NTI33554456, name: "sector_id", sons: null}, 
 {kind: 1, offset: "totalFamilies", len: 0, typ: NTI33554456, name: "totalFamilies", sons: null}]};
 NTI1526726664.node = NNI1526726664;
-NTI486539669.base = NTI1526726664;
+NTI486539660.base = NTI1526726664;
 var NNI889192527 = {kind: 2, len: 2, offset: 0, typ: null, name: null, sons: [{kind: 1, offset: "a", len: 0, typ: NTI889192520, name: "a", sons: null}, 
 {kind: 1, offset: "b", len: 0, typ: NTI33554456, name: "b", sons: null}]};
 NTI889192527.node = NNI889192527;
@@ -1141,15 +1136,15 @@ var NNI1526726661 = {kind: 2, offset: 0, typ: null, name: null, len: 3, sons: {"
 "1": {kind: 1, offset: 1, typ: NTI1526726661, name: "unknown", len: 0, sons: null}, 
 "2": {kind: 1, offset: 2, typ: NTI1526726661, name: "loggedOut", len: 0, sons: null}}};
 NTI1526726661.node = NNI1526726661;
-NTI486539683.base = NTI1526726664;
-var NNI486539688 = {kind: 2, len: 3, offset: 0, typ: null, name: null, sons: [{kind: 1, offset: "status", len: 0, typ: NTI1526726661, name: "status", sons: null}, 
+NTI486539674.base = NTI1526726664;
+var NNI486539679 = {kind: 2, len: 3, offset: 0, typ: null, name: null, sons: [{kind: 1, offset: "status", len: 0, typ: NTI1526726661, name: "status", sons: null}, 
 {kind: 1, offset: "message", len: 0, typ: NTI33554439, name: "message", sons: null}, 
-{kind: 1, offset: "resp", len: 0, typ: NTI486539683, name: "resp", sons: null}]};
-NTI486539688.node = NNI486539688;
-var NNI486539860 = {kind: 2, len: 3, offset: 0, typ: null, name: null, sons: [{kind: 1, offset: "status", len: 0, typ: NTI1526726661, name: "status", sons: null}, 
+{kind: 1, offset: "resp", len: 0, typ: NTI486539674, name: "resp", sons: null}]};
+NTI486539679.node = NNI486539679;
+var NNI486539851 = {kind: 2, len: 3, offset: 0, typ: null, name: null, sons: [{kind: 1, offset: "status", len: 0, typ: NTI1526726661, name: "status", sons: null}, 
 {kind: 1, offset: "message", len: 0, typ: NTI33554439, name: "message", sons: null}, 
 {kind: 1, offset: "resp", len: 0, typ: NTI33554456, name: "resp", sons: null}]};
-NTI486539860.node = NNI486539860;
+NTI486539851.node = NNI486539851;
 var NNI1543505957 = {kind: 2, len: 2, offset: 0, typ: null, name: null, sons: [{kind: 1, offset: "Field0", len: 0, typ: NTI1543503904, name: "Field0", sons: null}, 
 {kind: 1, offset: "Field1", len: 0, typ: NTI1543503904, name: "Field1", sons: null}]};
 NTI1543505957.node = NNI1543505957;
@@ -1177,9 +1172,9 @@ var NNI1526726665 = {kind: 2, len: 7, offset: 0, typ: null, name: null, sons: [{
 {kind: 1, offset: "status", len: 0, typ: NTI1526726662, name: "status", sons: null}]};
 NTI1526726665.node = NNI1526726665;
 NTI687866230.base = NTI33554439;
-var NNI486540343 = {kind: 2, len: 2, offset: 0, typ: null, name: null, sons: [{kind: 1, offset: "Field0", len: 0, typ: NTI33554440, name: "Field0", sons: null}, 
+var NNI486540334 = {kind: 2, len: 2, offset: 0, typ: null, name: null, sons: [{kind: 1, offset: "Field0", len: 0, typ: NTI33554440, name: "Field0", sons: null}, 
 {kind: 1, offset: "Field1", len: 0, typ: NTI33554440, name: "Field1", sons: null}]};
-NTI486540343.node = NNI486540343;
+NTI486540334.node = NNI486540334;
 NTI1761608086.base = NTI1526726659;
 var NNI1761608091 = {kind: 2, len: 3, offset: 0, typ: null, name: null, sons: [{kind: 1, offset: "status", len: 0, typ: NTI1526726661, name: "status", sons: null}, 
 {kind: 1, offset: "message", len: 0, typ: NTI33554439, name: "message", sons: null}, 
@@ -1249,11 +1244,11 @@ NTI1543504962.base = NTI33555080;
 var NNI1543504783 = {kind: 2, len: 0, offset: 0, typ: null, name: null, sons: []};
 NTI1543504783.node = NNI1543504783;
 NTI1543504783.base = NTI33555125;
-NTI486541075.base = NTI1526726665;
-var NNI486541080 = {kind: 2, len: 3, offset: 0, typ: null, name: null, sons: [{kind: 1, offset: "status", len: 0, typ: NTI1526726661, name: "status", sons: null}, 
+NTI486541072.base = NTI1526726665;
+var NNI486541077 = {kind: 2, len: 3, offset: 0, typ: null, name: null, sons: [{kind: 1, offset: "status", len: 0, typ: NTI1526726661, name: "status", sons: null}, 
 {kind: 1, offset: "message", len: 0, typ: NTI33554439, name: "message", sons: null}, 
-{kind: 1, offset: "resp", len: 0, typ: NTI486541075, name: "resp", sons: null}]};
-NTI486541080.node = NNI486541080;
+{kind: 1, offset: "resp", len: 0, typ: NTI486541072, name: "resp", sons: null}]};
+NTI486541077.node = NNI486541077;
 var NNI620757021 = {kind: 2, len: 2, offset: 0, typ: null, name: null, sons: [{kind: 1, offset: "Field0", len: 0, typ: NTI33554435, name: "Field0", sons: null}, 
 {kind: 1, offset: "Field1", len: 0, typ: NTI33554435, name: "Field1", sons: null}]};
 NTI620757021.node = NNI620757021;
@@ -1363,110 +1358,6 @@ function makeNimstrLit(c_33556802) {
   
 }
 
-function arrayConstr(len_33557180, value_33557181, typ_33557182) {
-        var result = new Array(len_33557180);
-    for (var i = 0; i < len_33557180; ++i) result[i] = nimCopy(null, value_33557181, typ_33557182);
-    return result;
-  
-
-  
-}
-
-function mnewString(len_33556894) {
-        return new Array(len_33556894);
-  
-
-  
-}
-
-function addInt(a_33556941, b_33556942) {
-        var result = a_33556941 + b_33556942;
-    checkOverflowInt(result);
-    return result;
-  
-
-  
-}
-
-function chckRange(i_33557190, a_33557191, b_33557192) {
-      var Temporary1;
-
-  var result_33557193 = 0;
-
-  BeforeRet: do {
-      if (!(a_33557191 <= i_33557190)) Temporary1 = false; else {        Temporary1 = (i_33557190 <= b_33557192);      }    if (Temporary1) {
-    result_33557193 = i_33557190;
-    break BeforeRet;
-    }
-    else {
-    raiseRangeError();
-    }
-    
-  } while (false);
-
-  return result_33557193;
-
-}
-
-function chckIndx(i_33557185, a_33557186, b_33557187) {
-      var Temporary1;
-
-  var result_33557188 = 0;
-
-  BeforeRet: do {
-      if (!(a_33557186 <= i_33557185)) Temporary1 = false; else {        Temporary1 = (i_33557185 <= b_33557187);      }    if (Temporary1) {
-    result_33557188 = i_33557185;
-    break BeforeRet;
-    }
-    else {
-    raiseIndexError(i_33557185, a_33557186, b_33557187);
-    }
-    
-  } while (false);
-
-  return result_33557188;
-
-}
-
-function cstrToNimstr(c_33556805) {
-      var ln = c_33556805.length;
-  var result = new Array(ln);
-  var r = 0;
-  for (var i = 0; i < ln; ++i) {
-    var ch = c_33556805.charCodeAt(i);
-
-    if (ch < 128) {
-      result[r] = ch;
-    }
-    else {
-      if (ch < 2048) {
-        result[r] = (ch >> 6) | 192;
-      }
-      else {
-        if (ch < 55296 || ch >= 57344) {
-          result[r] = (ch >> 12) | 224;
-        }
-        else {
-            ++i;
-            ch = 65536 + (((ch & 1023) << 10) | (c_33556805.charCodeAt(i) & 1023));
-            result[r] = (ch >> 18) | 240;
-            ++r;
-            result[r] = ((ch >> 12) & 63) | 128;
-        }
-        ++r;
-        result[r] = ((ch >> 6) & 63) | 128;
-      }
-      ++r;
-      result[r] = (ch & 63) | 128;
-    }
-    ++r;
-  }
-  return result;
-  
-
-  
-}
-
 function toJSStr(s_33556808) {
                     var Temporary5;
             var Temporary7;
@@ -1540,10 +1431,65 @@ function raiseException(e_33556668, ename_33556669) {
     unhandledException(e_33556668);
     }
     
-    e_33556668.trace = nimCopy(null, rawWriteStackTrace_33556632(), NTI33554439);
     throw e_33556668;
 
   
+}
+
+function mnewString(len_33556894) {
+        return new Array(len_33556894);
+  
+
+  
+}
+
+function addInt(a_33556941, b_33556942) {
+        var result = a_33556941 + b_33556942;
+    checkOverflowInt(result);
+    return result;
+  
+
+  
+}
+
+function chckRange(i_33557190, a_33557191, b_33557192) {
+      var Temporary1;
+
+  var result_33557193 = 0;
+
+  BeforeRet: do {
+      if (!(a_33557191 <= i_33557190)) Temporary1 = false; else {        Temporary1 = (i_33557190 <= b_33557192);      }    if (Temporary1) {
+    result_33557193 = i_33557190;
+    break BeforeRet;
+    }
+    else {
+    raiseRangeError();
+    }
+    
+  } while (false);
+
+  return result_33557193;
+
+}
+
+function chckIndx(i_33557185, a_33557186, b_33557187) {
+      var Temporary1;
+
+  var result_33557188 = 0;
+
+  BeforeRet: do {
+      if (!(a_33557186 <= i_33557185)) Temporary1 = false; else {        Temporary1 = (i_33557185 <= b_33557187);      }    if (Temporary1) {
+    result_33557188 = i_33557185;
+    break BeforeRet;
+    }
+    else {
+    raiseIndexError(i_33557185, a_33557186, b_33557187);
+    }
+    
+  } while (false);
+
+  return result_33557188;
+
 }
 
 function addChar(x_33557256, c_33557257) {
@@ -1625,6 +1571,45 @@ function negInt(a_33556983) {
       var daysUntilMonth_1543504139 = new Int32Array([0, 31, 59, 90, 120, 151, 181, 212, 243, 273, 304, 334]);
 var normalDateFmt_486539283 = {patterns: [22, 33, 1, 45, 11, 33, 1, 45, 1], formatStr: makeNimstrLit("yyyy-MM-dd")};
 var DefaultLocale_1543505479 = {MMM: [makeNimstrLit("Jan"), makeNimstrLit("Feb"), makeNimstrLit("Mar"), makeNimstrLit("Apr"), makeNimstrLit("May"), makeNimstrLit("Jun"), makeNimstrLit("Jul"), makeNimstrLit("Aug"), makeNimstrLit("Sep"), makeNimstrLit("Oct"), makeNimstrLit("Nov"), makeNimstrLit("Dec")], MMMM: [makeNimstrLit("January"), makeNimstrLit("February"), makeNimstrLit("March"), makeNimstrLit("April"), makeNimstrLit("May"), makeNimstrLit("June"), makeNimstrLit("July"), makeNimstrLit("August"), makeNimstrLit("September"), makeNimstrLit("October"), makeNimstrLit("November"), makeNimstrLit("December")], ddd: [makeNimstrLit("Mon"), makeNimstrLit("Tue"), makeNimstrLit("Wed"), makeNimstrLit("Thu"), makeNimstrLit("Fri"), makeNimstrLit("Sat"), makeNimstrLit("Sun")], dddd: [makeNimstrLit("Monday"), makeNimstrLit("Tuesday"), makeNimstrLit("Wednesday"), makeNimstrLit("Thursday"), makeNimstrLit("Friday"), makeNimstrLit("Saturday"), makeNimstrLit("Sunday")]};
+
+function cstrToNimstr(c_33556805) {
+      var ln = c_33556805.length;
+  var result = new Array(ln);
+  var r = 0;
+  for (var i = 0; i < ln; ++i) {
+    var ch = c_33556805.charCodeAt(i);
+
+    if (ch < 128) {
+      result[r] = ch;
+    }
+    else {
+      if (ch < 2048) {
+        result[r] = (ch >> 6) | 192;
+      }
+      else {
+        if (ch < 55296 || ch >= 57344) {
+          result[r] = (ch >> 12) | 224;
+        }
+        else {
+            ++i;
+            ch = 65536 + (((ch & 1023) << 10) | (c_33556805.charCodeAt(i) & 1023));
+            result[r] = (ch >> 18) | 240;
+            ++r;
+            result[r] = ((ch >> 12) & 63) | 128;
+        }
+        ++r;
+        result[r] = ((ch >> 6) & 63) | 128;
+      }
+      ++r;
+      result[r] = (ch & 63) | 128;
+    }
+    ++r;
+  }
+  return result;
+  
+
+  
+}
 var ConstSet2 = setConstr([100, 199]);
 var ConstSet3 = setConstr([400, 600]);
       var toTag_1140850948 = ["#text", "#int", "#bool", "#vthunk", "#dthunk", "#component", "#verbatim", "HTML", "HEAD", "TITLE", "BASE", "LINK", "META", "STYLE", "SCRIPT", "NOSCRIPT", "BODY", "SECTION", "NAV", "ARTICLE", "ASIDE", "H1", "H2", "H3", "H4", "H5", "H6", "HEADER", "FOOTER", "ADDRESS", "MAIN", "P", "HR", "PRE", "BLOCKQUOTE", "OL", "UL", "LI", "DL", "DT", "DD", "FIGURE", "FIGCAPTION", "DIV", "A", "EM", "STRONG", "SMALL", "S", "CITE", "QUOTE", "DFN", "ABBR", "DATA", "TIME", "CODE", "VAR", "SAMP", "KDB", "SUB", "SUP", "I", "B", "U", "MARK", "RUBY", "RT", "RP", "BDI", "DBO", "SPAN", "BR", "WBR", "INS", "DEL", "IMG", "IFRAME", "EMBED", "OBJECT", "PARAM", "VIDEO", "AUDIO", "SOURCE", "TRACK", "CANVAS", "MAP", "AREA", "SVG", "MATH", "PATH", "CIRCLE", "TABLE", "CAPTION", "COLGROUP", "COL", "TBODY", "THEAD", "TFOOT", "TR", "TD", "TH", "FORM", "FIELDSET", "LEGEND", "LABEL", "INPUT", "BUTTON", "SELECT", "DATALIST", "OPTGROUP", "OPTION", "TEXTAREA", "KEYGEN", "OUTPUT", "PROGRESS", "METER", "DETAILS", "SUMMARY", "COMMAND", "MENU"];
@@ -1878,5574 +1863,16 @@ if (!Math.trunc) {
   };
 }
 
-var F = {procname: "module vstyles", prev: framePtr, filename: "vstyles.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module macros", prev: framePtr, filename: "macros.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module macros", prev: framePtr, filename: "macros.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module macros", prev: framePtr, filename: "macros.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module macros", prev: framePtr, filename: "macros.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module macros", prev: framePtr, filename: "macros.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module macros", prev: framePtr, filename: "macros.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module macros", prev: framePtr, filename: "macros.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module macros", prev: framePtr, filename: "macros.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module macros", prev: framePtr, filename: "macros.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module macros", prev: framePtr, filename: "macros.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module macros", prev: framePtr, filename: "macros.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module macros", prev: framePtr, filename: "macros.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module macros", prev: framePtr, filename: "macros.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module macros", prev: framePtr, filename: "macros.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module macros", prev: framePtr, filename: "macros.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module macros", prev: framePtr, filename: "macros.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module macros", prev: framePtr, filename: "macros.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module macros", prev: framePtr, filename: "macros.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module macros", prev: framePtr, filename: "macros.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module macros", prev: framePtr, filename: "macros.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module macros", prev: framePtr, filename: "macros.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module macros", prev: framePtr, filename: "macros.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module macros", prev: framePtr, filename: "macros.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module macros", prev: framePtr, filename: "macros.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module macros", prev: framePtr, filename: "macros.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module macros", prev: framePtr, filename: "macros.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module macros", prev: framePtr, filename: "macros.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module macros", prev: framePtr, filename: "macros.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module macros", prev: framePtr, filename: "macros.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module macros", prev: framePtr, filename: "macros.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module macros", prev: framePtr, filename: "macros.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module macros", prev: framePtr, filename: "macros.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module macros", prev: framePtr, filename: "macros.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module macros", prev: framePtr, filename: "macros.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module macros", prev: framePtr, filename: "macros.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module macros", prev: framePtr, filename: "macros.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module macros", prev: framePtr, filename: "macros.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module macros", prev: framePtr, filename: "macros.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module macros", prev: framePtr, filename: "macros.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module macros", prev: framePtr, filename: "macros.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module macros", prev: framePtr, filename: "macros.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module macros", prev: framePtr, filename: "macros.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module macros", prev: framePtr, filename: "macros.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module macros", prev: framePtr, filename: "macros.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module macros", prev: framePtr, filename: "macros.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module macros", prev: framePtr, filename: "macros.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module macros", prev: framePtr, filename: "macros.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module macros", prev: framePtr, filename: "macros.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module macros", prev: framePtr, filename: "macros.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module macros", prev: framePtr, filename: "macros.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module macros", prev: framePtr, filename: "macros.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module macros", prev: framePtr, filename: "macros.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module macros", prev: framePtr, filename: "macros.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module macros", prev: framePtr, filename: "macros.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module macros", prev: framePtr, filename: "macros.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module macros", prev: framePtr, filename: "macros.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module macros", prev: framePtr, filename: "macros.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module macros", prev: framePtr, filename: "macros.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module macros", prev: framePtr, filename: "macros.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module macros", prev: framePtr, filename: "macros.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module macros", prev: framePtr, filename: "macros.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module macros", prev: framePtr, filename: "macros.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module macros", prev: framePtr, filename: "macros.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module macros", prev: framePtr, filename: "macros.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module macros", prev: framePtr, filename: "macros.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module macros", prev: framePtr, filename: "macros.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module macros", prev: framePtr, filename: "macros.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module macros", prev: framePtr, filename: "macros.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module macros", prev: framePtr, filename: "macros.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module macros", prev: framePtr, filename: "macros.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module macros", prev: framePtr, filename: "macros.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module macros", prev: framePtr, filename: "macros.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module macros", prev: framePtr, filename: "macros.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module macros", prev: framePtr, filename: "macros.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module macros", prev: framePtr, filename: "macros.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module macros", prev: framePtr, filename: "macros.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module macros", prev: framePtr, filename: "macros.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module macros", prev: framePtr, filename: "macros.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module macros", prev: framePtr, filename: "macros.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module macros", prev: framePtr, filename: "macros.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module macros", prev: framePtr, filename: "macros.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module macros", prev: framePtr, filename: "macros.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module macros", prev: framePtr, filename: "macros.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module macros", prev: framePtr, filename: "macros.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module macros", prev: framePtr, filename: "macros.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module macros", prev: framePtr, filename: "macros.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module macros", prev: framePtr, filename: "macros.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module macros", prev: framePtr, filename: "macros.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module macros", prev: framePtr, filename: "macros.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module macros", prev: framePtr, filename: "macros.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module macros", prev: framePtr, filename: "macros.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module macros", prev: framePtr, filename: "macros.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module macros", prev: framePtr, filename: "macros.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module macros", prev: framePtr, filename: "macros.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module macros", prev: framePtr, filename: "macros.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module macros", prev: framePtr, filename: "macros.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module macros", prev: framePtr, filename: "macros.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module macros", prev: framePtr, filename: "macros.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module macros", prev: framePtr, filename: "macros.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module macros", prev: framePtr, filename: "macros.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module macros", prev: framePtr, filename: "macros.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module macros", prev: framePtr, filename: "macros.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module macros", prev: framePtr, filename: "macros.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module macros", prev: framePtr, filename: "macros.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module macros", prev: framePtr, filename: "macros.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module macros", prev: framePtr, filename: "macros.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module macros", prev: framePtr, filename: "macros.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module macros", prev: framePtr, filename: "macros.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module macros", prev: framePtr, filename: "macros.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module macros", prev: framePtr, filename: "macros.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module macros", prev: framePtr, filename: "macros.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module macros", prev: framePtr, filename: "macros.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module macros", prev: framePtr, filename: "macros.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module macros", prev: framePtr, filename: "macros.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module macros", prev: framePtr, filename: "macros.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module macros", prev: framePtr, filename: "macros.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module macros", prev: framePtr, filename: "macros.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module macros", prev: framePtr, filename: "macros.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module macros", prev: framePtr, filename: "macros.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module macros", prev: framePtr, filename: "macros.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module macros", prev: framePtr, filename: "macros.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module macros", prev: framePtr, filename: "macros.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module macros", prev: framePtr, filename: "macros.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module macros", prev: framePtr, filename: "macros.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module macros", prev: framePtr, filename: "macros.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module macros", prev: framePtr, filename: "macros.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module macros", prev: framePtr, filename: "macros.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module macros", prev: framePtr, filename: "macros.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module macros", prev: framePtr, filename: "macros.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module macros", prev: framePtr, filename: "macros.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module macros", prev: framePtr, filename: "macros.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module macros", prev: framePtr, filename: "macros.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module macros", prev: framePtr, filename: "macros.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module macros", prev: framePtr, filename: "macros.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module macros", prev: framePtr, filename: "macros.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module macros", prev: framePtr, filename: "macros.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module macros", prev: framePtr, filename: "macros.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module macros", prev: framePtr, filename: "macros.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module macros", prev: framePtr, filename: "macros.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module macros", prev: framePtr, filename: "macros.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module macros", prev: framePtr, filename: "macros.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module macros", prev: framePtr, filename: "macros.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module macros", prev: framePtr, filename: "macros.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module macros", prev: framePtr, filename: "macros.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module macros", prev: framePtr, filename: "macros.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module macros", prev: framePtr, filename: "macros.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module macros", prev: framePtr, filename: "macros.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module macros", prev: framePtr, filename: "macros.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module macros", prev: framePtr, filename: "macros.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module macros", prev: framePtr, filename: "macros.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module macros", prev: framePtr, filename: "macros.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module macros", prev: framePtr, filename: "macros.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module macros", prev: framePtr, filename: "macros.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module macros", prev: framePtr, filename: "macros.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module macros", prev: framePtr, filename: "macros.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module macros", prev: framePtr, filename: "macros.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module macros", prev: framePtr, filename: "macros.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module macros", prev: framePtr, filename: "macros.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module macros", prev: framePtr, filename: "macros.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module macros", prev: framePtr, filename: "macros.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module macros", prev: framePtr, filename: "macros.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module macros", prev: framePtr, filename: "macros.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module macros", prev: framePtr, filename: "macros.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module macros", prev: framePtr, filename: "macros.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module macros", prev: framePtr, filename: "macros.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module macros", prev: framePtr, filename: "macros.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module macros", prev: framePtr, filename: "macros.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module macros", prev: framePtr, filename: "macros.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module macros", prev: framePtr, filename: "macros.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module macros", prev: framePtr, filename: "macros.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module macros", prev: framePtr, filename: "macros.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module macros", prev: framePtr, filename: "macros.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module macros", prev: framePtr, filename: "macros.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module macros", prev: framePtr, filename: "macros.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module macros", prev: framePtr, filename: "macros.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module macros", prev: framePtr, filename: "macros.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module macros", prev: framePtr, filename: "macros.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module macros", prev: framePtr, filename: "macros.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module macros", prev: framePtr, filename: "macros.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module macros", prev: framePtr, filename: "macros.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module macros", prev: framePtr, filename: "macros.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module macros", prev: framePtr, filename: "macros.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module macros", prev: framePtr, filename: "macros.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module macros", prev: framePtr, filename: "macros.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module macros", prev: framePtr, filename: "macros.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module macros", prev: framePtr, filename: "macros.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module macros", prev: framePtr, filename: "macros.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module macros", prev: framePtr, filename: "macros.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module macros", prev: framePtr, filename: "macros.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module macros", prev: framePtr, filename: "macros.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module macros", prev: framePtr, filename: "macros.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module macros", prev: framePtr, filename: "macros.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module macros", prev: framePtr, filename: "macros.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module macros", prev: framePtr, filename: "macros.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module macros", prev: framePtr, filename: "macros.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module macros", prev: framePtr, filename: "macros.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module macros", prev: framePtr, filename: "macros.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module macros", prev: framePtr, filename: "macros.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module macros", prev: framePtr, filename: "macros.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module macros", prev: framePtr, filename: "macros.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module macros", prev: framePtr, filename: "macros.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module macros", prev: framePtr, filename: "macros.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module macros", prev: framePtr, filename: "macros.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module macros", prev: framePtr, filename: "macros.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module strutils", prev: framePtr, filename: "strutils.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module parseutils", prev: framePtr, filename: "parseutils.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module parseutils", prev: framePtr, filename: "parseutils.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module parseutils", prev: framePtr, filename: "parseutils.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module parseutils", prev: framePtr, filename: "parseutils.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module parseutils", prev: framePtr, filename: "parseutils.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module parseutils", prev: framePtr, filename: "parseutils.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module parseutils", prev: framePtr, filename: "parseutils.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module parseutils", prev: framePtr, filename: "parseutils.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module parseutils", prev: framePtr, filename: "parseutils.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module parseutils", prev: framePtr, filename: "parseutils.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module parseutils", prev: framePtr, filename: "parseutils.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module parseutils", prev: framePtr, filename: "parseutils.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module parseutils", prev: framePtr, filename: "parseutils.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module parseutils", prev: framePtr, filename: "parseutils.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module parseutils", prev: framePtr, filename: "parseutils.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module parseutils", prev: framePtr, filename: "parseutils.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module parseutils", prev: framePtr, filename: "parseutils.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module parseutils", prev: framePtr, filename: "parseutils.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module parseutils", prev: framePtr, filename: "parseutils.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module parseutils", prev: framePtr, filename: "parseutils.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module parseutils", prev: framePtr, filename: "parseutils.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module parseutils", prev: framePtr, filename: "parseutils.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module parseutils", prev: framePtr, filename: "parseutils.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module parseutils", prev: framePtr, filename: "parseutils.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module parseutils", prev: framePtr, filename: "parseutils.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module parseutils", prev: framePtr, filename: "parseutils.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module parseutils", prev: framePtr, filename: "parseutils.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module parseutils", prev: framePtr, filename: "parseutils.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module parseutils", prev: framePtr, filename: "parseutils.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module parseutils", prev: framePtr, filename: "parseutils.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module parseutils", prev: framePtr, filename: "parseutils.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module parseutils", prev: framePtr, filename: "parseutils.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module parseutils", prev: framePtr, filename: "parseutils.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module parseutils", prev: framePtr, filename: "parseutils.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module parseutils", prev: framePtr, filename: "parseutils.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module parseutils", prev: framePtr, filename: "parseutils.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module parseutils", prev: framePtr, filename: "parseutils.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module parseutils", prev: framePtr, filename: "parseutils.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module strutils", prev: framePtr, filename: "strutils.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module math", prev: framePtr, filename: "math.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module math", prev: framePtr, filename: "math.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module math", prev: framePtr, filename: "math.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module bitops", prev: framePtr, filename: "bitops.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module bitops", prev: framePtr, filename: "bitops.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module bitops", prev: framePtr, filename: "bitops.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module bitops_utils", prev: framePtr, filename: "bitops_utils.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module bitops_utils", prev: framePtr, filename: "bitops_utils.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module bitops_utils", prev: framePtr, filename: "bitops_utils.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module bitops_utils", prev: framePtr, filename: "bitops_utils.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module bitops_utils", prev: framePtr, filename: "bitops_utils.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module bitops_utils", prev: framePtr, filename: "bitops_utils.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module bitops_utils", prev: framePtr, filename: "bitops_utils.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module bitops", prev: framePtr, filename: "bitops.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module bitops", prev: framePtr, filename: "bitops.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module bitops", prev: framePtr, filename: "bitops.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module bitops", prev: framePtr, filename: "bitops.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module bitops", prev: framePtr, filename: "bitops.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module bitops", prev: framePtr, filename: "bitops.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module bitops", prev: framePtr, filename: "bitops.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module bitops", prev: framePtr, filename: "bitops.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module bitops", prev: framePtr, filename: "bitops.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module bitops", prev: framePtr, filename: "bitops.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module bitops", prev: framePtr, filename: "bitops.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module bitops", prev: framePtr, filename: "bitops.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module bitops", prev: framePtr, filename: "bitops.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module bitops", prev: framePtr, filename: "bitops.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module bitops", prev: framePtr, filename: "bitops.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module bitops", prev: framePtr, filename: "bitops.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module bitops", prev: framePtr, filename: "bitops.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module bitops", prev: framePtr, filename: "bitops.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module bitops", prev: framePtr, filename: "bitops.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module bitops", prev: framePtr, filename: "bitops.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module bitops", prev: framePtr, filename: "bitops.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module bitops", prev: framePtr, filename: "bitops.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module bitops", prev: framePtr, filename: "bitops.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module bitops", prev: framePtr, filename: "bitops.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module bitops", prev: framePtr, filename: "bitops.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module bitops", prev: framePtr, filename: "bitops.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module bitops", prev: framePtr, filename: "bitops.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module bitops", prev: framePtr, filename: "bitops.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module bitops", prev: framePtr, filename: "bitops.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module bitops", prev: framePtr, filename: "bitops.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module bitops", prev: framePtr, filename: "bitops.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module bitops", prev: framePtr, filename: "bitops.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module bitops", prev: framePtr, filename: "bitops.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module bitops", prev: framePtr, filename: "bitops.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module bitops", prev: framePtr, filename: "bitops.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module bitops", prev: framePtr, filename: "bitops.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module bitops", prev: framePtr, filename: "bitops.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module bitops", prev: framePtr, filename: "bitops.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module bitops", prev: framePtr, filename: "bitops.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module countbits_impl", prev: framePtr, filename: "countbits_impl.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module countbits_impl", prev: framePtr, filename: "countbits_impl.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module countbits_impl", prev: framePtr, filename: "countbits_impl.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module countbits_impl", prev: framePtr, filename: "countbits_impl.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module countbits_impl", prev: framePtr, filename: "countbits_impl.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module countbits_impl", prev: framePtr, filename: "countbits_impl.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module countbits_impl", prev: framePtr, filename: "countbits_impl.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module countbits_impl", prev: framePtr, filename: "countbits_impl.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module countbits_impl", prev: framePtr, filename: "countbits_impl.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module countbits_impl", prev: framePtr, filename: "countbits_impl.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module bitops", prev: framePtr, filename: "bitops.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module bitops", prev: framePtr, filename: "bitops.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module bitops", prev: framePtr, filename: "bitops.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module bitops", prev: framePtr, filename: "bitops.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module bitops", prev: framePtr, filename: "bitops.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module bitops", prev: framePtr, filename: "bitops.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module bitops", prev: framePtr, filename: "bitops.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module bitops", prev: framePtr, filename: "bitops.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module bitops", prev: framePtr, filename: "bitops.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module bitops", prev: framePtr, filename: "bitops.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module bitops", prev: framePtr, filename: "bitops.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module bitops", prev: framePtr, filename: "bitops.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module bitops", prev: framePtr, filename: "bitops.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module bitops", prev: framePtr, filename: "bitops.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module bitops", prev: framePtr, filename: "bitops.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module bitops", prev: framePtr, filename: "bitops.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module bitops", prev: framePtr, filename: "bitops.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module bitops", prev: framePtr, filename: "bitops.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module bitops", prev: framePtr, filename: "bitops.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module bitops", prev: framePtr, filename: "bitops.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module fenv", prev: framePtr, filename: "fenv.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module fenv", prev: framePtr, filename: "fenv.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module fenv", prev: framePtr, filename: "fenv.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module fenv", prev: framePtr, filename: "fenv.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module fenv", prev: framePtr, filename: "fenv.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module fenv", prev: framePtr, filename: "fenv.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module fenv", prev: framePtr, filename: "fenv.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module fenv", prev: framePtr, filename: "fenv.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module fenv", prev: framePtr, filename: "fenv.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module fenv", prev: framePtr, filename: "fenv.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module fenv", prev: framePtr, filename: "fenv.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module fenv", prev: framePtr, filename: "fenv.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module fenv", prev: framePtr, filename: "fenv.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module fenv", prev: framePtr, filename: "fenv.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module fenv", prev: framePtr, filename: "fenv.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module fenv", prev: framePtr, filename: "fenv.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module fenv", prev: framePtr, filename: "fenv.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module fenv", prev: framePtr, filename: "fenv.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module fenv", prev: framePtr, filename: "fenv.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module fenv", prev: framePtr, filename: "fenv.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module fenv", prev: framePtr, filename: "fenv.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module fenv", prev: framePtr, filename: "fenv.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module fenv", prev: framePtr, filename: "fenv.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module fenv", prev: framePtr, filename: "fenv.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module fenv", prev: framePtr, filename: "fenv.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module fenv", prev: framePtr, filename: "fenv.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module fenv", prev: framePtr, filename: "fenv.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module fenv", prev: framePtr, filename: "fenv.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module fenv", prev: framePtr, filename: "fenv.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module fenv", prev: framePtr, filename: "fenv.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module fenv", prev: framePtr, filename: "fenv.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module fenv", prev: framePtr, filename: "fenv.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module fenv", prev: framePtr, filename: "fenv.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module math", prev: framePtr, filename: "math.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module math", prev: framePtr, filename: "math.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module math", prev: framePtr, filename: "math.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module math", prev: framePtr, filename: "math.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module math", prev: framePtr, filename: "math.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module math", prev: framePtr, filename: "math.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module math", prev: framePtr, filename: "math.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module math", prev: framePtr, filename: "math.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module math", prev: framePtr, filename: "math.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module math", prev: framePtr, filename: "math.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module math", prev: framePtr, filename: "math.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module math", prev: framePtr, filename: "math.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module math", prev: framePtr, filename: "math.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module math", prev: framePtr, filename: "math.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module math", prev: framePtr, filename: "math.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module strutils", prev: framePtr, filename: "strutils.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module algorithm", prev: framePtr, filename: "algorithm.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module algorithm", prev: framePtr, filename: "algorithm.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module algorithm", prev: framePtr, filename: "algorithm.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module algorithm", prev: framePtr, filename: "algorithm.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module algorithm", prev: framePtr, filename: "algorithm.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module algorithm", prev: framePtr, filename: "algorithm.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module algorithm", prev: framePtr, filename: "algorithm.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module algorithm", prev: framePtr, filename: "algorithm.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module algorithm", prev: framePtr, filename: "algorithm.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module algorithm", prev: framePtr, filename: "algorithm.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module algorithm", prev: framePtr, filename: "algorithm.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module algorithm", prev: framePtr, filename: "algorithm.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module algorithm", prev: framePtr, filename: "algorithm.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module algorithm", prev: framePtr, filename: "algorithm.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module algorithm", prev: framePtr, filename: "algorithm.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module algorithm", prev: framePtr, filename: "algorithm.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module algorithm", prev: framePtr, filename: "algorithm.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module algorithm", prev: framePtr, filename: "algorithm.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module algorithm", prev: framePtr, filename: "algorithm.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module algorithm", prev: framePtr, filename: "algorithm.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module algorithm", prev: framePtr, filename: "algorithm.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module algorithm", prev: framePtr, filename: "algorithm.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module algorithm", prev: framePtr, filename: "algorithm.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module algorithm", prev: framePtr, filename: "algorithm.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module algorithm", prev: framePtr, filename: "algorithm.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module algorithm", prev: framePtr, filename: "algorithm.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module algorithm", prev: framePtr, filename: "algorithm.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module algorithm", prev: framePtr, filename: "algorithm.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module algorithm", prev: framePtr, filename: "algorithm.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module algorithm", prev: framePtr, filename: "algorithm.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module algorithm", prev: framePtr, filename: "algorithm.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module algorithm", prev: framePtr, filename: "algorithm.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module algorithm", prev: framePtr, filename: "algorithm.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module algorithm", prev: framePtr, filename: "algorithm.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module algorithm", prev: framePtr, filename: "algorithm.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module algorithm", prev: framePtr, filename: "algorithm.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module algorithm", prev: framePtr, filename: "algorithm.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module algorithm", prev: framePtr, filename: "algorithm.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module algorithm", prev: framePtr, filename: "algorithm.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module algorithm", prev: framePtr, filename: "algorithm.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module strutils", prev: framePtr, filename: "strutils.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module enumutils", prev: framePtr, filename: "enumutils.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module typetraits", prev: framePtr, filename: "typetraits.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module typetraits", prev: framePtr, filename: "typetraits.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module typetraits", prev: framePtr, filename: "typetraits.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module typetraits", prev: framePtr, filename: "typetraits.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module typetraits", prev: framePtr, filename: "typetraits.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module typetraits", prev: framePtr, filename: "typetraits.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module typetraits", prev: framePtr, filename: "typetraits.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module typetraits", prev: framePtr, filename: "typetraits.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module typetraits", prev: framePtr, filename: "typetraits.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module typetraits", prev: framePtr, filename: "typetraits.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module typetraits", prev: framePtr, filename: "typetraits.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module typetraits", prev: framePtr, filename: "typetraits.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module typetraits", prev: framePtr, filename: "typetraits.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module typetraits", prev: framePtr, filename: "typetraits.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module typetraits", prev: framePtr, filename: "typetraits.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module typetraits", prev: framePtr, filename: "typetraits.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module typetraits", prev: framePtr, filename: "typetraits.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module typetraits", prev: framePtr, filename: "typetraits.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module typetraits", prev: framePtr, filename: "typetraits.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module typetraits", prev: framePtr, filename: "typetraits.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module enumutils", prev: framePtr, filename: "enumutils.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module enumutils", prev: framePtr, filename: "enumutils.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module enumutils", prev: framePtr, filename: "enumutils.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module enumutils", prev: framePtr, filename: "enumutils.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module enumutils", prev: framePtr, filename: "enumutils.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module enumutils", prev: framePtr, filename: "enumutils.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module enumutils", prev: framePtr, filename: "enumutils.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module enumutils", prev: framePtr, filename: "enumutils.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module enumutils", prev: framePtr, filename: "enumutils.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module enumutils", prev: framePtr, filename: "enumutils.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module enumutils", prev: framePtr, filename: "enumutils.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module enumutils", prev: framePtr, filename: "enumutils.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module strutils", prev: framePtr, filename: "strutils.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module unicode", prev: framePtr, filename: "unicode.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module unicode", prev: framePtr, filename: "unicode.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module unicode", prev: framePtr, filename: "unicode.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module unicode", prev: framePtr, filename: "unicode.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module unicode", prev: framePtr, filename: "unicode.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module unicode", prev: framePtr, filename: "unicode.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module unicode", prev: framePtr, filename: "unicode.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module unicode", prev: framePtr, filename: "unicode.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module unicode", prev: framePtr, filename: "unicode.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module unicode", prev: framePtr, filename: "unicode.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module unicode", prev: framePtr, filename: "unicode.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module unicode", prev: framePtr, filename: "unicode.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module unicode", prev: framePtr, filename: "unicode.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module unicode", prev: framePtr, filename: "unicode.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module unicode", prev: framePtr, filename: "unicode.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module unicode", prev: framePtr, filename: "unicode.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module unicode", prev: framePtr, filename: "unicode.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module unicode", prev: framePtr, filename: "unicode.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module unicode", prev: framePtr, filename: "unicode.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module unicode", prev: framePtr, filename: "unicode.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module unicode", prev: framePtr, filename: "unicode.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module unicode", prev: framePtr, filename: "unicode.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module unicode", prev: framePtr, filename: "unicode.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module unicode", prev: framePtr, filename: "unicode.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module unicode", prev: framePtr, filename: "unicode.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module unicode", prev: framePtr, filename: "unicode.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module unicode", prev: framePtr, filename: "unicode.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module unicode", prev: framePtr, filename: "unicode.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module unicode", prev: framePtr, filename: "unicode.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module unicode", prev: framePtr, filename: "unicode.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module unicode", prev: framePtr, filename: "unicode.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module unicode", prev: framePtr, filename: "unicode.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module unicode", prev: framePtr, filename: "unicode.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module unicode", prev: framePtr, filename: "unicode.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module unicode", prev: framePtr, filename: "unicode.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module unicode", prev: framePtr, filename: "unicode.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module unicode", prev: framePtr, filename: "unicode.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module unicode", prev: framePtr, filename: "unicode.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module unicode", prev: framePtr, filename: "unicode.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module unicode", prev: framePtr, filename: "unicode.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module unicode", prev: framePtr, filename: "unicode.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module unicode", prev: framePtr, filename: "unicode.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module unicode", prev: framePtr, filename: "unicode.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module unicode", prev: framePtr, filename: "unicode.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module unicode", prev: framePtr, filename: "unicode.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module unicode", prev: framePtr, filename: "unicode.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module unicode", prev: framePtr, filename: "unicode.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module unicode", prev: framePtr, filename: "unicode.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module unicode", prev: framePtr, filename: "unicode.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module unicode", prev: framePtr, filename: "unicode.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module unicode", prev: framePtr, filename: "unicode.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module unicode", prev: framePtr, filename: "unicode.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module unicode", prev: framePtr, filename: "unicode.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module unicode", prev: framePtr, filename: "unicode.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module unicode", prev: framePtr, filename: "unicode.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module unicode", prev: framePtr, filename: "unicode.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module unicode", prev: framePtr, filename: "unicode.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module unicode", prev: framePtr, filename: "unicode.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module unicode", prev: framePtr, filename: "unicode.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module unicode", prev: framePtr, filename: "unicode.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module unicode", prev: framePtr, filename: "unicode.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module unicode", prev: framePtr, filename: "unicode.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module unicode", prev: framePtr, filename: "unicode.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module unicode", prev: framePtr, filename: "unicode.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module unicode", prev: framePtr, filename: "unicode.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module unicode", prev: framePtr, filename: "unicode.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module strutils", prev: framePtr, filename: "strutils.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module strutils", prev: framePtr, filename: "strutils.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module strutils", prev: framePtr, filename: "strutils.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module strutils", prev: framePtr, filename: "strutils.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module strimpl", prev: framePtr, filename: "strimpl.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module strimpl", prev: framePtr, filename: "strimpl.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module strimpl", prev: framePtr, filename: "strimpl.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module strimpl", prev: framePtr, filename: "strimpl.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module strimpl", prev: framePtr, filename: "strimpl.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module strimpl", prev: framePtr, filename: "strimpl.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module strimpl", prev: framePtr, filename: "strimpl.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module strimpl", prev: framePtr, filename: "strimpl.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module strutils", prev: framePtr, filename: "strutils.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module strutils", prev: framePtr, filename: "strutils.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module strutils", prev: framePtr, filename: "strutils.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module strutils", prev: framePtr, filename: "strutils.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module strutils", prev: framePtr, filename: "strutils.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module strutils", prev: framePtr, filename: "strutils.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module strutils", prev: framePtr, filename: "strutils.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module strutils", prev: framePtr, filename: "strutils.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module strutils", prev: framePtr, filename: "strutils.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module strutils", prev: framePtr, filename: "strutils.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module strutils", prev: framePtr, filename: "strutils.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module strutils", prev: framePtr, filename: "strutils.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module strutils", prev: framePtr, filename: "strutils.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module strutils", prev: framePtr, filename: "strutils.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module strutils", prev: framePtr, filename: "strutils.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module strutils", prev: framePtr, filename: "strutils.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module strutils", prev: framePtr, filename: "strutils.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module strutils", prev: framePtr, filename: "strutils.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module strutils", prev: framePtr, filename: "strutils.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module strutils", prev: framePtr, filename: "strutils.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module strutils", prev: framePtr, filename: "strutils.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module strutils", prev: framePtr, filename: "strutils.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module strutils", prev: framePtr, filename: "strutils.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module strutils", prev: framePtr, filename: "strutils.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module strutils", prev: framePtr, filename: "strutils.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module strutils", prev: framePtr, filename: "strutils.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module strutils", prev: framePtr, filename: "strutils.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module strutils", prev: framePtr, filename: "strutils.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module strutils", prev: framePtr, filename: "strutils.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module strutils", prev: framePtr, filename: "strutils.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module strutils", prev: framePtr, filename: "strutils.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module strutils", prev: framePtr, filename: "strutils.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module strutils", prev: framePtr, filename: "strutils.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module strutils", prev: framePtr, filename: "strutils.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module strutils", prev: framePtr, filename: "strutils.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module strutils", prev: framePtr, filename: "strutils.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module strutils", prev: framePtr, filename: "strutils.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module strutils", prev: framePtr, filename: "strutils.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module strutils", prev: framePtr, filename: "strutils.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module strutils", prev: framePtr, filename: "strutils.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module strutils", prev: framePtr, filename: "strutils.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module strutils", prev: framePtr, filename: "strutils.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module strutils", prev: framePtr, filename: "strutils.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module strutils", prev: framePtr, filename: "strutils.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module strutils", prev: framePtr, filename: "strutils.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module strutils", prev: framePtr, filename: "strutils.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module strutils", prev: framePtr, filename: "strutils.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module strutils", prev: framePtr, filename: "strutils.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module strutils", prev: framePtr, filename: "strutils.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module strutils", prev: framePtr, filename: "strutils.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module strutils", prev: framePtr, filename: "strutils.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module strutils", prev: framePtr, filename: "strutils.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module strutils", prev: framePtr, filename: "strutils.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module strutils", prev: framePtr, filename: "strutils.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module strutils", prev: framePtr, filename: "strutils.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module strutils", prev: framePtr, filename: "strutils.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module strutils", prev: framePtr, filename: "strutils.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module strutils", prev: framePtr, filename: "strutils.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module strutils", prev: framePtr, filename: "strutils.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module strutils", prev: framePtr, filename: "strutils.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module strutils", prev: framePtr, filename: "strutils.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module strutils", prev: framePtr, filename: "strutils.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module strutils", prev: framePtr, filename: "strutils.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module strutils", prev: framePtr, filename: "strutils.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module strutils", prev: framePtr, filename: "strutils.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module strutils", prev: framePtr, filename: "strutils.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module strutils", prev: framePtr, filename: "strutils.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module strutils", prev: framePtr, filename: "strutils.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module strutils", prev: framePtr, filename: "strutils.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module strutils", prev: framePtr, filename: "strutils.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module strutils", prev: framePtr, filename: "strutils.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module strutils", prev: framePtr, filename: "strutils.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module strutils", prev: framePtr, filename: "strutils.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module strutils", prev: framePtr, filename: "strutils.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module strutils", prev: framePtr, filename: "strutils.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module strutils", prev: framePtr, filename: "strutils.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module strutils", prev: framePtr, filename: "strutils.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module strutils", prev: framePtr, filename: "strutils.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module strutils", prev: framePtr, filename: "strutils.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module strutils", prev: framePtr, filename: "strutils.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module strutils", prev: framePtr, filename: "strutils.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module strutils", prev: framePtr, filename: "strutils.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module strutils", prev: framePtr, filename: "strutils.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module strutils", prev: framePtr, filename: "strutils.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module strutils", prev: framePtr, filename: "strutils.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module strutils", prev: framePtr, filename: "strutils.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module strutils", prev: framePtr, filename: "strutils.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module strutils", prev: framePtr, filename: "strutils.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module strutils", prev: framePtr, filename: "strutils.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module strutils", prev: framePtr, filename: "strutils.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module strutils", prev: framePtr, filename: "strutils.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module strutils", prev: framePtr, filename: "strutils.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module strutils", prev: framePtr, filename: "strutils.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module strutils", prev: framePtr, filename: "strutils.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module strutils", prev: framePtr, filename: "strutils.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module strutils", prev: framePtr, filename: "strutils.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module strutils", prev: framePtr, filename: "strutils.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module strutils", prev: framePtr, filename: "strutils.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module strutils", prev: framePtr, filename: "strutils.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module strutils", prev: framePtr, filename: "strutils.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module strutils", prev: framePtr, filename: "strutils.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module strutils", prev: framePtr, filename: "strutils.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module strutils", prev: framePtr, filename: "strutils.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module strutils", prev: framePtr, filename: "strutils.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module strutils", prev: framePtr, filename: "strutils.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module strutils", prev: framePtr, filename: "strutils.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module strutils", prev: framePtr, filename: "strutils.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module strutils", prev: framePtr, filename: "strutils.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module strutils", prev: framePtr, filename: "strutils.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module strutils", prev: framePtr, filename: "strutils.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module strutils", prev: framePtr, filename: "strutils.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module strutils", prev: framePtr, filename: "strutils.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module strutils", prev: framePtr, filename: "strutils.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module strutils", prev: framePtr, filename: "strutils.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module strutils", prev: framePtr, filename: "strutils.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module strutils", prev: framePtr, filename: "strutils.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module strutils", prev: framePtr, filename: "strutils.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module strutils", prev: framePtr, filename: "strutils.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module strutils", prev: framePtr, filename: "strutils.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module strutils", prev: framePtr, filename: "strutils.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module strutils", prev: framePtr, filename: "strutils.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module strutils", prev: framePtr, filename: "strutils.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module strutils", prev: framePtr, filename: "strutils.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module strutils", prev: framePtr, filename: "strutils.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module strutils", prev: framePtr, filename: "strutils.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module strutils", prev: framePtr, filename: "strutils.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module strutils", prev: framePtr, filename: "strutils.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module strutils", prev: framePtr, filename: "strutils.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module strutils", prev: framePtr, filename: "strutils.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module strutils", prev: framePtr, filename: "strutils.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module strutils", prev: framePtr, filename: "strutils.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module strutils", prev: framePtr, filename: "strutils.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module strutils", prev: framePtr, filename: "strutils.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module strutils", prev: framePtr, filename: "strutils.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module strutils", prev: framePtr, filename: "strutils.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module strutils", prev: framePtr, filename: "strutils.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module strutils", prev: framePtr, filename: "strutils.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module strutils", prev: framePtr, filename: "strutils.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module strutils", prev: framePtr, filename: "strutils.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module vstyles", prev: framePtr, filename: "vstyles.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module kbase", prev: framePtr, filename: "kbase.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module kbase", prev: framePtr, filename: "kbase.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module kbase", prev: framePtr, filename: "kbase.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module vstyles", prev: framePtr, filename: "vstyles.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module kdom", prev: framePtr, filename: "kdom.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module dom", prev: framePtr, filename: "dom.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module dom", prev: framePtr, filename: "dom.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module dom", prev: framePtr, filename: "dom.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module dom", prev: framePtr, filename: "dom.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module dom", prev: framePtr, filename: "dom.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module dom", prev: framePtr, filename: "dom.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module dom", prev: framePtr, filename: "dom.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module dom", prev: framePtr, filename: "dom.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module dom", prev: framePtr, filename: "dom.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module dom", prev: framePtr, filename: "dom.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module dom", prev: framePtr, filename: "dom.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module dom", prev: framePtr, filename: "dom.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module dom", prev: framePtr, filename: "dom.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module dom", prev: framePtr, filename: "dom.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module dom", prev: framePtr, filename: "dom.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module dom", prev: framePtr, filename: "dom.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module dom", prev: framePtr, filename: "dom.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module dom", prev: framePtr, filename: "dom.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module dom", prev: framePtr, filename: "dom.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module dom", prev: framePtr, filename: "dom.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module dom", prev: framePtr, filename: "dom.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module dom", prev: framePtr, filename: "dom.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module dom", prev: framePtr, filename: "dom.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module dom", prev: framePtr, filename: "dom.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module dom", prev: framePtr, filename: "dom.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module dom", prev: framePtr, filename: "dom.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module dom", prev: framePtr, filename: "dom.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module dom", prev: framePtr, filename: "dom.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module dom", prev: framePtr, filename: "dom.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module dom", prev: framePtr, filename: "dom.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module dom", prev: framePtr, filename: "dom.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module dom", prev: framePtr, filename: "dom.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module dom", prev: framePtr, filename: "dom.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module dom", prev: framePtr, filename: "dom.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module dom", prev: framePtr, filename: "dom.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module dom", prev: framePtr, filename: "dom.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module dom", prev: framePtr, filename: "dom.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module dom", prev: framePtr, filename: "dom.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module dom", prev: framePtr, filename: "dom.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module dom", prev: framePtr, filename: "dom.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module dom", prev: framePtr, filename: "dom.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module dom", prev: framePtr, filename: "dom.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module dom", prev: framePtr, filename: "dom.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module dom", prev: framePtr, filename: "dom.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module dom", prev: framePtr, filename: "dom.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module dom", prev: framePtr, filename: "dom.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module dom", prev: framePtr, filename: "dom.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module dom", prev: framePtr, filename: "dom.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module dom", prev: framePtr, filename: "dom.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module dom", prev: framePtr, filename: "dom.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module dom", prev: framePtr, filename: "dom.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module dom", prev: framePtr, filename: "dom.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module dom", prev: framePtr, filename: "dom.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module dom", prev: framePtr, filename: "dom.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module dom", prev: framePtr, filename: "dom.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module dom", prev: framePtr, filename: "dom.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module dom", prev: framePtr, filename: "dom.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module dom", prev: framePtr, filename: "dom.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module dom", prev: framePtr, filename: "dom.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module dom", prev: framePtr, filename: "dom.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module dom", prev: framePtr, filename: "dom.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module dom", prev: framePtr, filename: "dom.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module dom", prev: framePtr, filename: "dom.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module dom", prev: framePtr, filename: "dom.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module dom", prev: framePtr, filename: "dom.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module dom", prev: framePtr, filename: "dom.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module dom", prev: framePtr, filename: "dom.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module dom", prev: framePtr, filename: "dom.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module dom", prev: framePtr, filename: "dom.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module dom", prev: framePtr, filename: "dom.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module dom", prev: framePtr, filename: "dom.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module dom", prev: framePtr, filename: "dom.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module dom", prev: framePtr, filename: "dom.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module dom", prev: framePtr, filename: "dom.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module dom", prev: framePtr, filename: "dom.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module dom", prev: framePtr, filename: "dom.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module dom", prev: framePtr, filename: "dom.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module dom", prev: framePtr, filename: "dom.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module dom", prev: framePtr, filename: "dom.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module dom", prev: framePtr, filename: "dom.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module dom", prev: framePtr, filename: "dom.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module dom", prev: framePtr, filename: "dom.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module dom", prev: framePtr, filename: "dom.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module dom", prev: framePtr, filename: "dom.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module dom", prev: framePtr, filename: "dom.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module dom", prev: framePtr, filename: "dom.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module dom", prev: framePtr, filename: "dom.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module dom", prev: framePtr, filename: "dom.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module dom", prev: framePtr, filename: "dom.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module dom", prev: framePtr, filename: "dom.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module dom", prev: framePtr, filename: "dom.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module dom", prev: framePtr, filename: "dom.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module dom", prev: framePtr, filename: "dom.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module dom", prev: framePtr, filename: "dom.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module dom", prev: framePtr, filename: "dom.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module dom", prev: framePtr, filename: "dom.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module dom", prev: framePtr, filename: "dom.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module dom", prev: framePtr, filename: "dom.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module dom", prev: framePtr, filename: "dom.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module dom", prev: framePtr, filename: "dom.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module dom", prev: framePtr, filename: "dom.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module dom", prev: framePtr, filename: "dom.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module dom", prev: framePtr, filename: "dom.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module dom", prev: framePtr, filename: "dom.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module dom", prev: framePtr, filename: "dom.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module dom", prev: framePtr, filename: "dom.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module dom", prev: framePtr, filename: "dom.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module dom", prev: framePtr, filename: "dom.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module dom", prev: framePtr, filename: "dom.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module dom", prev: framePtr, filename: "dom.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module dom", prev: framePtr, filename: "dom.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module dom", prev: framePtr, filename: "dom.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module dom", prev: framePtr, filename: "dom.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module dom", prev: framePtr, filename: "dom.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module dom", prev: framePtr, filename: "dom.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module dom", prev: framePtr, filename: "dom.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module dom", prev: framePtr, filename: "dom.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module dom", prev: framePtr, filename: "dom.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module dom", prev: framePtr, filename: "dom.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module dom", prev: framePtr, filename: "dom.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module dom", prev: framePtr, filename: "dom.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module dom", prev: framePtr, filename: "dom.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module dom", prev: framePtr, filename: "dom.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module dom", prev: framePtr, filename: "dom.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module dom", prev: framePtr, filename: "dom.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module dom", prev: framePtr, filename: "dom.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module dom", prev: framePtr, filename: "dom.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module dom", prev: framePtr, filename: "dom.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module dom", prev: framePtr, filename: "dom.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module dom", prev: framePtr, filename: "dom.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module dom", prev: framePtr, filename: "dom.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module dom", prev: framePtr, filename: "dom.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module dom", prev: framePtr, filename: "dom.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module dom", prev: framePtr, filename: "dom.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module dom", prev: framePtr, filename: "dom.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module dom", prev: framePtr, filename: "dom.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module dom", prev: framePtr, filename: "dom.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module dom", prev: framePtr, filename: "dom.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module dom", prev: framePtr, filename: "dom.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module dom", prev: framePtr, filename: "dom.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module dom", prev: framePtr, filename: "dom.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module dom", prev: framePtr, filename: "dom.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module dom", prev: framePtr, filename: "dom.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module dom", prev: framePtr, filename: "dom.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module dom", prev: framePtr, filename: "dom.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module dom", prev: framePtr, filename: "dom.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module dom", prev: framePtr, filename: "dom.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module dom", prev: framePtr, filename: "dom.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module dom", prev: framePtr, filename: "dom.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module dom", prev: framePtr, filename: "dom.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module dom", prev: framePtr, filename: "dom.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module dom", prev: framePtr, filename: "dom.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module dom", prev: framePtr, filename: "dom.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module dom", prev: framePtr, filename: "dom.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module dom", prev: framePtr, filename: "dom.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module dom", prev: framePtr, filename: "dom.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module dom", prev: framePtr, filename: "dom.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module dom", prev: framePtr, filename: "dom.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module dom", prev: framePtr, filename: "dom.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module dom", prev: framePtr, filename: "dom.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module dom", prev: framePtr, filename: "dom.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module dom", prev: framePtr, filename: "dom.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module dom", prev: framePtr, filename: "dom.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module dom", prev: framePtr, filename: "dom.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module dom", prev: framePtr, filename: "dom.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module dom", prev: framePtr, filename: "dom.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module dom", prev: framePtr, filename: "dom.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module dom", prev: framePtr, filename: "dom.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module dom", prev: framePtr, filename: "dom.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module dom", prev: framePtr, filename: "dom.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module dom", prev: framePtr, filename: "dom.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module dom", prev: framePtr, filename: "dom.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module dom", prev: framePtr, filename: "dom.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module dom", prev: framePtr, filename: "dom.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module dom", prev: framePtr, filename: "dom.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module dom", prev: framePtr, filename: "dom.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module dom", prev: framePtr, filename: "dom.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module dom", prev: framePtr, filename: "dom.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module dom", prev: framePtr, filename: "dom.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module dom", prev: framePtr, filename: "dom.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module dom", prev: framePtr, filename: "dom.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module kdom", prev: framePtr, filename: "kdom.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module kdom", prev: framePtr, filename: "kdom.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module kdom", prev: framePtr, filename: "kdom.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module kdom", prev: framePtr, filename: "kdom.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module jdict", prev: framePtr, filename: "jdict.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module jdict", prev: framePtr, filename: "jdict.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module jdict", prev: framePtr, filename: "jdict.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module jdict", prev: framePtr, filename: "jdict.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module jdict", prev: framePtr, filename: "jdict.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module jdict", prev: framePtr, filename: "jdict.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module jdict", prev: framePtr, filename: "jdict.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module jdict", prev: framePtr, filename: "jdict.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module jdict", prev: framePtr, filename: "jdict.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module jdict", prev: framePtr, filename: "jdict.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module jdict", prev: framePtr, filename: "jdict.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module jdict", prev: framePtr, filename: "jdict.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module jdict", prev: framePtr, filename: "jdict.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module jdict", prev: framePtr, filename: "jdict.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module jdict", prev: framePtr, filename: "jdict.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module vstyles", prev: framePtr, filename: "vstyles.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module vstyles", prev: framePtr, filename: "vstyles.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module vstyles", prev: framePtr, filename: "vstyles.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module vstyles", prev: framePtr, filename: "vstyles.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module vstyles", prev: framePtr, filename: "vstyles.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module vstyles", prev: framePtr, filename: "vstyles.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module vstyles", prev: framePtr, filename: "vstyles.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module vstyles", prev: framePtr, filename: "vstyles.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module vstyles", prev: framePtr, filename: "vstyles.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module vstyles", prev: framePtr, filename: "vstyles.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module vstyles", prev: framePtr, filename: "vstyles.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module vstyles", prev: framePtr, filename: "vstyles.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module vstyles", prev: framePtr, filename: "vstyles.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module jstrutils", prev: framePtr, filename: "jstrutils.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module jstrutils", prev: framePtr, filename: "jstrutils.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module jstrutils", prev: framePtr, filename: "jstrutils.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module jstrutils", prev: framePtr, filename: "jstrutils.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module jstrutils", prev: framePtr, filename: "jstrutils.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module jstrutils", prev: framePtr, filename: "jstrutils.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module jstrutils", prev: framePtr, filename: "jstrutils.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module jstrutils", prev: framePtr, filename: "jstrutils.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module jstrutils", prev: framePtr, filename: "jstrutils.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module jstrutils", prev: framePtr, filename: "jstrutils.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module jstrutils", prev: framePtr, filename: "jstrutils.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module jstrutils", prev: framePtr, filename: "jstrutils.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module jstrutils", prev: framePtr, filename: "jstrutils.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module jstrutils", prev: framePtr, filename: "jstrutils.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module jstrutils", prev: framePtr, filename: "jstrutils.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module jstrutils", prev: framePtr, filename: "jstrutils.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module jstrutils", prev: framePtr, filename: "jstrutils.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module jstrutils", prev: framePtr, filename: "jstrutils.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module vstyles", prev: framePtr, filename: "vstyles.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module vstyles", prev: framePtr, filename: "vstyles.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module vstyles", prev: framePtr, filename: "vstyles.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module vstyles", prev: framePtr, filename: "vstyles.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module karax", prev: framePtr, filename: "karax.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module vdom", prev: framePtr, filename: "vdom.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module vdom", prev: framePtr, filename: "vdom.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module vdom", prev: framePtr, filename: "vdom.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module vdom", prev: framePtr, filename: "vdom.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module vdom", prev: framePtr, filename: "vdom.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module vdom", prev: framePtr, filename: "vdom.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module vdom", prev: framePtr, filename: "vdom.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module vdom", prev: framePtr, filename: "vdom.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module vdom", prev: framePtr, filename: "vdom.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module vdom", prev: framePtr, filename: "vdom.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module vdom", prev: framePtr, filename: "vdom.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module vdom", prev: framePtr, filename: "vdom.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module vdom", prev: framePtr, filename: "vdom.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module vdom", prev: framePtr, filename: "vdom.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module vdom", prev: framePtr, filename: "vdom.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module vdom", prev: framePtr, filename: "vdom.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module vdom", prev: framePtr, filename: "vdom.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module vdom", prev: framePtr, filename: "vdom.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module vdom", prev: framePtr, filename: "vdom.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module vdom", prev: framePtr, filename: "vdom.nim", line: 0};
-framePtr = F;
 var gid_1140851210 = [0];
-framePtr = F.prev;
-var F = {procname: "module vdom", prev: framePtr, filename: "vdom.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module vdom", prev: framePtr, filename: "vdom.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module vdom", prev: framePtr, filename: "vdom.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module vdom", prev: framePtr, filename: "vdom.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module vdom", prev: framePtr, filename: "vdom.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module vdom", prev: framePtr, filename: "vdom.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module vdom", prev: framePtr, filename: "vdom.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module vdom", prev: framePtr, filename: "vdom.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module vdom", prev: framePtr, filename: "vdom.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module vdom", prev: framePtr, filename: "vdom.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module vdom", prev: framePtr, filename: "vdom.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module vdom", prev: framePtr, filename: "vdom.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module vdom", prev: framePtr, filename: "vdom.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module vdom", prev: framePtr, filename: "vdom.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module vdom", prev: framePtr, filename: "vdom.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module vdom", prev: framePtr, filename: "vdom.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module vdom", prev: framePtr, filename: "vdom.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module vdom", prev: framePtr, filename: "vdom.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module vdom", prev: framePtr, filename: "vdom.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module vdom", prev: framePtr, filename: "vdom.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module vdom", prev: framePtr, filename: "vdom.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module vdom", prev: framePtr, filename: "vdom.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module vdom", prev: framePtr, filename: "vdom.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module vdom", prev: framePtr, filename: "vdom.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module vdom", prev: framePtr, filename: "vdom.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module vdom", prev: framePtr, filename: "vdom.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module vdom", prev: framePtr, filename: "vdom.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module vdom", prev: framePtr, filename: "vdom.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module vdom", prev: framePtr, filename: "vdom.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module vdom", prev: framePtr, filename: "vdom.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module vdom", prev: framePtr, filename: "vdom.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module vdom", prev: framePtr, filename: "vdom.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module compact", prev: framePtr, filename: "compact.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module tables", prev: framePtr, filename: "tables.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module tables", prev: framePtr, filename: "tables.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module hashes", prev: framePtr, filename: "hashes.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module hashes", prev: framePtr, filename: "hashes.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module hashes", prev: framePtr, filename: "hashes.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module hashes", prev: framePtr, filename: "hashes.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module hashes", prev: framePtr, filename: "hashes.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module hashes", prev: framePtr, filename: "hashes.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module hashes", prev: framePtr, filename: "hashes.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module hashes", prev: framePtr, filename: "hashes.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module hashes", prev: framePtr, filename: "hashes.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module hashes", prev: framePtr, filename: "hashes.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module hashes", prev: framePtr, filename: "hashes.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module hashes", prev: framePtr, filename: "hashes.nim", line: 0};
-framePtr = F;
 var objectID_1207959714 = [0];
-framePtr = F.prev;
-var F = {procname: "module hashes", prev: framePtr, filename: "hashes.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module hashes", prev: framePtr, filename: "hashes.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module hashes", prev: framePtr, filename: "hashes.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module hashes", prev: framePtr, filename: "hashes.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module hashes", prev: framePtr, filename: "hashes.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module hashes", prev: framePtr, filename: "hashes.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module hashes", prev: framePtr, filename: "hashes.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module hashes", prev: framePtr, filename: "hashes.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module hashes", prev: framePtr, filename: "hashes.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module hashes", prev: framePtr, filename: "hashes.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module hashes", prev: framePtr, filename: "hashes.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module hashes", prev: framePtr, filename: "hashes.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module hashes", prev: framePtr, filename: "hashes.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module hashes", prev: framePtr, filename: "hashes.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module hashes", prev: framePtr, filename: "hashes.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module hashes", prev: framePtr, filename: "hashes.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module hashes", prev: framePtr, filename: "hashes.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module hashes", prev: framePtr, filename: "hashes.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module hashes", prev: framePtr, filename: "hashes.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module hashes", prev: framePtr, filename: "hashes.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module hashes", prev: framePtr, filename: "hashes.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module hashes", prev: framePtr, filename: "hashes.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module hashes", prev: framePtr, filename: "hashes.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module hashes", prev: framePtr, filename: "hashes.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module hashes", prev: framePtr, filename: "hashes.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module tables", prev: framePtr, filename: "tables.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module tables", prev: framePtr, filename: "tables.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module tables", prev: framePtr, filename: "tables.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module tables", prev: framePtr, filename: "tables.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module tables", prev: framePtr, filename: "tables.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module tables", prev: framePtr, filename: "tables.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module tables", prev: framePtr, filename: "tables.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module tables", prev: framePtr, filename: "tables.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module tables", prev: framePtr, filename: "tables.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module tables", prev: framePtr, filename: "tables.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module tables", prev: framePtr, filename: "tables.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module tables", prev: framePtr, filename: "tables.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module tables", prev: framePtr, filename: "tables.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module tables", prev: framePtr, filename: "tables.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module tables", prev: framePtr, filename: "tables.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module tables", prev: framePtr, filename: "tables.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module tables", prev: framePtr, filename: "tables.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module tables", prev: framePtr, filename: "tables.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module tables", prev: framePtr, filename: "tables.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module tables", prev: framePtr, filename: "tables.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module tables", prev: framePtr, filename: "tables.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module tables", prev: framePtr, filename: "tables.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module tables", prev: framePtr, filename: "tables.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module tables", prev: framePtr, filename: "tables.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module tables", prev: framePtr, filename: "tables.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module tables", prev: framePtr, filename: "tables.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module tables", prev: framePtr, filename: "tables.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module tables", prev: framePtr, filename: "tables.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module tables", prev: framePtr, filename: "tables.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module tables", prev: framePtr, filename: "tables.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module tables", prev: framePtr, filename: "tables.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module tables", prev: framePtr, filename: "tables.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module tables", prev: framePtr, filename: "tables.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module tables", prev: framePtr, filename: "tables.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module tables", prev: framePtr, filename: "tables.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module tables", prev: framePtr, filename: "tables.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module tables", prev: framePtr, filename: "tables.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module tables", prev: framePtr, filename: "tables.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module tables", prev: framePtr, filename: "tables.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module tables", prev: framePtr, filename: "tables.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module tables", prev: framePtr, filename: "tables.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module tables", prev: framePtr, filename: "tables.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module tables", prev: framePtr, filename: "tables.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module tables", prev: framePtr, filename: "tables.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module tables", prev: framePtr, filename: "tables.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module tables", prev: framePtr, filename: "tables.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module tables", prev: framePtr, filename: "tables.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module tables", prev: framePtr, filename: "tables.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module tables", prev: framePtr, filename: "tables.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module tables", prev: framePtr, filename: "tables.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module tables", prev: framePtr, filename: "tables.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module tables", prev: framePtr, filename: "tables.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module tables", prev: framePtr, filename: "tables.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module tables", prev: framePtr, filename: "tables.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module tables", prev: framePtr, filename: "tables.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module tables", prev: framePtr, filename: "tables.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module tables", prev: framePtr, filename: "tables.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module tables", prev: framePtr, filename: "tables.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module tables", prev: framePtr, filename: "tables.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module tables", prev: framePtr, filename: "tables.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module tables", prev: framePtr, filename: "tables.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module tables", prev: framePtr, filename: "tables.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module tables", prev: framePtr, filename: "tables.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module tables", prev: framePtr, filename: "tables.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module tables", prev: framePtr, filename: "tables.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module tables", prev: framePtr, filename: "tables.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module tables", prev: framePtr, filename: "tables.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module tables", prev: framePtr, filename: "tables.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module tables", prev: framePtr, filename: "tables.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module tables", prev: framePtr, filename: "tables.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module tables", prev: framePtr, filename: "tables.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module tables", prev: framePtr, filename: "tables.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module tables", prev: framePtr, filename: "tables.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module tables", prev: framePtr, filename: "tables.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module tables", prev: framePtr, filename: "tables.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module tables", prev: framePtr, filename: "tables.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module tables", prev: framePtr, filename: "tables.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module tables", prev: framePtr, filename: "tables.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module tables", prev: framePtr, filename: "tables.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module tables", prev: framePtr, filename: "tables.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module tables", prev: framePtr, filename: "tables.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module tables", prev: framePtr, filename: "tables.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module tables", prev: framePtr, filename: "tables.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module tables", prev: framePtr, filename: "tables.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module tables", prev: framePtr, filename: "tables.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module tables", prev: framePtr, filename: "tables.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module tables", prev: framePtr, filename: "tables.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module tables", prev: framePtr, filename: "tables.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module tables", prev: framePtr, filename: "tables.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module tables", prev: framePtr, filename: "tables.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module tables", prev: framePtr, filename: "tables.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module tables", prev: framePtr, filename: "tables.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module tables", prev: framePtr, filename: "tables.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module tables", prev: framePtr, filename: "tables.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module tables", prev: framePtr, filename: "tables.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module tables", prev: framePtr, filename: "tables.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module tables", prev: framePtr, filename: "tables.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module tables", prev: framePtr, filename: "tables.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module tables", prev: framePtr, filename: "tables.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module tables", prev: framePtr, filename: "tables.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module tables", prev: framePtr, filename: "tables.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module tables", prev: framePtr, filename: "tables.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module tables", prev: framePtr, filename: "tables.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module tables", prev: framePtr, filename: "tables.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module tables", prev: framePtr, filename: "tables.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module tables", prev: framePtr, filename: "tables.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module tables", prev: framePtr, filename: "tables.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module tables", prev: framePtr, filename: "tables.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module tables", prev: framePtr, filename: "tables.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module tables", prev: framePtr, filename: "tables.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module tables", prev: framePtr, filename: "tables.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module tables", prev: framePtr, filename: "tables.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module tables", prev: framePtr, filename: "tables.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module tables", prev: framePtr, filename: "tables.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module tables", prev: framePtr, filename: "tables.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module tables", prev: framePtr, filename: "tables.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module tables", prev: framePtr, filename: "tables.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module tables", prev: framePtr, filename: "tables.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module tables", prev: framePtr, filename: "tables.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module tables", prev: framePtr, filename: "tables.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module tables", prev: framePtr, filename: "tables.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module tables", prev: framePtr, filename: "tables.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module tables", prev: framePtr, filename: "tables.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module tables", prev: framePtr, filename: "tables.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module tables", prev: framePtr, filename: "tables.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module tables", prev: framePtr, filename: "tables.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module tables", prev: framePtr, filename: "tables.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module tables", prev: framePtr, filename: "tables.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module tables", prev: framePtr, filename: "tables.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module tables", prev: framePtr, filename: "tables.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module tables", prev: framePtr, filename: "tables.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module tables", prev: framePtr, filename: "tables.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module tables", prev: framePtr, filename: "tables.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module tables", prev: framePtr, filename: "tables.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module tables", prev: framePtr, filename: "tables.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module tables", prev: framePtr, filename: "tables.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module tables", prev: framePtr, filename: "tables.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module tables", prev: framePtr, filename: "tables.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module tables", prev: framePtr, filename: "tables.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module tables", prev: framePtr, filename: "tables.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module tables", prev: framePtr, filename: "tables.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module tables", prev: framePtr, filename: "tables.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module tables", prev: framePtr, filename: "tables.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module tables", prev: framePtr, filename: "tables.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module tables", prev: framePtr, filename: "tables.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module tables", prev: framePtr, filename: "tables.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module tables", prev: framePtr, filename: "tables.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module tables", prev: framePtr, filename: "tables.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module tables", prev: framePtr, filename: "tables.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module tables", prev: framePtr, filename: "tables.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module tables", prev: framePtr, filename: "tables.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module tables", prev: framePtr, filename: "tables.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module tables", prev: framePtr, filename: "tables.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module tables", prev: framePtr, filename: "tables.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module tables", prev: framePtr, filename: "tables.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module tables", prev: framePtr, filename: "tables.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module tables", prev: framePtr, filename: "tables.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module tables", prev: framePtr, filename: "tables.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module tables", prev: framePtr, filename: "tables.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module tables", prev: framePtr, filename: "tables.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module tables", prev: framePtr, filename: "tables.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module tables", prev: framePtr, filename: "tables.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module tables", prev: framePtr, filename: "tables.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module tables", prev: framePtr, filename: "tables.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module tables", prev: framePtr, filename: "tables.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module tables", prev: framePtr, filename: "tables.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module tables", prev: framePtr, filename: "tables.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module tables", prev: framePtr, filename: "tables.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module tables", prev: framePtr, filename: "tables.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module tables", prev: framePtr, filename: "tables.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module tables", prev: framePtr, filename: "tables.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module tables", prev: framePtr, filename: "tables.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module tables", prev: framePtr, filename: "tables.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module tables", prev: framePtr, filename: "tables.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module tables", prev: framePtr, filename: "tables.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module tables", prev: framePtr, filename: "tables.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module compact", prev: framePtr, filename: "compact.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module compact", prev: framePtr, filename: "compact.nim", line: 0};
-framePtr = F;
 var vcomponents_1157627917 = [{}];
-framePtr = F.prev;
-var F = {procname: "module compact", prev: framePtr, filename: "compact.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module compact", prev: framePtr, filename: "compact.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module compact", prev: framePtr, filename: "compact.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module compact", prev: framePtr, filename: "compact.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module compact", prev: framePtr, filename: "compact.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module compact", prev: framePtr, filename: "compact.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module compact", prev: framePtr, filename: "compact.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module compact", prev: framePtr, filename: "compact.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module karax", prev: framePtr, filename: "karax.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module karax", prev: framePtr, filename: "karax.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module karax", prev: framePtr, filename: "karax.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module karax", prev: framePtr, filename: "karax.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module karax", prev: framePtr, filename: "karax.nim", line: 0};
-framePtr = F;
 var kxi_1124073536 = [null];
-framePtr = F.prev;
-var F = {procname: "module karax", prev: framePtr, filename: "karax.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module karax", prev: framePtr, filename: "karax.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module karax", prev: framePtr, filename: "karax.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module karax", prev: framePtr, filename: "karax.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module karax", prev: framePtr, filename: "karax.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module karax", prev: framePtr, filename: "karax.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module karax", prev: framePtr, filename: "karax.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module karax", prev: framePtr, filename: "karax.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module karax", prev: framePtr, filename: "karax.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module karax", prev: framePtr, filename: "karax.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module karax", prev: framePtr, filename: "karax.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module karax", prev: framePtr, filename: "karax.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module karax", prev: framePtr, filename: "karax.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module karax", prev: framePtr, filename: "karax.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module karax", prev: framePtr, filename: "karax.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module karax", prev: framePtr, filename: "karax.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module karax", prev: framePtr, filename: "karax.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module karax", prev: framePtr, filename: "karax.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module karax", prev: framePtr, filename: "karax.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module karax", prev: framePtr, filename: "karax.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module karax", prev: framePtr, filename: "karax.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module karax", prev: framePtr, filename: "karax.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module karax", prev: framePtr, filename: "karax.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module karax", prev: framePtr, filename: "karax.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module karax", prev: framePtr, filename: "karax.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module karax", prev: framePtr, filename: "karax.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module karax", prev: framePtr, filename: "karax.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module karax", prev: framePtr, filename: "karax.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module karax", prev: framePtr, filename: "karax.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module karax", prev: framePtr, filename: "karax.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module karax", prev: framePtr, filename: "karax.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module karax", prev: framePtr, filename: "karax.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module karax", prev: framePtr, filename: "karax.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module karax", prev: framePtr, filename: "karax.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module karax", prev: framePtr, filename: "karax.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module karax", prev: framePtr, filename: "karax.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module karax", prev: framePtr, filename: "karax.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module karax", prev: framePtr, filename: "karax.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module karax", prev: framePtr, filename: "karax.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module karax", prev: framePtr, filename: "karax.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module karax", prev: framePtr, filename: "karax.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module karax", prev: framePtr, filename: "karax.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module karax", prev: framePtr, filename: "karax.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module karax", prev: framePtr, filename: "karax.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module karax", prev: framePtr, filename: "karax.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module karax", prev: framePtr, filename: "karax.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module karax", prev: framePtr, filename: "karax.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module karax", prev: framePtr, filename: "karax.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module karax", prev: framePtr, filename: "karax.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module karax", prev: framePtr, filename: "karax.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module karax", prev: framePtr, filename: "karax.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module karax", prev: framePtr, filename: "karax.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module karax", prev: framePtr, filename: "karax.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module karax", prev: framePtr, filename: "karax.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module karax", prev: framePtr, filename: "karax.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module karax", prev: framePtr, filename: "karax.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module karax", prev: framePtr, filename: "karax.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module karax", prev: framePtr, filename: "karax.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module utiljs", prev: framePtr, filename: "utiljs.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module jsffi", prev: framePtr, filename: "jsffi.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module jsffi", prev: framePtr, filename: "jsffi.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module jsffi", prev: framePtr, filename: "jsffi.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module jsffi", prev: framePtr, filename: "jsffi.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module jsffi", prev: framePtr, filename: "jsffi.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module jsffi", prev: framePtr, filename: "jsffi.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module jsffi", prev: framePtr, filename: "jsffi.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module jsffi", prev: framePtr, filename: "jsffi.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module jsffi", prev: framePtr, filename: "jsffi.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module jsffi", prev: framePtr, filename: "jsffi.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module jsffi", prev: framePtr, filename: "jsffi.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module jsffi", prev: framePtr, filename: "jsffi.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module jsffi", prev: framePtr, filename: "jsffi.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module jsffi", prev: framePtr, filename: "jsffi.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module jsffi", prev: framePtr, filename: "jsffi.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module jsffi", prev: framePtr, filename: "jsffi.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module jsffi", prev: framePtr, filename: "jsffi.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module jsffi", prev: framePtr, filename: "jsffi.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module jsffi", prev: framePtr, filename: "jsffi.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module jsffi", prev: framePtr, filename: "jsffi.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module jsffi", prev: framePtr, filename: "jsffi.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module jsffi", prev: framePtr, filename: "jsffi.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module jsffi", prev: framePtr, filename: "jsffi.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module jsffi", prev: framePtr, filename: "jsffi.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module jsffi", prev: framePtr, filename: "jsffi.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module jsffi", prev: framePtr, filename: "jsffi.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module jsffi", prev: framePtr, filename: "jsffi.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module jsffi", prev: framePtr, filename: "jsffi.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module jsffi", prev: framePtr, filename: "jsffi.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module jsffi", prev: framePtr, filename: "jsffi.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module jsffi", prev: framePtr, filename: "jsffi.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module jsffi", prev: framePtr, filename: "jsffi.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module jsffi", prev: framePtr, filename: "jsffi.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module jsffi", prev: framePtr, filename: "jsffi.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module jsffi", prev: framePtr, filename: "jsffi.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module jsffi", prev: framePtr, filename: "jsffi.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module jsffi", prev: framePtr, filename: "jsffi.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module jsffi", prev: framePtr, filename: "jsffi.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module jsffi", prev: framePtr, filename: "jsffi.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module jsffi", prev: framePtr, filename: "jsffi.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module jsffi", prev: framePtr, filename: "jsffi.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module jsffi", prev: framePtr, filename: "jsffi.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module jsffi", prev: framePtr, filename: "jsffi.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module jsffi", prev: framePtr, filename: "jsffi.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module jsffi", prev: framePtr, filename: "jsffi.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module jsffi", prev: framePtr, filename: "jsffi.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module jsffi", prev: framePtr, filename: "jsffi.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module jsffi", prev: framePtr, filename: "jsffi.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module jsffi", prev: framePtr, filename: "jsffi.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module jsffi", prev: framePtr, filename: "jsffi.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module jsffi", prev: framePtr, filename: "jsffi.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module jsffi", prev: framePtr, filename: "jsffi.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module jsffi", prev: framePtr, filename: "jsffi.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module jsffi", prev: framePtr, filename: "jsffi.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module jsffi", prev: framePtr, filename: "jsffi.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module jsffi", prev: framePtr, filename: "jsffi.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module jsffi", prev: framePtr, filename: "jsffi.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module jsffi", prev: framePtr, filename: "jsffi.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module jsffi", prev: framePtr, filename: "jsffi.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module jsffi", prev: framePtr, filename: "jsffi.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module jsffi", prev: framePtr, filename: "jsffi.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module jsffi", prev: framePtr, filename: "jsffi.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module jsffi", prev: framePtr, filename: "jsffi.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module jsffi", prev: framePtr, filename: "jsffi.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module jsffi", prev: framePtr, filename: "jsffi.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module jsffi", prev: framePtr, filename: "jsffi.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module jsffi", prev: framePtr, filename: "jsffi.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module jsffi", prev: framePtr, filename: "jsffi.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module jsffi", prev: framePtr, filename: "jsffi.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module jsffi", prev: framePtr, filename: "jsffi.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module jsffi", prev: framePtr, filename: "jsffi.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module jsffi", prev: framePtr, filename: "jsffi.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module utiljs", prev: framePtr, filename: "utiljs.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module json", prev: framePtr, filename: "json.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module lexbase", prev: framePtr, filename: "lexbase.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module streams", prev: framePtr, filename: "streams.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module streams", prev: framePtr, filename: "streams.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module streams", prev: framePtr, filename: "streams.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module streams", prev: framePtr, filename: "streams.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module streams", prev: framePtr, filename: "streams.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module streams", prev: framePtr, filename: "streams.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module streams", prev: framePtr, filename: "streams.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module streams", prev: framePtr, filename: "streams.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module streams", prev: framePtr, filename: "streams.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module streams", prev: framePtr, filename: "streams.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module streams", prev: framePtr, filename: "streams.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module streams", prev: framePtr, filename: "streams.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module streams", prev: framePtr, filename: "streams.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module streams", prev: framePtr, filename: "streams.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module streams", prev: framePtr, filename: "streams.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module streams", prev: framePtr, filename: "streams.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module streams", prev: framePtr, filename: "streams.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module streams", prev: framePtr, filename: "streams.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module streams", prev: framePtr, filename: "streams.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module streams", prev: framePtr, filename: "streams.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module streams", prev: framePtr, filename: "streams.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module streams", prev: framePtr, filename: "streams.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module streams", prev: framePtr, filename: "streams.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module streams", prev: framePtr, filename: "streams.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module streams", prev: framePtr, filename: "streams.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module streams", prev: framePtr, filename: "streams.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module streams", prev: framePtr, filename: "streams.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module streams", prev: framePtr, filename: "streams.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module streams", prev: framePtr, filename: "streams.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module streams", prev: framePtr, filename: "streams.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module streams", prev: framePtr, filename: "streams.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module streams", prev: framePtr, filename: "streams.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module streams", prev: framePtr, filename: "streams.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module streams", prev: framePtr, filename: "streams.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module streams", prev: framePtr, filename: "streams.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module streams", prev: framePtr, filename: "streams.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module streams", prev: framePtr, filename: "streams.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module streams", prev: framePtr, filename: "streams.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module streams", prev: framePtr, filename: "streams.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module streams", prev: framePtr, filename: "streams.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module streams", prev: framePtr, filename: "streams.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module streams", prev: framePtr, filename: "streams.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module streams", prev: framePtr, filename: "streams.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module streams", prev: framePtr, filename: "streams.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module streams", prev: framePtr, filename: "streams.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module streams", prev: framePtr, filename: "streams.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module streams", prev: framePtr, filename: "streams.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module streams", prev: framePtr, filename: "streams.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module streams", prev: framePtr, filename: "streams.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module streams", prev: framePtr, filename: "streams.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module streams", prev: framePtr, filename: "streams.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module streams", prev: framePtr, filename: "streams.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module streams", prev: framePtr, filename: "streams.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module streams", prev: framePtr, filename: "streams.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module streams", prev: framePtr, filename: "streams.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module streams", prev: framePtr, filename: "streams.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module streams", prev: framePtr, filename: "streams.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module streams", prev: framePtr, filename: "streams.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module streams", prev: framePtr, filename: "streams.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module streams", prev: framePtr, filename: "streams.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module streams", prev: framePtr, filename: "streams.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module streams", prev: framePtr, filename: "streams.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module streams", prev: framePtr, filename: "streams.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module streams", prev: framePtr, filename: "streams.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module streams", prev: framePtr, filename: "streams.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module streams", prev: framePtr, filename: "streams.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module streams", prev: framePtr, filename: "streams.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module streams", prev: framePtr, filename: "streams.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module streams", prev: framePtr, filename: "streams.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module streams", prev: framePtr, filename: "streams.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module streams", prev: framePtr, filename: "streams.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module streams", prev: framePtr, filename: "streams.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module streams", prev: framePtr, filename: "streams.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module lexbase", prev: framePtr, filename: "lexbase.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module lexbase", prev: framePtr, filename: "lexbase.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module lexbase", prev: framePtr, filename: "lexbase.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module lexbase", prev: framePtr, filename: "lexbase.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module lexbase", prev: framePtr, filename: "lexbase.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module lexbase", prev: framePtr, filename: "lexbase.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module lexbase", prev: framePtr, filename: "lexbase.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module lexbase", prev: framePtr, filename: "lexbase.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module lexbase", prev: framePtr, filename: "lexbase.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module lexbase", prev: framePtr, filename: "lexbase.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module lexbase", prev: framePtr, filename: "lexbase.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module lexbase", prev: framePtr, filename: "lexbase.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module lexbase", prev: framePtr, filename: "lexbase.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module parsejson", prev: framePtr, filename: "parsejson.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module parsejson", prev: framePtr, filename: "parsejson.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module decode_helpers", prev: framePtr, filename: "decode_helpers.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module decode_helpers", prev: framePtr, filename: "decode_helpers.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module decode_helpers", prev: framePtr, filename: "decode_helpers.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module decode_helpers", prev: framePtr, filename: "decode_helpers.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module parsejson", prev: framePtr, filename: "parsejson.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module parsejson", prev: framePtr, filename: "parsejson.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module parsejson", prev: framePtr, filename: "parsejson.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module parsejson", prev: framePtr, filename: "parsejson.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module parsejson", prev: framePtr, filename: "parsejson.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module parsejson", prev: framePtr, filename: "parsejson.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module parsejson", prev: framePtr, filename: "parsejson.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module parsejson", prev: framePtr, filename: "parsejson.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module parsejson", prev: framePtr, filename: "parsejson.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module parsejson", prev: framePtr, filename: "parsejson.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module parsejson", prev: framePtr, filename: "parsejson.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module parsejson", prev: framePtr, filename: "parsejson.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module parsejson", prev: framePtr, filename: "parsejson.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module parsejson", prev: framePtr, filename: "parsejson.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module parsejson", prev: framePtr, filename: "parsejson.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module parsejson", prev: framePtr, filename: "parsejson.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module parsejson", prev: framePtr, filename: "parsejson.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module parsejson", prev: framePtr, filename: "parsejson.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module parsejson", prev: framePtr, filename: "parsejson.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module parsejson", prev: framePtr, filename: "parsejson.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module parsejson", prev: framePtr, filename: "parsejson.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module parsejson", prev: framePtr, filename: "parsejson.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module parsejson", prev: framePtr, filename: "parsejson.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module json", prev: framePtr, filename: "json.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module options", prev: framePtr, filename: "options.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module options", prev: framePtr, filename: "options.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module options", prev: framePtr, filename: "options.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module options", prev: framePtr, filename: "options.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module options", prev: framePtr, filename: "options.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module options", prev: framePtr, filename: "options.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module options", prev: framePtr, filename: "options.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module options", prev: framePtr, filename: "options.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module options", prev: framePtr, filename: "options.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module options", prev: framePtr, filename: "options.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module options", prev: framePtr, filename: "options.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module options", prev: framePtr, filename: "options.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module options", prev: framePtr, filename: "options.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module options", prev: framePtr, filename: "options.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module options", prev: framePtr, filename: "options.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module options", prev: framePtr, filename: "options.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module options", prev: framePtr, filename: "options.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module options", prev: framePtr, filename: "options.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module options", prev: framePtr, filename: "options.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module options", prev: framePtr, filename: "options.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module options", prev: framePtr, filename: "options.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module json", prev: framePtr, filename: "json.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module json", prev: framePtr, filename: "json.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module json", prev: framePtr, filename: "json.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module json", prev: framePtr, filename: "json.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module json", prev: framePtr, filename: "json.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module json", prev: framePtr, filename: "json.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module json", prev: framePtr, filename: "json.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module json", prev: framePtr, filename: "json.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module json", prev: framePtr, filename: "json.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module json", prev: framePtr, filename: "json.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module json", prev: framePtr, filename: "json.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module json", prev: framePtr, filename: "json.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module json", prev: framePtr, filename: "json.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module json", prev: framePtr, filename: "json.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module json", prev: framePtr, filename: "json.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module json", prev: framePtr, filename: "json.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module json", prev: framePtr, filename: "json.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module json", prev: framePtr, filename: "json.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module json", prev: framePtr, filename: "json.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module json", prev: framePtr, filename: "json.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module json", prev: framePtr, filename: "json.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module json", prev: framePtr, filename: "json.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module json", prev: framePtr, filename: "json.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module json", prev: framePtr, filename: "json.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module json", prev: framePtr, filename: "json.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module json", prev: framePtr, filename: "json.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module json", prev: framePtr, filename: "json.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module json", prev: framePtr, filename: "json.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module json", prev: framePtr, filename: "json.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module json", prev: framePtr, filename: "json.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module json", prev: framePtr, filename: "json.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module json", prev: framePtr, filename: "json.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module json", prev: framePtr, filename: "json.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module json", prev: framePtr, filename: "json.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module json", prev: framePtr, filename: "json.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module json", prev: framePtr, filename: "json.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module json", prev: framePtr, filename: "json.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module json", prev: framePtr, filename: "json.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module json", prev: framePtr, filename: "json.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module json", prev: framePtr, filename: "json.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module json", prev: framePtr, filename: "json.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module json", prev: framePtr, filename: "json.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module json", prev: framePtr, filename: "json.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module json", prev: framePtr, filename: "json.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module json", prev: framePtr, filename: "json.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module json", prev: framePtr, filename: "json.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module json", prev: framePtr, filename: "json.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module json", prev: framePtr, filename: "json.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module json", prev: framePtr, filename: "json.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module json", prev: framePtr, filename: "json.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module json", prev: framePtr, filename: "json.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module json", prev: framePtr, filename: "json.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module json", prev: framePtr, filename: "json.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module json", prev: framePtr, filename: "json.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module json", prev: framePtr, filename: "json.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module json", prev: framePtr, filename: "json.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module json", prev: framePtr, filename: "json.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module json", prev: framePtr, filename: "json.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module json", prev: framePtr, filename: "json.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module json", prev: framePtr, filename: "json.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module json", prev: framePtr, filename: "json.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module json", prev: framePtr, filename: "json.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module json", prev: framePtr, filename: "json.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module json", prev: framePtr, filename: "json.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module json", prev: framePtr, filename: "json.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module json", prev: framePtr, filename: "json.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module json", prev: framePtr, filename: "json.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module json", prev: framePtr, filename: "json.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module json", prev: framePtr, filename: "json.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module json", prev: framePtr, filename: "json.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module json", prev: framePtr, filename: "json.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module json", prev: framePtr, filename: "json.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module json", prev: framePtr, filename: "json.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module json", prev: framePtr, filename: "json.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module json", prev: framePtr, filename: "json.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module json", prev: framePtr, filename: "json.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module json", prev: framePtr, filename: "json.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module json", prev: framePtr, filename: "json.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module json", prev: framePtr, filename: "json.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module json", prev: framePtr, filename: "json.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module json", prev: framePtr, filename: "json.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module json", prev: framePtr, filename: "json.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module json", prev: framePtr, filename: "json.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module json", prev: framePtr, filename: "json.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module json", prev: framePtr, filename: "json.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module strformat", prev: framePtr, filename: "strformat.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module strformat", prev: framePtr, filename: "strformat.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module strformat", prev: framePtr, filename: "strformat.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module strformat", prev: framePtr, filename: "strformat.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module strformat", prev: framePtr, filename: "strformat.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module strformat", prev: framePtr, filename: "strformat.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module strformat", prev: framePtr, filename: "strformat.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module strformat", prev: framePtr, filename: "strformat.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module strformat", prev: framePtr, filename: "strformat.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module strformat", prev: framePtr, filename: "strformat.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module strformat", prev: framePtr, filename: "strformat.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module strformat", prev: framePtr, filename: "strformat.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module strformat", prev: framePtr, filename: "strformat.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module strformat", prev: framePtr, filename: "strformat.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module strformat", prev: framePtr, filename: "strformat.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module strformat", prev: framePtr, filename: "strformat.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module strformat", prev: framePtr, filename: "strformat.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module strformat", prev: framePtr, filename: "strformat.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module strformat", prev: framePtr, filename: "strformat.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module utiljs", prev: framePtr, filename: "utiljs.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module utiljs", prev: framePtr, filename: "utiljs.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module times", prev: framePtr, filename: "times.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module times", prev: framePtr, filename: "times.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module times", prev: framePtr, filename: "times.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module jscore", prev: framePtr, filename: "jscore.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module jscore", prev: framePtr, filename: "jscore.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module jscore", prev: framePtr, filename: "jscore.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module jscore", prev: framePtr, filename: "jscore.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module jscore", prev: framePtr, filename: "jscore.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module jscore", prev: framePtr, filename: "jscore.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module jscore", prev: framePtr, filename: "jscore.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module jscore", prev: framePtr, filename: "jscore.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module jscore", prev: framePtr, filename: "jscore.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module jscore", prev: framePtr, filename: "jscore.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module jscore", prev: framePtr, filename: "jscore.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module jscore", prev: framePtr, filename: "jscore.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module jscore", prev: framePtr, filename: "jscore.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module jscore", prev: framePtr, filename: "jscore.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module jscore", prev: framePtr, filename: "jscore.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module jscore", prev: framePtr, filename: "jscore.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module jscore", prev: framePtr, filename: "jscore.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module jscore", prev: framePtr, filename: "jscore.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module jscore", prev: framePtr, filename: "jscore.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module jscore", prev: framePtr, filename: "jscore.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module jscore", prev: framePtr, filename: "jscore.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module jscore", prev: framePtr, filename: "jscore.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module jscore", prev: framePtr, filename: "jscore.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module jscore", prev: framePtr, filename: "jscore.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module jscore", prev: framePtr, filename: "jscore.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module jscore", prev: framePtr, filename: "jscore.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module jscore", prev: framePtr, filename: "jscore.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module jscore", prev: framePtr, filename: "jscore.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module jscore", prev: framePtr, filename: "jscore.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module jscore", prev: framePtr, filename: "jscore.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module jscore", prev: framePtr, filename: "jscore.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module jscore", prev: framePtr, filename: "jscore.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module jscore", prev: framePtr, filename: "jscore.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module jscore", prev: framePtr, filename: "jscore.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module jscore", prev: framePtr, filename: "jscore.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module jscore", prev: framePtr, filename: "jscore.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module jscore", prev: framePtr, filename: "jscore.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module jscore", prev: framePtr, filename: "jscore.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module jscore", prev: framePtr, filename: "jscore.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module jscore", prev: framePtr, filename: "jscore.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module jscore", prev: framePtr, filename: "jscore.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module jscore", prev: framePtr, filename: "jscore.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module jscore", prev: framePtr, filename: "jscore.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module jscore", prev: framePtr, filename: "jscore.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module jscore", prev: framePtr, filename: "jscore.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module jscore", prev: framePtr, filename: "jscore.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module jscore", prev: framePtr, filename: "jscore.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module jscore", prev: framePtr, filename: "jscore.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module jscore", prev: framePtr, filename: "jscore.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module jscore", prev: framePtr, filename: "jscore.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module jscore", prev: framePtr, filename: "jscore.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module jscore", prev: framePtr, filename: "jscore.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module jscore", prev: framePtr, filename: "jscore.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module jscore", prev: framePtr, filename: "jscore.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module jscore", prev: framePtr, filename: "jscore.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module jscore", prev: framePtr, filename: "jscore.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module jscore", prev: framePtr, filename: "jscore.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module jscore", prev: framePtr, filename: "jscore.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module jscore", prev: framePtr, filename: "jscore.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module jscore", prev: framePtr, filename: "jscore.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module jscore", prev: framePtr, filename: "jscore.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module jscore", prev: framePtr, filename: "jscore.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module jscore", prev: framePtr, filename: "jscore.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module jscore", prev: framePtr, filename: "jscore.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module jscore", prev: framePtr, filename: "jscore.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module jscore", prev: framePtr, filename: "jscore.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module jscore", prev: framePtr, filename: "jscore.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module jscore", prev: framePtr, filename: "jscore.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module jscore", prev: framePtr, filename: "jscore.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module times", prev: framePtr, filename: "times.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module times", prev: framePtr, filename: "times.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module times", prev: framePtr, filename: "times.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module times", prev: framePtr, filename: "times.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module times", prev: framePtr, filename: "times.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module times", prev: framePtr, filename: "times.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module times", prev: framePtr, filename: "times.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module times", prev: framePtr, filename: "times.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module times", prev: framePtr, filename: "times.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module times", prev: framePtr, filename: "times.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module times", prev: framePtr, filename: "times.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module times", prev: framePtr, filename: "times.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module times", prev: framePtr, filename: "times.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module times", prev: framePtr, filename: "times.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module times", prev: framePtr, filename: "times.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module times", prev: framePtr, filename: "times.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module times", prev: framePtr, filename: "times.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module times", prev: framePtr, filename: "times.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module times", prev: framePtr, filename: "times.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module times", prev: framePtr, filename: "times.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module times", prev: framePtr, filename: "times.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module times", prev: framePtr, filename: "times.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module times", prev: framePtr, filename: "times.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module times", prev: framePtr, filename: "times.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module times", prev: framePtr, filename: "times.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module times", prev: framePtr, filename: "times.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module times", prev: framePtr, filename: "times.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module times", prev: framePtr, filename: "times.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module times", prev: framePtr, filename: "times.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module times", prev: framePtr, filename: "times.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module times", prev: framePtr, filename: "times.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module times", prev: framePtr, filename: "times.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module times", prev: framePtr, filename: "times.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module times", prev: framePtr, filename: "times.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module times", prev: framePtr, filename: "times.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module times", prev: framePtr, filename: "times.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module times", prev: framePtr, filename: "times.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module times", prev: framePtr, filename: "times.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module times", prev: framePtr, filename: "times.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module times", prev: framePtr, filename: "times.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module times", prev: framePtr, filename: "times.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module times", prev: framePtr, filename: "times.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module times", prev: framePtr, filename: "times.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module times", prev: framePtr, filename: "times.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module times", prev: framePtr, filename: "times.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module times", prev: framePtr, filename: "times.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module times", prev: framePtr, filename: "times.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module times", prev: framePtr, filename: "times.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module times", prev: framePtr, filename: "times.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module times", prev: framePtr, filename: "times.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module times", prev: framePtr, filename: "times.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module times", prev: framePtr, filename: "times.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module times", prev: framePtr, filename: "times.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module times", prev: framePtr, filename: "times.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module times", prev: framePtr, filename: "times.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module times", prev: framePtr, filename: "times.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module times", prev: framePtr, filename: "times.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module times", prev: framePtr, filename: "times.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module times", prev: framePtr, filename: "times.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module times", prev: framePtr, filename: "times.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module times", prev: framePtr, filename: "times.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module times", prev: framePtr, filename: "times.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module times", prev: framePtr, filename: "times.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module times", prev: framePtr, filename: "times.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module times", prev: framePtr, filename: "times.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module times", prev: framePtr, filename: "times.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module times", prev: framePtr, filename: "times.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module times", prev: framePtr, filename: "times.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module times", prev: framePtr, filename: "times.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module times", prev: framePtr, filename: "times.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module times", prev: framePtr, filename: "times.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module times", prev: framePtr, filename: "times.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module times", prev: framePtr, filename: "times.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module times", prev: framePtr, filename: "times.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module times", prev: framePtr, filename: "times.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module times", prev: framePtr, filename: "times.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module times", prev: framePtr, filename: "times.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module times", prev: framePtr, filename: "times.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module times", prev: framePtr, filename: "times.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module times", prev: framePtr, filename: "times.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module times", prev: framePtr, filename: "times.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module times", prev: framePtr, filename: "times.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module times", prev: framePtr, filename: "times.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module times", prev: framePtr, filename: "times.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module times", prev: framePtr, filename: "times.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module times", prev: framePtr, filename: "times.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module times", prev: framePtr, filename: "times.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module times", prev: framePtr, filename: "times.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module times", prev: framePtr, filename: "times.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module times", prev: framePtr, filename: "times.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module times", prev: framePtr, filename: "times.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module times", prev: framePtr, filename: "times.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module times", prev: framePtr, filename: "times.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module times", prev: framePtr, filename: "times.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module times", prev: framePtr, filename: "times.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module times", prev: framePtr, filename: "times.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module times", prev: framePtr, filename: "times.nim", line: 0};
-framePtr = F;
 if (globalThis.utcInstance_1543505281 === undefined) {
   globalThis.utcInstance_1543505281 = [null];
 }
 if (globalThis.localInstance_1543505282 === undefined) {
   globalThis.localInstance_1543505282 = [null];
 }
-framePtr = F.prev;
-var F = {procname: "module times", prev: framePtr, filename: "times.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module times", prev: framePtr, filename: "times.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module times", prev: framePtr, filename: "times.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module times", prev: framePtr, filename: "times.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module times", prev: framePtr, filename: "times.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module times", prev: framePtr, filename: "times.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module times", prev: framePtr, filename: "times.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module times", prev: framePtr, filename: "times.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module times", prev: framePtr, filename: "times.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module times", prev: framePtr, filename: "times.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module times", prev: framePtr, filename: "times.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module times", prev: framePtr, filename: "times.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module times", prev: framePtr, filename: "times.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module times", prev: framePtr, filename: "times.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module times", prev: framePtr, filename: "times.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module times", prev: framePtr, filename: "times.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module times", prev: framePtr, filename: "times.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module times", prev: framePtr, filename: "times.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module times", prev: framePtr, filename: "times.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module times", prev: framePtr, filename: "times.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module times", prev: framePtr, filename: "times.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module times", prev: framePtr, filename: "times.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module times", prev: framePtr, filename: "times.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module times", prev: framePtr, filename: "times.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module times", prev: framePtr, filename: "times.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module times", prev: framePtr, filename: "times.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module times", prev: framePtr, filename: "times.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module times", prev: framePtr, filename: "times.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module times", prev: framePtr, filename: "times.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module times", prev: framePtr, filename: "times.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module times", prev: framePtr, filename: "times.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module times", prev: framePtr, filename: "times.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module times", prev: framePtr, filename: "times.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module times", prev: framePtr, filename: "times.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module times", prev: framePtr, filename: "times.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module times", prev: framePtr, filename: "times.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module times", prev: framePtr, filename: "times.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module times", prev: framePtr, filename: "times.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module times", prev: framePtr, filename: "times.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module times", prev: framePtr, filename: "times.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module times", prev: framePtr, filename: "times.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module times", prev: framePtr, filename: "times.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module times", prev: framePtr, filename: "times.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module times", prev: framePtr, filename: "times.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module times", prev: framePtr, filename: "times.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module times", prev: framePtr, filename: "times.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module times", prev: framePtr, filename: "times.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module times", prev: framePtr, filename: "times.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module times", prev: framePtr, filename: "times.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module times", prev: framePtr, filename: "times.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module times", prev: framePtr, filename: "times.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module times", prev: framePtr, filename: "times.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module times", prev: framePtr, filename: "times.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module times", prev: framePtr, filename: "times.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module times", prev: framePtr, filename: "times.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module times", prev: framePtr, filename: "times.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module times", prev: framePtr, filename: "times.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module times", prev: framePtr, filename: "times.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module times", prev: framePtr, filename: "times.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module times", prev: framePtr, filename: "times.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module times", prev: framePtr, filename: "times.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module times", prev: framePtr, filename: "times.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module times", prev: framePtr, filename: "times.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module times", prev: framePtr, filename: "times.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module times", prev: framePtr, filename: "times.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module times", prev: framePtr, filename: "times.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module times", prev: framePtr, filename: "times.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module times", prev: framePtr, filename: "times.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module times", prev: framePtr, filename: "times.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module times", prev: framePtr, filename: "times.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module times", prev: framePtr, filename: "times.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module times", prev: framePtr, filename: "times.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module times", prev: framePtr, filename: "times.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module times", prev: framePtr, filename: "times.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module times", prev: framePtr, filename: "times.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module times", prev: framePtr, filename: "times.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module times", prev: framePtr, filename: "times.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module times", prev: framePtr, filename: "times.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module times", prev: framePtr, filename: "times.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module times", prev: framePtr, filename: "times.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module times", prev: framePtr, filename: "times.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module times", prev: framePtr, filename: "times.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module times", prev: framePtr, filename: "times.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module times", prev: framePtr, filename: "times.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module times", prev: framePtr, filename: "times.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module times", prev: framePtr, filename: "times.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module times", prev: framePtr, filename: "times.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module times", prev: framePtr, filename: "times.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module times", prev: framePtr, filename: "times.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module types", prev: framePtr, filename: "types.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module types", prev: framePtr, filename: "types.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module types", prev: framePtr, filename: "types.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module types", prev: framePtr, filename: "types.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module types", prev: framePtr, filename: "types.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module types", prev: framePtr, filename: "types.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module utiljs", prev: framePtr, filename: "utiljs.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module jsbind", prev: framePtr, filename: "jsbind.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module jsbind", prev: framePtr, filename: "jsbind.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module jsbind", prev: framePtr, filename: "jsbind.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module jsbind", prev: framePtr, filename: "jsbind.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module jsbind", prev: framePtr, filename: "jsbind.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module jsbind", prev: framePtr, filename: "jsbind.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module jsbind", prev: framePtr, filename: "jsbind.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module async_http_request", prev: framePtr, filename: "async_http_request.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module async_http_request", prev: framePtr, filename: "async_http_request.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module async_http_request", prev: framePtr, filename: "async_http_request.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module utiljs", prev: framePtr, filename: "utiljs.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module utiljs", prev: framePtr, filename: "utiljs.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module utiljs", prev: framePtr, filename: "utiljs.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module utiljs", prev: framePtr, filename: "utiljs.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module utiljs", prev: framePtr, filename: "utiljs.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module utiljs", prev: framePtr, filename: "utiljs.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module utiljs", prev: framePtr, filename: "utiljs.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module utiljs", prev: framePtr, filename: "utiljs.nim", line: 0};
-framePtr = F;
 var currUser_620757022 = [{id: 0, corpus_id: 0, firstname: [], lastname: [], email: [], role_id: 0, role: [], password: [], active: 0, token: [], apiKey: []}];
 var timeStamp_620757023 = [[]];
 var errMsg_620757024 = [[]];
@@ -7455,458 +1882,13 @@ var allUsers_620757027 = [[]];
 var engineTypes_620757050 = [H.map.render.RenderEngine.EngineType];
 var curEngineType_620757051 = [null];
 var dwnloadedMaps_620757052 = [[]];
-framePtr = F.prev;
-var F = {procname: "module utiljs", prev: framePtr, filename: "utiljs.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module utiljs", prev: framePtr, filename: "utiljs.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module utiljs", prev: framePtr, filename: "utiljs.nim", line: 0};
-framePtr = F;
 var isInternet_620757114 = [true];
 var pIndicator_620757115 = [({size: 0, marker: null, canvas: null})];
 var animCnt_620757116 = [0];
 var opa_620757117 = [0.0];
 var sopa_620757118 = [1.0];
-framePtr = F.prev;
-var F = {procname: "module utiljs", prev: framePtr, filename: "utiljs.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module utiljs", prev: framePtr, filename: "utiljs.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module utiljs", prev: framePtr, filename: "utiljs.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module utiljs", prev: framePtr, filename: "utiljs.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module utiljs", prev: framePtr, filename: "utiljs.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module utiljs", prev: framePtr, filename: "utiljs.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module utiljs", prev: framePtr, filename: "utiljs.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module ministryjs", prev: framePtr, filename: "ministryjs.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module karaxdsl", prev: framePtr, filename: "karaxdsl.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module karaxdsl", prev: framePtr, filename: "karaxdsl.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module karaxdsl", prev: framePtr, filename: "karaxdsl.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module karaxdsl", prev: framePtr, filename: "karaxdsl.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module karaxdsl", prev: framePtr, filename: "karaxdsl.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module karaxdsl", prev: framePtr, filename: "karaxdsl.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module karaxdsl", prev: framePtr, filename: "karaxdsl.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module karaxdsl", prev: framePtr, filename: "karaxdsl.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module karaxdsl", prev: framePtr, filename: "karaxdsl.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module karaxdsl", prev: framePtr, filename: "karaxdsl.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module karaxdsl", prev: framePtr, filename: "karaxdsl.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module ministryjs", prev: framePtr, filename: "ministryjs.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module ministryjs", prev: framePtr, filename: "ministryjs.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module ministryjs", prev: framePtr, filename: "ministryjs.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module sugar", prev: framePtr, filename: "sugar.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module sugar", prev: framePtr, filename: "sugar.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module sugar", prev: framePtr, filename: "sugar.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module sugar", prev: framePtr, filename: "sugar.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module sugar", prev: framePtr, filename: "sugar.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module sugar", prev: framePtr, filename: "sugar.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module sugar", prev: framePtr, filename: "sugar.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module sugar", prev: framePtr, filename: "sugar.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module sugar", prev: framePtr, filename: "sugar.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module sugar", prev: framePtr, filename: "sugar.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module sugar", prev: framePtr, filename: "sugar.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module sugar", prev: framePtr, filename: "sugar.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module underscored_calls", prev: framePtr, filename: "underscored_calls.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module underscored_calls", prev: framePtr, filename: "underscored_calls.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module underscored_calls", prev: framePtr, filename: "underscored_calls.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module underscored_calls", prev: framePtr, filename: "underscored_calls.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module underscored_calls", prev: framePtr, filename: "underscored_calls.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module sugar", prev: framePtr, filename: "sugar.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module sugar", prev: framePtr, filename: "sugar.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module sugar", prev: framePtr, filename: "sugar.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module sugar", prev: framePtr, filename: "sugar.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module sugar", prev: framePtr, filename: "sugar.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module sugar", prev: framePtr, filename: "sugar.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module ministryjs", prev: framePtr, filename: "ministryjs.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module uri", prev: framePtr, filename: "uri.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module base64", prev: framePtr, filename: "base64.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module base64", prev: framePtr, filename: "base64.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module base64", prev: framePtr, filename: "base64.nim", line: 0};
-framePtr = F;
 var cb64_1711276036 = [65, 66, 67, 68, 69, 70, 71, 72, 73, 74, 75, 76, 77, 78, 79, 80, 81, 82, 83, 84, 85, 86, 87, 88, 89, 90, 97, 98, 99, 100, 101, 102, 103, 104, 105, 106, 107, 108, 109, 110, 111, 112, 113, 114, 115, 116, 117, 118, 119, 120, 121, 122, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 43, 47];
 var cb64safe_1711276037 = [65, 66, 67, 68, 69, 70, 71, 72, 73, 74, 75, 76, 77, 78, 79, 80, 81, 82, 83, 84, 85, 86, 87, 88, 89, 90, 97, 98, 99, 100, 101, 102, 103, 104, 105, 106, 107, 108, 109, 110, 111, 112, 113, 114, 115, 116, 117, 118, 119, 120, 121, 122, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 45, 95];
-framePtr = F.prev;
-var F = {procname: "module base64", prev: framePtr, filename: "base64.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module base64", prev: framePtr, filename: "base64.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module base64", prev: framePtr, filename: "base64.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module base64", prev: framePtr, filename: "base64.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module base64", prev: framePtr, filename: "base64.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module base64", prev: framePtr, filename: "base64.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module base64", prev: framePtr, filename: "base64.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module base64", prev: framePtr, filename: "base64.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module base64", prev: framePtr, filename: "base64.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module base64", prev: framePtr, filename: "base64.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module uri", prev: framePtr, filename: "uri.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module uri", prev: framePtr, filename: "uri.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module uri", prev: framePtr, filename: "uri.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module uri", prev: framePtr, filename: "uri.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module uri", prev: framePtr, filename: "uri.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module uri", prev: framePtr, filename: "uri.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module uri", prev: framePtr, filename: "uri.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module uri", prev: framePtr, filename: "uri.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module uri", prev: framePtr, filename: "uri.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module uri", prev: framePtr, filename: "uri.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module uri", prev: framePtr, filename: "uri.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module uri", prev: framePtr, filename: "uri.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module uri", prev: framePtr, filename: "uri.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module uri", prev: framePtr, filename: "uri.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module uri", prev: framePtr, filename: "uri.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module uri", prev: framePtr, filename: "uri.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module uri", prev: framePtr, filename: "uri.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module uri", prev: framePtr, filename: "uri.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module uri", prev: framePtr, filename: "uri.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module uri", prev: framePtr, filename: "uri.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module uri", prev: framePtr, filename: "uri.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module uri", prev: framePtr, filename: "uri.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module uri", prev: framePtr, filename: "uri.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module uri", prev: framePtr, filename: "uri.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module ministryjs", prev: framePtr, filename: "ministryjs.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module ministryjs", prev: framePtr, filename: "ministryjs.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module sequtils", prev: framePtr, filename: "sequtils.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module sequtils", prev: framePtr, filename: "sequtils.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module sequtils", prev: framePtr, filename: "sequtils.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module sequtils", prev: framePtr, filename: "sequtils.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module sequtils", prev: framePtr, filename: "sequtils.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module sequtils", prev: framePtr, filename: "sequtils.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module sequtils", prev: framePtr, filename: "sequtils.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module sequtils", prev: framePtr, filename: "sequtils.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module sequtils", prev: framePtr, filename: "sequtils.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module sequtils", prev: framePtr, filename: "sequtils.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module sequtils", prev: framePtr, filename: "sequtils.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module sequtils", prev: framePtr, filename: "sequtils.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module sequtils", prev: framePtr, filename: "sequtils.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module sequtils", prev: framePtr, filename: "sequtils.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module sequtils", prev: framePtr, filename: "sequtils.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module sequtils", prev: framePtr, filename: "sequtils.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module sequtils", prev: framePtr, filename: "sequtils.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module sequtils", prev: framePtr, filename: "sequtils.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module sequtils", prev: framePtr, filename: "sequtils.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module sequtils", prev: framePtr, filename: "sequtils.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module sequtils", prev: framePtr, filename: "sequtils.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module sequtils", prev: framePtr, filename: "sequtils.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module sequtils", prev: framePtr, filename: "sequtils.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module sequtils", prev: framePtr, filename: "sequtils.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module sequtils", prev: framePtr, filename: "sequtils.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module sequtils", prev: framePtr, filename: "sequtils.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module sequtils", prev: framePtr, filename: "sequtils.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module sequtils", prev: framePtr, filename: "sequtils.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module sequtils", prev: framePtr, filename: "sequtils.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module sequtils", prev: framePtr, filename: "sequtils.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module sequtils", prev: framePtr, filename: "sequtils.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module sequtils", prev: framePtr, filename: "sequtils.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module sequtils", prev: framePtr, filename: "sequtils.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module sequtils", prev: framePtr, filename: "sequtils.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module sequtils", prev: framePtr, filename: "sequtils.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module sequtils", prev: framePtr, filename: "sequtils.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module sequtils", prev: framePtr, filename: "sequtils.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module sequtils", prev: framePtr, filename: "sequtils.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module sequtils", prev: framePtr, filename: "sequtils.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module sequtils", prev: framePtr, filename: "sequtils.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module sequtils", prev: framePtr, filename: "sequtils.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module sequtils", prev: framePtr, filename: "sequtils.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module sequtils", prev: framePtr, filename: "sequtils.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module sequtils", prev: framePtr, filename: "sequtils.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module sequtils", prev: framePtr, filename: "sequtils.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module sequtils", prev: framePtr, filename: "sequtils.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module ministryjs", prev: framePtr, filename: "ministryjs.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module usersjs", prev: framePtr, filename: "usersjs.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module usersjs", prev: framePtr, filename: "usersjs.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module usersjs", prev: framePtr, filename: "usersjs.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module usersjs", prev: framePtr, filename: "usersjs.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module usersjs", prev: framePtr, filename: "usersjs.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module usersjs", prev: framePtr, filename: "usersjs.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module usersjs", prev: framePtr, filename: "usersjs.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module usersjs", prev: framePtr, filename: "usersjs.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module usersjs", prev: framePtr, filename: "usersjs.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module usersjs", prev: framePtr, filename: "usersjs.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module usersjs", prev: framePtr, filename: "usersjs.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module ministryjs", prev: framePtr, filename: "ministryjs.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
 
 function isFatPointer_33557132(ti_33557133) {
   var result_33557134 = false;
@@ -7958,6 +1940,58 @@ function add_33556420(x_33556421, x_33556421_Idx, y_33556422) {
   
 }
 
+function newSeq_33556826(len_33556828) {
+  var result_33556829 = [];
+
+    result_33556829 = new Array(len_33556828); for (var i = 0 ; i < len_33556828 ; ++i) { result_33556829[i] = null; }
+  return result_33556829;
+
+}
+
+function unhandledException(e_33556664) {
+    var buf_33556665 = [[]];
+    if (!(((e_33556664.message).length == 0))) {
+    buf_33556665[0].push.apply(buf_33556665[0], makeNimstrLit("Error: unhandled exception: "));;
+    buf_33556665[0].push.apply(buf_33556665[0], e_33556664.message);;
+    }
+    else {
+    buf_33556665[0].push.apply(buf_33556665[0], makeNimstrLit("Error: unhandled exception"));;
+    }
+    
+    buf_33556665[0].push.apply(buf_33556665[0], makeNimstrLit(" ["));;
+    add_33556420(buf_33556665, 0, e_33556664.name);
+    buf_33556665[0].push.apply(buf_33556665[0], makeNimstrLit("]\x0A"));;
+    var cbuf_33556666 = toJSStr(buf_33556665[0]);
+    framePtr = null;
+      if (typeof(Error) !== "undefined") {
+    throw new Error(cbuf_33556666);
+  }
+  else {
+    throw cbuf_33556666;
+  }
+  
+
+  
+}
+
+function sysFatal_218103842(message_218103845) {
+    raiseException({message: nimCopy(null, message_218103845, NTI33554439), m_type: NTI33555124, parent: null, name: null, trace: [], up: null}, "AssertionDefect");
+
+  
+}
+
+function raiseAssert_218103840(msg_218103841) {
+    sysFatal_218103842(msg_218103841);
+
+  
+}
+
+function failedAssertImpl_218103864(msg_218103865) {
+    raiseAssert_218103840(msg_218103865);
+
+  
+}
+
 function raiseOverflow() {
     raiseException({message: makeNimstrLit("over- or underflow"), parent: null, m_type: NTI33555122, name: null, trace: [], up: null}, "OverflowDefect");
 
@@ -7977,33 +2011,18 @@ function raiseRangeError() {
   
 }
 
-function raiseIndexError(i_33556755, a_33556756, b_33556757) {
-    var Temporary1;
-
-    if ((b_33556757 < a_33556756)) {
-    Temporary1 = makeNimstrLit("index out of bounds, the container is empty");
-    }
-    else {
-    Temporary1 = (makeNimstrLit("index ") || []).concat(HEX24_335544323(i_33556755) || [],makeNimstrLit(" not in ") || [],HEX24_335544323(a_33556756) || [],makeNimstrLit(" .. ") || [],HEX24_335544323(b_33556757) || []);
-    }
-    
-    raiseException({message: nimCopy(null, Temporary1, NTI33554439), parent: null, m_type: NTI33555128, name: null, trace: [], up: null}, "IndexDefect");
-
-  
-}
-
 function addChars_251658415(result_251658417, result_251658417_Idx, x_251658418, start_251658419, n_251658420) {
     var old_251658421 = (result_251658417[result_251658417_Idx]).length;
     (result_251658417[result_251658417_Idx].length = chckRange(addInt(old_251658421, n_251658420), 0, 2147483647));
     Label1: do {
       var iHEX60gensym4_251658435 = 0;
-      var i_486539407 = 0;
+      var i_486539402 = 0;
       Label2: do {
           Label3: while (true) {
-          if (!(i_486539407 < n_251658420)) break Label3;
-            iHEX60gensym4_251658435 = i_486539407;
+          if (!(i_486539402 < n_251658420)) break Label3;
+            iHEX60gensym4_251658435 = i_486539402;
             result_251658417[result_251658417_Idx][chckIndx(addInt(old_251658421, iHEX60gensym4_251658435), 0, (result_251658417[result_251658417_Idx]).length - 1)] = x_251658418.charCodeAt(chckIndx(addInt(start_251658419, iHEX60gensym4_251658435), 0, (x_251658418).length - 1));
-            i_486539407 = addInt(i_486539407, 1);
+            i_486539402 = addInt(i_486539402, 1);
           }
       } while (false);
     } while (false);
@@ -8038,137 +2057,17 @@ function HEX24_335544323(x_335544324) {
 
 }
 
-function auxWriteStackTrace_33556560(f_33556561) {
-          var Temporary3;
+function raiseIndexError(i_33556755, a_33556756, b_33556757) {
+    var Temporary1;
 
-  var result_33556562 = [[]];
-
-    var it_33556570 = f_33556561;
-    var i_33556571 = 0;
-    var total_33556572 = 0;
-    var tempFrames_33556573 = arrayConstr(64, {Field0: null, Field1: 0, Field2: null}, NTI33555919);
-    Label1: do {
-        Label2: while (true) {
-          if (!!((it_33556570 == null))) Temporary3 = false; else {            Temporary3 = (i_33556571 <= 63);          }        if (!Temporary3) break Label2;
-          tempFrames_33556573[i_33556571].Field0 = it_33556570.procname;
-          tempFrames_33556573[i_33556571].Field1 = it_33556570.line;
-          tempFrames_33556573[i_33556571].Field2 = it_33556570.filename;
-          i_33556571 += 1;
-          total_33556572 += 1;
-          it_33556570 = it_33556570.prev;
-        }
-    } while (false);
-    Label4: do {
-        Label5: while (true) {
-        if (!!((it_33556570 == null))) break Label5;
-          total_33556572 += 1;
-          it_33556570 = it_33556570.prev;
-        }
-    } while (false);
-    result_33556562[0] = nimCopy(null, [], NTI33554439);
-    if (!((total_33556572 == i_33556571))) {
-    result_33556562[0].push.apply(result_33556562[0], makeNimstrLit("("));;
-    result_33556562[0].push.apply(result_33556562[0], HEX24_335544323((total_33556572 - i_33556571)));;
-    result_33556562[0].push.apply(result_33556562[0], makeNimstrLit(" calls omitted) ...\x0A"));;
-    }
-    
-    Label6: do {
-      var j_33556603 = 0;
-      var colontmp__486539399 = 0;
-      colontmp__486539399 = (i_33556571 - 1);
-      var res_486539401 = colontmp__486539399;
-      Label7: do {
-          Label8: while (true) {
-          if (!(0 <= res_486539401)) break Label8;
-            j_33556603 = res_486539401;
-            result_33556562[0].push.apply(result_33556562[0], cstrToNimstr(tempFrames_33556573[j_33556603].Field2));;
-            if ((0 < tempFrames_33556573[j_33556603].Field1)) {
-            result_33556562[0].push.apply(result_33556562[0], makeNimstrLit("("));;
-            addInt_251658457(result_33556562, 0, tempFrames_33556573[j_33556603].Field1);
-            if (false) {
-            result_33556562[0].push.apply(result_33556562[0], makeNimstrLit(", "));;
-            addInt_251658457(result_33556562, 0, 0);
-            }
-            
-            result_33556562[0].push.apply(result_33556562[0], makeNimstrLit(")"));;
-            }
-            
-            result_33556562[0].push.apply(result_33556562[0], makeNimstrLit(" at "));;
-            add_33556420(result_33556562, 0, tempFrames_33556573[j_33556603].Field0);
-            result_33556562[0].push.apply(result_33556562[0], makeNimstrLit("\x0A"));;
-            res_486539401 -= 1;
-          }
-      } while (false);
-    } while (false);
-
-  return result_33556562[0];
-
-}
-
-function rawWriteStackTrace_33556632() {
-  var result_33556633 = [];
-
-    if (!((framePtr == null))) {
-    result_33556633 = nimCopy(null, (makeNimstrLit("Traceback (most recent call last)\x0A") || []).concat(auxWriteStackTrace_33556560(framePtr) || []), NTI33554439);
+    if ((b_33556757 < a_33556756)) {
+    Temporary1 = makeNimstrLit("index out of bounds, the container is empty");
     }
     else {
-      result_33556633 = nimCopy(null, makeNimstrLit("No stack traceback available\x0A"), NTI33554439);
+    Temporary1 = (makeNimstrLit("index ") || []).concat(HEX24_335544323(i_33556755) || [],makeNimstrLit(" not in ") || [],HEX24_335544323(a_33556756) || [],makeNimstrLit(" .. ") || [],HEX24_335544323(b_33556757) || []);
     }
     
-
-  return result_33556633;
-
-}
-
-function newSeq_33556826(len_33556828) {
-  var result_33556829 = [];
-
-    result_33556829 = new Array(len_33556828); for (var i = 0 ; i < len_33556828 ; ++i) { result_33556829[i] = null; }
-  return result_33556829;
-
-}
-
-function unhandledException(e_33556664) {
-    var buf_33556665 = [[]];
-    if (!(((e_33556664.message).length == 0))) {
-    buf_33556665[0].push.apply(buf_33556665[0], makeNimstrLit("Error: unhandled exception: "));;
-    buf_33556665[0].push.apply(buf_33556665[0], e_33556664.message);;
-    }
-    else {
-    buf_33556665[0].push.apply(buf_33556665[0], makeNimstrLit("Error: unhandled exception"));;
-    }
-    
-    buf_33556665[0].push.apply(buf_33556665[0], makeNimstrLit(" ["));;
-    add_33556420(buf_33556665, 0, e_33556664.name);
-    buf_33556665[0].push.apply(buf_33556665[0], makeNimstrLit("]\x0A"));;
-    buf_33556665[0].push.apply(buf_33556665[0], rawWriteStackTrace_33556632());;
-    var cbuf_33556666 = toJSStr(buf_33556665[0]);
-    framePtr = null;
-      if (typeof(Error) !== "undefined") {
-    throw new Error(cbuf_33556666);
-  }
-  else {
-    throw cbuf_33556666;
-  }
-  
-
-  
-}
-
-function sysFatal_218103842(message_218103845) {
-    raiseException({message: nimCopy(null, message_218103845, NTI33554439), m_type: NTI33555124, parent: null, name: null, trace: [], up: null}, "AssertionDefect");
-
-  
-}
-
-function raiseAssert_218103840(msg_218103841) {
-    sysFatal_218103842(msg_218103841);
-
-  
-}
-
-function failedAssertImpl_218103864(msg_218103865) {
-    raiseAssert_218103840(msg_218103865);
+    raiseException({message: nimCopy(null, Temporary1, NTI33554439), parent: null, m_type: NTI33555128, name: null, trace: [], up: null}, "IndexDefect");
 
   
 }
@@ -8192,15 +2091,15 @@ function nsuIntToStr(x_687866645, minchars_687866646) {
     result_687866647 = nimCopy(null, HEX24_335544323(absInt(x_687866645)), NTI33554439);
     Label1: do {
       var i_687866652 = 0;
-      var colontmp__486539412 = 0;
-      colontmp__486539412 = subInt(minchars_687866646, (result_687866647).length);
-      var res_486539413 = 1;
+      var colontmp__486539405 = 0;
+      colontmp__486539405 = subInt(minchars_687866646, (result_687866647).length);
+      var res_486539406 = 1;
       Label2: do {
           Label3: while (true) {
-          if (!(res_486539413 <= colontmp__486539412)) break Label3;
-            i_687866652 = res_486539413;
+          if (!(res_486539406 <= colontmp__486539405)) break Label3;
+            i_687866652 = res_486539406;
             result_687866647 = nimCopy(null, [48].concat(result_687866647 || []), NTI33554439);
-            res_486539413 = addInt(res_486539413, 1);
+            res_486539406 = addInt(res_486539406, 1);
           }
       } while (false);
     } while (false);
@@ -8751,10 +2650,10 @@ function fromEpochDay_1543504098(epochday_1543504099) {
     }
     
     var m_1543504112 = HEX2B_1543503890(mp_1543504110, Temporary2);
-    var colontmp__486539416 = chckRange(d_1543504111, 1, 31);
-    var colontmp__486539417 = chckRange(m_1543504112, 1, 12);
-    var colontmp__486539418 = chckRange(HEX2B_1543503890(y_1543504108, ((m_1543504112 <= 2) ? 1 : 0)), -2147483648, 2147483647);
-    result_1543504103 = nimCopy(result_1543504103, {Field0: nimCopy(null, colontmp__486539416, NTI1543503896), Field1: colontmp__486539417, Field2: colontmp__486539418}, NTI1543504063);
+    var colontmp__486539409 = chckRange(d_1543504111, 1, 31);
+    var colontmp__486539410 = chckRange(m_1543504112, 1, 12);
+    var colontmp__486539411 = chckRange(HEX2B_1543503890(y_1543504108, ((m_1543504112 <= 2) ? 1 : 0)), -2147483648, 2147483647);
+    result_1543504103 = nimCopy(result_1543504103, {Field0: nimCopy(null, colontmp__486539409, NTI1543503896), Field1: colontmp__486539410, Field2: colontmp__486539411}, NTI1543504063);
     break BeforeRet;
   } while (false);
 
@@ -8831,10 +2730,10 @@ function toEpochDay_1543504070(monthday_1543504071, month_1543504072, year_15435
 
   BeforeRet: do {
     assertValidDate_1543504048(monthday_1543504071, month_1543504072, year_1543504073);
-    var colontmp__486539419 = {Field0: year_1543504073, Field1: month_1543504072, Field2: monthday_1543504071};
-    var y_1543504078 = colontmp__486539419["Field0"];
-    var m_1543504079 = colontmp__486539419["Field1"];
-    var d_1543504080 = colontmp__486539419["Field2"];
+    var colontmp__486539412 = {Field0: year_1543504073, Field1: month_1543504072, Field2: monthday_1543504071};
+    var y_1543504078 = colontmp__486539412["Field0"];
+    var m_1543504079 = colontmp__486539412["Field1"];
+    var d_1543504080 = colontmp__486539412["Field2"];
     if ((m_1543504079 <= 2)) {
     y_1543504078 = subInt(y_1543504078, 1);
     }
@@ -8915,10 +2814,10 @@ function initDateTime_1543505133(zt_1543505134, zone_1543505135) {
     var minute_1543505146 = divInt(rem_1543505144, 60);
     rem_1543505144 = HEX2D_1543503898(rem_1543505144, HEX2A_1543503882(minute_1543505146, 60));
     var second_1543505147 = rem_1543505144;
-    var colontmp__486539415 = fromEpochDay_1543504098(epochday_1543505143);
-    var d_1543505148 = colontmp__486539415["Field0"];
-    var m_1543505149 = colontmp__486539415["Field1"];
-    var y_1543505150 = colontmp__486539415["Field2"];
+    var colontmp__486539408 = fromEpochDay_1543504098(epochday_1543505143);
+    var d_1543505148 = colontmp__486539408["Field0"];
+    var m_1543505149 = colontmp__486539408["Field1"];
+    var y_1543505150 = colontmp__486539408["Field2"];
     result_1543505136 = nimCopy(result_1543505136, {year: y_1543505150, monthZero: ((m_1543505149) | 0), monthdayZero: d_1543505148, hour: nimCopy(null, chckRange(hour_1543505145, 0, 23), NTI1543503897), minute: nimCopy(null, chckRange(minute_1543505146, 0, 59), NTI1543503898), second: nimCopy(null, chckRange(second_1543505147, 0, 60), NTI1543503899), nanosecond: nimCopy(null, zt_1543505134.time.nanosecond, NTI1543503901), weekday: getDayOfWeek_1543504159(d_1543505148, m_1543505149, y_1543505150), yearday: getDayOfYear_1543504134(d_1543505148, m_1543505149, y_1543505150), isDst: zt_1543505134.isDst, timezone: zone_1543505135, utcOffset: zt_1543505134.utcOffset, m_type: NTI1543503903}, NTI1543503903);
 
   return result_1543505136;
@@ -9072,8 +2971,6 @@ function newSeq_452985301(len_452985303) {
 var Temporary1;
 var Temporary2;
 var Temporary3;
-var F = {procname: "module ministryjs", prev: framePtr, filename: "ministryjs.nim", line: 0};
-framePtr = F;
 var currDate_486539284 = [format_1543506676(now_1543505314(), normalDateFmt_486539283, DefaultLocale_1543505479)];
 var savedEngineType_486539305 = parseInt((localStorage.getItem(("engineType"))), 10);
 if ((savedEngineType_486539305 == (engineTypes_620757050[0].P2D))) {
@@ -9103,10 +3000,6 @@ Temporary3 = newSeq_452985301(0);
 
 dwnloadedMaps_620757052[0] = nimCopy(null, Temporary3, NTI620757006);
 localStorage.setItem(("dwnloadedMaps"), (JSON.stringify(dwnloadedMaps_620757052[0])));
-framePtr = F.prev;
-var F = {procname: "module ministryjs", prev: framePtr, filename: "ministryjs.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
 
 function newPositionIndicator_620757462(size_620757463) {
     
@@ -9312,15 +3205,15 @@ function HEX3Aanonymous_620757220() {
         oReq_620757143.responseType="text";
         Label2: do {
           var h_620757219 = null;
-          var i_486539702 = 0;
-          var L_486539703 = (hdrs_620757138).length;
+          var i_486539695 = 0;
+          var L_486539696 = (hdrs_620757138).length;
           Label3: do {
               Label4: while (true) {
-              if (!(i_486539702 < L_486539703)) break Label4;
-                h_620757219 = hdrs_620757138[chckIndx(i_486539702, 0, (hdrs_620757138).length - 1)];
+              if (!(i_486539695 < L_486539696)) break Label4;
+                h_620757219 = hdrs_620757138[chckIndx(i_486539695, 0, (hdrs_620757138).length - 1)];
                 oReq_620757143.setRequestHeader(h_620757219["Field0"], h_620757219["Field1"]);
-                i_486539702 = addInt(i_486539702, 1);
-                if (!(((hdrs_620757138).length == L_486539703))) {
+                i_486539695 = addInt(i_486539695, 1);
+                if (!(((hdrs_620757138).length == L_486539696))) {
                 failedAssertImpl_218103864(makeNimstrLit("iterators.nim(240, 11) `len(a) == L` the length of the seq changed while iterating over it"));
                 }
                 
@@ -9511,15 +3404,15 @@ function applyEvents_1124073730(n_1124073731) {
     var dest_1124073732 = n_1124073731.dom;
     Label1: do {
       var i_1124073740 = 0;
-      var colontmp__486539726 = 0;
-      colontmp__486539726 = (n_1124073731.events).length;
-      var i_486539727 = 0;
+      var colontmp__486539719 = 0;
+      colontmp__486539719 = (n_1124073731.events).length;
+      var i_486539720 = 0;
       Label2: do {
           Label3: while (true) {
-          if (!(i_486539727 < colontmp__486539726)) break Label3;
-            i_1124073740 = i_486539727;
+          if (!(i_486539720 < colontmp__486539719)) break Label3;
+            i_1124073740 = i_486539720;
             n_1124073731.events[chckIndx(i_1124073740, 0, (n_1124073731.events).length - 1)]["Field2"] = wrapEvent_1124073624(dest_1124073732, n_1124073731, n_1124073731.events[chckIndx(i_1124073740, 0, (n_1124073731.events).length - 1)]["Field0"], n_1124073731.events[chckIndx(i_1124073740, 0, (n_1124073731.events).length - 1)]["Field1"]);
-            i_486539727 = addInt(i_486539727, 1);
+            i_486539720 = addInt(i_486539720, 1);
           }
       } while (false);
     } while (false);
@@ -9531,15 +3424,15 @@ function applyStyle_637534690(n_637534691, s_637534692) {
     n_637534691.style = {};
     Label1: do {
       var i_637534705 = 0;
-      var colontmp__486539730 = 0;
-      colontmp__486539730 = subInt(s_637534692.length, 1);
-      var res_486539731 = 0;
+      var colontmp__486539723 = 0;
+      colontmp__486539723 = subInt(s_637534692.length, 1);
+      var res_486539724 = 0;
       Label2: do {
           Label3: while (true) {
-          if (!(res_486539731 <= colontmp__486539730)) break Label3;
-            i_637534705 = res_486539731;
+          if (!(res_486539724 <= colontmp__486539723)) break Label3;
+            i_637534705 = res_486539724;
             n_637534691.style[s_637534692[i_637534705]] = s_637534692[addInt(i_637534705, 1)];
-            res_486539731 = addInt(res_486539731, 2);
+            res_486539724 = addInt(res_486539724, 2);
           }
       } while (false);
     } while (false);
@@ -9647,17 +3540,17 @@ function toDom_1124073758(n_1124073759, useAttachedNode_1124073760, kxi_11240737
       Label1: do {
         var k_1124073871 = null;
         Label2: do {
-          var i_486539711 = 0;
-          var colontmp__486539712 = 0;
-          colontmp__486539712 = (n_1124073759.kids).length;
-          var i_486539713 = 0;
+          var i_486539704 = 0;
+          var colontmp__486539705 = 0;
+          colontmp__486539705 = (n_1124073759.kids).length;
+          var i_486539706 = 0;
           Label3: do {
               Label4: while (true) {
-              if (!(i_486539713 < colontmp__486539712)) break Label4;
-                i_486539711 = i_486539713;
-                k_1124073871 = n_1124073759.kids[chckIndx(i_486539711, 0, (n_1124073759.kids).length - 1)];
+              if (!(i_486539706 < colontmp__486539705)) break Label4;
+                i_486539704 = i_486539706;
+                k_1124073871 = n_1124073759.kids[chckIndx(i_486539704, 0, (n_1124073759.kids).length - 1)];
                 result_1124073762.appendChild(toDom_1124073758(k_1124073871, useAttachedNode_1124073760, kxi_1124073761));
-                i_486539713 = addInt(i_486539713, 1);
+                i_486539706 = addInt(i_486539706, 1);
               }
           } while (false);
         } while (false);
@@ -9680,21 +3573,21 @@ function toDom_1124073758(n_1124073759, useAttachedNode_1124073760, kxi_11240737
       var k_1124073872 = null;
       var v_1124073873 = null;
       Label6: do {
-        var i_486539721 = 0;
-        var colontmp__486539722 = 0;
-        colontmp__486539722 = subInt((n_1124073759.attrs).length, 2);
-        var res_486539723 = 0;
+        var i_486539714 = 0;
+        var colontmp__486539715 = 0;
+        colontmp__486539715 = subInt((n_1124073759.attrs).length, 2);
+        var res_486539716 = 0;
         Label7: do {
             Label8: while (true) {
-            if (!(res_486539723 <= colontmp__486539722)) break Label8;
-              i_486539721 = res_486539723;
-              k_1124073872 = n_1124073759.attrs[chckIndx(i_486539721, 0, (n_1124073759.attrs).length - 1)];
-              v_1124073873 = n_1124073759.attrs[chckIndx(addInt(i_486539721, 1), 0, (n_1124073759.attrs).length - 1)];
+            if (!(res_486539716 <= colontmp__486539715)) break Label8;
+              i_486539714 = res_486539716;
+              k_1124073872 = n_1124073759.attrs[chckIndx(i_486539714, 0, (n_1124073759.attrs).length - 1)];
+              v_1124073873 = n_1124073759.attrs[chckIndx(addInt(i_486539714, 1), 0, (n_1124073759.attrs).length - 1)];
               if (!((v_1124073873 == null))) {
               result_1124073762.setAttribute(k_1124073872, v_1124073873);
               }
               
-              res_486539723 = addInt(res_486539723, 2);
+              res_486539716 = addInt(res_486539716, 2);
             }
         } while (false);
       } while (false);
@@ -9775,19 +3668,19 @@ function same_1124073912(n_1124073913, e_1124073914, nesting_1124073915) {
     
     Label3: do {
       var i_1124073952 = 0;
-      var colontmp__486539734 = 0;
-      colontmp__486539734 = len_1140851299(n_1124073913);
-      var i_486539735 = 0;
+      var colontmp__486539727 = 0;
+      colontmp__486539727 = len_1140851299(n_1124073913);
+      var i_486539728 = 0;
       Label4: do {
           Label5: while (true) {
-          if (!(i_486539735 < colontmp__486539734)) break Label5;
-            i_1124073952 = i_486539735;
+          if (!(i_486539728 < colontmp__486539727)) break Label5;
+            i_1124073952 = i_486539728;
             if (!(same_1124073912(HEX5BHEX5D_1140851306(n_1124073913, i_1124073952), e_1124073914.childNodes[i_1124073952], addInt(nesting_1124073915, 1)))) {
             result_1124073916 = false;
             break BeforeRet;
             }
             
-            i_486539735 = addInt(i_486539735, 1);
+            i_486539728 = addInt(i_486539728, 1);
           }
       } while (false);
     } while (false);
@@ -9832,19 +3725,19 @@ function eq_637534462(a_637534463, b_637534464) {
     
     Label1: do {
       var i_637534500 = 0;
-      var colontmp__486539761 = 0;
-      colontmp__486539761 = a_637534463.length;
-      var i_486539762 = 0;
+      var colontmp__486539754 = 0;
+      colontmp__486539754 = a_637534463.length;
+      var i_486539755 = 0;
       Label2: do {
           Label3: while (true) {
-          if (!(i_486539762 < colontmp__486539761)) break Label3;
-            i_637534500 = i_486539762;
+          if (!(i_486539755 < colontmp__486539754)) break Label3;
+            i_637534500 = i_486539755;
             if (!((a_637534463[i_637534500] == b_637534464[i_637534500]))) {
             result_637534465 = false;
             break BeforeRet;
             }
             
-            i_486539762 = addInt(i_486539762, 1);
+            i_486539755 = addInt(i_486539755, 1);
           }
       } while (false);
     } while (false);
@@ -9864,19 +3757,19 @@ function sameAttrs_1140851462(a_1140851463, b_1140851464) {
     result_1140851465 = true;
     Label1: do {
       var i_1140851479 = 0;
-      var colontmp__486539765 = 0;
-      colontmp__486539765 = (a_1140851463.attrs).length;
-      var i_486539766 = 0;
+      var colontmp__486539758 = 0;
+      colontmp__486539758 = (a_1140851463.attrs).length;
+      var i_486539759 = 0;
       Label2: do {
           Label3: while (true) {
-          if (!(i_486539766 < colontmp__486539765)) break Label3;
-            i_1140851479 = i_486539766;
+          if (!(i_486539759 < colontmp__486539758)) break Label3;
+            i_1140851479 = i_486539759;
             if (!((a_1140851463.attrs[chckIndx(i_1140851479, 0, (a_1140851463.attrs).length - 1)] == b_1140851464.attrs[chckIndx(i_1140851479, 0, (b_1140851464.attrs).length - 1)]))) {
             result_1140851465 = false;
             break BeforeRet;
             }
             
-            i_486539766 = addInt(i_486539766, 1);
+            i_486539759 = addInt(i_486539759, 1);
           }
       } while (false);
     } while (false);
@@ -9932,19 +3825,19 @@ function eq_1124073984(a_1124073985, b_1124073986, recursive_1124073987) {
     
     Label1: do {
       var i_1124074005 = 0;
-      var colontmp__486539753 = 0;
-      colontmp__486539753 = len_1140851299(a_1124073985);
-      var i_486539754 = 0;
+      var colontmp__486539746 = 0;
+      colontmp__486539746 = len_1140851299(a_1124073985);
+      var i_486539747 = 0;
       Label2: do {
           Label3: while (true) {
-          if (!(i_486539754 < colontmp__486539753)) break Label3;
-            i_1124074005 = i_486539754;
+          if (!(i_486539747 < colontmp__486539746)) break Label3;
+            i_1124074005 = i_486539747;
             if ((eq_1124073984(HEX5BHEX5D_1140851306(a_1124073985, i_1124074005), HEX5BHEX5D_1140851306(b_1124073986, i_1124074005), recursive_1124073987) == 1)) {
             result_1124073988 = 1;
             break BeforeRet;
             }
             
-            i_486539754 = addInt(i_486539754, 1);
+            i_486539747 = addInt(i_486539747, 1);
           }
       } while (false);
     } while (false);
@@ -9998,19 +3891,19 @@ function eq_1124073984(a_1124073985, b_1124073986, recursive_1124073987) {
     
     Label6: do {
       var i_1124074031 = 0;
-      var colontmp__486539757 = 0;
-      colontmp__486539757 = len_1140851299(a_1124073985);
-      var i_486539758 = 0;
+      var colontmp__486539750 = 0;
+      colontmp__486539750 = len_1140851299(a_1124073985);
+      var i_486539751 = 0;
       Label7: do {
           Label8: while (true) {
-          if (!(i_486539758 < colontmp__486539757)) break Label8;
-            i_1124074031 = i_486539758;
+          if (!(i_486539751 < colontmp__486539750)) break Label8;
+            i_1124074031 = i_486539751;
             if (!((eq_1124073984(HEX5BHEX5D_1140851306(a_1124073985, i_1124074031), HEX5BHEX5D_1140851306(b_1124073986, i_1124074031), true) == 3))) {
             result_1124073988 = 1;
             break BeforeRet;
             }
             
-            i_486539758 = addInt(i_486539758, 1);
+            i_486539751 = addInt(i_486539751, 1);
           }
       } while (false);
     } while (false);
@@ -10053,18 +3946,18 @@ function updateAttributes_1124074074(newNode_1124074075, oldNode_1124074076) {
       var k_1124074081 = null;
       var __1124074082 = null;
       Label2: do {
-        var i_486539770 = 0;
-        var colontmp__486539771 = 0;
-        colontmp__486539771 = subInt((oldNode_1124074076.attrs).length, 2);
-        var res_486539772 = 0;
+        var i_486539763 = 0;
+        var colontmp__486539764 = 0;
+        colontmp__486539764 = subInt((oldNode_1124074076.attrs).length, 2);
+        var res_486539765 = 0;
         Label3: do {
             Label4: while (true) {
-            if (!(res_486539772 <= colontmp__486539771)) break Label4;
-              i_486539770 = res_486539772;
-              k_1124074081 = oldNode_1124074076.attrs[chckIndx(i_486539770, 0, (oldNode_1124074076.attrs).length - 1)];
-              __1124074082 = oldNode_1124074076.attrs[chckIndx(addInt(i_486539770, 1), 0, (oldNode_1124074076.attrs).length - 1)];
+            if (!(res_486539765 <= colontmp__486539764)) break Label4;
+              i_486539763 = res_486539765;
+              k_1124074081 = oldNode_1124074076.attrs[chckIndx(i_486539763, 0, (oldNode_1124074076.attrs).length - 1)];
+              __1124074082 = oldNode_1124074076.attrs[chckIndx(addInt(i_486539763, 1), 0, (oldNode_1124074076.attrs).length - 1)];
               oldNode_1124074076.dom.removeAttribute(k_1124074081);
-              res_486539772 = addInt(res_486539772, 2);
+              res_486539765 = addInt(res_486539765, 2);
             }
         } while (false);
       } while (false);
@@ -10073,21 +3966,21 @@ function updateAttributes_1124074074(newNode_1124074075, oldNode_1124074076) {
       var k_1124074083 = null;
       var v_1124074084 = null;
       Label6: do {
-        var i_486539776 = 0;
-        var colontmp__486539777 = 0;
-        colontmp__486539777 = subInt((newNode_1124074075.attrs).length, 2);
-        var res_486539778 = 0;
+        var i_486539769 = 0;
+        var colontmp__486539770 = 0;
+        colontmp__486539770 = subInt((newNode_1124074075.attrs).length, 2);
+        var res_486539771 = 0;
         Label7: do {
             Label8: while (true) {
-            if (!(res_486539778 <= colontmp__486539777)) break Label8;
-              i_486539776 = res_486539778;
-              k_1124074083 = newNode_1124074075.attrs[chckIndx(i_486539776, 0, (newNode_1124074075.attrs).length - 1)];
-              v_1124074084 = newNode_1124074075.attrs[chckIndx(addInt(i_486539776, 1), 0, (newNode_1124074075.attrs).length - 1)];
+            if (!(res_486539771 <= colontmp__486539770)) break Label8;
+              i_486539769 = res_486539771;
+              k_1124074083 = newNode_1124074075.attrs[chckIndx(i_486539769, 0, (newNode_1124074075.attrs).length - 1)];
+              v_1124074084 = newNode_1124074075.attrs[chckIndx(addInt(i_486539769, 1), 0, (newNode_1124074075.attrs).length - 1)];
               if (!((v_1124074084 == null))) {
               oldNode_1124074076.dom.setAttribute(k_1124074083, v_1124074084);
               }
               
-              res_486539778 = addInt(res_486539778, 2);
+              res_486539771 = addInt(res_486539771, 2);
             }
         } while (false);
       } while (false);
@@ -10103,15 +3996,15 @@ function removeAllEventHandlers_1124073588(d_1124073589) {
     if (!((d_1124073589.karaxEvents == null))) {
     Label1: do {
       var i_1124073605 = 0;
-      var colontmp__486539781 = 0;
-      colontmp__486539781 = d_1124073589.karaxEvents.length;
-      var i_486539782 = 0;
+      var colontmp__486539774 = 0;
+      colontmp__486539774 = d_1124073589.karaxEvents.length;
+      var i_486539775 = 0;
       Label2: do {
           Label3: while (true) {
-          if (!(i_486539782 < colontmp__486539781)) break Label3;
-            i_1124073605 = i_486539782;
+          if (!(i_486539775 < colontmp__486539774)) break Label3;
+            i_1124073605 = i_486539775;
             d_1124073589.removeEventListener(d_1124073589.karaxEvents[i_1124073605]["Field0"], d_1124073589.karaxEvents[i_1124073605]["Field1"]);
-            i_486539782 = addInt(i_486539782, 1);
+            i_486539775 = addInt(i_486539775, 1);
           }
       } while (false);
     } while (false);
@@ -10222,28 +4115,28 @@ function diff_1124074229(newNode_1124074230, oldNode_1124074231, parent_11240742
       var pos_1124074289 = addInt(nimMin(oldPos_1124074275, newPos_1124074276), 1);
       Label7: do {
         var i_1124074294 = 0;
-        var colontmp__486539740 = 0;
-        colontmp__486539740 = subInt(pos_1124074289, 1);
-        var res_486539741 = commonPrefix_1124074266;
+        var colontmp__486539733 = 0;
+        colontmp__486539733 = subInt(pos_1124074289, 1);
+        var res_486539734 = commonPrefix_1124074266;
         Label8: do {
             Label9: while (true) {
-            if (!(res_486539741 <= colontmp__486539740)) break Label9;
-              i_1124074294 = res_486539741;
+            if (!(res_486539734 <= colontmp__486539733)) break Label9;
+              i_1124074294 = res_486539734;
               diff_1124074229(HEX5BHEX5D_1140851306(newNode_1124074230, i_1124074294), HEX5BHEX5D_1140851306(oldNode_1124074231, i_1124074294), current_1124074233, current_1124074233.childNodes[chckIndx(i_1124074294, 0, (current_1124074233.childNodes).length - 1)], kxi_1124074234);
-              res_486539741 = addInt(res_486539741, 1);
+              res_486539734 = addInt(res_486539734, 1);
             }
         } while (false);
       } while (false);
       if ((addInt(oldPos_1124074275, 1) == oldLength_1124074255)) {
       Label10: do {
         var i_1124074299 = 0;
-        var res_486539744 = pos_1124074289;
+        var res_486539737 = pos_1124074289;
         Label11: do {
             Label12: while (true) {
-            if (!(res_486539744 <= newPos_1124074276)) break Label12;
-              i_1124074299 = res_486539744;
+            if (!(res_486539737 <= newPos_1124074276)) break Label12;
+              i_1124074299 = res_486539737;
               addPatch_1124074094(kxi_1124074234, 2, current_1124074233, null, HEX5BHEX5D_1140851306(newNode_1124074230, i_1124074299), null);
-              res_486539744 = addInt(res_486539744, 1);
+              res_486539737 = addInt(res_486539737, 1);
             }
         } while (false);
       } while (false);
@@ -10252,13 +4145,13 @@ function diff_1124074229(newNode_1124074230, oldNode_1124074231, parent_11240742
         var before_1124074300 = current_1124074233.childNodes[chckIndx(addInt(oldPos_1124074275, 1), 0, (current_1124074233.childNodes).length - 1)];
         Label13: do {
           var i_1124074305 = 0;
-          var res_486539747 = pos_1124074289;
+          var res_486539740 = pos_1124074289;
           Label14: do {
               Label15: while (true) {
-              if (!(res_486539747 <= newPos_1124074276)) break Label15;
-                i_1124074305 = res_486539747;
+              if (!(res_486539740 <= newPos_1124074276)) break Label15;
+                i_1124074305 = res_486539740;
                 addPatch_1124074094(kxi_1124074234, 3, current_1124074233, before_1124074300, HEX5BHEX5D_1140851306(newNode_1124074230, i_1124074305), null);
-                res_486539747 = addInt(res_486539747, 1);
+                res_486539740 = addInt(res_486539740, 1);
               }
           } while (false);
         } while (false);
@@ -10266,14 +4159,14 @@ function diff_1124074229(newNode_1124074230, oldNode_1124074231, parent_11240742
       
       Label16: do {
         var i_1124074310 = 0;
-        var res_486539750 = pos_1124074289;
+        var res_486539743 = pos_1124074289;
         Label17: do {
             Label18: while (true) {
-            if (!(res_486539750 <= oldPos_1124074275)) break Label18;
-              i_1124074310 = res_486539750;
+            if (!(res_486539743 <= oldPos_1124074275)) break Label18;
+              i_1124074310 = res_486539743;
               addPatch_1124074094(kxi_1124073536[0], 4, null, null, null, HEX5BHEX5D_1140851306(oldNode_1124074231, i_1124074310));
               addPatch_1124074094(kxi_1124074234, 1, current_1124074233, current_1124074233.childNodes[chckIndx(i_1124074310, 0, (current_1124074233.childNodes).length - 1)], null, null);
-              res_486539750 = addInt(res_486539750, 1);
+              res_486539743 = addInt(res_486539743, 1);
             }
         } while (false);
       } while (false);
@@ -10342,15 +4235,15 @@ function moveDom_1124074159(dest_1124074160, src_1124074161) {
     
     Label1: do {
       var i_1124074177 = 0;
-      var colontmp__486539792 = 0;
-      colontmp__486539792 = len_1140851299(dest_1124074160);
-      var i_486539793 = 0;
+      var colontmp__486539785 = 0;
+      colontmp__486539785 = len_1140851299(dest_1124074160);
+      var i_486539786 = 0;
       Label2: do {
           Label3: while (true) {
-          if (!(i_486539793 < colontmp__486539792)) break Label3;
-            i_1124074177 = i_486539793;
+          if (!(i_486539786 < colontmp__486539785)) break Label3;
+            i_1124074177 = i_486539786;
             moveDom_1124074159(HEX5BHEX5D_1140851306(dest_1124074160, i_1124074177), HEX5BHEX5D_1140851306(src_1124074161, i_1124074177));
-            i_486539793 = addInt(i_486539793, 1);
+            i_486539786 = addInt(i_486539786, 1);
           }
       } while (false);
     } while (false);
@@ -10367,11 +4260,11 @@ function HEX5BHEX5DHEX3D_1140851310(x_1140851311, idx_1140851312, y_1140851313) 
 function applyPatch_1124074178(kxi_1124074179) {
     Label1: do {
       var i_1124074184 = 0;
-      var i_486539786 = 0;
+      var i_486539779 = 0;
       Label2: do {
           Label3: while (true) {
-          if (!(i_486539786 < kxi_1124074179.patchLen)) break Label3;
-            i_1124074184 = i_486539786;
+          if (!(i_486539779 < kxi_1124074179.patchLen)) break Label3;
+            i_1124074184 = i_486539779;
             var p_1124074185 = nimCopy(null, kxi_1124074179.patches[chckIndx(i_1124074184, 0, (kxi_1124074179.patches).length - 1)], NTI1124073478);
             switch (p_1124074185.k) {
             case 0:
@@ -10424,25 +4317,25 @@ function applyPatch_1124074178(kxi_1124074179) {
               
               break;
             }
-            i_486539786 = addInt(i_486539786, 1);
+            i_486539779 = addInt(i_486539779, 1);
           }
       } while (false);
     } while (false);
     kxi_1124074179.patchLen = 0;
     Label4: do {
       var i_1124074216 = 0;
-      var i_486539789 = 0;
+      var i_486539782 = 0;
       Label5: do {
           Label6: while (true) {
-          if (!(i_486539789 < kxi_1124074179.patchLenV)) break Label6;
-            i_1124074216 = i_486539789;
+          if (!(i_486539782 < kxi_1124074179.patchLenV)) break Label6;
+            i_1124074216 = i_486539782;
             var p_1124074217 = nimCopy(null, kxi_1124074179.patchesV[chckIndx(i_1124074216, 0, (kxi_1124074179.patchesV).length - 1)], NTI1124073479);
             HEX5BHEX5DHEX3D_1140851310(p_1124074217.parent, p_1124074217.pos, p_1124074217.newChild);
             if (!(!((p_1124074217.newChild.dom == null)))) {
             failedAssertImpl_218103864(makeNimstrLit("karax.nim(429, 12) `p.newChild.dom != nil` "));
             }
             
-            i_486539789 = addInt(i_486539789, 1);
+            i_486539782 = addInt(i_486539782, 1);
           }
       } while (false);
     } while (false);
@@ -10548,19 +4441,19 @@ function HEX3DHEX3D_1325402146(x_1325402148, y_1325402149) {
     
     Label1: do {
       var i_1325402172 = 0;
-      var colontmp__486539803 = 0;
-      colontmp__486539803 = subInt((x_1325402148).length, 1);
-      var res_486539804 = 0;
+      var colontmp__486539796 = 0;
+      colontmp__486539796 = subInt((x_1325402148).length, 1);
+      var res_486539797 = 0;
       Label2: do {
           Label3: while (true) {
-          if (!(res_486539804 <= colontmp__486539803)) break Label3;
-            i_1325402172 = res_486539804;
+          if (!(res_486539797 <= colontmp__486539796)) break Label3;
+            i_1325402172 = res_486539797;
             if (!(HEX3DHEX3D_1325402129(x_1325402148[chckIndx(i_1325402172, 0, (x_1325402148).length - 1)], y_1325402149[chckIndx(i_1325402172, 0, (y_1325402149).length - 1)]))) {
             result_1325402150 = false;
             break BeforeRet;
             }
             
-            res_486539804 = addInt(res_486539804, 1);
+            res_486539797 = addInt(res_486539797, 1);
           }
       } while (false);
     } while (false);
@@ -10881,20 +4774,20 @@ function HEX3DHEX3D_1325402129(a_1325402130, b_1325402131) {
         Label14: do {
           var key_1325402599 = [];
           var val_1325402600 = null;
-          var colontmp__486539796 = ({data: [], counter: 0, first: 0, last: 0});
+          var colontmp__486539789 = ({data: [], counter: 0, first: 0, last: 0});
           var Temporary15 = a_1325402130;
           if (ConstSet16[Temporary15.kind]===undefined) { raiseFieldError2(makeNimstrLit("field \'fields\' is not accessible for type \'JsonNodeObj\' using \'kind = "), reprDiscriminant(Temporary15.kind, NTI1325400067)); }
-          colontmp__486539796 = nimCopy(colontmp__486539796, Temporary15.fields, NTI1325400078);
-          var L_486539798 = len_1325402217(colontmp__486539796);
-          if ((0 < colontmp__486539796.counter)) {
-          var h_486539799 = colontmp__486539796.first;
+          colontmp__486539789 = nimCopy(colontmp__486539789, Temporary15.fields, NTI1325400078);
+          var L_486539791 = len_1325402217(colontmp__486539789);
+          if ((0 < colontmp__486539789.counter)) {
+          var h_486539792 = colontmp__486539789.first;
           Label16: do {
               Label17: while (true) {
-              if (!(0 <= h_486539799)) break Label17;
-                var nxt_486539801 = colontmp__486539796.data[chckIndx(h_486539799, 0, (colontmp__486539796.data).length - 1)].Field1;
-                if (isFilled_1191182367(colontmp__486539796.data[chckIndx(h_486539799, 0, (colontmp__486539796.data).length - 1)].Field0)) {
-                key_1325402599 = colontmp__486539796.data[chckIndx(h_486539799, 0, (colontmp__486539796.data).length - 1)].Field2;
-                val_1325402600 = colontmp__486539796.data[chckIndx(h_486539799, 0, (colontmp__486539796.data).length - 1)].Field3;
+              if (!(0 <= h_486539792)) break Label17;
+                var nxt_486539794 = colontmp__486539789.data[chckIndx(h_486539792, 0, (colontmp__486539789.data).length - 1)].Field1;
+                if (isFilled_1191182367(colontmp__486539789.data[chckIndx(h_486539792, 0, (colontmp__486539789.data).length - 1)].Field0)) {
+                key_1325402599 = colontmp__486539789.data[chckIndx(h_486539792, 0, (colontmp__486539789.data).length - 1)].Field2;
+                val_1325402600 = colontmp__486539789.data[chckIndx(h_486539792, 0, (colontmp__486539789.data).length - 1)].Field3;
                   var Temporary18 = b_1325402131;
                   if (ConstSet17[Temporary18.kind]===undefined) { raiseFieldError2(makeNimstrLit("field \'fields\' is not accessible for type \'JsonNodeObj\' using \'kind = "), reprDiscriminant(Temporary18.kind, NTI1325400067)); }
                 if (!(hasKey_1325402641(Temporary18.fields, key_1325402599))) {
@@ -10909,13 +4802,13 @@ function HEX3DHEX3D_1325402129(a_1325402130, b_1325402131) {
                 break BeforeRet;
                 }
                 
-                if (!((len_1325402217(colontmp__486539796) == L_486539798))) {
+                if (!((len_1325402217(colontmp__486539789) == L_486539791))) {
                 failedAssertImpl_218103864(makeNimstrLit("tables.nim(1720, 11) `len(t) == L` the length of the table changed while iterating over it"));
                 }
                 
                 }
                 
-                h_486539799 = nxt_486539801;
+                h_486539792 = nxt_486539794;
               }
           } while (false);
           }
@@ -11433,12 +5326,12 @@ function collectionToString_1325405518(x_1325405520, prefix_1325405521, separato
     var firstElement_1325405525 = true;
     Label1: do {
       var value_1325405546 = 0;
-      var i_486539821 = 0;
+      var i_486539814 = 0;
       Label2: do {
           Label3: while (true) {
-          if (!(i_486539821 <= 6)) break Label3;
-            if ((x_1325405520[i_486539821] != undefined)) {
-            value_1325405546 = i_486539821;
+          if (!(i_486539814 <= 6)) break Label3;
+            if ((x_1325405520[i_486539814] != undefined)) {
+            value_1325405546 = i_486539814;
             if (firstElement_1325405525) {
             firstElement_1325405525 = false;
             }
@@ -11449,7 +5342,7 @@ function collectionToString_1325405518(x_1325405520, prefix_1325405521, separato
             addQuoted_1325405550(result_1325405524, 0, value_1325405546);
             }
             
-            i_486539821 += 1;
+            i_486539814 += 1;
           }
       } while (false);
     } while (false);
@@ -11582,13 +5475,13 @@ function initFromJson_1761607928(dst_1761607930, jsonNode_1761607931, jsonPath_1
   
 }
 
-function to_486539554(node_486539557) {
-  var result_486539559 = [({id: 0, corpus_id: 0, firstname: [], lastname: [], email: [], role_id: 0, role: [], password: [], active: 0, token: [], apiKey: []})];
+function to_486539547(node_486539550) {
+  var result_486539552 = [({id: 0, corpus_id: 0, firstname: [], lastname: [], email: [], role_id: 0, role: [], password: [], active: 0, token: [], apiKey: []})];
 
-    var jsonPath_486539560 = [[]];
-    initFromJson_1761607928(result_486539559[0], node_486539557, jsonPath_486539560, 0);
+    var jsonPath_486539553 = [[]];
+    initFromJson_1761607928(result_486539552[0], node_486539550, jsonPath_486539553, 0);
 
-  return result_486539559[0];
+  return result_486539552[0];
 
 }
 
@@ -11958,15 +5851,15 @@ function convertObject_1325405381(x_1325405382) {
       result_1325405383 = newJArray_1325400187();
       Label1: do {
         var i_1325405389 = 0;
-        var colontmp__486539824 = 0;
-        colontmp__486539824 = len_1325405378(x_1325405382);
-        var i_486539825 = 0;
+        var colontmp__486539817 = 0;
+        colontmp__486539817 = len_1325405378(x_1325405382);
+        var i_486539818 = 0;
         Label2: do {
             Label3: while (true) {
-            if (!(i_486539825 < colontmp__486539824)) break Label3;
-              i_1325405389 = i_486539825;
+            if (!(i_486539818 < colontmp__486539817)) break Label3;
+              i_1325405389 = i_486539818;
               add_1325400286(result_1325405383, convertObject_1325405381(x_1325405382[i_1325405389]));
-              i_486539825 = addInt(i_486539825, 1);
+              i_486539818 = addInt(i_486539818, 1);
             }
         } while (false);
       } while (false);
@@ -12121,33 +6014,33 @@ function decodeUrl_1694498873(s_1694498874, decodePlus_1694498875) {
 
 }
 
-function innerHEX60gensym87_486539639() {
-  var result_486539640 = null;
+function innerHEX60gensym87_486539632() {
+  var result_486539633 = null;
 
   BeforeRet: do {
-    var a_486539641 = null;
-    a_486539641 = {};
-    a_486539641.inpSearch = "";
-    result_486539640 = a_486539641;
+    var a_486539634 = null;
+    a_486539634 = {};
+    a_486539634.inpSearch = "";
+    result_486539633 = a_486539634;
     break BeforeRet;
   } while (false);
 
-  return result_486539640;
+  return result_486539633;
 
 }
 
-function HEX3Aanonymous_486539443(value_486539444) {
+function HEX3Aanonymous_486539436(value_486539437) {
     drawInd_620757408();
 
   
 }
 
-function HEX3Aanonymous_486539475(value_486539476) {
+function HEX3Aanonymous_486539468(value_486539469) {
     
-function HEX3Aanonymous_486539478(value_486539479) {
-        var old_486539480 = isInternet_620757114[0];
+function HEX3Aanonymous_486539471(value_486539472) {
+        var old_486539473 = isInternet_620757114[0];
         isInternet_620757114[0] = true;
-        if (!((old_486539480 == isInternet_620757114[0]))) {
+        if (!((old_486539473 == isInternet_620757114[0]))) {
         redraw_1124074477(kxi_1124073536[0]);
         }
         
@@ -12155,10 +6048,10 @@ function HEX3Aanonymous_486539478(value_486539479) {
       
     }
     
-function HEX3Aanonymous_486539487(error_486539488) {
-        var old_486539489 = isInternet_620757114[0];
+function HEX3Aanonymous_486539480(error_486539481) {
+        var old_486539482 = isInternet_620757114[0];
         isInternet_620757114[0] = false;
-        if (!((old_486539489 == isInternet_620757114[0]))) {
+        if (!((old_486539482 == isInternet_620757114[0]))) {
         redraw_1124074477(kxi_1124073536[0]);
         }
         
@@ -12166,205 +6059,81 @@ function HEX3Aanonymous_486539487(error_486539488) {
       
     }
 
-    var stm_486539477 = sendRequest_620757128(makeNimstrLit("HEAD"), [], [], []);
-    stm_486539477.observe((HEX3Aanonymous_486539478), (HEX3Aanonymous_486539487));
+    var stm_486539470 = sendRequest_620757128(makeNimstrLit("HEAD"), [], [], []);
+    stm_486539470.observe((HEX3Aanonymous_486539471), (HEX3Aanonymous_486539480));
 
   
 }
-var F = {procname: "module ministryjs", prev: framePtr, filename: "ministryjs.nim", line: 0};
-framePtr = F;
-var pIndicator_486539422 = newPositionIndicator_620757462(20);
-var currentPosM_486539423 = pIndicator_486539422.marker;
-pIndicator_620757115[0] = nimCopy(pIndicator_620757115[0], pIndicator_486539422, NTI620757000);
-var stmAnime_486539442 = Kefir.interval((20), (1));
-stmAnime_486539442.observe((HEX3Aanonymous_486539443));
-var stmCheckInternet_486539474 = Kefir.interval((5000), (1));
-stmCheckInternet_486539474.observe((HEX3Aanonymous_486539475));
-var token_486539526 = [cstrToNimstr(($(("#token")).val()))];
-var vUser_486539538 = [($(("#user")).val())];
-if ((vUser_486539538[0] == "")) {
+var Temporary3;
+var pIndicator_486539415 = newPositionIndicator_620757462(20);
+var currentPosM_486539416 = pIndicator_486539415.marker;
+pIndicator_620757115[0] = nimCopy(pIndicator_620757115[0], pIndicator_486539415, NTI620757000);
+var stmAnime_486539435 = Kefir.interval((20), (1));
+stmAnime_486539435.observe((HEX3Aanonymous_486539436));
+var stmCheckInternet_486539467 = Kefir.interval((5000), (1));
+stmCheckInternet_486539467.observe((HEX3Aanonymous_486539468));
+var token_486539519 = [cstrToNimstr(($(("#token")).val()))];
+var vUser_486539531 = [($(("#user")).val())];
+if ((vUser_486539531[0] == "")) {
 ++excHandler;
+Temporary3 = framePtr;
 try {
-vUser_486539538[0] = (localStorage.getItem(("user")));
-currUser_620757022[0] = nimCopy(currUser_620757022[0], to_486539554(HEX5BHEX5D_1325403120(parseJson_1325405409(decodeUrl_1694498873(cstrToNimstr(vUser_486539538[0]), true)), makeNimstrLit("resp"))), NTI1526726659);
+vUser_486539531[0] = (localStorage.getItem(("user")));
+currUser_620757022[0] = nimCopy(currUser_620757022[0], to_486539547(HEX5BHEX5D_1325403120(parseJson_1325405409(decodeUrl_1694498873(cstrToNimstr(vUser_486539531[0]), true)), makeNimstrLit("resp"))), NTI1526726659);
 console.log(("1.currUser.role:"), (toJSStr(currUser_620757022[0].role)));
 --excHandler;
 } catch (EXCEPTION) {
  var prevJSError = lastJSError;
  lastJSError = EXCEPTION;
  --excHandler;
-framePtr = F;
+framePtr = Temporary3;
 lastJSError = prevJSError;
 } finally {
-framePtr = F;
+framePtr = Temporary3;
 }
 }
 else {
-  localStorage.setItem(("user"), (vUser_486539538[0]));
-  currUser_620757022[0] = nimCopy(currUser_620757022[0], to_486539554(HEX5BHEX5D_1325403120(parseJson_1325405409(decodeUrl_1694498873(cstrToNimstr(vUser_486539538[0]), true)), makeNimstrLit("resp"))), NTI1526726659);
+  localStorage.setItem(("user"), (vUser_486539531[0]));
+  currUser_620757022[0] = nimCopy(currUser_620757022[0], to_486539547(HEX5BHEX5D_1325403120(parseJson_1325405409(decodeUrl_1694498873(cstrToNimstr(vUser_486539531[0]), true)), makeNimstrLit("resp"))), NTI1526726659);
 console.log(("2.currUser.role:"), (toJSStr(currUser_620757022[0].role)));
 }
 
-currUser_620757022[0].token = nimCopy(null, token_486539526[0], NTI33554439);
-var currProcess_486539625 = [({name: [], sector_internal_id: [], firstname: [], lastname: [], date_start: [], date_finish: [], id: 0, user_id: 0, sector_id: 0, totalFamilies: 0})];
-var allSectProc_486539626 = [[]];
-var currStreets_486539627 = [[]];
-var currStreetsTmp_486539628 = [[]];
-var showStreetsEnabled_486539629 = [false];
-var spinnerOn_486539630 = [false];
-var progressOn_486539631 = [false];
-var progressProc_486539632 = [0];
-var scrollToSectId_486539633 = [0];
-var onlyMySectors_486539634 = [false];
-var serchSectByName_486539635 = [[]];
-var setEvtInpSearchSect_486539636 = [false];
-var currUiSt_486539657 = [innerHEX60gensym87_486539639()];
+currUser_620757022[0].token = nimCopy(null, token_486539519[0], NTI33554439);
+var currProcess_486539618 = [({name: [], sector_internal_id: [], firstname: [], lastname: [], date_start: [], date_finish: [], id: 0, user_id: 0, sector_id: 0, totalFamilies: 0})];
+var allSectProc_486539619 = [[]];
+var currStreets_486539620 = [[]];
+var currStreetsTmp_486539621 = [[]];
+var showStreetsEnabled_486539622 = [false];
+var spinnerOn_486539623 = [false];
+var progressOn_486539624 = [false];
+var progressProc_486539625 = [0];
+var scrollToSectId_486539626 = [0];
+var onlyMySectors_486539627 = [false];
+var serchSectByName_486539628 = [[]];
+var setEvtInpSearchSect_486539629 = [false];
+var currUiSt_486539650 = [innerHEX60gensym87_486539632()];
 var map = null;
 var glbUi = null;
-var sectStreetGrp_486539671 = [(new H.map.Group())];
-var noMyMsgEl_486539672 = [null];
-framePtr = F.prev;
-var F = {procname: "module ministryjs", prev: framePtr, filename: "ministryjs.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module ministryjs", prev: framePtr, filename: "ministryjs.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module ministryjs", prev: framePtr, filename: "ministryjs.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module ministryjs", prev: framePtr, filename: "ministryjs.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module ministryjs", prev: framePtr, filename: "ministryjs.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module ministryjs", prev: framePtr, filename: "ministryjs.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module ministryjs", prev: framePtr, filename: "ministryjs.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module ministryjs", prev: framePtr, filename: "ministryjs.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module ministryjs", prev: framePtr, filename: "ministryjs.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module ministryjs", prev: framePtr, filename: "ministryjs.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module ministryjs", prev: framePtr, filename: "ministryjs.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module ministryjs", prev: framePtr, filename: "ministryjs.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module ministryjs", prev: framePtr, filename: "ministryjs.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module ministryjs", prev: framePtr, filename: "ministryjs.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module ministryjs", prev: framePtr, filename: "ministryjs.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module ministryjs", prev: framePtr, filename: "ministryjs.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module ministryjs", prev: framePtr, filename: "ministryjs.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module ministryjs", prev: framePtr, filename: "ministryjs.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module ministryjs", prev: framePtr, filename: "ministryjs.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module ministryjs", prev: framePtr, filename: "ministryjs.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module ministryjs", prev: framePtr, filename: "ministryjs.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module ministryjs", prev: framePtr, filename: "ministryjs.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module ministryjs", prev: framePtr, filename: "ministryjs.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module ministryjs", prev: framePtr, filename: "ministryjs.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module ministryjs", prev: framePtr, filename: "ministryjs.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module ministryjs", prev: framePtr, filename: "ministryjs.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module ministryjs", prev: framePtr, filename: "ministryjs.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module ministryjs", prev: framePtr, filename: "ministryjs.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module ministryjs", prev: framePtr, filename: "ministryjs.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module ministryjs", prev: framePtr, filename: "ministryjs.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module ministryjs", prev: framePtr, filename: "ministryjs.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module ministryjs", prev: framePtr, filename: "ministryjs.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module ministryjs", prev: framePtr, filename: "ministryjs.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module ministryjs", prev: framePtr, filename: "ministryjs.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module ministryjs", prev: framePtr, filename: "ministryjs.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module ministryjs", prev: framePtr, filename: "ministryjs.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module ministryjs", prev: framePtr, filename: "ministryjs.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module ministryjs", prev: framePtr, filename: "ministryjs.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module ministryjs", prev: framePtr, filename: "ministryjs.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module ministryjs", prev: framePtr, filename: "ministryjs.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module ministryjs", prev: framePtr, filename: "ministryjs.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
+var sectStreetGrp_486539664 = [(new H.map.Group())];
+var noMyMsgEl_486539665 = [null];
 
-function bindGps_486541499() {
+function bindGps_486541494() {
     
-function getPos_486541500(position_486541501) {
+function getPos_486541495(position_486541496) {
         
-function innerHEX60gensym371_486541508() {
-          var result_486541509 = null;
+function innerHEX60gensym371_486541503() {
+          var result_486541504 = null;
 
           BeforeRet: do {
-            var a_486541510 = null;
-            a_486541510 = {};
-            a_486541510.lat = position_486541501.coords.latitude;
-            a_486541510.lng = position_486541501.coords.longitude;
-            result_486541509 = a_486541510;
+            var a_486541505 = null;
+            a_486541505 = {};
+            a_486541505.lat = position_486541496.coords.latitude;
+            a_486541505.lng = position_486541496.coords.longitude;
+            result_486541504 = a_486541505;
             break BeforeRet;
           } while (false);
 
-          return result_486541509;
+          return result_486541504;
 
         }
           var Temporary1;
@@ -12376,18 +6145,18 @@ function innerHEX60gensym371_486541508() {
         break BeforeRet;
         }
         
-        var newGeoPos_486541557 = innerHEX60gensym371_486541508();
-        var dist_486541577 = (currentPosM_486539423.getGeometry().distance((newGeoPos_486541557)));
-          if (!(curEngineType_620757051[0] == engineTypes_620757050[0].P2D)) Temporary2 = false; else {            Temporary2 = (10.0 < dist_486541577);          }          if (!Temporary2) Temporary1 = false; else {            Temporary1 = !(isInternet_620757114[0]);          }        if (Temporary1) {
-        currentPosM_486539423.setGeometry((newGeoPos_486541557));
+        var newGeoPos_486541552 = innerHEX60gensym371_486541503();
+        var dist_486541572 = (currentPosM_486539416.getGeometry().distance((newGeoPos_486541552)));
+          if (!(curEngineType_620757051[0] == engineTypes_620757050[0].P2D)) Temporary2 = false; else {            Temporary2 = (10.0 < dist_486541572);          }          if (!Temporary2) Temporary1 = false; else {            Temporary1 = !(isInternet_620757114[0]);          }        if (Temporary1) {
+        currentPosM_486539416.setGeometry((newGeoPos_486541552));
         }
         else {
           if (!(curEngineType_620757051[0] == engineTypes_620757050[0].P2D)) Temporary3 = false; else {            Temporary3 = isInternet_620757114[0];          }        if (Temporary3) {
-        currentPosM_486539423.setGeometry((newGeoPos_486541557));
+        currentPosM_486539416.setGeometry((newGeoPos_486541552));
         }
         }
         if ((curEngineType_620757051[0] == engineTypes_620757050[0].WEBGL)) {
-        currentPosM_486539423.setGeometry((newGeoPos_486541557));
+        currentPosM_486539416.setGeometry((newGeoPos_486541552));
         }
         
       } while (false);
@@ -12395,30 +6164,18 @@ function innerHEX60gensym371_486541508() {
       
     }
     
-function errorHandler_486541635(errorObj_486541636) {
-        console.log((toJSStr((HEX24_335544323((errorObj_486541636.code)) || []).concat(makeNimstrLit(": ") || [],cstrToNimstr((errorObj_486541636.message)) || []))));
+function errorHandler_486541630(errorObj_486541631) {
+        console.log((toJSStr((HEX24_335544323((errorObj_486541631.code)) || []).concat(makeNimstrLit(": ") || [],cstrToNimstr((errorObj_486541631.message)) || []))));
 
       
     }
 
-    navigator.geolocation.watchPosition((getPos_486541500), (errorHandler_486541635));
+    navigator.geolocation.watchPosition((getPos_486541495), (errorHandler_486541630));
 
   
 }
-var F = {procname: "module ministryjs", prev: framePtr, filename: "ministryjs.nim", line: 0};
-framePtr = F;
-bindGps_486541499();
-framePtr = F.prev;
-var F = {procname: "module ministryjs", prev: framePtr, filename: "ministryjs.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module ministryjs", prev: framePtr, filename: "ministryjs.nim", line: 0};
-framePtr = F;
-var stmClMap_486541834 = [null];
-framePtr = F.prev;
-var F = {procname: "module ministryjs", prev: framePtr, filename: "ministryjs.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
+bindGps_486541494();
+var stmClMap_486541829 = [null];
 
 function newSeq_1124074514(len_1124074516) {
   var result_1124074517 = [];
@@ -12523,13 +6280,13 @@ function tree_1140851377(kind_1140851378, kids_1140851379) {
     Label1: do {
       var k_1140851392 = null;
       var k_1140851392_Idx = 0;
-      var i_486542583 = 0;
+      var i_486542578 = 0;
       Label2: do {
           Label3: while (true) {
-          if (!(i_486542583 < (kids_1140851379).length)) break Label3;
-            k_1140851392 = kids_1140851379; k_1140851392_Idx = chckIndx(i_486542583, 0, (kids_1140851379).length - 1);
+          if (!(i_486542578 < (kids_1140851379).length)) break Label3;
+            k_1140851392 = kids_1140851379; k_1140851392_Idx = chckIndx(i_486542578, 0, (kids_1140851379).length - 1);
             add_1140851314(result_1140851380, k_1140851392[k_1140851392_Idx]);
-            i_486542583 = addInt(i_486542583, 1);
+            i_486542578 = addInt(i_486542578, 1);
           }
       } while (false);
     } while (false);
@@ -12546,19 +6303,19 @@ function setAttr_1140851240(n_1140851241, key_1140851242, val_1140851243) {
     else {
       Label1: do {
         var i_1140851260 = 0;
-        var colontmp__486542586 = 0;
-        colontmp__486542586 = subInt((n_1140851241.attrs).length, 2);
-        var res_486542587 = 0;
+        var colontmp__486542581 = 0;
+        colontmp__486542581 = subInt((n_1140851241.attrs).length, 2);
+        var res_486542582 = 0;
         Label2: do {
             Label3: while (true) {
-            if (!(res_486542587 <= colontmp__486542586)) break Label3;
-              i_1140851260 = res_486542587;
+            if (!(res_486542582 <= colontmp__486542581)) break Label3;
+              i_1140851260 = res_486542582;
               if ((n_1140851241.attrs[chckIndx(i_1140851260, 0, (n_1140851241.attrs).length - 1)] == key_1140851242)) {
               n_1140851241.attrs[chckIndx(addInt(i_1140851260, 1), 0, (n_1140851241.attrs).length - 1)] = val_1140851243;
               break BeforeRet;
               }
               
-              res_486542587 = addInt(res_486542587, 2);
+              res_486542582 = addInt(res_486542582, 2);
             }
         } while (false);
       } while (false);
@@ -12580,27 +6337,27 @@ function text_1140851429(s_1140851430) {
 
 }
 
-function toggleSpinner_486541213() {
-  var result_486541214 = null;
+function toggleSpinner_486541208() {
+  var result_486541209 = null;
 
-    var tmp_486541215 = tree_1140851377(43, []);
-    result_486541214 = tmp_486541215;
-    if (spinnerOn_486539630[0]) {
-    var tmp_486541216 = tree_1140851377(43, []);
-    tmp_486541216.class = "d-flex justify-content-center mt-6";
-    var tmp_486541217 = tree_1140851377(43, []);
-    tmp_486541217.class = "spinner-border text-primary";
-    setAttr_1140851240(tmp_486541217, "role", "status");
-    var tmp_486541218 = tree_1140851377(70, []);
-    tmp_486541218.class = "sr-only";
-    add_1140851314(tmp_486541218, text_1140851429(makeNimstrLit("\xD0\x97\xD0\xB0\xD0\xB3\xD1\x80\xD1\x83\xD0\xB7\xD0\xBA\xD0\xB0...")));
-    add_1140851314(tmp_486541217, tmp_486541218);
-    add_1140851314(tmp_486541216, tmp_486541217);
-    result_486541214 = tmp_486541216;
+    var tmp_486541210 = tree_1140851377(43, []);
+    result_486541209 = tmp_486541210;
+    if (spinnerOn_486539623[0]) {
+    var tmp_486541211 = tree_1140851377(43, []);
+    tmp_486541211.class = "d-flex justify-content-center mt-6";
+    var tmp_486541212 = tree_1140851377(43, []);
+    tmp_486541212.class = "spinner-border text-primary";
+    setAttr_1140851240(tmp_486541212, "role", "status");
+    var tmp_486541213 = tree_1140851377(70, []);
+    tmp_486541213.class = "sr-only";
+    add_1140851314(tmp_486541213, text_1140851429(makeNimstrLit("\xD0\x97\xD0\xB0\xD0\xB3\xD1\x80\xD1\x83\xD0\xB7\xD0\xBA\xD0\xB0...")));
+    add_1140851314(tmp_486541212, tmp_486541213);
+    add_1140851314(tmp_486541211, tmp_486541212);
+    result_486541209 = tmp_486541211;
     }
     
 
-  return result_486541214;
+  return result_486541209;
 
 }
 
@@ -12620,18 +6377,18 @@ function setAttr_637534509(s_637534510, a_637534511, value_637534512) {
           s_637534510.push("");
           Label3: do {
             var j_637534554 = 0;
-            var colontmp__486542595 = 0;
-            var colontmp__486542596 = 0;
-            colontmp__486542595 = subInt(s_637534510.length, 1);
-            colontmp__486542596 = addInt(i_637534513, 3);
-            var res_486542597 = colontmp__486542595;
+            var colontmp__486542590 = 0;
+            var colontmp__486542591 = 0;
+            colontmp__486542590 = subInt(s_637534510.length, 1);
+            colontmp__486542591 = addInt(i_637534513, 3);
+            var res_486542593 = colontmp__486542590;
             Label4: do {
                 Label5: while (true) {
-                if (!(colontmp__486542596 <= res_486542597)) break Label5;
-                  j_637534554 = res_486542597;
+                if (!(colontmp__486542591 <= res_486542593)) break Label5;
+                  j_637534554 = res_486542593;
                   s_637534510[j_637534554] = s_637534510[subInt(j_637534554, 2)];
                   s_637534510[subInt(j_637534554, 1)] = s_637534510[subInt(j_637534554, 3)];
-                  res_486542597 = subInt(res_486542597, 2);
+                  res_486542593 = subInt(res_486542593, 2);
                 }
             } while (false);
           } while (false);
@@ -12666,13 +6423,13 @@ function style_637534633(pairs_637534634) {
     result_637534635 = new Array(0);
     Label1: do {
       var x_637534651 = null;
-      var i_486542591 = 0;
+      var i_486542586 = 0;
       Label2: do {
           Label3: while (true) {
-          if (!(i_486542591 < (pairs_637534634).length)) break Label3;
-            x_637534651 = pairs_637534634[chckIndx(i_486542591, 0, (pairs_637534634).length - 1)];
+          if (!(i_486542586 < (pairs_637534634).length)) break Label3;
+            x_637534651 = pairs_637534634[chckIndx(i_486542586, 0, (pairs_637534634).length - 1)];
             setAttr_637534595(result_637534635, x_637534651["Field0"], x_637534651["Field1"]);
-            i_486542591 = addInt(i_486542591, 1);
+            i_486542586 = addInt(i_486542586, 1);
           }
       } while (false);
     } while (false);
@@ -12681,81 +6438,81 @@ function style_637534633(pairs_637534634) {
 
 }
 
-function toggleProgress_486541219() {
+function toggleProgress_486541214() {
     var Temporary1;
 
-  var result_486541220 = null;
+  var result_486541215 = null;
 
-    var tmp_486541221 = tree_1140851377(43, []);
-    result_486541220 = tmp_486541221;
-    if ((progressProc_486539632[0] < 5)) {
+    var tmp_486541216 = tree_1140851377(43, []);
+    result_486541215 = tmp_486541216;
+    if ((progressProc_486539625[0] < 5)) {
     Temporary1 = "text-dark";
     }
     else {
     Temporary1 = "";
     }
     
-    var cText_486541222 = Temporary1;
-    if (progressOn_486539631[0]) {
-    var tmp_486541223 = tree_1140851377(43, []);
-    tmp_486541223.class = "progress mt-6";
-    var tmp_486541224 = tree_1140851377(43, []);
-    tmp_486541224.class = ("progress-bar progress-bar-striped progress-bar-animated " + cText_486541222);
-    setAttr_1140851240(tmp_486541224, "role", "progressbar");
-    tmp_486541224.style = style_637534633([{Field0: 185, Field1: toJSStr((HEX24_335544323(progressProc_486539632[0]) || []).concat(makeNimstrLit("%") || []))}]);
-    setAttr_1140851240(tmp_486541224, "aria-valuenow", toJSStr(HEX24_335544323(progressProc_486539632[0])));
-    setAttr_1140851240(tmp_486541224, "aria-valuemin", "0");
-    setAttr_1140851240(tmp_486541224, "aria-valuemax", "100");
-    add_1140851314(tmp_486541224, text_1140851429((HEX24_335544323(progressProc_486539632[0]) || []).concat(makeNimstrLit("%") || [])));
-    add_1140851314(tmp_486541223, tmp_486541224);
-    result_486541220 = tmp_486541223;
+    var cText_486541217 = Temporary1;
+    if (progressOn_486539624[0]) {
+    var tmp_486541218 = tree_1140851377(43, []);
+    tmp_486541218.class = "progress mt-6";
+    var tmp_486541219 = tree_1140851377(43, []);
+    tmp_486541219.class = ("progress-bar progress-bar-striped progress-bar-animated " + cText_486541217);
+    setAttr_1140851240(tmp_486541219, "role", "progressbar");
+    tmp_486541219.style = style_637534633([{Field0: 185, Field1: toJSStr((HEX24_335544323(progressProc_486539625[0]) || []).concat(makeNimstrLit("%") || []))}]);
+    setAttr_1140851240(tmp_486541219, "aria-valuenow", toJSStr(HEX24_335544323(progressProc_486539625[0])));
+    setAttr_1140851240(tmp_486541219, "aria-valuemin", "0");
+    setAttr_1140851240(tmp_486541219, "aria-valuemax", "100");
+    add_1140851314(tmp_486541219, text_1140851429((HEX24_335544323(progressProc_486539625[0]) || []).concat(makeNimstrLit("%") || [])));
+    add_1140851314(tmp_486541218, tmp_486541219);
+    result_486541215 = tmp_486541218;
     }
     
 
-  return result_486541220;
+  return result_486541215;
 
 }
 
-function showConfirm_486540646(modalId_486540647, bdy_486540648) {
-  var result_486540649 = null;
+function showConfirm_486540639(modalId_486540640, bdy_486540641) {
+  var result_486540642 = null;
 
-    var lblM_486540650 = toJSStr((modalId_486540647 || []).concat(makeNimstrLit("Label") || []));
-    var tmp_486540651 = tree_1140851377(43, []);
-    tmp_486540651.class = "modal fade";
-    tmp_486540651.id = toJSStr(modalId_486540647);
-    setAttr_1140851240(tmp_486540651, "tabindex", "-1");
-    setAttr_1140851240(tmp_486540651, "role", "dialog");
-    setAttr_1140851240(tmp_486540651, "aria-labelledby", lblM_486540650);
-    setAttr_1140851240(tmp_486540651, "aria-hidden", "true");
-    var tmp_486540652 = tree_1140851377(43, []);
-    tmp_486540652.class = "modal-dialog";
-    setAttr_1140851240(tmp_486540652, "role", "document");
-    var tmp_486540653 = tree_1140851377(43, []);
-    tmp_486540653.class = "modal-content";
-    var tmp_486540654 = tree_1140851377(43, []);
-    tmp_486540654.class = "modal-header";
-    var tmp_486540655 = tree_1140851377(26, []);
-    tmp_486540655.class = "modal-title";
-    tmp_486540655.id = lblM_486540650;
-    add_1140851314(tmp_486540655, text_1140851429(currProcess_486539625[0].name));
-    add_1140851314(tmp_486540654, tmp_486540655);
-    var tmp_486540656 = tree_1140851377(106, []);
-    setAttr_1140851240(tmp_486540656, "type", "button");
-    tmp_486540656.class = "close";
-    setAttr_1140851240(tmp_486540656, "data-dismiss", "modal");
-    setAttr_1140851240(tmp_486540656, "aria-label", "Close");
-    var tmp_486540657 = tree_1140851377(70, []);
-    setAttr_1140851240(tmp_486540657, "aria-hidden", "true");
-    add_1140851314(tmp_486540657, text_1140851429(makeNimstrLit("x")));
-    add_1140851314(tmp_486540656, tmp_486540657);
-    add_1140851314(tmp_486540654, tmp_486540656);
-    add_1140851314(tmp_486540653, tmp_486540654);
-    add_1140851314(tmp_486540653, bdy_486540648);
-    add_1140851314(tmp_486540652, tmp_486540653);
-    add_1140851314(tmp_486540651, tmp_486540652);
-    result_486540649 = tmp_486540651;
+    var lblM_486540643 = toJSStr((modalId_486540640 || []).concat(makeNimstrLit("Label") || []));
+    var tmp_486540644 = tree_1140851377(43, []);
+    tmp_486540644.class = "modal fade";
+    tmp_486540644.id = toJSStr(modalId_486540640);
+    setAttr_1140851240(tmp_486540644, "tabindex", "-1");
+    setAttr_1140851240(tmp_486540644, "role", "dialog");
+    setAttr_1140851240(tmp_486540644, "aria-labelledby", lblM_486540643);
+    setAttr_1140851240(tmp_486540644, "aria-hidden", "true");
+    var tmp_486540645 = tree_1140851377(43, []);
+    tmp_486540645.class = "modal-dialog";
+    setAttr_1140851240(tmp_486540645, "role", "document");
+    var tmp_486540646 = tree_1140851377(43, []);
+    tmp_486540646.class = "modal-content";
+    var tmp_486540647 = tree_1140851377(43, []);
+    tmp_486540647.class = "modal-header";
+    var tmp_486540648 = tree_1140851377(26, []);
+    tmp_486540648.class = "modal-title";
+    tmp_486540648.id = lblM_486540643;
+    add_1140851314(tmp_486540648, text_1140851429(currProcess_486539618[0].name));
+    add_1140851314(tmp_486540647, tmp_486540648);
+    var tmp_486540649 = tree_1140851377(106, []);
+    setAttr_1140851240(tmp_486540649, "type", "button");
+    tmp_486540649.class = "close";
+    setAttr_1140851240(tmp_486540649, "data-dismiss", "modal");
+    setAttr_1140851240(tmp_486540649, "aria-label", "Close");
+    var tmp_486540650 = tree_1140851377(70, []);
+    setAttr_1140851240(tmp_486540650, "aria-hidden", "true");
+    add_1140851314(tmp_486540650, text_1140851429(makeNimstrLit("x")));
+    add_1140851314(tmp_486540649, tmp_486540650);
+    add_1140851314(tmp_486540647, tmp_486540649);
+    add_1140851314(tmp_486540646, tmp_486540647);
+    add_1140851314(tmp_486540646, bdy_486540641);
+    add_1140851314(tmp_486540645, tmp_486540646);
+    add_1140851314(tmp_486540644, tmp_486540645);
+    result_486540642 = tmp_486540644;
 
-  return result_486540649;
+  return result_486540642;
 
 }
 
@@ -12782,11 +6539,11 @@ function wrapper_1124074671(ev_1124074672, n_1124074673) {
   
 }
 
-function newSeq_486539911(len_486539913) {
-  var result_486539914 = [];
+function newSeq_486539904(len_486539906) {
+  var result_486539907 = [];
 
-    result_486539914 = new Array(len_486539913); for (var i = 0 ; i < len_486539913 ; ++i) { result_486539914[i] = ({name: [], sector_internal_id: [], firstname: [], lastname: [], date_start: [], date_finish: [], id: 0, user_id: 0, sector_id: 0, totalFamilies: 0}); }
-  return result_486539914;
+    result_486539907 = new Array(len_486539906); for (var i = 0 ; i < len_486539906 ; ++i) { result_486539907[i] = ({name: [], sector_internal_id: [], firstname: [], lastname: [], date_start: [], date_finish: [], id: 0, user_id: 0, sector_id: 0, totalFamilies: 0}); }
+  return result_486539907;
 
 }
 
@@ -12808,7 +6565,7 @@ function toUnix_1543504808(t_1543504809) {
 
 }
 
-function setTs_486539861() {
+function setTs_486539854() {
     timeStamp_620757023[0] = nimCopy(null, HEX24_335544326(toUnix_1543504808(getTime_1543504855())), NTI33554439);
 
   
@@ -12863,13 +6620,13 @@ function HEX5BHEX5D_956304538(s_956304541, x_956304542) {
     result_956304543 = nimCopy(null, mnewString(chckRange(L_956304547, 0, 2147483647)), NTI33554439);
     Label1: do {
       var i_956304552 = 0;
-      var i_486542602 = 0;
+      var i_486542598 = 0;
       Label2: do {
           Label3: while (true) {
-          if (!(i_486542602 < L_956304547)) break Label3;
-            i_956304552 = i_486542602;
+          if (!(i_486542598 < L_956304547)) break Label3;
+            i_956304552 = i_486542598;
             result_956304543[chckIndx(i_956304552, 0, (result_956304543).length - 1)] = s_956304541[chckIndx(addInt(i_956304552, a_956304545), 0, (s_956304541).length - 1)];
-            i_486542602 = addInt(i_486542602, 1);
+            i_486542598 = addInt(i_486542598, 1);
           }
       } while (false);
     } while (false);
@@ -13132,15 +6889,15 @@ function nsuRepeatChar(c_687866875, count_687866876) {
     result_687866877 = nimCopy(null, mnewString(count_687866876), NTI33554439);
     Label1: do {
       var i_687866882 = 0;
-      var colontmp__486542608 = 0;
-      colontmp__486542608 = subInt(count_687866876, 1);
-      var res_486542609 = 0;
+      var colontmp__486542604 = 0;
+      colontmp__486542604 = subInt(count_687866876, 1);
+      var res_486542605 = 0;
       Label2: do {
           Label3: while (true) {
-          if (!(res_486542609 <= colontmp__486542608)) break Label3;
-            i_687866882 = res_486542609;
+          if (!(res_486542605 <= colontmp__486542604)) break Label3;
+            i_687866882 = res_486542605;
             result_687866877[chckIndx(i_687866882, 0, (result_687866877).length - 1)] = c_687866875;
-            res_486542609 = addInt(res_486542609, 1);
+            res_486542605 = addInt(res_486542605, 1);
           }
       } while (false);
     } while (false);
@@ -13292,14 +7049,14 @@ function formatInt_1761607751(n_1761607753, radix_1761607754, spec_1761607755) {
       } while (false);
       Label4: do {
         var idx_1761607768 = 0;
-        var colontmp__486542613 = 0;
-        colontmp__486542613 = divInt((result_1761607756).length, 2);
-        var i_486542614 = 0;
+        var colontmp__486542609 = 0;
+        colontmp__486542609 = divInt((result_1761607756).length, 2);
+        var i_486542610 = 0;
         Label5: do {
             Label6: while (true) {
-            if (!(i_486542614 < colontmp__486542613)) break Label6;
-              idx_1761607768 = i_486542614;
-              var Temporary7 = result_1761607756[chckIndx(idx_1761607768, 0, (result_1761607756).length - 1)]; result_1761607756[chckIndx(idx_1761607768, 0, (result_1761607756).length - 1)] = result_1761607756[chckIndx(subInt(subInt((result_1761607756).length, idx_1761607768), 1), 0, (result_1761607756).length - 1)]; result_1761607756[chckIndx(subInt(subInt((result_1761607756).length, idx_1761607768), 1), 0, (result_1761607756).length - 1)] = Temporary7;              i_486542614 = addInt(i_486542614, 1);
+            if (!(i_486542610 < colontmp__486542609)) break Label6;
+              idx_1761607768 = i_486542610;
+              var Temporary7 = result_1761607756[chckIndx(idx_1761607768, 0, (result_1761607756).length - 1)]; result_1761607756[chckIndx(idx_1761607768, 0, (result_1761607756).length - 1)] = result_1761607756[chckIndx(subInt(subInt((result_1761607756).length, idx_1761607768), 1), 0, (result_1761607756).length - 1)]; result_1761607756[chckIndx(subInt(subInt((result_1761607756).length, idx_1761607768), 1), 0, (result_1761607756).length - 1)] = Temporary7;              i_486542610 = addInt(i_486542610, 1);
             }
         } while (false);
       } while (false);
@@ -13328,15 +7085,15 @@ function formatInt_1761607751(n_1761607753, radix_1761607754, spec_1761607755) {
     if ((spec_1761607755.align == 60)) {
     Label9: do {
       var i_1761607782 = 0;
-      var colontmp__486542617 = 0;
-      colontmp__486542617 = (result_1761607756).length;
-      var i_486542618 = colontmp__486542617;
+      var colontmp__486542613 = 0;
+      colontmp__486542613 = (result_1761607756).length;
+      var i_486542614 = colontmp__486542613;
       Label10: do {
           Label11: while (true) {
-          if (!(i_486542618 < spec_1761607755.minimumWidth)) break Label11;
-            i_1761607782 = i_486542618;
+          if (!(i_486542614 < spec_1761607755.minimumWidth)) break Label11;
+            i_1761607782 = i_486542614;
             addChar(result_1761607756, spec_1761607755.fill);;
-            i_486542618 = addInt(i_486542618, 1);
+            i_486542614 = addInt(i_486542614, 1);
           }
       } while (false);
     } while (false);
@@ -13394,13 +7151,13 @@ function formatValue_1761607743(result_1761607745, result_1761607745_Idx, value_
   
 }
 
-function closeMap_486539835() {
+function closeMap_486539828() {
     isShowNavMap_620757026[0] = false;
-    var mC_486540709 = $((".main-container"))[0];
-    var elMap_486540713 = $(("#map-container"))[0];
-    mC_486540709.classList.remove(("map-nav"));
-    elMap_486540713.classList.remove(("show-map"));
-    spinnerOn_486539630[0] = false;
+    var mC_486540702 = $((".main-container"))[0];
+    var elMap_486540706 = $(("#map-container"))[0];
+    mC_486540702.classList.remove(("map-nav"));
+    elMap_486540706.classList.remove(("show-map"));
+    spinnerOn_486539623[0] = false;
 
   
 }
@@ -13535,38 +7292,38 @@ function len_1325403066(n_1325403067) {
 
 }
 
-function initFromJson_486540015(dst_486540017, jsonNode_486540018, jsonPath_486540019, jsonPath_486540019_Idx) {
-    var originalJsonPathLen_486540021 = (jsonPath_486540019[jsonPath_486540019_Idx]).length;
-    jsonPath_486540019[jsonPath_486540019_Idx].push.apply(jsonPath_486540019[jsonPath_486540019_Idx], makeNimstrLit(".name"));;
-    initFromJson_1325405435(dst_486540017, "name", getOrDefault_1325403580(jsonNode_486540018, makeNimstrLit("name")), jsonPath_486540019, jsonPath_486540019_Idx);
-    (jsonPath_486540019[jsonPath_486540019_Idx].length = chckRange(originalJsonPathLen_486540021, 0, 2147483647));
-    jsonPath_486540019[jsonPath_486540019_Idx].push.apply(jsonPath_486540019[jsonPath_486540019_Idx], makeNimstrLit(".sector_internal_id"));;
-    initFromJson_1325405435(dst_486540017, "sector_internal_id", getOrDefault_1325403580(jsonNode_486540018, makeNimstrLit("sector_internal_id")), jsonPath_486540019, jsonPath_486540019_Idx);
-    (jsonPath_486540019[jsonPath_486540019_Idx].length = chckRange(originalJsonPathLen_486540021, 0, 2147483647));
-    jsonPath_486540019[jsonPath_486540019_Idx].push.apply(jsonPath_486540019[jsonPath_486540019_Idx], makeNimstrLit(".firstname"));;
-    initFromJson_1325405435(dst_486540017, "firstname", getOrDefault_1325403580(jsonNode_486540018, makeNimstrLit("firstname")), jsonPath_486540019, jsonPath_486540019_Idx);
-    (jsonPath_486540019[jsonPath_486540019_Idx].length = chckRange(originalJsonPathLen_486540021, 0, 2147483647));
-    jsonPath_486540019[jsonPath_486540019_Idx].push.apply(jsonPath_486540019[jsonPath_486540019_Idx], makeNimstrLit(".lastname"));;
-    initFromJson_1325405435(dst_486540017, "lastname", getOrDefault_1325403580(jsonNode_486540018, makeNimstrLit("lastname")), jsonPath_486540019, jsonPath_486540019_Idx);
-    (jsonPath_486540019[jsonPath_486540019_Idx].length = chckRange(originalJsonPathLen_486540021, 0, 2147483647));
-    jsonPath_486540019[jsonPath_486540019_Idx].push.apply(jsonPath_486540019[jsonPath_486540019_Idx], makeNimstrLit(".date_start"));;
-    initFromJson_1325405435(dst_486540017, "date_start", getOrDefault_1325403580(jsonNode_486540018, makeNimstrLit("date_start")), jsonPath_486540019, jsonPath_486540019_Idx);
-    (jsonPath_486540019[jsonPath_486540019_Idx].length = chckRange(originalJsonPathLen_486540021, 0, 2147483647));
-    jsonPath_486540019[jsonPath_486540019_Idx].push.apply(jsonPath_486540019[jsonPath_486540019_Idx], makeNimstrLit(".date_finish"));;
-    initFromJson_1325405435(dst_486540017, "date_finish", getOrDefault_1325403580(jsonNode_486540018, makeNimstrLit("date_finish")), jsonPath_486540019, jsonPath_486540019_Idx);
-    (jsonPath_486540019[jsonPath_486540019_Idx].length = chckRange(originalJsonPathLen_486540021, 0, 2147483647));
-    jsonPath_486540019[jsonPath_486540019_Idx].push.apply(jsonPath_486540019[jsonPath_486540019_Idx], makeNimstrLit(".id"));;
-    initFromJson_1761607947(dst_486540017, "id", getOrDefault_1325403580(jsonNode_486540018, makeNimstrLit("id")), jsonPath_486540019, jsonPath_486540019_Idx);
-    (jsonPath_486540019[jsonPath_486540019_Idx].length = chckRange(originalJsonPathLen_486540021, 0, 2147483647));
-    jsonPath_486540019[jsonPath_486540019_Idx].push.apply(jsonPath_486540019[jsonPath_486540019_Idx], makeNimstrLit(".user_id"));;
-    initFromJson_1761607947(dst_486540017, "user_id", getOrDefault_1325403580(jsonNode_486540018, makeNimstrLit("user_id")), jsonPath_486540019, jsonPath_486540019_Idx);
-    (jsonPath_486540019[jsonPath_486540019_Idx].length = chckRange(originalJsonPathLen_486540021, 0, 2147483647));
-    jsonPath_486540019[jsonPath_486540019_Idx].push.apply(jsonPath_486540019[jsonPath_486540019_Idx], makeNimstrLit(".sector_id"));;
-    initFromJson_1761607947(dst_486540017, "sector_id", getOrDefault_1325403580(jsonNode_486540018, makeNimstrLit("sector_id")), jsonPath_486540019, jsonPath_486540019_Idx);
-    (jsonPath_486540019[jsonPath_486540019_Idx].length = chckRange(originalJsonPathLen_486540021, 0, 2147483647));
-    jsonPath_486540019[jsonPath_486540019_Idx].push.apply(jsonPath_486540019[jsonPath_486540019_Idx], makeNimstrLit(".totalFamilies"));;
-    initFromJson_1761607947(dst_486540017, "totalFamilies", getOrDefault_1325403580(jsonNode_486540018, makeNimstrLit("totalFamilies")), jsonPath_486540019, jsonPath_486540019_Idx);
-    (jsonPath_486540019[jsonPath_486540019_Idx].length = chckRange(originalJsonPathLen_486540021, 0, 2147483647));
+function initFromJson_486540008(dst_486540010, jsonNode_486540011, jsonPath_486540012, jsonPath_486540012_Idx) {
+    var originalJsonPathLen_486540014 = (jsonPath_486540012[jsonPath_486540012_Idx]).length;
+    jsonPath_486540012[jsonPath_486540012_Idx].push.apply(jsonPath_486540012[jsonPath_486540012_Idx], makeNimstrLit(".name"));;
+    initFromJson_1325405435(dst_486540010, "name", getOrDefault_1325403580(jsonNode_486540011, makeNimstrLit("name")), jsonPath_486540012, jsonPath_486540012_Idx);
+    (jsonPath_486540012[jsonPath_486540012_Idx].length = chckRange(originalJsonPathLen_486540014, 0, 2147483647));
+    jsonPath_486540012[jsonPath_486540012_Idx].push.apply(jsonPath_486540012[jsonPath_486540012_Idx], makeNimstrLit(".sector_internal_id"));;
+    initFromJson_1325405435(dst_486540010, "sector_internal_id", getOrDefault_1325403580(jsonNode_486540011, makeNimstrLit("sector_internal_id")), jsonPath_486540012, jsonPath_486540012_Idx);
+    (jsonPath_486540012[jsonPath_486540012_Idx].length = chckRange(originalJsonPathLen_486540014, 0, 2147483647));
+    jsonPath_486540012[jsonPath_486540012_Idx].push.apply(jsonPath_486540012[jsonPath_486540012_Idx], makeNimstrLit(".firstname"));;
+    initFromJson_1325405435(dst_486540010, "firstname", getOrDefault_1325403580(jsonNode_486540011, makeNimstrLit("firstname")), jsonPath_486540012, jsonPath_486540012_Idx);
+    (jsonPath_486540012[jsonPath_486540012_Idx].length = chckRange(originalJsonPathLen_486540014, 0, 2147483647));
+    jsonPath_486540012[jsonPath_486540012_Idx].push.apply(jsonPath_486540012[jsonPath_486540012_Idx], makeNimstrLit(".lastname"));;
+    initFromJson_1325405435(dst_486540010, "lastname", getOrDefault_1325403580(jsonNode_486540011, makeNimstrLit("lastname")), jsonPath_486540012, jsonPath_486540012_Idx);
+    (jsonPath_486540012[jsonPath_486540012_Idx].length = chckRange(originalJsonPathLen_486540014, 0, 2147483647));
+    jsonPath_486540012[jsonPath_486540012_Idx].push.apply(jsonPath_486540012[jsonPath_486540012_Idx], makeNimstrLit(".date_start"));;
+    initFromJson_1325405435(dst_486540010, "date_start", getOrDefault_1325403580(jsonNode_486540011, makeNimstrLit("date_start")), jsonPath_486540012, jsonPath_486540012_Idx);
+    (jsonPath_486540012[jsonPath_486540012_Idx].length = chckRange(originalJsonPathLen_486540014, 0, 2147483647));
+    jsonPath_486540012[jsonPath_486540012_Idx].push.apply(jsonPath_486540012[jsonPath_486540012_Idx], makeNimstrLit(".date_finish"));;
+    initFromJson_1325405435(dst_486540010, "date_finish", getOrDefault_1325403580(jsonNode_486540011, makeNimstrLit("date_finish")), jsonPath_486540012, jsonPath_486540012_Idx);
+    (jsonPath_486540012[jsonPath_486540012_Idx].length = chckRange(originalJsonPathLen_486540014, 0, 2147483647));
+    jsonPath_486540012[jsonPath_486540012_Idx].push.apply(jsonPath_486540012[jsonPath_486540012_Idx], makeNimstrLit(".id"));;
+    initFromJson_1761607947(dst_486540010, "id", getOrDefault_1325403580(jsonNode_486540011, makeNimstrLit("id")), jsonPath_486540012, jsonPath_486540012_Idx);
+    (jsonPath_486540012[jsonPath_486540012_Idx].length = chckRange(originalJsonPathLen_486540014, 0, 2147483647));
+    jsonPath_486540012[jsonPath_486540012_Idx].push.apply(jsonPath_486540012[jsonPath_486540012_Idx], makeNimstrLit(".user_id"));;
+    initFromJson_1761607947(dst_486540010, "user_id", getOrDefault_1325403580(jsonNode_486540011, makeNimstrLit("user_id")), jsonPath_486540012, jsonPath_486540012_Idx);
+    (jsonPath_486540012[jsonPath_486540012_Idx].length = chckRange(originalJsonPathLen_486540014, 0, 2147483647));
+    jsonPath_486540012[jsonPath_486540012_Idx].push.apply(jsonPath_486540012[jsonPath_486540012_Idx], makeNimstrLit(".sector_id"));;
+    initFromJson_1761607947(dst_486540010, "sector_id", getOrDefault_1325403580(jsonNode_486540011, makeNimstrLit("sector_id")), jsonPath_486540012, jsonPath_486540012_Idx);
+    (jsonPath_486540012[jsonPath_486540012_Idx].length = chckRange(originalJsonPathLen_486540014, 0, 2147483647));
+    jsonPath_486540012[jsonPath_486540012_Idx].push.apply(jsonPath_486540012[jsonPath_486540012_Idx], makeNimstrLit(".totalFamilies"));;
+    initFromJson_1761607947(dst_486540010, "totalFamilies", getOrDefault_1325403580(jsonNode_486540011, makeNimstrLit("totalFamilies")), jsonPath_486540012, jsonPath_486540012_Idx);
+    (jsonPath_486540012[jsonPath_486540012_Idx].length = chckRange(originalJsonPathLen_486540014, 0, 2147483647));
 
   
 }
@@ -13596,36 +7353,36 @@ function HEX5BHEX5D_1325403199(node_1325403200, index_1325403201) {
 
 }
 
-function initFromJson_486539986(dst_486539988, dst_486539988_Idx, jsonNode_486539989, jsonPath_486539990, jsonPath_486539990_Idx) {
+function initFromJson_486539979(dst_486539981, dst_486539981_Idx, jsonNode_486539982, jsonPath_486539983, jsonPath_486539983_Idx) {
     var Temporary1;
 
-    if (HEX3DHEX3D_1325402129(jsonNode_486539989, null)) {
-    raiseException({message: (makeNimstrLit("key not found: ") || []).concat(jsonPath_486539990[jsonPath_486539990_Idx] || []), parent: null, m_type: NTI33555126, name: null, trace: [], up: null}, "KeyError");
+    if (HEX3DHEX3D_1325402129(jsonNode_486539982, null)) {
+    raiseException({message: (makeNimstrLit("key not found: ") || []).concat(jsonPath_486539983[jsonPath_486539983_Idx] || []), parent: null, m_type: NTI33555126, name: null, trace: [], up: null}, "KeyError");
     }
     else {
-    if (!((ConstSet45[jsonNode_486539989.kind] != undefined))) {
-    var msgHEX60gensym103_486540003 = nsuFormatOpenArray(makeNimstrLit("Incorrect JSON kind. Wanted \'$1\' in \'$2\' but got \'$3\'."), [HEX24_1325405514(ConstSet46), nimCopy(null, jsonPath_486539990[jsonPath_486539990_Idx], NTI33554439), reprEnum(jsonNode_486539989.kind, NTI1325400067)]);
-    raiseException({message: nimCopy(null, msgHEX60gensym103_486540003, NTI33554439), parent: null, m_type: NTI1392508936, name: null, trace: [], up: null}, "JsonKindError");
+    if (!((ConstSet45[jsonNode_486539982.kind] != undefined))) {
+    var msgHEX60gensym103_486539996 = nsuFormatOpenArray(makeNimstrLit("Incorrect JSON kind. Wanted \'$1\' in \'$2\' but got \'$3\'."), [HEX24_1325405514(ConstSet46), nimCopy(null, jsonPath_486539983[jsonPath_486539983_Idx], NTI33554439), reprEnum(jsonNode_486539982.kind, NTI1325400067)]);
+    raiseException({message: nimCopy(null, msgHEX60gensym103_486539996, NTI33554439), parent: null, m_type: NTI1392508936, name: null, trace: [], up: null}, "JsonKindError");
     }
     }
-    if (dst_486539988[dst_486539988_Idx].length < (Temporary1 = chckRange(len_1325403066(jsonNode_486539989), 0, 2147483647), Temporary1)) { for (var i = dst_486539988[dst_486539988_Idx].length ; i < Temporary1 ; ++i) dst_486539988[dst_486539988_Idx].push(({name: [], sector_internal_id: [], firstname: [], lastname: [], date_start: [], date_finish: [], id: 0, user_id: 0, sector_id: 0, totalFamilies: 0})); }
-               else { dst_486539988[dst_486539988_Idx].length = Temporary1; };
-    var orignalJsonPathLen_486540009 = (jsonPath_486539990[jsonPath_486539990_Idx]).length;
+    if (dst_486539981[dst_486539981_Idx].length < (Temporary1 = chckRange(len_1325403066(jsonNode_486539982), 0, 2147483647), Temporary1)) { for (var i = dst_486539981[dst_486539981_Idx].length ; i < Temporary1 ; ++i) dst_486539981[dst_486539981_Idx].push(({name: [], sector_internal_id: [], firstname: [], lastname: [], date_start: [], date_finish: [], id: 0, user_id: 0, sector_id: 0, totalFamilies: 0})); }
+               else { dst_486539981[dst_486539981_Idx].length = Temporary1; };
+    var orignalJsonPathLen_486540002 = (jsonPath_486539983[jsonPath_486539983_Idx]).length;
     Label2: do {
-      var i_486540014 = 0;
-      var colontmp__486542621 = 0;
-      colontmp__486542621 = len_1325403066(jsonNode_486539989);
-      var i_486542622 = 0;
+      var i_486540007 = 0;
+      var colontmp__486542617 = 0;
+      colontmp__486542617 = len_1325403066(jsonNode_486539982);
+      var i_486542618 = 0;
       Label3: do {
           Label4: while (true) {
-          if (!(i_486542622 < colontmp__486542621)) break Label4;
-            i_486540014 = i_486542622;
-            addChar(jsonPath_486539990[jsonPath_486539990_Idx], 91);;
-            addInt_251658457(jsonPath_486539990, jsonPath_486539990_Idx, i_486540014);
-            addChar(jsonPath_486539990[jsonPath_486539990_Idx], 93);;
-            initFromJson_486540015(dst_486539988[dst_486539988_Idx][chckIndx(i_486540014, 0, (dst_486539988[dst_486539988_Idx]).length - 1)], HEX5BHEX5D_1325403199(jsonNode_486539989, i_486540014), jsonPath_486539990, jsonPath_486539990_Idx);
-            (jsonPath_486539990[jsonPath_486539990_Idx].length = chckRange(orignalJsonPathLen_486540009, 0, 2147483647));
-            i_486542622 = addInt(i_486542622, 1);
+          if (!(i_486542618 < colontmp__486542617)) break Label4;
+            i_486540007 = i_486542618;
+            addChar(jsonPath_486539983[jsonPath_486539983_Idx], 91);;
+            addInt_251658457(jsonPath_486539983, jsonPath_486539983_Idx, i_486540007);
+            addChar(jsonPath_486539983[jsonPath_486539983_Idx], 93);;
+            initFromJson_486540008(dst_486539981[dst_486539981_Idx][chckIndx(i_486540007, 0, (dst_486539981[dst_486539981_Idx]).length - 1)], HEX5BHEX5D_1325403199(jsonNode_486539982, i_486540007), jsonPath_486539983, jsonPath_486539983_Idx);
+            (jsonPath_486539983[jsonPath_486539983_Idx].length = chckRange(orignalJsonPathLen_486540002, 0, 2147483647));
+            i_486542618 = addInt(i_486542618, 1);
           }
       } while (false);
     } while (false);
@@ -13633,372 +7390,372 @@ function initFromJson_486539986(dst_486539988, dst_486539988_Idx, jsonNode_48653
   
 }
 
-function initFromJson_486539962(dst_486539964, jsonNode_486539965, jsonPath_486539966, jsonPath_486539966_Idx) {
-    var originalJsonPathLen_486539969 = (jsonPath_486539966[jsonPath_486539966_Idx]).length;
-    jsonPath_486539966[jsonPath_486539966_Idx].push.apply(jsonPath_486539966[jsonPath_486539966_Idx], makeNimstrLit(".status"));;
-    initFromJson_1761607848(dst_486539964, "status", getOrDefault_1325403580(jsonNode_486539965, makeNimstrLit("status")), jsonPath_486539966, jsonPath_486539966_Idx);
-    (jsonPath_486539966[jsonPath_486539966_Idx].length = chckRange(originalJsonPathLen_486539969, 0, 2147483647));
-    jsonPath_486539966[jsonPath_486539966_Idx].push.apply(jsonPath_486539966[jsonPath_486539966_Idx], makeNimstrLit(".message"));;
-    initFromJson_1325405435(dst_486539964, "message", getOrDefault_1325403580(jsonNode_486539965, makeNimstrLit("message")), jsonPath_486539966, jsonPath_486539966_Idx);
-    (jsonPath_486539966[jsonPath_486539966_Idx].length = chckRange(originalJsonPathLen_486539969, 0, 2147483647));
-    jsonPath_486539966[jsonPath_486539966_Idx].push.apply(jsonPath_486539966[jsonPath_486539966_Idx], makeNimstrLit(".resp"));;
-    initFromJson_486539986(dst_486539964, "resp", getOrDefault_1325403580(jsonNode_486539965, makeNimstrLit("resp")), jsonPath_486539966, jsonPath_486539966_Idx);
-    (jsonPath_486539966[jsonPath_486539966_Idx].length = chckRange(originalJsonPathLen_486539969, 0, 2147483647));
+function initFromJson_486539955(dst_486539957, jsonNode_486539958, jsonPath_486539959, jsonPath_486539959_Idx) {
+    var originalJsonPathLen_486539962 = (jsonPath_486539959[jsonPath_486539959_Idx]).length;
+    jsonPath_486539959[jsonPath_486539959_Idx].push.apply(jsonPath_486539959[jsonPath_486539959_Idx], makeNimstrLit(".status"));;
+    initFromJson_1761607848(dst_486539957, "status", getOrDefault_1325403580(jsonNode_486539958, makeNimstrLit("status")), jsonPath_486539959, jsonPath_486539959_Idx);
+    (jsonPath_486539959[jsonPath_486539959_Idx].length = chckRange(originalJsonPathLen_486539962, 0, 2147483647));
+    jsonPath_486539959[jsonPath_486539959_Idx].push.apply(jsonPath_486539959[jsonPath_486539959_Idx], makeNimstrLit(".message"));;
+    initFromJson_1325405435(dst_486539957, "message", getOrDefault_1325403580(jsonNode_486539958, makeNimstrLit("message")), jsonPath_486539959, jsonPath_486539959_Idx);
+    (jsonPath_486539959[jsonPath_486539959_Idx].length = chckRange(originalJsonPathLen_486539962, 0, 2147483647));
+    jsonPath_486539959[jsonPath_486539959_Idx].push.apply(jsonPath_486539959[jsonPath_486539959_Idx], makeNimstrLit(".resp"));;
+    initFromJson_486539979(dst_486539957, "resp", getOrDefault_1325403580(jsonNode_486539958, makeNimstrLit("resp")), jsonPath_486539959, jsonPath_486539959_Idx);
+    (jsonPath_486539959[jsonPath_486539959_Idx].length = chckRange(originalJsonPathLen_486539962, 0, 2147483647));
 
   
 }
 
-function to_486539938(node_486539941) {
-  var result_486539943 = [({status: 0, message: [], resp: []})];
+function to_486539931(node_486539934) {
+  var result_486539936 = [({status: 0, message: [], resp: []})];
 
-    var jsonPath_486539944 = [[]];
-    initFromJson_486539962(result_486539943[0], node_486539941, jsonPath_486539944, 0);
+    var jsonPath_486539937 = [[]];
+    initFromJson_486539955(result_486539936[0], node_486539934, jsonPath_486539937, 0);
 
-  return result_486539943[0];
+  return result_486539936[0];
 
 }
 
-function parseResp_486539933(bdy_486539935) {
-  var result_486539937 = ({status: 0, message: [], resp: []});
+function parseResp_486539926(bdy_486539928) {
+  var result_486539930 = ({status: 0, message: [], resp: []});
 
-    result_486539937 = nimCopy(result_486539937, to_486539938(parseJson_1325405409(bdy_486539935)), NTI486539688);
-    if (eqStrings(reprEnum(result_486539937.status, NTI1526726661), makeNimstrLit("loggedOut"))) {
+    result_486539930 = nimCopy(result_486539930, to_486539931(parseJson_1325405409(bdy_486539928)), NTI486539679);
+    if (eqStrings(reprEnum(result_486539930.status, NTI1526726661), makeNimstrLit("loggedOut"))) {
     currUser_620757022[0].token = nimCopy(null, [], NTI33554439);
     isShowNavMap_620757026[0] = false;
-    var elMap_486540093 = $(("#map-container"))[0];
-    elMap_486540093.classList.remove(("show-map"));
+    var elMap_486540086 = $(("#map-container"))[0];
+    elMap_486540086.classList.remove(("show-map"));
     redraw_1124074477(kxi_1124073536[0]);
     }
     
 
-  return result_486539937;
+  return result_486539930;
 
 }
 
-function hndlUpdOwnSect_486539834() {
-    var ownS_486541054 = $(("#ownSectors"))[0];
-    if (!((ownS_486541054 == null))) {
-    onlyMySectors_486539634[0] = (ownS_486541054.checked);
+function hndlUpdOwnSect_486539827() {
+    var ownS_486541049 = $(("#ownSectors"))[0];
+    if (!((ownS_486541049 == null))) {
+    onlyMySectors_486539627[0] = (ownS_486541049.checked);
     }
     
-    getAllProccess_486539831(onlyMySectors_486539634[0], []);
+    getAllProccess_486539824(onlyMySectors_486539627[0], []);
 
   
 }
 
-function confirmTakeSect_486540512() {
+function confirmTakeSect_486540505() {
     
-function HEX3Aanonymous_486540515() {
+function HEX3Aanonymous_486540508() {
         
-function HEX3Aanonymous_486540531(value_486540532) {
-            closeMap_486539835();
-            var respSect_486540538 = parseResp_486539933(value_486540532.Field2);
-            if ((respSect_486540538.status == 1)) {
-            errMsg_620757024[0] = nimCopy(null, respSect_486540538.message, NTI33554439);
+function HEX3Aanonymous_486540524(value_486540525) {
+            closeMap_486539828();
+            var respSect_486540531 = parseResp_486539926(value_486540525.Field2);
+            if ((respSect_486540531.status == 1)) {
+            errMsg_620757024[0] = nimCopy(null, respSect_486540531.message, NTI33554439);
             }
             
-            var ownSEl_486540554 = document.getElementById(("ownSectors"));
-            if (!((ownSEl_486540554 == null))) {
-            ownSEl_486540554.checked = true;
+            var ownSEl_486540547 = document.getElementById(("ownSectors"));
+            if (!((ownSEl_486540547 == null))) {
+            ownSEl_486540547.checked = true;
             }
             
-            onlyMySectors_486539634[0] = true;
-            hndlUpdOwnSect_486539834();
+            onlyMySectors_486539627[0] = true;
+            hndlUpdOwnSect_486539827();
 
           
         }
         
-function HEX3Aanonymous_486540576(error_486540577) {
-            console.log(("error:"), (error_486540577.Field0));
+function HEX3Aanonymous_486540569(error_486540570) {
+            console.log(("error:"), (error_486540570.Field0));
 
           
         }
         
-function HEX3Aanonymous_486540602() {
+function HEX3Aanonymous_486540595() {
             redraw_1124074477(kxi_1124073536[0]);
 
           
         }
 
-        spinnerOn_486539630[0] = true;
-        allSectProc_486539626[0] = nimCopy(null, newSeq_486539911(0), NTI486539669);
-        var p_486540523 = nimCopy(null, currProcess_486539625[0], NTI1526726664);
-        setTs_486539861();
-        var fmtRes_486540524 = [mnewString(0)];
-        fmtRes_486540524[0].push.apply(fmtRes_486540524[0], makeNimstrLit("token="));;
-        formatValue_1493172386(fmtRes_486540524, 0, currUser_620757022[0].token, []);
-        fmtRes_486540524[0].push.apply(fmtRes_486540524[0], makeNimstrLit("&sectorId="));;
-        formatValue_1761607743(fmtRes_486540524, 0, p_486540523.sector_id, []);
-        var stmNewPrc_486540530 = sendRequest_620757128(makeNimstrLit("GET"), (makeNimstrLit("/sector/process/new?") || []).concat(fmtRes_486540524[0] || []), [], []);
-        stmNewPrc_486540530.observe((HEX3Aanonymous_486540531), (HEX3Aanonymous_486540576), (HEX3Aanonymous_486540602));
+        spinnerOn_486539623[0] = true;
+        allSectProc_486539619[0] = nimCopy(null, newSeq_486539904(0), NTI486539660);
+        var p_486540516 = nimCopy(null, currProcess_486539618[0], NTI1526726664);
+        setTs_486539854();
+        var fmtRes_486540517 = [mnewString(0)];
+        fmtRes_486540517[0].push.apply(fmtRes_486540517[0], makeNimstrLit("token="));;
+        formatValue_1493172386(fmtRes_486540517, 0, currUser_620757022[0].token, []);
+        fmtRes_486540517[0].push.apply(fmtRes_486540517[0], makeNimstrLit("&sectorId="));;
+        formatValue_1761607743(fmtRes_486540517, 0, p_486540516.sector_id, []);
+        var stmNewPrc_486540523 = sendRequest_620757128(makeNimstrLit("GET"), (makeNimstrLit("/sector/process/new?") || []).concat(fmtRes_486540517[0] || []), [], []);
+        stmNewPrc_486540523.observe((HEX3Aanonymous_486540524), (HEX3Aanonymous_486540569), (HEX3Aanonymous_486540595));
 
       
     }
 
-  var result_486540514 = null;
+  var result_486540507 = null;
 
-    result_486540514 = HEX3Aanonymous_486540515;
+    result_486540507 = HEX3Aanonymous_486540508;
 
-  return result_486540514;
+  return result_486540507;
 
 }
 
-function takeSectModalBody_486540619() {
-  var result_486540620 = null;
+function takeSectModalBody_486540612() {
+  var result_486540613 = null;
 
-    var tmp_486540621 = tree_1140851377(43, []);
-    tmp_486540621.class = "modal-body";
+    var tmp_486540614 = tree_1140851377(43, []);
+    tmp_486540614.class = "modal-body";
+    var tmp_486540615 = tree_1140851377(43, []);
+    add_1140851314(tmp_486540615, text_1140851429(makeNimstrLit("\xD0\x92\xD0\xB7\xD1\x8F\xD1\x82\xD1\x8C \xD1\x83\xD1\x87\xD0\xB0\xD1\x81\xD1\x82\xD0\xBE\xD0\xBA \xD0\xBD\xD0\xB0 \xD0\xBE\xD0\xB1\xD1\x80\xD0\xB0\xD0\xB1\xD0\xBE\xD1\x82\xD0\xBA\xD1\x83?")));
+    add_1140851314(tmp_486540614, tmp_486540615);
+    var tmp_486540616 = tree_1140851377(43, []);
+    tmp_486540616.class = "mx-auto";
+    var tmp_486540617 = tree_1140851377(106, []);
+    setAttr_1140851240(tmp_486540617, "type", "button");
+    tmp_486540617.class = "btn btn-success float-left";
+    setAttr_1140851240(tmp_486540617, "data-dismiss", "modal");
+    addEventHandler_1124074665(tmp_486540617, 0, confirmTakeSect_486540505(), kxi_1124073536[0]);
+    add_1140851314(tmp_486540617, text_1140851429(makeNimstrLit("\xD0\x94\xD0\xB0")));
+    add_1140851314(tmp_486540616, tmp_486540617);
+    var tmp_486540618 = tree_1140851377(106, []);
+    setAttr_1140851240(tmp_486540618, "type", "button");
+    tmp_486540618.class = "btn btn-danger float-right";
+    setAttr_1140851240(tmp_486540618, "data-dismiss", "modal");
+    add_1140851314(tmp_486540618, text_1140851429(makeNimstrLit("\xD0\x9D\xD0\xB5\xD1\x82")));
+    add_1140851314(tmp_486540616, tmp_486540618);
+    add_1140851314(tmp_486540614, tmp_486540616);
+    result_486540613 = tmp_486540614;
+
+  return result_486540613;
+
+}
+
+function giveBackModalBody_486540620() {
+  var result_486540621 = null;
+
     var tmp_486540622 = tree_1140851377(43, []);
-    add_1140851314(tmp_486540622, text_1140851429(makeNimstrLit("\xD0\x92\xD0\xB7\xD1\x8F\xD1\x82\xD1\x8C \xD1\x83\xD1\x87\xD0\xB0\xD1\x81\xD1\x82\xD0\xBE\xD0\xBA \xD0\xBD\xD0\xB0 \xD0\xBE\xD0\xB1\xD1\x80\xD0\xB0\xD0\xB1\xD0\xBE\xD1\x82\xD0\xBA\xD1\x83?")));
-    add_1140851314(tmp_486540621, tmp_486540622);
+    tmp_486540622.class = "modal-body";
     var tmp_486540623 = tree_1140851377(43, []);
-    tmp_486540623.class = "mx-auto";
-    var tmp_486540624 = tree_1140851377(106, []);
-    setAttr_1140851240(tmp_486540624, "type", "button");
-    tmp_486540624.class = "btn btn-success float-left";
-    setAttr_1140851240(tmp_486540624, "data-dismiss", "modal");
-    addEventHandler_1124074665(tmp_486540624, 0, confirmTakeSect_486540512(), kxi_1124073536[0]);
-    add_1140851314(tmp_486540624, text_1140851429(makeNimstrLit("\xD0\x94\xD0\xB0")));
-    add_1140851314(tmp_486540623, tmp_486540624);
+    add_1140851314(tmp_486540623, text_1140851429(makeNimstrLit("\xD0\xA3\xD0\xB2\xD0\xB5\xD1\x80\xD0\xB5\xD0\xBD, \xD1\x87\xD1\x82\xD0\xBE \xD1\x85\xD0\xBE\xD1\x87\xD0\xB5\xD1\x88\xD1\x8C \xD1\x81\xD0\xB4\xD0\xB0\xD1\x82\xD1\x8C \xD1\x83\xD1\x87\xD0\xB0\xD1\x81\xD1\x82\xD0\xBE\xD0\xBA?")));
+    add_1140851314(tmp_486540622, tmp_486540623);
+    var tmp_486540624 = tree_1140851377(43, []);
+    tmp_486540624.class = "mx-auto";
     var tmp_486540625 = tree_1140851377(106, []);
     setAttr_1140851240(tmp_486540625, "type", "button");
-    tmp_486540625.class = "btn btn-danger float-right";
+    tmp_486540625.class = "btn btn-success float-left";
     setAttr_1140851240(tmp_486540625, "data-dismiss", "modal");
-    add_1140851314(tmp_486540625, text_1140851429(makeNimstrLit("\xD0\x9D\xD0\xB5\xD1\x82")));
-    add_1140851314(tmp_486540623, tmp_486540625);
-    add_1140851314(tmp_486540621, tmp_486540623);
-    result_486540620 = tmp_486540621;
+    setAttr_1140851240(tmp_486540625, "data-toggle", "modal");
+    setAttr_1140851240(tmp_486540625, "data-target", "#isProccessedModal");
+    add_1140851314(tmp_486540625, text_1140851429(makeNimstrLit("\xD0\x94\xD0\xB0")));
+    add_1140851314(tmp_486540624, tmp_486540625);
+    var tmp_486540626 = tree_1140851377(106, []);
+    setAttr_1140851240(tmp_486540626, "type", "button");
+    tmp_486540626.class = "btn btn-danger float-right";
+    setAttr_1140851240(tmp_486540626, "data-dismiss", "modal");
+    add_1140851314(tmp_486540626, text_1140851429(makeNimstrLit("\xD0\x9D\xD0\xB5\xD1\x82")));
+    add_1140851314(tmp_486540624, tmp_486540626);
+    add_1140851314(tmp_486540622, tmp_486540624);
+    result_486540621 = tmp_486540622;
 
-  return result_486540620;
+  return result_486540621;
 
 }
 
-function giveBackModalBody_486540627() {
+function updProcc_486539896() {
+    
+function HEX3Aanonymous_486539899() {
+        
+function HEX3Aanonymous_486539920(value_486539921) {
+            var respSect_486540111 = parseResp_486539926(value_486539921.Field2);
+            if ((respSect_486540111.status == 1)) {
+            errMsg_620757024[0] = nimCopy(null, respSect_486540111.message, NTI33554439);
+            }
+            
+            var ownSEl_486540128 = document.getElementById(("ownSectors"));
+            if (!((ownSEl_486540128 == null))) {
+            ownSEl_486540128.checked = true;
+            }
+            
+            onlyMySectors_486539627[0] = true;
+            hndlUpdOwnSect_486539827();
+
+          
+        }
+        
+function HEX3Aanonymous_486540150(error_486540151) {
+            console.log(("error:"), (error_486540151.Field0));
+
+          
+        }
+        
+function HEX3Aanonymous_486540176() {
+            redraw_1124074477(kxi_1124073536[0]);
+
+          
+        }
+
+        spinnerOn_486539623[0] = true;
+        allSectProc_486539619[0] = nimCopy(null, newSeq_486539904(0), NTI486539660);
+        var p_486539912 = nimCopy(null, currProcess_486539618[0], NTI1526726664);
+        setTs_486539854();
+        var fmtRes_486539913 = [mnewString(0)];
+        fmtRes_486539913[0].push.apply(fmtRes_486539913[0], makeNimstrLit("token="));;
+        formatValue_1493172386(fmtRes_486539913, 0, currUser_620757022[0].token, []);
+        fmtRes_486539913[0].push.apply(fmtRes_486539913[0], makeNimstrLit("&processId="));;
+        formatValue_1761607743(fmtRes_486539913, 0, p_486539912.id, []);
+        var stmUpdPrc_486539919 = sendRequest_620757128(makeNimstrLit("GET"), (makeNimstrLit("/sector/process/update?") || []).concat(fmtRes_486539913[0] || []), [], []);
+        stmUpdPrc_486539919.observe((HEX3Aanonymous_486539920), (HEX3Aanonymous_486540150), (HEX3Aanonymous_486540176));
+
+      
+    }
+
+  var result_486539898 = null;
+
+    result_486539898 = HEX3Aanonymous_486539899;
+
+  return result_486539898;
+
+}
+
+function initFromJson_486540247(dst_486540249, jsonNode_486540250, jsonPath_486540251, jsonPath_486540251_Idx) {
+    var originalJsonPathLen_486540253 = (jsonPath_486540251[jsonPath_486540251_Idx]).length;
+    jsonPath_486540251[jsonPath_486540251_Idx].push.apply(jsonPath_486540251[jsonPath_486540251_Idx], makeNimstrLit(".status"));;
+    initFromJson_1761607848(dst_486540249, "status", getOrDefault_1325403580(jsonNode_486540250, makeNimstrLit("status")), jsonPath_486540251, jsonPath_486540251_Idx);
+    (jsonPath_486540251[jsonPath_486540251_Idx].length = chckRange(originalJsonPathLen_486540253, 0, 2147483647));
+    jsonPath_486540251[jsonPath_486540251_Idx].push.apply(jsonPath_486540251[jsonPath_486540251_Idx], makeNimstrLit(".message"));;
+    initFromJson_1325405435(dst_486540249, "message", getOrDefault_1325403580(jsonNode_486540250, makeNimstrLit("message")), jsonPath_486540251, jsonPath_486540251_Idx);
+    (jsonPath_486540251[jsonPath_486540251_Idx].length = chckRange(originalJsonPathLen_486540253, 0, 2147483647));
+    jsonPath_486540251[jsonPath_486540251_Idx].push.apply(jsonPath_486540251[jsonPath_486540251_Idx], makeNimstrLit(".resp"));;
+    initFromJson_1761607947(dst_486540249, "resp", getOrDefault_1325403580(jsonNode_486540250, makeNimstrLit("resp")), jsonPath_486540251, jsonPath_486540251_Idx);
+    (jsonPath_486540251[jsonPath_486540251_Idx].length = chckRange(originalJsonPathLen_486540253, 0, 2147483647));
+
+  
+}
+
+function to_486540223(node_486540226) {
+  var result_486540228 = [({status: 0, message: [], resp: 0})];
+
+    var jsonPath_486540229 = [[]];
+    initFromJson_486540247(result_486540228[0], node_486540226, jsonPath_486540229, 0);
+
+  return result_486540228[0];
+
+}
+
+function parseResp_486540218(bdy_486540220) {
+  var result_486540222 = ({status: 0, message: [], resp: 0});
+
+    result_486540222 = nimCopy(result_486540222, to_486540223(parseJson_1325405409(bdy_486540220)), NTI486539851);
+    if (eqStrings(reprEnum(result_486540222.status, NTI1526726661), makeNimstrLit("loggedOut"))) {
+    currUser_620757022[0].token = nimCopy(null, [], NTI33554439);
+    isShowNavMap_620757026[0] = false;
+    var elMap_486540285 = $(("#map-container"))[0];
+    elMap_486540285.classList.remove(("show-map"));
+    redraw_1124074477(kxi_1124073536[0]);
+    }
+    
+
+  return result_486540222;
+
+}
+
+function delProcc_486540193() {
+    
+function HEX3Aanonymous_486540196() {
+        
+function HEX3Aanonymous_486540212(value_486540213) {
+            var respSect_486540310 = parseResp_486540218(value_486540213.Field2);
+            if ((respSect_486540310.status == 1)) {
+            errMsg_620757024[0] = nimCopy(null, respSect_486540310.message, NTI33554439);
+            }
+            
+            var ownSEl_486540326 = document.getElementById(("ownSectors"));
+            if (!((ownSEl_486540326 == null))) {
+            ownSEl_486540326.checked = true;
+            }
+            
+            onlyMySectors_486539627[0] = true;
+            hndlUpdOwnSect_486539827();
+
+          
+        }
+        
+function HEX3Aanonymous_486540348(error_486540349) {
+            console.log(("error:"), (error_486540349.Field0));
+
+          
+        }
+        
+function HEX3Aanonymous_486540374() {
+            redraw_1124074477(kxi_1124073536[0]);
+
+          
+        }
+
+        spinnerOn_486539623[0] = true;
+        allSectProc_486539619[0] = nimCopy(null, newSeq_486539904(0), NTI486539660);
+        var p_486540204 = nimCopy(null, currProcess_486539618[0], NTI1526726664);
+        setTs_486539854();
+        var fmtRes_486540205 = [mnewString(0)];
+        fmtRes_486540205[0].push.apply(fmtRes_486540205[0], makeNimstrLit("token="));;
+        formatValue_1493172386(fmtRes_486540205, 0, currUser_620757022[0].token, []);
+        fmtRes_486540205[0].push.apply(fmtRes_486540205[0], makeNimstrLit("&processId="));;
+        formatValue_1761607743(fmtRes_486540205, 0, p_486540204.id, []);
+        var stmDelPrc_486540211 = sendRequest_620757128(makeNimstrLit("GET"), (makeNimstrLit("/sector/process/delete?") || []).concat(fmtRes_486540205[0] || []), [], []);
+        stmDelPrc_486540211.observe((HEX3Aanonymous_486540212), (HEX3Aanonymous_486540348), (HEX3Aanonymous_486540374));
+
+      
+    }
+
+  var result_486540195 = null;
+
+    result_486540195 = HEX3Aanonymous_486540196;
+
+  return result_486540195;
+
+}
+
+function proccessedModalBody_486540627() {
   var result_486540628 = null;
 
     var tmp_486540629 = tree_1140851377(43, []);
     tmp_486540629.class = "modal-body";
     var tmp_486540630 = tree_1140851377(43, []);
-    add_1140851314(tmp_486540630, text_1140851429(makeNimstrLit("\xD0\xA3\xD0\xB2\xD0\xB5\xD1\x80\xD0\xB5\xD0\xBD, \xD1\x87\xD1\x82\xD0\xBE \xD1\x85\xD0\xBE\xD1\x87\xD0\xB5\xD1\x88\xD1\x8C \xD1\x81\xD0\xB4\xD0\xB0\xD1\x82\xD1\x8C \xD1\x83\xD1\x87\xD0\xB0\xD1\x81\xD1\x82\xD0\xBE\xD0\xBA?")));
+    add_1140851314(tmp_486540630, text_1140851429(makeNimstrLit("\xD0\x91\xD1\x8B\xD0\xBB \xD1\x83\xD1\x87\xD0\xB0\xD1\x81\xD1\x82\xD0\xBE\xD0\xBA \xD0\xBE\xD0\xB1\xD1\x80\xD0\xB0\xD0\xB1\xD0\xBE\xD1\x82\xD0\xB0\xD0\xBD?")));
     add_1140851314(tmp_486540629, tmp_486540630);
     var tmp_486540631 = tree_1140851377(43, []);
     tmp_486540631.class = "mx-auto";
-    var tmp_486540632 = tree_1140851377(106, []);
-    setAttr_1140851240(tmp_486540632, "type", "button");
-    tmp_486540632.class = "btn btn-success float-left";
-    setAttr_1140851240(tmp_486540632, "data-dismiss", "modal");
-    setAttr_1140851240(tmp_486540632, "data-toggle", "modal");
-    setAttr_1140851240(tmp_486540632, "data-target", "#isProccessedModal");
-    add_1140851314(tmp_486540632, text_1140851429(makeNimstrLit("\xD0\x94\xD0\xB0")));
-    add_1140851314(tmp_486540631, tmp_486540632);
+    var tmp_486540632 = tree_1140851377(43, []);
+    tmp_486540632.class = "clearfix";
     var tmp_486540633 = tree_1140851377(106, []);
     setAttr_1140851240(tmp_486540633, "type", "button");
-    tmp_486540633.class = "btn btn-danger float-right";
+    tmp_486540633.class = "btn btn-success float-left";
     setAttr_1140851240(tmp_486540633, "data-dismiss", "modal");
-    add_1140851314(tmp_486540633, text_1140851429(makeNimstrLit("\xD0\x9D\xD0\xB5\xD1\x82")));
-    add_1140851314(tmp_486540631, tmp_486540633);
+    addEventHandler_1124074665(tmp_486540633, 0, updProcc_486539896(), kxi_1124073536[0]);
+    add_1140851314(tmp_486540633, text_1140851429(makeNimstrLit("\xD0\xA1\xD0\xB4\xD0\xB0\xD1\x82\xD1\x8C, \xD0\xBA\xD0\xB0\xD0\xBA \xD0\xBE\xD0\xB1\xD1\x80\xD0\xB0\xD0\xB1\xD0\xBE\xD1\x82\xD0\xB0\xD0\xBD\xD0\xBD\xD1\x8B\xD0\xB9")));
+    add_1140851314(tmp_486540632, tmp_486540633);
+    var tmp_486540634 = tree_1140851377(106, []);
+    setAttr_1140851240(tmp_486540634, "type", "button");
+    tmp_486540634.class = "btn btn-danger float-right";
+    setAttr_1140851240(tmp_486540634, "data-dismiss", "modal");
+    addEventHandler_1124074665(tmp_486540634, 0, delProcc_486540193(), kxi_1124073536[0]);
+    add_1140851314(tmp_486540634, text_1140851429(makeNimstrLit("\xD0\xA1\xD0\xB4\xD0\xB0\xD1\x82\xD1\x8C, \xD0\xBA\xD0\xB0\xD0\xBA \xD0\xBD\xD0\xB5 \xD0\xBE\xD0\xB1\xD1\x80\xD0\xB0\xD0\xB1\xD0\xBE\xD1\x82\xD0\xB0\xD0\xBD\xD0\xBD\xD1\x8B\xD0\xB9")));
+    add_1140851314(tmp_486540632, tmp_486540634);
+    add_1140851314(tmp_486540631, tmp_486540632);
+    var tmp_486540635 = tree_1140851377(43, []);
+    tmp_486540635.class = "clearfix";
+    add_1140851314(tmp_486540635, text_1140851429(makeNimstrLit("\xD0\xB8\xD0\xBB\xD0\xB8")));
+    add_1140851314(tmp_486540631, tmp_486540635);
+    var tmp_486540636 = tree_1140851377(106, []);
+    setAttr_1140851240(tmp_486540636, "type", "button");
+    tmp_486540636.class = "btn btn-secondary";
+    setAttr_1140851240(tmp_486540636, "data-dismiss", "modal");
+    add_1140851314(tmp_486540636, text_1140851429(makeNimstrLit("\xD0\x9D\xD0\xB5 \xD1\x81\xD0\xB4\xD0\xB0\xD0\xB2\xD0\xB0\xD1\x82\xD1\x8C")));
+    add_1140851314(tmp_486540631, tmp_486540636);
     add_1140851314(tmp_486540629, tmp_486540631);
     result_486540628 = tmp_486540629;
 
   return result_486540628;
-
-}
-
-function updProcc_486539903() {
-    
-function HEX3Aanonymous_486539906() {
-        
-function HEX3Aanonymous_486539927(value_486539928) {
-            var respSect_486540118 = parseResp_486539933(value_486539928.Field2);
-            if ((respSect_486540118.status == 1)) {
-            errMsg_620757024[0] = nimCopy(null, respSect_486540118.message, NTI33554439);
-            }
-            
-            var ownSEl_486540135 = document.getElementById(("ownSectors"));
-            if (!((ownSEl_486540135 == null))) {
-            ownSEl_486540135.checked = true;
-            }
-            
-            onlyMySectors_486539634[0] = true;
-            hndlUpdOwnSect_486539834();
-
-          
-        }
-        
-function HEX3Aanonymous_486540157(error_486540158) {
-            console.log(("error:"), (error_486540158.Field0));
-
-          
-        }
-        
-function HEX3Aanonymous_486540183() {
-            redraw_1124074477(kxi_1124073536[0]);
-
-          
-        }
-
-        spinnerOn_486539630[0] = true;
-        allSectProc_486539626[0] = nimCopy(null, newSeq_486539911(0), NTI486539669);
-        var p_486539919 = nimCopy(null, currProcess_486539625[0], NTI1526726664);
-        setTs_486539861();
-        var fmtRes_486539920 = [mnewString(0)];
-        fmtRes_486539920[0].push.apply(fmtRes_486539920[0], makeNimstrLit("token="));;
-        formatValue_1493172386(fmtRes_486539920, 0, currUser_620757022[0].token, []);
-        fmtRes_486539920[0].push.apply(fmtRes_486539920[0], makeNimstrLit("&processId="));;
-        formatValue_1761607743(fmtRes_486539920, 0, p_486539919.id, []);
-        var stmUpdPrc_486539926 = sendRequest_620757128(makeNimstrLit("GET"), (makeNimstrLit("/sector/process/update?") || []).concat(fmtRes_486539920[0] || []), [], []);
-        stmUpdPrc_486539926.observe((HEX3Aanonymous_486539927), (HEX3Aanonymous_486540157), (HEX3Aanonymous_486540183));
-
-      
-    }
-
-  var result_486539905 = null;
-
-    result_486539905 = HEX3Aanonymous_486539906;
-
-  return result_486539905;
-
-}
-
-function initFromJson_486540254(dst_486540256, jsonNode_486540257, jsonPath_486540258, jsonPath_486540258_Idx) {
-    var originalJsonPathLen_486540260 = (jsonPath_486540258[jsonPath_486540258_Idx]).length;
-    jsonPath_486540258[jsonPath_486540258_Idx].push.apply(jsonPath_486540258[jsonPath_486540258_Idx], makeNimstrLit(".status"));;
-    initFromJson_1761607848(dst_486540256, "status", getOrDefault_1325403580(jsonNode_486540257, makeNimstrLit("status")), jsonPath_486540258, jsonPath_486540258_Idx);
-    (jsonPath_486540258[jsonPath_486540258_Idx].length = chckRange(originalJsonPathLen_486540260, 0, 2147483647));
-    jsonPath_486540258[jsonPath_486540258_Idx].push.apply(jsonPath_486540258[jsonPath_486540258_Idx], makeNimstrLit(".message"));;
-    initFromJson_1325405435(dst_486540256, "message", getOrDefault_1325403580(jsonNode_486540257, makeNimstrLit("message")), jsonPath_486540258, jsonPath_486540258_Idx);
-    (jsonPath_486540258[jsonPath_486540258_Idx].length = chckRange(originalJsonPathLen_486540260, 0, 2147483647));
-    jsonPath_486540258[jsonPath_486540258_Idx].push.apply(jsonPath_486540258[jsonPath_486540258_Idx], makeNimstrLit(".resp"));;
-    initFromJson_1761607947(dst_486540256, "resp", getOrDefault_1325403580(jsonNode_486540257, makeNimstrLit("resp")), jsonPath_486540258, jsonPath_486540258_Idx);
-    (jsonPath_486540258[jsonPath_486540258_Idx].length = chckRange(originalJsonPathLen_486540260, 0, 2147483647));
-
-  
-}
-
-function to_486540230(node_486540233) {
-  var result_486540235 = [({status: 0, message: [], resp: 0})];
-
-    var jsonPath_486540236 = [[]];
-    initFromJson_486540254(result_486540235[0], node_486540233, jsonPath_486540236, 0);
-
-  return result_486540235[0];
-
-}
-
-function parseResp_486540225(bdy_486540227) {
-  var result_486540229 = ({status: 0, message: [], resp: 0});
-
-    result_486540229 = nimCopy(result_486540229, to_486540230(parseJson_1325405409(bdy_486540227)), NTI486539860);
-    if (eqStrings(reprEnum(result_486540229.status, NTI1526726661), makeNimstrLit("loggedOut"))) {
-    currUser_620757022[0].token = nimCopy(null, [], NTI33554439);
-    isShowNavMap_620757026[0] = false;
-    var elMap_486540292 = $(("#map-container"))[0];
-    elMap_486540292.classList.remove(("show-map"));
-    redraw_1124074477(kxi_1124073536[0]);
-    }
-    
-
-  return result_486540229;
-
-}
-
-function delProcc_486540200() {
-    
-function HEX3Aanonymous_486540203() {
-        
-function HEX3Aanonymous_486540219(value_486540220) {
-            var respSect_486540317 = parseResp_486540225(value_486540220.Field2);
-            if ((respSect_486540317.status == 1)) {
-            errMsg_620757024[0] = nimCopy(null, respSect_486540317.message, NTI33554439);
-            }
-            
-            var ownSEl_486540333 = document.getElementById(("ownSectors"));
-            if (!((ownSEl_486540333 == null))) {
-            ownSEl_486540333.checked = true;
-            }
-            
-            onlyMySectors_486539634[0] = true;
-            hndlUpdOwnSect_486539834();
-
-          
-        }
-        
-function HEX3Aanonymous_486540355(error_486540356) {
-            console.log(("error:"), (error_486540356.Field0));
-
-          
-        }
-        
-function HEX3Aanonymous_486540381() {
-            redraw_1124074477(kxi_1124073536[0]);
-
-          
-        }
-
-        spinnerOn_486539630[0] = true;
-        allSectProc_486539626[0] = nimCopy(null, newSeq_486539911(0), NTI486539669);
-        var p_486540211 = nimCopy(null, currProcess_486539625[0], NTI1526726664);
-        setTs_486539861();
-        var fmtRes_486540212 = [mnewString(0)];
-        fmtRes_486540212[0].push.apply(fmtRes_486540212[0], makeNimstrLit("token="));;
-        formatValue_1493172386(fmtRes_486540212, 0, currUser_620757022[0].token, []);
-        fmtRes_486540212[0].push.apply(fmtRes_486540212[0], makeNimstrLit("&processId="));;
-        formatValue_1761607743(fmtRes_486540212, 0, p_486540211.id, []);
-        var stmDelPrc_486540218 = sendRequest_620757128(makeNimstrLit("GET"), (makeNimstrLit("/sector/process/delete?") || []).concat(fmtRes_486540212[0] || []), [], []);
-        stmDelPrc_486540218.observe((HEX3Aanonymous_486540219), (HEX3Aanonymous_486540355), (HEX3Aanonymous_486540381));
-
-      
-    }
-
-  var result_486540202 = null;
-
-    result_486540202 = HEX3Aanonymous_486540203;
-
-  return result_486540202;
-
-}
-
-function proccessedModalBody_486540634() {
-  var result_486540635 = null;
-
-    var tmp_486540636 = tree_1140851377(43, []);
-    tmp_486540636.class = "modal-body";
-    var tmp_486540637 = tree_1140851377(43, []);
-    add_1140851314(tmp_486540637, text_1140851429(makeNimstrLit("\xD0\x91\xD1\x8B\xD0\xBB \xD1\x83\xD1\x87\xD0\xB0\xD1\x81\xD1\x82\xD0\xBE\xD0\xBA \xD0\xBE\xD0\xB1\xD1\x80\xD0\xB0\xD0\xB1\xD0\xBE\xD1\x82\xD0\xB0\xD0\xBD?")));
-    add_1140851314(tmp_486540636, tmp_486540637);
-    var tmp_486540638 = tree_1140851377(43, []);
-    tmp_486540638.class = "mx-auto";
-    var tmp_486540639 = tree_1140851377(43, []);
-    tmp_486540639.class = "clearfix";
-    var tmp_486540640 = tree_1140851377(106, []);
-    setAttr_1140851240(tmp_486540640, "type", "button");
-    tmp_486540640.class = "btn btn-success float-left";
-    setAttr_1140851240(tmp_486540640, "data-dismiss", "modal");
-    addEventHandler_1124074665(tmp_486540640, 0, updProcc_486539903(), kxi_1124073536[0]);
-    add_1140851314(tmp_486540640, text_1140851429(makeNimstrLit("\xD0\xA1\xD0\xB4\xD0\xB0\xD1\x82\xD1\x8C, \xD0\xBA\xD0\xB0\xD0\xBA \xD0\xBE\xD0\xB1\xD1\x80\xD0\xB0\xD0\xB1\xD0\xBE\xD1\x82\xD0\xB0\xD0\xBD\xD0\xBD\xD1\x8B\xD0\xB9")));
-    add_1140851314(tmp_486540639, tmp_486540640);
-    var tmp_486540641 = tree_1140851377(106, []);
-    setAttr_1140851240(tmp_486540641, "type", "button");
-    tmp_486540641.class = "btn btn-danger float-right";
-    setAttr_1140851240(tmp_486540641, "data-dismiss", "modal");
-    addEventHandler_1124074665(tmp_486540641, 0, delProcc_486540200(), kxi_1124073536[0]);
-    add_1140851314(tmp_486540641, text_1140851429(makeNimstrLit("\xD0\xA1\xD0\xB4\xD0\xB0\xD1\x82\xD1\x8C, \xD0\xBA\xD0\xB0\xD0\xBA \xD0\xBD\xD0\xB5 \xD0\xBE\xD0\xB1\xD1\x80\xD0\xB0\xD0\xB1\xD0\xBE\xD1\x82\xD0\xB0\xD0\xBD\xD0\xBD\xD1\x8B\xD0\xB9")));
-    add_1140851314(tmp_486540639, tmp_486540641);
-    add_1140851314(tmp_486540638, tmp_486540639);
-    var tmp_486540642 = tree_1140851377(43, []);
-    tmp_486540642.class = "clearfix";
-    add_1140851314(tmp_486540642, text_1140851429(makeNimstrLit("\xD0\xB8\xD0\xBB\xD0\xB8")));
-    add_1140851314(tmp_486540638, tmp_486540642);
-    var tmp_486540643 = tree_1140851377(106, []);
-    setAttr_1140851240(tmp_486540643, "type", "button");
-    tmp_486540643.class = "btn btn-secondary";
-    setAttr_1140851240(tmp_486540643, "data-dismiss", "modal");
-    add_1140851314(tmp_486540643, text_1140851429(makeNimstrLit("\xD0\x9D\xD0\xB5 \xD1\x81\xD0\xB4\xD0\xB0\xD0\xB2\xD0\xB0\xD1\x82\xD1\x8C")));
-    add_1140851314(tmp_486540638, tmp_486540643);
-    add_1140851314(tmp_486540636, tmp_486540638);
-    result_486540635 = tmp_486540636;
-
-  return result_486540635;
 
 }
 
@@ -14011,96 +7768,96 @@ function text_1140851432(s_1140851433) {
 
 }
 
-function login_486539862(btnClass_486539863) {
+function login_486539855(btnClass_486539856) {
     
-function HEX3Aanonymous_486539866() {
-        spinnerOn_486539630[0] = true;
-        var btn_486539870 = $((btnClass_486539863))[0];
-        btn_486539870.style.display = "none";
+function HEX3Aanonymous_486539859() {
+        spinnerOn_486539623[0] = true;
+        var btn_486539863 = $((btnClass_486539856))[0];
+        btn_486539863.style.display = "none";
 
       
     }
 
-  var result_486539865 = null;
+  var result_486539858 = null;
 
-    result_486539865 = HEX3Aanonymous_486539866;
+    result_486539858 = HEX3Aanonymous_486539859;
 
-  return result_486539865;
-
-}
-
-function loginDialog_486539886() {
-  var result_486539887 = null;
-
-    var plEmail_486539888 = "Пользователь";
-    var plPass_486539889 = "Пароль";
-    var tmp_486539890 = tree_1140851377(101, []);
-    tmp_486539890.class = "form-signin";
-    setAttr_1140851240(tmp_486539890, "action", "");
-    setAttr_1140851240(tmp_486539890, "method", "post");
-    var tmp_486539891 = tree_1140851377(43, []);
-    tmp_486539891.class = "text-center mb-4";
-    var tmp_486539892 = tree_1140851377(21, []);
-    tmp_486539892.class = "h3 mb-3 font-weight-normal";
-    add_1140851314(tmp_486539892, text_1140851429(makeNimstrLit("\xD0\x92\xD0\xBE\xD0\xB9\xD1\x82\xD0\xB8")));
-    add_1140851314(tmp_486539891, tmp_486539892);
-    add_1140851314(tmp_486539890, tmp_486539891);
-    var tmp_486539893 = tree_1140851377(43, []);
-    tmp_486539893.class = "form-label-group";
-    var tmp_486539894 = tree_1140851377(105, []);
-    setAttr_1140851240(tmp_486539894, "type", "text");
-    setAttr_1140851240(tmp_486539894, "name", "email");
-    tmp_486539894.id = "inputEmail";
-    tmp_486539894.class = "form-control";
-    setAttr_1140851240(tmp_486539894, "placeholder", plEmail_486539888);
-    setAttr_1140851240(tmp_486539894, "required", "");
-    setAttr_1140851240(tmp_486539894, "autofocus", "");
-    add_1140851314(tmp_486539893, tmp_486539894);
-    var tmp_486539895 = tree_1140851377(104, []);
-    setAttr_1140851240(tmp_486539895, "for", "inputEmail");
-    add_1140851314(tmp_486539895, text_1140851432(plEmail_486539888));
-    add_1140851314(tmp_486539893, tmp_486539895);
-    add_1140851314(tmp_486539890, tmp_486539893);
-    var tmp_486539896 = tree_1140851377(43, []);
-    tmp_486539896.class = "form-label-group";
-    var tmp_486539897 = tree_1140851377(105, []);
-    setAttr_1140851240(tmp_486539897, "type", "password");
-    setAttr_1140851240(tmp_486539897, "name", "pass");
-    tmp_486539897.id = "inputPassword";
-    tmp_486539897.class = "form-control";
-    setAttr_1140851240(tmp_486539897, "placeholder", plPass_486539889);
-    setAttr_1140851240(tmp_486539897, "required", "");
-    add_1140851314(tmp_486539896, tmp_486539897);
-    var tmp_486539898 = tree_1140851377(104, []);
-    setAttr_1140851240(tmp_486539898, "for", "inputPassword");
-    add_1140851314(tmp_486539898, text_1140851432(plPass_486539889));
-    add_1140851314(tmp_486539896, tmp_486539898);
-    add_1140851314(tmp_486539890, tmp_486539896);
-    var tmp_486539899 = tree_1140851377(43, []);
-    tmp_486539899.class = "checkbox mb-3";
-    var tmp_486539900 = tree_1140851377(106, []);
-    tmp_486539900.class = "btn btn-lg btn-primary btn-block";
-    setAttr_1140851240(tmp_486539900, "type", "submit");
-    addEventHandler_1124074665(tmp_486539900, 0, login_486539862(".form-signin .btn"), kxi_1124073536[0]);
-    add_1140851314(tmp_486539900, text_1140851429(makeNimstrLit("\xD0\x92\xD0\xBE\xD0\xB9\xD1\x82\xD0\xB8")));
-    add_1140851314(tmp_486539899, tmp_486539900);
-    var tmp_486539901 = tree_1140851377(31, []);
-    tmp_486539901.class = "mt-5 mb-3 text-muted text-center";
-    add_1140851314(tmp_486539901, text_1140851429(makeNimstrLit("\xC2\xA9 2019-2021")));
-    add_1140851314(tmp_486539899, tmp_486539901);
-    add_1140851314(tmp_486539890, tmp_486539899);
-    result_486539887 = tmp_486539890;
-
-  return result_486539887;
+  return result_486539858;
 
 }
 
-function showNoMyMsg_486539838() {
-    if (!(onlyMySectors_486539634[0])) {
-    noMyMsgEl_486539672[0].innerHTML = "<span>Внимание: этот участок&nbsp;</span><strong>не твой!</strong>";
+function loginDialog_486539879() {
+  var result_486539880 = null;
+
+    var plEmail_486539881 = "Пользователь";
+    var plPass_486539882 = "Пароль";
+    var tmp_486539883 = tree_1140851377(101, []);
+    tmp_486539883.class = "form-signin";
+    setAttr_1140851240(tmp_486539883, "action", "");
+    setAttr_1140851240(tmp_486539883, "method", "post");
+    var tmp_486539884 = tree_1140851377(43, []);
+    tmp_486539884.class = "text-center mb-4";
+    var tmp_486539885 = tree_1140851377(21, []);
+    tmp_486539885.class = "h3 mb-3 font-weight-normal";
+    add_1140851314(tmp_486539885, text_1140851429(makeNimstrLit("\xD0\x92\xD0\xBE\xD0\xB9\xD1\x82\xD0\xB8")));
+    add_1140851314(tmp_486539884, tmp_486539885);
+    add_1140851314(tmp_486539883, tmp_486539884);
+    var tmp_486539886 = tree_1140851377(43, []);
+    tmp_486539886.class = "form-label-group";
+    var tmp_486539887 = tree_1140851377(105, []);
+    setAttr_1140851240(tmp_486539887, "type", "text");
+    setAttr_1140851240(tmp_486539887, "name", "email");
+    tmp_486539887.id = "inputEmail";
+    tmp_486539887.class = "form-control";
+    setAttr_1140851240(tmp_486539887, "placeholder", plEmail_486539881);
+    setAttr_1140851240(tmp_486539887, "required", "");
+    setAttr_1140851240(tmp_486539887, "autofocus", "");
+    add_1140851314(tmp_486539886, tmp_486539887);
+    var tmp_486539888 = tree_1140851377(104, []);
+    setAttr_1140851240(tmp_486539888, "for", "inputEmail");
+    add_1140851314(tmp_486539888, text_1140851432(plEmail_486539881));
+    add_1140851314(tmp_486539886, tmp_486539888);
+    add_1140851314(tmp_486539883, tmp_486539886);
+    var tmp_486539889 = tree_1140851377(43, []);
+    tmp_486539889.class = "form-label-group";
+    var tmp_486539890 = tree_1140851377(105, []);
+    setAttr_1140851240(tmp_486539890, "type", "password");
+    setAttr_1140851240(tmp_486539890, "name", "pass");
+    tmp_486539890.id = "inputPassword";
+    tmp_486539890.class = "form-control";
+    setAttr_1140851240(tmp_486539890, "placeholder", plPass_486539882);
+    setAttr_1140851240(tmp_486539890, "required", "");
+    add_1140851314(tmp_486539889, tmp_486539890);
+    var tmp_486539891 = tree_1140851377(104, []);
+    setAttr_1140851240(tmp_486539891, "for", "inputPassword");
+    add_1140851314(tmp_486539891, text_1140851432(plPass_486539882));
+    add_1140851314(tmp_486539889, tmp_486539891);
+    add_1140851314(tmp_486539883, tmp_486539889);
+    var tmp_486539892 = tree_1140851377(43, []);
+    tmp_486539892.class = "checkbox mb-3";
+    var tmp_486539893 = tree_1140851377(106, []);
+    tmp_486539893.class = "btn btn-lg btn-primary btn-block";
+    setAttr_1140851240(tmp_486539893, "type", "submit");
+    addEventHandler_1124074665(tmp_486539893, 0, login_486539855(".form-signin .btn"), kxi_1124073536[0]);
+    add_1140851314(tmp_486539893, text_1140851429(makeNimstrLit("\xD0\x92\xD0\xBE\xD0\xB9\xD1\x82\xD0\xB8")));
+    add_1140851314(tmp_486539892, tmp_486539893);
+    var tmp_486539894 = tree_1140851377(31, []);
+    tmp_486539894.class = "mt-5 mb-3 text-muted text-center";
+    add_1140851314(tmp_486539894, text_1140851429(makeNimstrLit("\xC2\xA9 2019-2021")));
+    add_1140851314(tmp_486539892, tmp_486539894);
+    add_1140851314(tmp_486539883, tmp_486539892);
+    result_486539880 = tmp_486539883;
+
+  return result_486539880;
+
+}
+
+function showNoMyMsg_486539831() {
+    if (!(onlyMySectors_486539627[0])) {
+    noMyMsgEl_486539665[0].innerHTML = "<span>Внимание: этот участок&nbsp;</span><strong>не твой!</strong>";
     }
     else {
-      noMyMsgEl_486539672[0].innerHTML = "";
+      noMyMsgEl_486539665[0].innerHTML = "";
     }
     
 
@@ -14135,13 +7892,13 @@ function evaluateInterval_1543507160(dt_1543507161, interval_1543507162) {
     if ((months_1543507166 < 0)) {
     Label1: do {
       var mth_1543507181 = 0;
-      var colontmp__486542626 = 0;
-      colontmp__486542626 = HEX2A_1543503886(-1, months_1543507166);
-      var res_486542627 = colontmp__486542626;
+      var colontmp__486542622 = 0;
+      colontmp__486542622 = HEX2A_1543503886(-1, months_1543507166);
+      var res_486542623 = colontmp__486542622;
       Label2: do {
           Label3: while (true) {
-          if (!(1 <= res_486542627)) break Label3;
-            mth_1543507181 = res_486542627;
+          if (!(1 <= res_486542623)) break Label3;
+            mth_1543507181 = res_486542623;
             if ((curMonth_1543507168 == 1)) {
             curMonth_1543507168 = 12;
             curYear_1543507167 = subInt(curYear_1543507167, 1);
@@ -14152,7 +7909,7 @@ function evaluateInterval_1543507160(dt_1543507161, interval_1543507162) {
             
             var days_1543507194 = getDaysInMonth_1543504044(curMonth_1543507168, curYear_1543507167);
             result_1543507165.Field0 = nimCopy(result_1543507165.Field0, ntSubDuration(result_1543507165.Field0, initDuration_1543504264(0, 0, 0, 0, 0, 0, days_1543507194, 0)), NTI1543503904);
-            res_486542627 = subInt(res_486542627, 1);
+            res_486542623 = subInt(res_486542623, 1);
           }
       } while (false);
     } while (false);
@@ -14160,11 +7917,11 @@ function evaluateInterval_1543507160(dt_1543507161, interval_1543507162) {
     else {
       Label4: do {
         var mth_1543507199 = 0;
-        var res_486542630 = 1;
+        var res_486542626 = 1;
         Label5: do {
             Label6: while (true) {
-            if (!(res_486542630 <= months_1543507166)) break Label6;
-              mth_1543507199 = res_486542630;
+            if (!(res_486542626 <= months_1543507166)) break Label6;
+              mth_1543507199 = res_486542626;
               var days_1543507200 = getDaysInMonth_1543504044(curMonth_1543507168, curYear_1543507167);
               result_1543507165.Field0 = nimCopy(result_1543507165.Field0, ntAddDuration(result_1543507165.Field0, initDuration_1543504264(0, 0, 0, 0, 0, 0, days_1543507200, 0)), NTI1543503904);
               if ((curMonth_1543507168 == 12)) {
@@ -14175,7 +7932,7 @@ function evaluateInterval_1543507160(dt_1543507161, interval_1543507162) {
               curMonth_1543507168 = addInt(curMonth_1543507168, 1);
               }
               
-              res_486542630 = addInt(res_486542630, 1);
+              res_486542626 = addInt(res_486542626, 1);
             }
         } while (false);
       } while (false);
@@ -14244,9 +8001,9 @@ function toTime_1543505123(dt_1543505124) {
 function HEX2B_1543507222(dt_1543507223, interval_1543507224) {
   var result_1543507225 = ({m_type: NTI1543503903, nanosecond: 0, second: 0, minute: 0, hour: 0, monthdayZero: 0, monthZero: 0, year: 0, weekday: 0, yearday: 0, isDst: false, timezone: null, utcOffset: 0});
 
-    var colontmp__486542624 = evaluateInterval_1543507160(dt_1543507223, interval_1543507224);
-    var adjDur_1543507226 = nimCopy(null, colontmp__486542624["Field0"], NTI1543503904);
-    var absDur_1543507227 = nimCopy(null, colontmp__486542624["Field1"], NTI1543503904);
+    var colontmp__486542620 = evaluateInterval_1543507160(dt_1543507223, interval_1543507224);
+    var adjDur_1543507226 = nimCopy(null, colontmp__486542620["Field0"], NTI1543503904);
+    var absDur_1543507227 = nimCopy(null, colontmp__486542620["Field1"], NTI1543503904);
     if (!(ntEqDuration(adjDur_1543507226, DurationZero_1543504245))) {
     var zt_1543507228 = zonedTimeFromAdjTime_1543505204(dt_1543507223.timezone, ntAddTime(toAdjTime_1543505243(dt_1543507223), adjDur_1543507226));
     if (!(ntEqDuration(absDur_1543507227, DurationZero_1543504245))) {
@@ -14313,156 +8070,156 @@ function weeks_1543507151(w_1543507152) {
 
 }
 
-function allowTake_486541101(p_486541102) {
-  var result_486541103 = false;
+function allowTake_486541096(p_486541097) {
+  var result_486541098 = false;
 
   BeforeRet: do {
-    showNoMyMsg_486539838();
-    result_486541103 = false;
-    if (eqStrings(p_486541102.date_start, [])) {
-    result_486541103 = true;
+    showNoMyMsg_486539831();
+    result_486541098 = false;
+    if (eqStrings(p_486541097.date_start, [])) {
+    result_486541098 = true;
     break BeforeRet;
     }
     
-    if (eqStrings(p_486541102.date_finish, [])) {
-    result_486541103 = false;
+    if (eqStrings(p_486541097.date_finish, [])) {
+    result_486541098 = false;
     break BeforeRet;
     }
     
-    if ((cmpStrings(p_486541102.date_finish, format_1543506676(HEX2D_1543507230(now_1543505314(), weeks_1543507151(1)), normalDateFmt_486539283, DefaultLocale_1543505479)) < 0)) {
-    result_486541103 = true;
+    if ((cmpStrings(p_486541097.date_finish, format_1543506676(HEX2D_1543507230(now_1543505314(), weeks_1543507151(1)), normalDateFmt_486539283, DefaultLocale_1543505479)) < 0)) {
+    result_486541098 = true;
     break BeforeRet;
     }
     
   } while (false);
 
-  return result_486541103;
+  return result_486541098;
 
 }
 
-function showStreetsEnable_486540755() {
-    showStreetsEnabled_486539629[0] = true;
+function showStreetsEnable_486540748() {
+    showStreetsEnabled_486539622[0] = true;
 
   
 }
 
-function count_486541472(s_486541474, x_486541475) {
-  var result_486541476 = 0;
+function count_486541467(s_486541469, x_486541470) {
+  var result_486541471 = 0;
 
     Label1: do {
-      var itm_486541480 = null;
-      var itm_486541480_Idx = 0;
-      var i_486542633 = 0;
+      var itm_486541475 = null;
+      var itm_486541475_Idx = 0;
+      var i_486542629 = 0;
       Label2: do {
           Label3: while (true) {
-          if (!(i_486542633 < (s_486541474).length)) break Label3;
-            itm_486541480 = s_486541474; itm_486541480_Idx = chckIndx(i_486542633, 0, (s_486541474).length - 1);
-            if (eqStrings(itm_486541480[itm_486541480_Idx], x_486541475)) {
-            result_486541476 = addInt(result_486541476, 1);
+          if (!(i_486542629 < (s_486541469).length)) break Label3;
+            itm_486541475 = s_486541469; itm_486541475_Idx = chckIndx(i_486542629, 0, (s_486541469).length - 1);
+            if (eqStrings(itm_486541475[itm_486541475_Idx], x_486541470)) {
+            result_486541471 = addInt(result_486541471, 1);
             }
             
-            i_486542633 = addInt(i_486542633, 1);
+            i_486542629 = addInt(i_486542629, 1);
           }
       } while (false);
     } while (false);
 
-  return result_486541476;
+  return result_486541471;
 
 }
 
-function mapDownload_486541243() {
+function mapDownload_486541238() {
     
-function HEX3Aanonymous_486541261(r_486541262) {
-        var prgsT_486541271 = (r_486541262.getTotal());
-        var prgsP_486541280 = (r_486541262.getProcessed());
-        progressOn_486539631[0] = (prgsP_486541280 < prgsT_486541271);
-        if (!(progressOn_486539631[0])) {
-        var Temporary1 = nimCopy(null, currProcess_486539625[0].sector_internal_id, NTI33554439);
+function HEX3Aanonymous_486541256(r_486541257) {
+        var prgsT_486541266 = (r_486541257.getTotal());
+        var prgsP_486541275 = (r_486541257.getProcessed());
+        progressOn_486539624[0] = (prgsP_486541275 < prgsT_486541266);
+        if (!(progressOn_486539624[0])) {
+        var Temporary1 = nimCopy(null, currProcess_486539618[0].sector_internal_id, NTI33554439);
         dwnloadedMaps_620757052[0].push(Temporary1);;
         localStorage.setItem(("dwnloadedMaps"), (JSON.stringify(dwnloadedMaps_620757052[0])));
         }
         
-        progressProc_486539632[0] = ((HEX2F_33557576(mulInt(prgsP_486541280, 100), prgsT_486541271)) | 0);
+        progressProc_486539625[0] = ((HEX2F_33557576(mulInt(prgsP_486541275, 100), prgsT_486541266)) | 0);
         redraw_1124074477(kxi_1124073536[0]);
 
       
     }
 
-    var max_486541260 = (map.getBaseLayer().getProvider().max);
-    map.storeContent((HEX3Aanonymous_486541261), (sectStreetGrp_486539671[0].getBoundingBox()), (subInt(max_486541260, 4)), (max_486541260));
+    var max_486541255 = (map.getBaseLayer().getProvider().max);
+    map.storeContent((HEX3Aanonymous_486541256), (sectStreetGrp_486539664[0].getBoundingBox()), (subInt(max_486541255, 4)), (max_486541255));
 
   
 }
 
-function noInternet_486540744() {
-  var result_486540745 = null;
+function noInternet_486540737() {
+  var result_486540738 = null;
 
   BeforeRet: do {
-    var tmp_486540746 = tree_1140851377(70, []);
-    result_486540745 = tmp_486540746;
+    var tmp_486540739 = tree_1140851377(70, []);
+    result_486540738 = tmp_486540739;
     if (isInternet_620757114[0]) {
     break BeforeRet;
     }
     
-    var tmp_486540747 = tree_1140851377(70, []);
-    tmp_486540747.class = "badge badge-pill badge-danger";
-    add_1140851314(tmp_486540747, text_1140851429(makeNimstrLit("\xD0\x9D\xD0\xB5\xD1\x82 \xD0\xB8\xD0\xBD\xD1\x82\xD0\xB5\xD1\x80\xD0\xBD\xD0\xB5\xD1\x82\xD0\xB0")));
-    result_486540745 = tmp_486540747;
+    var tmp_486540740 = tree_1140851377(70, []);
+    tmp_486540740.class = "badge badge-pill badge-danger";
+    add_1140851314(tmp_486540740, text_1140851429(makeNimstrLit("\xD0\x9D\xD0\xB5\xD1\x82 \xD0\xB8\xD0\xBD\xD1\x82\xD0\xB5\xD1\x80\xD0\xBD\xD0\xB5\xD1\x82\xD0\xB0")));
+    result_486540738 = tmp_486540740;
   } while (false);
 
-  return result_486540745;
+  return result_486540738;
 
 }
 
-function onMsgClck_486539836() {
+function onMsgClck_486539829() {
     
-function HEX3Aanonymous_486541070() {
+function HEX3Aanonymous_486541065() {
         errMsg_620757024[0] = nimCopy(null, [], NTI33554439);
 
       
     }
 
-  var result_486541069 = null;
+  var result_486541064 = null;
 
-    result_486541069 = HEX3Aanonymous_486541070;
+    result_486541064 = HEX3Aanonymous_486541065;
 
-  return result_486541069;
+  return result_486541064;
 
 }
 
-function showErrMsg_486540748() {
-  var result_486540749 = null;
+function showErrMsg_486540741() {
+  var result_486540742 = null;
 
   BeforeRet: do {
-    var tmp_486540750 = tree_1140851377(70, []);
-    result_486540749 = tmp_486540750;
+    var tmp_486540743 = tree_1140851377(70, []);
+    result_486540742 = tmp_486540743;
     if (eqStrings(errMsg_620757024[0], [])) {
     break BeforeRet;
     }
     
-    var tmp_486540751 = tree_1140851377(43, []);
-    tmp_486540751.class = "alert alert-danger fade show";
-    setAttr_1140851240(tmp_486540751, "role", "alert");
-    addEventHandler_1124074665(tmp_486540751, 0, onMsgClck_486539836(), kxi_1124073536[0]);
-    add_1140851314(tmp_486540751, text_1140851429(errMsg_620757024[0]));
-    var tmp_486540752 = tree_1140851377(59, []);
-    var tmp_486540753 = tree_1140851377(51, []);
-    add_1140851314(tmp_486540753, text_1140851429(makeNimstrLit(" \xD0\x9D\xD0\xB0\xD0\xB6\xD0\xBC\xD0\xB8 \xD1\x87\xD1\x82\xD0\xBE\xD0\xB1 \xD1\x83\xD0\xB1\xD1\x80\xD0\xB0\xD1\x82\xD1\x8C")));
-    add_1140851314(tmp_486540752, tmp_486540753);
-    add_1140851314(tmp_486540751, tmp_486540752);
-    result_486540749 = tmp_486540751;
+    var tmp_486540744 = tree_1140851377(43, []);
+    tmp_486540744.class = "alert alert-danger fade show";
+    setAttr_1140851240(tmp_486540744, "role", "alert");
+    addEventHandler_1124074665(tmp_486540744, 0, onMsgClck_486539829(), kxi_1124073536[0]);
+    add_1140851314(tmp_486540744, text_1140851429(errMsg_620757024[0]));
+    var tmp_486540745 = tree_1140851377(59, []);
+    var tmp_486540746 = tree_1140851377(51, []);
+    add_1140851314(tmp_486540746, text_1140851429(makeNimstrLit(" \xD0\x9D\xD0\xB0\xD0\xB6\xD0\xBC\xD0\xB8 \xD1\x87\xD1\x82\xD0\xBE\xD0\xB1 \xD1\x83\xD0\xB1\xD1\x80\xD0\xB0\xD1\x82\xD1\x8C")));
+    add_1140851314(tmp_486540745, tmp_486540746);
+    add_1140851314(tmp_486540744, tmp_486540745);
+    result_486540742 = tmp_486540744;
   } while (false);
 
-  return result_486540749;
+  return result_486540742;
 
 }
 
-function parseEnum_486540761(s_486540763) {
+function parseEnum_486540754(s_486540756) {
     var Temporary1;
 
-  var result_486540764 = 0;
+  var result_486540757 = 0;
 
-    switch (toJSStr(nimIdentNormalize_687865961(s_486540763))) {
+    switch (toJSStr(nimIdentNormalize_687865961(s_486540756))) {
     case "strnotstarted":
       Temporary1 = 0;
       break;
@@ -14473,12 +8230,12 @@ function parseEnum_486540761(s_486540763) {
       Temporary1 = 2;
       break;
     default: 
-      raiseException({message: (makeNimstrLit("Invalid enum value: ") || []).concat(s_486540763 || []), parent: null, m_type: NTI33555125, name: null, trace: [], up: null}, "ValueError");
+      raiseException({message: (makeNimstrLit("Invalid enum value: ") || []).concat(s_486540756 || []), parent: null, m_type: NTI33555125, name: null, trace: [], up: null}, "ValueError");
       break;
     }
-    result_486540764 = Temporary1;
+    result_486540757 = Temporary1;
 
-  return result_486540764;
+  return result_486540757;
 
 }
 
@@ -14512,31 +8269,31 @@ function nsuSplitString(s_687866377, sep_687866378, maxsplit_687866379) {
     result_687866380 = nimCopy(null, [], NTI687866230);
     Label1: do {
       var xHEX60gensym72_687866391 = [];
-      var lastHEX60gensym41_486542649 = 0;
-      var splitsHEX60gensym41_486542650 = maxsplit_687866379;
+      var lastHEX60gensym41_486542645 = 0;
+      var splitsHEX60gensym41_486542646 = maxsplit_687866379;
       Label2: do {
           Label3: while (true) {
-          if (!(lastHEX60gensym41_486542649 <= (s_687866377).length)) break Label3;
-            var firstHEX60gensym41_486542652 = lastHEX60gensym41_486542649;
+          if (!(lastHEX60gensym41_486542645 <= (s_687866377).length)) break Label3;
+            var firstHEX60gensym41_486542648 = lastHEX60gensym41_486542645;
             Label4: do {
                 Label5: while (true) {
-                if (!((lastHEX60gensym41_486542649 < (s_687866377).length) && !(substrEq_687866085(s_687866377, lastHEX60gensym41_486542649, sep_687866378)))) break Label5;
-                  lastHEX60gensym41_486542649 = addInt(lastHEX60gensym41_486542649, 1);
+                if (!((lastHEX60gensym41_486542645 < (s_687866377).length) && !(substrEq_687866085(s_687866377, lastHEX60gensym41_486542645, sep_687866378)))) break Label5;
+                  lastHEX60gensym41_486542645 = addInt(lastHEX60gensym41_486542645, 1);
                 }
             } while (false);
-            if ((splitsHEX60gensym41_486542650 == 0)) {
-            lastHEX60gensym41_486542649 = (s_687866377).length;
+            if ((splitsHEX60gensym41_486542646 == 0)) {
+            lastHEX60gensym41_486542645 = (s_687866377).length;
             }
             
-            xHEX60gensym72_687866391 = substr_33557907(s_687866377, firstHEX60gensym41_486542652, subInt(lastHEX60gensym41_486542649, 1));
+            xHEX60gensym72_687866391 = substr_33557907(s_687866377, firstHEX60gensym41_486542648, subInt(lastHEX60gensym41_486542645, 1));
             var Temporary6 = nimCopy(null, xHEX60gensym72_687866391, NTI33554439);
             result_687866380.push(Temporary6);;
-            if ((splitsHEX60gensym41_486542650 == 0)) {
+            if ((splitsHEX60gensym41_486542646 == 0)) {
             break Label2;
             }
             
-            splitsHEX60gensym41_486542650 = subInt(splitsHEX60gensym41_486542650, 1);
-            lastHEX60gensym41_486542649 = addInt(lastHEX60gensym41_486542649, (sep_687866378).length);
+            splitsHEX60gensym41_486542646 = subInt(splitsHEX60gensym41_486542646, 1);
+            lastHEX60gensym41_486542645 = addInt(lastHEX60gensym41_486542645, (sep_687866378).length);
           }
       } while (false);
     } while (false);
@@ -14552,20 +8309,20 @@ function toHexImpl_687866573(x_687866574, len_687866575, handleNegative_68786657
     result_687866577 = nimCopy(null, mnewString(len_687866575), NTI33554439);
     Label1: do {
       var j_687866585 = 0;
-      var colontmp__486542660 = 0;
-      colontmp__486542660 = subInt(len_687866575, 1);
-      var res_486542661 = colontmp__486542660;
+      var colontmp__486542656 = 0;
+      colontmp__486542656 = subInt(len_687866575, 1);
+      var res_486542657 = colontmp__486542656;
       Label2: do {
           Label3: while (true) {
-          if (!(0 <= res_486542661)) break Label3;
-            j_687866585 = res_486542661;
+          if (!(0 <= res_486542657)) break Label3;
+            j_687866585 = res_486542657;
             result_687866577[chckIndx(j_687866585, 0, (result_687866577).length - 1)] = makeNimstrLit("0123456789ABCDEF")[chckIndx((n_687866579 & 15), 0, (makeNimstrLit("0123456789ABCDEF")).length - 1)];
             n_687866579 = (n_687866579 >>> 4);
             if (((n_687866579 == 0) && handleNegative_687866576)) {
             n_687866579 = 4294967295;
             }
             
-            res_486542661 = subInt(res_486542661, 1);
+            res_486542657 = subInt(res_486542657, 1);
           }
       } while (false);
     } while (false);
@@ -14599,12 +8356,12 @@ function encodeUrl_1694498856(s_1694498857, usePlus_1694498858) {
     var fromSpace_1694498864 = nimCopy(null, Temporary1, NTI33554439);
     Label2: do {
       var c_1694498865 = 0;
-      var i_486542656 = 0;
-      var L_486542657 = (s_1694498857).length;
+      var i_486542652 = 0;
+      var L_486542653 = (s_1694498857).length;
       Label3: do {
           Label4: while (true) {
-          if (!(i_486542656 < L_486542657)) break Label4;
-            c_1694498865 = s_1694498857[chckIndx(i_486542656, 0, (s_1694498857).length - 1)];
+          if (!(i_486542652 < L_486542653)) break Label4;
+            c_1694498865 = s_1694498857[chckIndx(i_486542652, 0, (s_1694498857).length - 1)];
             switch (c_1694498865) {
             case 97:
             case 98:
@@ -14682,8 +8439,8 @@ function encodeUrl_1694498856(s_1694498857, usePlus_1694498858) {
               result_1694498859.push.apply(result_1694498859, toHex_687867704(c_1694498865, 2));;
               break;
             }
-            i_486542656 = addInt(i_486542656, 1);
-            if (!(((s_1694498857).length == L_486542657))) {
+            i_486542652 = addInt(i_486542652, 1);
+            if (!(((s_1694498857).length == L_486542653))) {
             failedAssertImpl_218103864(makeNimstrLit("iterators.nim(258, 11) `len(a) == L` the length of the string changed while iterating over it"));
             }
             
@@ -14695,26 +8452,26 @@ function encodeUrl_1694498856(s_1694498857, usePlus_1694498858) {
 
 }
 
-function setStrStatus_486540756(iStr_486540757) {
+function setStrStatus_486540749(iStr_486540750) {
     
-function HEX3Aanonymous_486540760() {
-        var curSt_486540822 = parseEnum_486540761(reprEnum(currStreets_486539627[0][chckIndx(iStr_486540757, 0, (currStreets_486539627[0]).length - 1)].status, NTI1526726662));
-        if ((curSt_486540822 == 2)) {
-        currStreets_486539627[0][chckIndx(iStr_486540757, 0, (currStreets_486539627[0]).length - 1)].status = 0;
+function HEX3Aanonymous_486540753() {
+        var curSt_486540815 = parseEnum_486540754(reprEnum(currStreets_486539620[0][chckIndx(iStr_486540750, 0, (currStreets_486539620[0]).length - 1)].status, NTI1526726662));
+        if ((curSt_486540815 == 2)) {
+        currStreets_486539620[0][chckIndx(iStr_486540750, 0, (currStreets_486539620[0]).length - 1)].status = 0;
         }
         else {
-          currStreets_486539627[0][chckIndx(iStr_486540757, 0, (currStreets_486539627[0]).length - 1)].status = addInt(curSt_486540822, 1);
+          currStreets_486539620[0][chckIndx(iStr_486540750, 0, (currStreets_486539620[0]).length - 1)].status = addInt(curSt_486540815, 1);
         }
         
 
       
     }
 
-  var result_486540759 = null;
+  var result_486540752 = null;
 
-    result_486540759 = HEX3Aanonymous_486540760;
+    result_486540752 = HEX3Aanonymous_486540753;
 
-  return result_486540759;
+  return result_486540752;
 
 }
 
@@ -14725,15 +8482,15 @@ function nsuJoinSep(a_687867281, sep_687867282) {
     var L_687867290 = mulInt((sep_687867282).length, subInt((a_687867281).length, 1));
     Label1: do {
       var i_687867298 = 0;
-      var colontmp__486542670 = 0;
-      colontmp__486542670 = (a_687867281).length - 1;
-      var res_486542671 = 0;
+      var colontmp__486542660 = 0;
+      colontmp__486542660 = (a_687867281).length - 1;
+      var res_486542661 = 0;
       Label2: do {
           Label3: while (true) {
-          if (!(res_486542671 <= colontmp__486542670)) break Label3;
-            i_687867298 = res_486542671;
+          if (!(res_486542661 <= colontmp__486542660)) break Label3;
+            i_687867298 = res_486542661;
             L_687867290 = addInt(L_687867290, (a_687867281[chckIndx(i_687867298, 0, (a_687867281).length - 1)]).length);
-            res_486542671 = addInt(res_486542671, 1);
+            res_486542661 = addInt(res_486542661, 1);
           }
       } while (false);
     } while (false);
@@ -14741,16 +8498,16 @@ function nsuJoinSep(a_687867281, sep_687867282) {
     result_687867283.push.apply(result_687867283, a_687867281[chckIndx(0, 0, (a_687867281).length - 1)]);;
     Label4: do {
       var i_687867310 = 0;
-      var colontmp__486542674 = 0;
-      colontmp__486542674 = (a_687867281).length - 1;
-      var res_486542675 = 1;
+      var colontmp__486542664 = 0;
+      colontmp__486542664 = (a_687867281).length - 1;
+      var res_486542665 = 1;
       Label5: do {
           Label6: while (true) {
-          if (!(res_486542675 <= colontmp__486542674)) break Label6;
-            i_687867310 = res_486542675;
+          if (!(res_486542665 <= colontmp__486542664)) break Label6;
+            i_687867310 = res_486542665;
             result_687867283.push.apply(result_687867283, sep_687867282);;
             result_687867283.push.apply(result_687867283, a_687867281[chckIndx(i_687867310, 0, (a_687867281).length - 1)]);;
-            res_486542675 = addInt(res_486542675, 1);
+            res_486542665 = addInt(res_486542665, 1);
           }
       } while (false);
     } while (false);
@@ -14815,183 +8572,192 @@ function innerHEX60gensym116_620757646() {
   
 }
 
-function saveStreets_486540841() {
+function saveStreets_486540834() {
     
-function HEX3Aanonymous_486540844() {
+function HEX3Aanonymous_486540837() {
         
-function HEX3Aanonymous_486540926(value_486540927) {
+function HEX3Aanonymous_486540919(value_486540920) {
           
         }
         
-function HEX3Aanonymous_486540934(error_486540935) {
-            console.log(("error:"), (error_486540935.Field0));
+function HEX3Aanonymous_486540927(error_486540928) {
+            console.log(("error:"), (error_486540928.Field0));
 
           
         }
         
-function HEX3Aanonymous_486540960() {
+function HEX3Aanonymous_486540953() {
             redraw_1124074477(kxi_1124073536[0]);
 
           
         }
 
-        showStreetsEnabled_486539629[0] = false;
-        var streets_486540845 = [];
-        var polyStrts_486540850 = sectStreetGrp_486539671[0].getObjects();
+        showStreetsEnabled_486539622[0] = false;
+        var streets_486540838 = [];
+        var polyStrts_486540843 = sectStreetGrp_486539664[0].getObjects();
         Label1: do {
-          var i_486540892 = 0;
-          var str_486540893 = ({id: 0, sector_id: 0, name: [], geometry: [], totalFamilies: 0, sectorName: [], status: 0});
-          var i_486542666 = 0;
-          var L_486542667 = (currStreets_486539627[0]).length;
+          var i_486540885 = 0;
+          var str_486540886 = ({id: 0, sector_id: 0, name: [], geometry: [], totalFamilies: 0, sectorName: [], status: 0});
+          var i_486542670 = 0;
+          var L_486542671 = (currStreets_486539620[0]).length;
           Label2: do {
               Label3: while (true) {
-              if (!(i_486542666 < L_486542667)) break Label3;
-                i_486540892 = i_486542666;
-                str_486540893 = nimCopy(str_486540893, currStreets_486539627[0][chckIndx(i_486542666, 0, (currStreets_486539627[0]).length - 1)], NTI1526726665);
-                var id_486540894 = str_486540893.id;
-                var nSt_486540908 = parseEnum_486540761(reprEnum(str_486540893.status, NTI1526726662));
-                currStreets_486539627[0][chckIndx(i_486540892, 0, (currStreets_486539627[0]).length - 1)].totalFamilies = currStreetsTmp_486539628[0][chckIndx(i_486540892, 0, (currStreetsTmp_486539628[0]).length - 1)].totalFamilies;
-                streets_486540845.push(nsuJoinSep([HEX24_335544323(str_486540893.id), HEX24_335544323(str_486540893.sector_id), HEX24_335544323(nSt_486540908), HEX24_335544323(currStreets_486539627[0][chckIndx(i_486540892, 0, (currStreets_486539627[0]).length - 1)].totalFamilies)], makeNimstrLit(",")));;
+              if (!(i_486542670 < L_486542671)) break Label3;
+                i_486540885 = i_486542670;
+                str_486540886 = nimCopy(str_486540886, currStreets_486539620[0][chckIndx(i_486542670, 0, (currStreets_486539620[0]).length - 1)], NTI1526726665);
+                var id_486540887 = str_486540886.id;
+                var nSt_486540901 = parseEnum_486540754(reprEnum(str_486540886.status, NTI1526726662));
+                currStreets_486539620[0][chckIndx(i_486540885, 0, (currStreets_486539620[0]).length - 1)].totalFamilies = currStreetsTmp_486539621[0][chckIndx(i_486540885, 0, (currStreetsTmp_486539621[0]).length - 1)].totalFamilies;
+                streets_486540838.push(nsuJoinSep([HEX24_335544323(str_486540886.id), HEX24_335544323(str_486540886.sector_id), HEX24_335544323(nSt_486540901), HEX24_335544323(currStreets_486539620[0][chckIndx(i_486540885, 0, (currStreets_486539620[0]).length - 1)].totalFamilies)], makeNimstrLit(",")));;
                 Label4: do {
-                  var p_486540913 = null;
-                  var v_486542665 = null;
-                  for (var k in polyStrts_486540850) {
-                    if (!polyStrts_486540850.hasOwnProperty(k)) continue;
-                    v_486542665=polyStrts_486540850[k];
-                  p_486540913 = v_486542665;
-                  var pStrtId_486540922 = (p_486540913.getData());
-                  if ((id_486540894 == pStrtId_486540922)) {
-                  setPolyStyleByStat_620757622(p_486540913, str_486540893.status);
+                  var p_486540906 = null;
+                  var v_486542669 = null;
+                  for (var k in polyStrts_486540843) {
+                    if (!polyStrts_486540843.hasOwnProperty(k)) continue;
+                    v_486542669=polyStrts_486540843[k];
+                  p_486540906 = v_486542669;
+                  var pStrtId_486540915 = (p_486540906.getData());
+                  if ((id_486540887 == pStrtId_486540915)) {
+                  setPolyStyleByStat_620757622(p_486540906, str_486540886.status);
                   }
                   
                   }
                 } while (false);
-                i_486542666 = addInt(i_486542666, 1);
-                if (!(((currStreets_486539627[0]).length == L_486542667))) {
+                i_486542670 = addInt(i_486542670, 1);
+                if (!(((currStreets_486539620[0]).length == L_486542671))) {
                 failedAssertImpl_218103864(makeNimstrLit("iterators.nim(173, 11) `len(a) == L` the length of the seq changed while iterating over it"));
                 }
                 
               }
           } while (false);
         } while (false);
-        var setStr_486540923 = nsuJoinSep(streets_486540845, makeNimstrLit(";"));
-        setTs_486539861();
-        var fmtRes_486540924 = [mnewString(0)];
-        fmtRes_486540924[0].push.apply(fmtRes_486540924[0], makeNimstrLit("token="));;
-        formatValue_1493172386(fmtRes_486540924, 0, currUser_620757022[0].token, []);
-        fmtRes_486540924[0].push.apply(fmtRes_486540924[0], makeNimstrLit("&streets="));;
-        formatValue_1493172386(fmtRes_486540924, 0, setStr_486540923, []);
-        var stmUpd_486540925 = sendRequest_620757128(makeNimstrLit("GET"), (makeNimstrLit("/streets/status/update?") || []).concat(fmtRes_486540924[0] || []), [], []);
-        stmUpd_486540925.observe((HEX3Aanonymous_486540926), (HEX3Aanonymous_486540934), (HEX3Aanonymous_486540960));
+        var setStr_486540916 = nsuJoinSep(streets_486540838, makeNimstrLit(";"));
+        setTs_486539854();
+        var fmtRes_486540917 = [mnewString(0)];
+        fmtRes_486540917[0].push.apply(fmtRes_486540917[0], makeNimstrLit("token="));;
+        formatValue_1493172386(fmtRes_486540917, 0, currUser_620757022[0].token, []);
+        fmtRes_486540917[0].push.apply(fmtRes_486540917[0], makeNimstrLit("&streets="));;
+        formatValue_1493172386(fmtRes_486540917, 0, setStr_486540916, []);
+        var stmUpd_486540918 = sendRequest_620757128(makeNimstrLit("GET"), (makeNimstrLit("/streets/status/update?") || []).concat(fmtRes_486540917[0] || []), [], []);
+        stmUpd_486540918.observe((HEX3Aanonymous_486540919), (HEX3Aanonymous_486540927), (HEX3Aanonymous_486540953));
 
       
     }
 
-  var result_486540843 = null;
+  var result_486540836 = null;
 
-    result_486540843 = HEX3Aanonymous_486540844;
+    result_486540836 = HEX3Aanonymous_486540837;
 
-  return result_486540843;
+  return result_486540836;
 
 }
 
-function showStreets_486540976() {
+function showStreets_486540969() {
             var Temporary4;
 
-  var result_486540977 = null;
+  var result_486540970 = null;
 
-    var strSt_486540980 = {Field0: "danger", Field1: " - не пройдена"};
-    var tmp_486540981 = tree_1140851377(43, []);
-    var tmp_486540982 = tree_1140851377(43, []);
-    tmp_486540982.class = "d-flex justify-content-center mt-6";
-    var tmp_486540983 = tree_1140851377(43, []);
-    tmp_486540983.class = "overflow-auto px-3 vh-75 w-75 bg-light shadow-lg border rounded-lg";
+    var strSt_486540973 = {Field0: "danger", Field1: " - не пройдена"};
+    var tmp_486540974 = tree_1140851377(43, []);
+    var tmp_486540975 = tree_1140851377(43, []);
+    tmp_486540975.class = "d-flex justify-content-center mt-6";
+    var tmp_486540976 = tree_1140851377(43, []);
+    tmp_486540976.class = "overflow-auto px-3 vh-75 w-75 bg-light shadow-lg border rounded-lg";
     Label1: do {
-      var i_486540995 = 0;
-      var str_486540996 = ({id: 0, sector_id: 0, name: [], geometry: [], totalFamilies: 0, sectorName: [], status: 0});
-      var i_486542643 = 0;
-      var L_486542644 = (currStreets_486539627[0]).length;
+      var i_486540989 = 0;
+      var str_486540990 = ({id: 0, sector_id: 0, name: [], geometry: [], totalFamilies: 0, sectorName: [], status: 0});
+      var i_486542639 = 0;
+      var L_486542640 = (currStreets_486539620[0]).length;
       Label2: do {
           Label3: while (true) {
-          if (!(i_486542643 < L_486542644)) break Label3;
-            i_486540995 = i_486542643;
-            str_486540996 = nimCopy(str_486540996, currStreets_486539627[0][chckIndx(i_486542643, 0, (currStreets_486539627[0]).length - 1)], NTI1526726665);
-            var tf_486540997 = toJSStr(HEX24_335544323(str_486540996.totalFamilies));
-            var sSt_486541008 = parseEnum_486540761(reprEnum(str_486540996.status, NTI1526726662));
-            var arrSectName_486541009 = nsuSplitString(str_486540996.sectorName, makeNimstrLit(" "), -1);
-            var pc_486541010 = nimCopy(null, (Temporary4 = nsuSplitString(arrSectName_486541009[chckIndx(0, 0, (arrSectName_486541009).length - 1)], makeNimstrLit("-"), -1), Temporary4)[chckIndx(0, 0, (Temporary4).length - 1)], NTI33554439);
-            var cityName_486541011 = nimCopy(null, arrSectName_486541009[chckIndx(1, 0, (arrSectName_486541009).length - 1)], NTI33554439);
-            var fmtRes_486541016 = [mnewString(0)];
-            formatValue_1493172386(fmtRes_486541016, 0, pc_486541010, []);
-            fmtRes_486541016[0].push.apply(fmtRes_486541016[0], makeNimstrLit(" "));;
-            formatValue_1493172386(fmtRes_486541016, 0, cityName_486541011, []);
-            var ci_486541017 = encodeUrl_1694498856(fmtRes_486541016[0], true);
-            var st_486541018 = encodeUrl_1694498856(str_486540996.name, true);
-            if ((sSt_486541008 == 1)) {
-            var colontmp__486542636 = "primary";
-            var colontmp__486542637 = " - не закончена";
-            strSt_486540980 = nimCopy(strSt_486540980, {Field0: colontmp__486542636, Field1: colontmp__486542637}, NTI486540343);
+          if (!(i_486542639 < L_486542640)) break Label3;
+            i_486540989 = i_486542639;
+            str_486540990 = nimCopy(str_486540990, currStreets_486539620[0][chckIndx(i_486542639, 0, (currStreets_486539620[0]).length - 1)], NTI1526726665);
+            var tf_486540991 = toJSStr(HEX24_335544323(str_486540990.totalFamilies));
+            var sSt_486541002 = parseEnum_486540754(reprEnum(str_486540990.status, NTI1526726662));
+            var arrSectName_486541003 = nsuSplitString(str_486540990.sectorName, makeNimstrLit(" "), -1);
+            var pc_486541004 = nimCopy(null, (Temporary4 = nsuSplitString(arrSectName_486541003[chckIndx(0, 0, (arrSectName_486541003).length - 1)], makeNimstrLit("-"), -1), Temporary4)[chckIndx(0, 0, (Temporary4).length - 1)], NTI33554439);
+            var cityName_486541005 = nimCopy(null, arrSectName_486541003[chckIndx(1, 0, (arrSectName_486541003).length - 1)], NTI33554439);
+            var fmtRes_486541010 = [mnewString(0)];
+            formatValue_1493172386(fmtRes_486541010, 0, pc_486541004, []);
+            fmtRes_486541010[0].push.apply(fmtRes_486541010[0], makeNimstrLit(" "));;
+            formatValue_1493172386(fmtRes_486541010, 0, cityName_486541005, []);
+            var ci_486541011 = encodeUrl_1694498856(fmtRes_486541010[0], true);
+            var st_486541012 = encodeUrl_1694498856(str_486540990.name, true);
+            var fmtRes_486541017 = [mnewString(0)];
+            fmtRes_486541017[0].push.apply(fmtRes_486541017[0], makeNimstrLit("https://www.dasoertliche.de/?zvo_ok=0&ci="));;
+            formatValue_1493172386(fmtRes_486541017, 0, ci_486541011, []);
+            fmtRes_486541017[0].push.apply(fmtRes_486541017[0], makeNimstrLit("&st="));;
+            formatValue_1493172386(fmtRes_486541017, 0, st_486541012, []);
+            fmtRes_486541017[0].push.apply(fmtRes_486541017[0], makeNimstrLit("&radius=0&form_name=search_nat_ext"));;
+            var dasOertl_486541018 = nimCopy(null, fmtRes_486541017[0], NTI33554439);
+            if ((sSt_486541002 == 1)) {
+            var colontmp__486542632 = "primary";
+            var colontmp__486542633 = " - не закончена";
+            strSt_486540973 = nimCopy(strSt_486540973, {Field0: colontmp__486542632, Field1: colontmp__486542633}, NTI486540334);
             }
             else {
-            if ((sSt_486541008 == 2)) {
-            var colontmp__486542638 = "success";
-            var colontmp__486542639 = " - пройдена";
-            strSt_486540980 = nimCopy(strSt_486540980, {Field0: colontmp__486542638, Field1: colontmp__486542639}, NTI486540343);
+            if ((sSt_486541002 == 2)) {
+            var colontmp__486542634 = "success";
+            var colontmp__486542635 = " - пройдена";
+            strSt_486540973 = nimCopy(strSt_486540973, {Field0: colontmp__486542634, Field1: colontmp__486542635}, NTI486540334);
             }
             else {
-              var colontmp__486542640 = "danger";
-              var colontmp__486542641 = " - не начата";
-              strSt_486540980 = nimCopy(strSt_486540980, {Field0: colontmp__486542640, Field1: colontmp__486542641}, NTI486540343);
+              var colontmp__486542636 = "danger";
+              var colontmp__486542637 = " - не начата";
+              strSt_486540973 = nimCopy(strSt_486540973, {Field0: colontmp__486542636, Field1: colontmp__486542637}, NTI486540334);
             }
             }
-            var tmp_486540984 = tree_1140851377(43, []);
-            tmp_486540984.class = "py-2 row";
-            var tmp_486540985 = tree_1140851377(106, []);
-            setAttr_1140851240(tmp_486540985, "type", "button");
+            var tmp_486540977 = tree_1140851377(43, []);
+            tmp_486540977.class = "py-2 row";
+            var tmp_486540978 = tree_1140851377(106, []);
+            setAttr_1140851240(tmp_486540978, "type", "button");
             var fmtRes_486541037 = [mnewString(0)];
             fmtRes_486541037[0].push.apply(fmtRes_486541037[0], makeNimstrLit("text-nowrap overflow-auto ml-2 mr-2 btn btn-outline-"));;
-            add_33556420(fmtRes_486541037, 0, strSt_486540980.Field0);
+            add_33556420(fmtRes_486541037, 0, strSt_486540973.Field0);
             fmtRes_486541037[0].push.apply(fmtRes_486541037[0], makeNimstrLit(" btn-sm"));;
-            tmp_486540985.class = toJSStr(fmtRes_486541037[0]);
-            addEventHandler_1124074665(tmp_486540985, 0, setStrStatus_486540756(i_486540995), kxi_1124073536[0]);
-            add_1140851314(tmp_486540985, text_1140851429(str_486540996.name));
-            add_1140851314(tmp_486540984, tmp_486540985);
-            var tmp_486540986 = tree_1140851377(70, []);
-            tmp_486540986.class = "tel-book";
-            var tmp_486540987 = tree_1140851377(44, []);
-            var fmtRes_486541042 = [mnewString(0)];
-            fmtRes_486541042[0].push.apply(fmtRes_486541042[0], makeNimstrLit("https://www.dasoertliche.de/?zvo_ok=0&ci="));;
-            formatValue_1493172386(fmtRes_486541042, 0, ci_486541017, []);
-            fmtRes_486541042[0].push.apply(fmtRes_486541042[0], makeNimstrLit("&st="));;
-            formatValue_1493172386(fmtRes_486541042, 0, st_486541018, []);
-            fmtRes_486541042[0].push.apply(fmtRes_486541042[0], makeNimstrLit("&radius=0&form_name=search_nat_ext"));;
-            setAttr_1140851240(tmp_486540987, "href", toJSStr(fmtRes_486541042[0]));
-            setAttr_1140851240(tmp_486540987, "target", "_blank");
-            add_1140851314(tmp_486540987, text_1140851429(makeNimstrLit("das \xC3\x96rtl.")));
-            add_1140851314(tmp_486540986, tmp_486540987);
-            add_1140851314(tmp_486540984, tmp_486540986);
-            add_1140851314(tmp_486540983, tmp_486540984);
-            i_486542643 = addInt(i_486542643, 1);
-            if (!(((currStreets_486539627[0]).length == L_486542644))) {
+            tmp_486540978.class = toJSStr(fmtRes_486541037[0]);
+            addEventHandler_1124074665(tmp_486540978, 0, setStrStatus_486540749(i_486540989), kxi_1124073536[0]);
+            add_1140851314(tmp_486540978, text_1140851429(str_486540990.name));
+            add_1140851314(tmp_486540977, tmp_486540978);
+            var tmp_486540979 = tree_1140851377(70, []);
+            tmp_486540979.class = "tel-book";
+            add_1140851314(tmp_486540979, text_1140851429(makeNimstrLit("Das \xC3\x96rtl.:")));
+            var tmp_486540980 = tree_1140851377(44, []);
+            tmp_486540980.class = "pl-2";
+            setAttr_1140851240(tmp_486540980, "href", toJSStr(dasOertl_486541018));
+            setAttr_1140851240(tmp_486540980, "target", "_blank");
+            add_1140851314(tmp_486540980, text_1140851429(makeNimstrLit("Alle")));
+            add_1140851314(tmp_486540979, tmp_486540980);
+            var tmp_486540981 = tree_1140851377(44, []);
+            tmp_486540981.class = "pl-2";
+            setAttr_1140851240(tmp_486540981, "href", toJSStr(nsuJoinSep([nimCopy(null, dasOertl_486541018, NTI33554439), makeNimstrLit("atfilter=1")], makeNimstrLit("&"))));
+            setAttr_1140851240(tmp_486540981, "target", "_blank");
+            add_1140851314(tmp_486540981, text_1140851429(makeNimstrLit("Private")));
+            add_1140851314(tmp_486540979, tmp_486540981);
+            add_1140851314(tmp_486540977, tmp_486540979);
+            add_1140851314(tmp_486540976, tmp_486540977);
+            i_486542639 = addInt(i_486542639, 1);
+            if (!(((currStreets_486539620[0]).length == L_486542640))) {
             failedAssertImpl_218103864(makeNimstrLit("iterators.nim(173, 11) `len(a) == L` the length of the seq changed while iterating over it"));
             }
             
           }
       } while (false);
     } while (false);
+    add_1140851314(tmp_486540975, tmp_486540976);
+    var tmp_486540982 = tree_1140851377(43, []);
+    var tmp_486540983 = tree_1140851377(106, []);
+    setAttr_1140851240(tmp_486540983, "type", "button");
+    tmp_486540983.class = "btn btn-success btn";
+    addEventHandler_1124074665(tmp_486540983, 0, saveStreets_486540834(), kxi_1124073536[0]);
+    add_1140851314(tmp_486540983, text_1140851429(makeNimstrLit("ok")));
     add_1140851314(tmp_486540982, tmp_486540983);
-    var tmp_486540988 = tree_1140851377(43, []);
-    var tmp_486540989 = tree_1140851377(106, []);
-    setAttr_1140851240(tmp_486540989, "type", "button");
-    tmp_486540989.class = "btn btn-success btn";
-    addEventHandler_1124074665(tmp_486540989, 0, saveStreets_486540841(), kxi_1124073536[0]);
-    add_1140851314(tmp_486540989, text_1140851429(makeNimstrLit("ok")));
-    add_1140851314(tmp_486540988, tmp_486540989);
-    add_1140851314(tmp_486540982, tmp_486540988);
-    add_1140851314(tmp_486540981, tmp_486540982);
-    result_486540977 = tmp_486540981;
+    add_1140851314(tmp_486540975, tmp_486540982);
+    add_1140851314(tmp_486540974, tmp_486540975);
+    result_486540970 = tmp_486540974;
 
-  return result_486540977;
+  return result_486540970;
 
 }
 
@@ -15012,19 +8778,19 @@ function initFromJson_1761608308(dst_1761608310, dst_1761608310_Idx, jsonNode_17
     var orignalJsonPathLen_1761608331 = (jsonPath_1761608312[jsonPath_1761608312_Idx]).length;
     Label2: do {
       var i_1761608336 = 0;
-      var colontmp__486542683 = 0;
-      colontmp__486542683 = len_1325403066(jsonNode_1761608311);
-      var i_486542684 = 0;
+      var colontmp__486542679 = 0;
+      colontmp__486542679 = len_1325403066(jsonNode_1761608311);
+      var i_486542680 = 0;
       Label3: do {
           Label4: while (true) {
-          if (!(i_486542684 < colontmp__486542683)) break Label4;
-            i_1761608336 = i_486542684;
+          if (!(i_486542680 < colontmp__486542679)) break Label4;
+            i_1761608336 = i_486542680;
             addChar(jsonPath_1761608312[jsonPath_1761608312_Idx], 91);;
             addInt_251658457(jsonPath_1761608312, jsonPath_1761608312_Idx, i_1761608336);
             addChar(jsonPath_1761608312[jsonPath_1761608312_Idx], 93);;
             initFromJson_1761607928(dst_1761608310[dst_1761608310_Idx][chckIndx(i_1761608336, 0, (dst_1761608310[dst_1761608310_Idx]).length - 1)], HEX5BHEX5D_1325403199(jsonNode_1761608311, i_1761608336), jsonPath_1761608312, jsonPath_1761608312_Idx);
             (jsonPath_1761608312[jsonPath_1761608312_Idx].length = chckRange(orignalJsonPathLen_1761608331, 0, 2147483647));
-            i_486542684 = addInt(i_486542684, 1);
+            i_486542680 = addInt(i_486542680, 1);
           }
       } while (false);
     } while (false);
@@ -15111,7 +8877,7 @@ function HEX3Aanonymous_1761608385(error_1761608386) {
 
 }
 
-function logout_486541074() {
+function logout_486541069() {
     currUser_620757022[0].token = nimCopy(null, [], NTI33554439);
     document.cookie = "token=none;path=/";
     document.location.replace(("/"));
@@ -15173,20 +8939,20 @@ function HEX3Aanonymous_1761607787(value_1761607788) {
             Label1: do {
               var i_1761608085 = 0;
               var u_1761608086 = ({id: 0, corpus_id: 0, firstname: [], lastname: [], email: [], role_id: 0, role: [], password: [], active: 0, token: [], apiKey: []});
-              var i_486542693 = 0;
-              var L_486542694 = (allUsers_620757027[0]).length;
+              var i_486542689 = 0;
+              var L_486542690 = (allUsers_620757027[0]).length;
               Label2: do {
                   Label3: while (true) {
-                  if (!(i_486542693 < L_486542694)) break Label3;
-                    i_1761608085 = i_486542693;
-                    u_1761608086 = nimCopy(u_1761608086, allUsers_620757027[0][chckIndx(i_486542693, 0, (allUsers_620757027[0]).length - 1)], NTI1526726659);
+                  if (!(i_486542689 < L_486542690)) break Label3;
+                    i_1761608085 = i_486542689;
+                    u_1761608086 = nimCopy(u_1761608086, allUsers_620757027[0][chckIndx(i_486542689, 0, (allUsers_620757027[0]).length - 1)], NTI1526726659);
                     if ((u_1761608086.id == respU_1761608052.id)) {
                     allUsers_620757027[0][chckIndx(i_1761608085, 0, (allUsers_620757027[0]).length - 1)] = nimCopy(allUsers_620757027[0][chckIndx(i_1761608085, 0, (allUsers_620757027[0]).length - 1)], respU_1761608052, NTI1526726659);
                     break Label1;
                     }
                     
-                    i_486542693 = addInt(i_486542693, 1);
-                    if (!(((allUsers_620757027[0]).length == L_486542694))) {
+                    i_486542689 = addInt(i_486542689, 1);
+                    if (!(((allUsers_620757027[0]).length == L_486542690))) {
                     failedAssertImpl_218103864(makeNimstrLit("iterators.nim(173, 11) `len(a) == L` the length of the seq changed while iterating over it"));
                     }
                     
@@ -15253,12 +9019,12 @@ function showUsers_1761608145() {
     tmp_1761608173.id = "accordionUsers";
     Label1: do {
       var u_1761608215 = null;
-      var i_486542688 = 0;
-      var L_486542689 = (allUsers_620757027[0]).length;
+      var i_486542684 = 0;
+      var L_486542685 = (allUsers_620757027[0]).length;
       Label2: do {
           Label3: while (true) {
-          if (!(i_486542688 < L_486542689)) break Label3;
-            u_1761608215 = allUsers_620757027[0][chckIndx(i_486542688, 0, (allUsers_620757027[0]).length - 1)];
+          if (!(i_486542684 < L_486542685)) break Label3;
+            u_1761608215 = allUsers_620757027[0][chckIndx(i_486542684, 0, (allUsers_620757027[0]).length - 1)];
             var headingId_1761608216 = toJSStr((makeNimstrLit("heading") || []).concat(HEX24_335544323(u_1761608215.id) || []));
             var collapseId_1761608217 = toJSStr((makeNimstrLit("collapse") || []).concat(HEX24_335544323(u_1761608215.id) || []));
             var uName_1761608218 = nsuJoinSep([nimCopy(null, u_1761608215.firstname, NTI33554439), nimCopy(null, u_1761608215.lastname, NTI33554439)], makeNimstrLit(" "));
@@ -15363,8 +9129,8 @@ function showUsers_1761608145() {
             add_1140851314(tmp_1761608180, tmp_1761608181);
             add_1140851314(tmp_1761608179, tmp_1761608180);
             add_1140851314(tmp_1761608173, tmp_1761608179);
-            i_486542688 = addInt(i_486542688, 1);
-            if (!(((allUsers_620757027[0]).length == L_486542689))) {
+            i_486542684 = addInt(i_486542684, 1);
+            if (!(((allUsers_620757027[0]).length == L_486542685))) {
             failedAssertImpl_218103864(makeNimstrLit("iterators.nim(240, 11) `len(a) == L` the length of the seq changed while iterating over it"));
             }
             
@@ -15572,9 +9338,9 @@ function HEX5E_1543506221(x_1543506223, y_1543506224) {
       result_1543506225[0] = HEX2A_1543503886(HEX2A_1543503886(x_1543506223, x_1543506223), x_1543506223);
       break;
     default: 
-      var colontmp__486542717 = {Field0: x_1543506223, Field1: nimCopy(null, y_1543506224, NTI33555081)};
-      var x_1543506226 = [colontmp__486542717["Field0"]];
-      var y_1543506227 = colontmp__486542717["Field1"];
+      var colontmp__486542713 = {Field0: x_1543506223, Field1: nimCopy(null, y_1543506224, NTI33555081)};
+      var x_1543506226 = [colontmp__486542713["Field0"]];
+      var y_1543506227 = colontmp__486542713["Field1"];
       result_1543506225[0] = 1;
       Label1: do {
           Label2: while (true) {
@@ -15658,22 +9424,22 @@ function parsePattern_1543505781(input_1543505782, pattern_1543505783, i_1543505
       result_1543505787 = false;
       Label1: do {
         var v_1543505917 = [];
-        var i_486542702 = 0;
+        var i_486542698 = 0;
         Label2: do {
             Label3: while (true) {
             if (!true) break Label3;
-              v_1543505917 = loc_1543505786.ddd[chckIndx(i_486542702, 0, (loc_1543505786.ddd).length - 1)];
+              v_1543505917 = loc_1543505786.ddd[chckIndx(i_486542698, 0, (loc_1543505786.ddd).length - 1)];
               if ((nsuCmpIgnoreCase(substr_33557907(input_1543505782, i_1543505784[i_1543505784_Idx], HEX2D_1543503902(HEX2B_1543503894(i_1543505784[i_1543505784_Idx], (v_1543505917).length), 1)), v_1543505917) == 0)) {
               result_1543505787 = true;
               inc_1543503906(i_1543505784, i_1543505784_Idx, (v_1543505917).length);
               break Label1;
               }
               
-              if ((6 <= i_486542702)) {
+              if ((6 <= i_486542698)) {
               break Label2;
               }
               
-              i_486542702 = addInt(i_486542702, 1);
+              i_486542698 = addInt(i_486542698, 1);
             }
         } while (false);
       } while (false);
@@ -15682,22 +9448,22 @@ function parsePattern_1543505781(input_1543505782, pattern_1543505783, i_1543505
       result_1543505787 = false;
       Label4: do {
         var v_1543505922 = [];
-        var i_486542705 = 0;
+        var i_486542701 = 0;
         Label5: do {
             Label6: while (true) {
             if (!true) break Label6;
-              v_1543505922 = loc_1543505786.dddd[chckIndx(i_486542705, 0, (loc_1543505786.dddd).length - 1)];
+              v_1543505922 = loc_1543505786.dddd[chckIndx(i_486542701, 0, (loc_1543505786.dddd).length - 1)];
               if ((nsuCmpIgnoreCase(substr_33557907(input_1543505782, i_1543505784[i_1543505784_Idx], HEX2D_1543503902(HEX2B_1543503894(i_1543505784[i_1543505784_Idx], (v_1543505922).length), 1)), v_1543505922) == 0)) {
               result_1543505787 = true;
               inc_1543503906(i_1543505784, i_1543505784_Idx, (v_1543505922).length);
               break Label4;
               }
               
-              if ((6 <= i_486542705)) {
+              if ((6 <= i_486542701)) {
               break Label5;
               }
               
-              i_486542705 = addInt(i_486542705, 1);
+              i_486542701 = addInt(i_486542701, 1);
             }
         } while (false);
       } while (false);
@@ -15783,12 +9549,12 @@ function parsePattern_1543505781(input_1543505782, pattern_1543505783, i_1543505
       Label7: do {
         var n_1543506173 = 0;
         var v_1543506174 = [];
-        var i_486542709 = 1;
+        var i_486542705 = 1;
         Label8: do {
             Label9: while (true) {
             if (!true) break Label9;
-              n_1543506173 = i_486542709;
-              v_1543506174 = loc_1543505786.MMM[chckIndx(i_486542709, 1, (loc_1543505786.MMM).length + (1) - 1) - (1)];
+              n_1543506173 = i_486542705;
+              v_1543506174 = loc_1543505786.MMM[chckIndx(i_486542705, 1, (loc_1543505786.MMM).length + (1) - 1) - (1)];
               if ((nsuCmpIgnoreCase(substr_33557907(input_1543505782, i_1543505784[i_1543505784_Idx], HEX2D_1543503902(HEX2B_1543503894(i_1543505784[i_1543505784_Idx], (v_1543506174).length), 1)), v_1543506174) == 0)) {
               result_1543505787 = true;
               inc_1543503906(i_1543505784, i_1543505784_Idx, (v_1543506174).length);
@@ -15796,11 +9562,11 @@ function parsePattern_1543505781(input_1543505782, pattern_1543505783, i_1543505
               break Label7;
               }
               
-              if ((12 <= i_486542709)) {
+              if ((12 <= i_486542705)) {
               break Label8;
               }
               
-              i_486542709 = addInt(i_486542709, 1);
+              i_486542705 = addInt(i_486542705, 1);
             }
         } while (false);
       } while (false);
@@ -15810,12 +9576,12 @@ function parsePattern_1543505781(input_1543505782, pattern_1543505783, i_1543505
       Label10: do {
         var n_1543506184 = 0;
         var v_1543506185 = [];
-        var i_486542712 = 1;
+        var i_486542708 = 1;
         Label11: do {
             Label12: while (true) {
             if (!true) break Label12;
-              n_1543506184 = i_486542712;
-              v_1543506185 = loc_1543505786.MMMM[chckIndx(i_486542712, 1, (loc_1543505786.MMMM).length + (1) - 1) - (1)];
+              n_1543506184 = i_486542708;
+              v_1543506185 = loc_1543505786.MMMM[chckIndx(i_486542708, 1, (loc_1543505786.MMMM).length + (1) - 1) - (1)];
               if ((nsuCmpIgnoreCase(substr_33557907(input_1543505782, i_1543505784[i_1543505784_Idx], HEX2D_1543503902(HEX2B_1543503894(i_1543505784[i_1543505784_Idx], (v_1543506185).length), 1)), v_1543506185) == 0)) {
               result_1543505787 = true;
               inc_1543503906(i_1543505784, i_1543505784_Idx, (v_1543506185).length);
@@ -15823,11 +9589,11 @@ function parsePattern_1543505781(input_1543505782, pattern_1543505783, i_1543505
               break Label10;
               }
               
-              if ((12 <= i_486542712)) {
+              if ((12 <= i_486542708)) {
               break Label11;
               }
               
-              i_486542712 = addInt(i_486542712, 1);
+              i_486542708 = addInt(i_486542708, 1);
             }
         } while (false);
       } while (false);
@@ -16343,18 +10109,18 @@ function parse_1543506768(input_1543506769, f_1543506770, zone_1543506771, loc_1
             patIdx_1543506775 = addInt(patIdx_1543506775, 1);
             Label3: do {
               var __1543506794 = 0;
-              var res_486542698 = 1;
+              var res_486542694 = 1;
               Label4: do {
                   Label5: while (true) {
-                  if (!(res_486542698 <= ((len_1543506785) | 0))) break Label5;
-                    __1543506794 = res_486542698;
+                  if (!(res_486542694 <= ((len_1543506785) | 0))) break Label5;
+                    __1543506794 = res_486542694;
                     if (!((input_1543506769[chckIndx(inpIdx_1543506774[0], 0, (input_1543506769).length - 1)] == f_1543506770.patterns[chckIndx(patIdx_1543506775, 0, (f_1543506770.patterns).length - 1)]))) {
                     raiseParseException_1543505511(f_1543506770, input_1543506769, (makeNimstrLit("Unexpected character: ") || []).concat([input_1543506769[chckIndx(inpIdx_1543506774[0], 0, (input_1543506769).length - 1)]]));
                     }
                     
                     inpIdx_1543506774[0] = addInt(inpIdx_1543506774[0], 1);
                     patIdx_1543506775 = addInt(patIdx_1543506775, 1);
-                    res_486542698 = addInt(res_486542698, 1);
+                    res_486542694 = addInt(res_486542694, 1);
                   }
               } while (false);
             } while (false);
@@ -16846,571 +10612,571 @@ function finishDate_1526726903(s_1526726904) {
 
 }
 
-function clckOpenMap_486540658(p_486540659) {
-    p_486540659 = nimCopy(null, p_486540659, NTI1526726664);
+function clckOpenMap_486540651(p_486540652) {
+    p_486540652 = nimCopy(null, p_486540652, NTI1526726664);
     
-function HEX3Aanonymous_486540662() {
-        currProcess_486539625[0] = nimCopy(currProcess_486539625[0], p_486540659, NTI1526726664);
-        var elMap_486540666 = $(("#map-container"))[0];
-        elMap_486540666.classList.add(("show-map"));
+function HEX3Aanonymous_486540655() {
+        currProcess_486539618[0] = nimCopy(currProcess_486539618[0], p_486540652, NTI1526726664);
+        var elMap_486540659 = $(("#map-container"))[0];
+        elMap_486540659.classList.add(("show-map"));
         isShowNavMap_620757026[0] = true;
-        var mC_486540685 = $((".main-container"))[0];
-        mC_486540685.classList.add(("map-nav"));
-        spinnerOn_486539630[0] = true;
-        scrollToSectId_486539633[0] = p_486540659.sector_id;
-        sectStreetGrp_486539671[0].removeAll();
+        var mC_486540678 = $((".main-container"))[0];
+        mC_486540678.classList.add(("map-nav"));
+        spinnerOn_486539623[0] = true;
+        scrollToSectId_486539626[0] = p_486540652.sector_id;
+        sectStreetGrp_486539664[0].removeAll();
 
       
     }
 
-  var result_486540661 = null;
+  var result_486540654 = null;
 
-    result_486540661 = HEX3Aanonymous_486540662;
+    result_486540654 = HEX3Aanonymous_486540655;
 
-  return result_486540661;
+  return result_486540654;
 
 }
 
-function clckProccSect_486541045(p_486541046) {
-    p_486541046 = nimCopy(null, p_486541046, NTI1526726664);
+function clckProccSect_486541040(p_486541041) {
+    p_486541041 = nimCopy(null, p_486541041, NTI1526726664);
     
-function HEX3Aanonymous_486541049() {
-        currProcess_486539625[0] = nimCopy(currProcess_486539625[0], p_486541046, NTI1526726664);
+function HEX3Aanonymous_486541044() {
+        currProcess_486539618[0] = nimCopy(currProcess_486539618[0], p_486541041, NTI1526726664);
 
       
     }
 
-  var result_486541048 = null;
+  var result_486541043 = null;
 
-    result_486541048 = HEX3Aanonymous_486541049;
+    result_486541043 = HEX3Aanonymous_486541044;
 
-  return result_486541048;
+  return result_486541043;
 
 }
 
-function showAllProc_486541104() {
+function showAllProc_486541099() {
               var Temporary4;
               var Temporary5;
                 var Temporary6;
 
-  var result_486541105 = null;
+  var result_486541100 = null;
 
     console.log(("role:"), (toJSStr(currUser_620757022[0].role)));
-    var clsCol_486541124 = "card-text";
-    var superadmin_486541125 = "superadmin";
-    var uRole_486541126 = toJSStr(currUser_620757022[0].role);
+    var clsCol_486541119 = "card-text";
+    var superadmin_486541120 = "superadmin";
+    var uRole_486541121 = toJSStr(currUser_620757022[0].role);
+    var tmp_486541122 = tree_1140851377(43, []);
+    add_1140851314(tmp_486541122, showErrMsg_486540741());
+    var tmp_486541123 = tree_1140851377(18, []);
+    tmp_486541123.class = "navbar fixed-top navbar-expand navbar-light bg-light shadow p-1 mb-0 bg-white rounded overflow-auto";
+    var tmp_486541124 = tree_1140851377(106, []);
+    tmp_486541124.class = "navbar-toggler";
+    setAttr_1140851240(tmp_486541124, "type", "button");
+    setAttr_1140851240(tmp_486541124, "data-toggle", "collapse");
+    setAttr_1140851240(tmp_486541124, "data-target", "#navbarTogglerSectors");
+    setAttr_1140851240(tmp_486541124, "aria-controls", "navbarTogglerSectors");
+    setAttr_1140851240(tmp_486541124, "aria-expanded", "false");
+    setAttr_1140851240(tmp_486541124, "aria-label", "Toggle navigation");
+    var tmp_486541125 = tree_1140851377(70, []);
+    tmp_486541125.class = "navbar-toggler-icon";
+    add_1140851314(tmp_486541124, tmp_486541125);
+    add_1140851314(tmp_486541123, tmp_486541124);
+    var tmp_486541126 = tree_1140851377(43, []);
+    tmp_486541126.class = "collapse navbar-collapse";
+    tmp_486541126.id = "navbarTogglerSectors";
     var tmp_486541127 = tree_1140851377(43, []);
-    add_1140851314(tmp_486541127, showErrMsg_486540748());
-    var tmp_486541128 = tree_1140851377(18, []);
-    tmp_486541128.class = "navbar fixed-top navbar-expand navbar-light bg-light shadow p-1 mb-0 bg-white rounded overflow-auto";
-    var tmp_486541129 = tree_1140851377(106, []);
-    tmp_486541129.class = "navbar-toggler";
-    setAttr_1140851240(tmp_486541129, "type", "button");
-    setAttr_1140851240(tmp_486541129, "data-toggle", "collapse");
-    setAttr_1140851240(tmp_486541129, "data-target", "#navbarTogglerSectors");
-    setAttr_1140851240(tmp_486541129, "aria-controls", "navbarTogglerSectors");
-    setAttr_1140851240(tmp_486541129, "aria-expanded", "false");
-    setAttr_1140851240(tmp_486541129, "aria-label", "Toggle navigation");
-    var tmp_486541130 = tree_1140851377(70, []);
-    tmp_486541130.class = "navbar-toggler-icon";
-    add_1140851314(tmp_486541129, tmp_486541130);
-    add_1140851314(tmp_486541128, tmp_486541129);
-    var tmp_486541131 = tree_1140851377(43, []);
-    tmp_486541131.class = "collapse navbar-collapse";
-    tmp_486541131.id = "navbarTogglerSectors";
-    var tmp_486541132 = tree_1140851377(43, []);
-    tmp_486541132.class = "custom-control custom-switch py-3";
-    var tmp_486541133 = tree_1140851377(105, []);
-    setAttr_1140851240(tmp_486541133, "type", "checkbox");
-    tmp_486541133.class = "custom-control-input";
-    tmp_486541133.id = "ownSectors";
+    tmp_486541127.class = "custom-control custom-switch py-3";
+    var tmp_486541128 = tree_1140851377(105, []);
+    setAttr_1140851240(tmp_486541128, "type", "checkbox");
+    tmp_486541128.class = "custom-control-input";
+    tmp_486541128.id = "ownSectors";
+    add_1140851314(tmp_486541127, tmp_486541128);
+    var tmp_486541129 = tree_1140851377(104, []);
+    tmp_486541129.class = "custom-control-label";
+    setAttr_1140851240(tmp_486541129, "for", "ownSectors");
+    add_1140851314(tmp_486541129, text_1140851429(makeNimstrLit("\xD0\x9C\xD0\xBE\xD0\xB8")));
+    add_1140851314(tmp_486541127, tmp_486541129);
+    add_1140851314(tmp_486541126, tmp_486541127);
+    var tmp_486541130 = tree_1140851377(105, []);
+    setAttr_1140851240(tmp_486541130, "type", "text");
+    tmp_486541130.class = "form-control mw-50";
+    tmp_486541130.id = "searchSector";
+    setAttr_1140851240(tmp_486541130, "aria-describedby", "searchHelp");
+    setAttr_1140851240(tmp_486541130, "placeholder", "искать...");
+    valueHEX3D_1140851018(tmp_486541130, (currUiSt_486539650[0].inpSearch));
+    setAttr_1140851240(tmp_486541130, "value", (currUiSt_486539650[0].inpSearch));
+    add_1140851314(tmp_486541126, tmp_486541130);
+    if ((uRole_486541121 == superadmin_486541120)) {
+    var tmp_486541131 = tree_1140851377(36, []);
+    tmp_486541131.class = "navbar-nav mr-auto";
+    var tmp_486541132 = tree_1140851377(37, []);
+    tmp_486541132.class = "nav-item";
+    var tmp_486541133 = tree_1140851377(44, []);
+    tmp_486541133.class = "nav-link";
+    addEventHandler_1124074665(tmp_486541133, 0, editUsers_1761607692(), kxi_1124073536[0]);
+    add_1140851314(tmp_486541133, text_1140851429(makeNimstrLit("\xD0\x92\xD0\xBE\xD0\xB7\xD0\xB2\xD0\xB5\xD1\x89\xD0\xB0\xD1\x82\xD0\xB5\xD0\xBB\xD0\xB8")));
     add_1140851314(tmp_486541132, tmp_486541133);
-    var tmp_486541134 = tree_1140851377(104, []);
-    tmp_486541134.class = "custom-control-label";
-    setAttr_1140851240(tmp_486541134, "for", "ownSectors");
-    add_1140851314(tmp_486541134, text_1140851429(makeNimstrLit("\xD0\x9C\xD0\xBE\xD0\xB8")));
-    add_1140851314(tmp_486541132, tmp_486541134);
     add_1140851314(tmp_486541131, tmp_486541132);
-    var tmp_486541135 = tree_1140851377(105, []);
-    setAttr_1140851240(tmp_486541135, "type", "text");
-    tmp_486541135.class = "form-control mw-50";
-    tmp_486541135.id = "searchSector";
-    setAttr_1140851240(tmp_486541135, "aria-describedby", "searchHelp");
-    setAttr_1140851240(tmp_486541135, "placeholder", "искать...");
-    valueHEX3D_1140851018(tmp_486541135, (currUiSt_486539657[0].inpSearch));
-    setAttr_1140851240(tmp_486541135, "value", (currUiSt_486539657[0].inpSearch));
-    add_1140851314(tmp_486541131, tmp_486541135);
-    if ((uRole_486541126 == superadmin_486541125)) {
-    var tmp_486541136 = tree_1140851377(36, []);
-    tmp_486541136.class = "navbar-nav mr-auto";
-    var tmp_486541137 = tree_1140851377(37, []);
-    tmp_486541137.class = "nav-item";
-    var tmp_486541138 = tree_1140851377(44, []);
-    tmp_486541138.class = "nav-link";
-    addEventHandler_1124074665(tmp_486541138, 0, editUsers_1761607692(), kxi_1124073536[0]);
-    add_1140851314(tmp_486541138, text_1140851429(makeNimstrLit("\xD0\x92\xD0\xBE\xD0\xB7\xD0\xB2\xD0\xB5\xD1\x89\xD0\xB0\xD1\x82\xD0\xB5\xD0\xBB\xD0\xB8")));
-    add_1140851314(tmp_486541137, tmp_486541138);
-    add_1140851314(tmp_486541136, tmp_486541137);
-    add_1140851314(tmp_486541131, tmp_486541136);
+    add_1140851314(tmp_486541126, tmp_486541131);
     }
     
-    var tmp_486541139 = tree_1140851377(36, []);
-    tmp_486541139.class = "navbar-nav mr-auto";
-    var tmp_486541140 = tree_1140851377(37, []);
-    tmp_486541140.class = "nav-item";
-    var tmp_486541141 = tree_1140851377(44, []);
-    tmp_486541141.class = "nav-link";
-    addEventHandler_1124074665(tmp_486541141, 0, logout_486541074, kxi_1124073536[0]);
-    add_1140851314(tmp_486541141, text_1140851429(makeNimstrLit("\xD0\x92\xD1\x8B\xD0\xB9\xD1\x82\xD0\xB8")));
-    add_1140851314(tmp_486541140, tmp_486541141);
-    add_1140851314(tmp_486541139, tmp_486541140);
-    add_1140851314(tmp_486541131, tmp_486541139);
-    add_1140851314(tmp_486541128, tmp_486541131);
-    add_1140851314(tmp_486541128, noInternet_486540744());
-    add_1140851314(tmp_486541127, tmp_486541128);
+    var tmp_486541134 = tree_1140851377(36, []);
+    tmp_486541134.class = "navbar-nav mr-auto";
+    var tmp_486541135 = tree_1140851377(37, []);
+    tmp_486541135.class = "nav-item";
+    var tmp_486541136 = tree_1140851377(44, []);
+    tmp_486541136.class = "nav-link";
+    addEventHandler_1124074665(tmp_486541136, 0, logout_486541069, kxi_1124073536[0]);
+    add_1140851314(tmp_486541136, text_1140851429(makeNimstrLit("\xD0\x92\xD1\x8B\xD0\xB9\xD1\x82\xD0\xB8")));
+    add_1140851314(tmp_486541135, tmp_486541136);
+    add_1140851314(tmp_486541134, tmp_486541135);
+    add_1140851314(tmp_486541126, tmp_486541134);
+    add_1140851314(tmp_486541123, tmp_486541126);
+    add_1140851314(tmp_486541123, noInternet_486540737());
+    add_1140851314(tmp_486541122, tmp_486541123);
     if (isShowUsers_620757025[0]) {
-    add_1140851314(tmp_486541127, showUsers_1761608145());
+    add_1140851314(tmp_486541122, showUsers_1761608145());
     }
     else {
-      var tmp_486541142 = tree_1140851377(43, []);
-      tmp_486541142.class = "card-deck";
+      var tmp_486541137 = tree_1140851377(43, []);
+      tmp_486541137.class = "card-deck";
       Label1: do {
-        var p_486541196 = null;
-        var i_486542679 = 0;
-        var L_486542680 = (allSectProc_486539626[0]).length;
+        var p_486541191 = null;
+        var i_486542675 = 0;
+        var L_486542676 = (allSectProc_486539619[0]).length;
         Label2: do {
             Label3: while (true) {
-            if (!(i_486542679 < L_486542680)) break Label3;
-              p_486541196 = allSectProc_486539626[0][chckIndx(i_486542679, 0, (allSectProc_486539626[0]).length - 1)];
-              if (!(eqStrings(p_486541196.date_start, []))) {
-              Temporary4 = (makeNimstrLit("\xD0\x92\xD0\xB7\xD1\x8F\xD1\x82: ") || []).concat(format_1543506676(startDate_1526726900(p_486541196), initTimeFormat_1543505674(makeNimstrLit("dd\'.\'MM\'.\'yyyy")), DefaultLocale_1543505479) || []);
+            if (!(i_486542675 < L_486542676)) break Label3;
+              p_486541191 = allSectProc_486539619[0][chckIndx(i_486542675, 0, (allSectProc_486539619[0]).length - 1)];
+              if (!(eqStrings(p_486541191.date_start, []))) {
+              Temporary4 = (makeNimstrLit("\xD0\x92\xD0\xB7\xD1\x8F\xD1\x82: ") || []).concat(format_1543506676(startDate_1526726900(p_486541191), initTimeFormat_1543505674(makeNimstrLit("dd\'.\'MM\'.\'yyyy")), DefaultLocale_1543505479) || []);
               }
               else {
               Temporary4 = [];
               }
               
-              var stDate_486541197 = nimCopy(null, Temporary4, NTI33554439);
-              if (!(eqStrings(p_486541196.date_finish, []))) {
-              Temporary5 = (makeNimstrLit("\xD0\xA1\xD0\xB4\xD0\xB0\xD0\xBD: ") || []).concat(format_1543506676(finishDate_1526726903(p_486541196), initTimeFormat_1543505674(makeNimstrLit("dd\'.\'MM\'.\'yyyy")), DefaultLocale_1543505479) || []);
+              var stDate_486541192 = nimCopy(null, Temporary4, NTI33554439);
+              if (!(eqStrings(p_486541191.date_finish, []))) {
+              Temporary5 = (makeNimstrLit("\xD0\xA1\xD0\xB4\xD0\xB0\xD0\xBD: ") || []).concat(format_1543506676(finishDate_1526726903(p_486541191), initTimeFormat_1543505674(makeNimstrLit("dd\'.\'MM\'.\'yyyy")), DefaultLocale_1543505479) || []);
               }
               else {
-              Temporary5 = nsuJoinSep([nimCopy(null, p_486541196.firstname, NTI33554439), nimCopy(null, p_486541196.lastname, NTI33554439)], makeNimstrLit(" "));
+              Temporary5 = nsuJoinSep([nimCopy(null, p_486541191.firstname, NTI33554439), nimCopy(null, p_486541191.lastname, NTI33554439)], makeNimstrLit(" "));
               }
               
-              var finDate_486541198 = nimCopy(null, Temporary5, NTI33554439);
-              var sectId_486541199 = toJSStr(HEX24_335544323(p_486541196.sector_id));
-              var tmp_486541143 = tree_1140851377(43, []);
-              tmp_486541143.id = sectId_486541199;
-              tmp_486541143.class = "card mb-3 c-sect shadow p-3 bg-white rounded";
-              var tmp_486541144 = tree_1140851377(43, []);
-              tmp_486541144.class = "card-header";
-              var tmp_486541145 = tree_1140851377(36, []);
-              tmp_486541145.class = "nav nav-pills card-header-pills";
-              var tmp_486541146 = tree_1140851377(37, []);
-              tmp_486541146.class = "nav-item";
-              var tmp_486541147 = tree_1140851377(44, []);
-              tmp_486541147.class = "nav-link";
-              setAttr_1140851240(tmp_486541147, "href", "#mapModal");
-              setAttr_1140851240(tmp_486541147, "data-toggle", "modal");
-              setAttr_1140851240(tmp_486541147, "data-target", "#mapModal");
-              addEventHandler_1124074665(tmp_486541147, 0, clckOpenMap_486540658(p_486541196), kxi_1124073536[0]);
-              add_1140851314(tmp_486541147, text_1140851429(makeNimstrLit("\xD0\x9A\xD0\xB0\xD1\x80\xD1\x82\xD0\xB0")));
-              add_1140851314(tmp_486541146, tmp_486541147);
-              add_1140851314(tmp_486541145, tmp_486541146);
-              if (allowTake_486541101(p_486541196)) {
-              var tmp_486541148 = tree_1140851377(37, []);
-              tmp_486541148.class = "nav-item";
-              var tmp_486541149 = tree_1140851377(44, []);
-              tmp_486541149.class = "nav-link";
-              setAttr_1140851240(tmp_486541149, "href", "#takeModal");
-              setAttr_1140851240(tmp_486541149, "data-toggle", "modal");
-              setAttr_1140851240(tmp_486541149, "data-target", "#takeModal");
-              addEventHandler_1124074665(tmp_486541149, 0, clckProccSect_486541045(p_486541196), kxi_1124073536[0]);
-              add_1140851314(tmp_486541149, text_1140851429(makeNimstrLit("\xD0\x92\xD0\xB7\xD1\x8F\xD1\x82\xD1\x8C")));
-              add_1140851314(tmp_486541148, tmp_486541149);
-              add_1140851314(tmp_486541145, tmp_486541148);
+              var finDate_486541193 = nimCopy(null, Temporary5, NTI33554439);
+              var sectId_486541194 = toJSStr(HEX24_335544323(p_486541191.sector_id));
+              var tmp_486541138 = tree_1140851377(43, []);
+              tmp_486541138.id = sectId_486541194;
+              tmp_486541138.class = "card mb-3 c-sect shadow p-3 bg-white rounded";
+              var tmp_486541139 = tree_1140851377(43, []);
+              tmp_486541139.class = "card-header";
+              var tmp_486541140 = tree_1140851377(36, []);
+              tmp_486541140.class = "nav nav-pills card-header-pills";
+              var tmp_486541141 = tree_1140851377(37, []);
+              tmp_486541141.class = "nav-item";
+              var tmp_486541142 = tree_1140851377(44, []);
+              tmp_486541142.class = "nav-link";
+              setAttr_1140851240(tmp_486541142, "href", "#mapModal");
+              setAttr_1140851240(tmp_486541142, "data-toggle", "modal");
+              setAttr_1140851240(tmp_486541142, "data-target", "#mapModal");
+              addEventHandler_1124074665(tmp_486541142, 0, clckOpenMap_486540651(p_486541191), kxi_1124073536[0]);
+              add_1140851314(tmp_486541142, text_1140851429(makeNimstrLit("\xD0\x9A\xD0\xB0\xD1\x80\xD1\x82\xD0\xB0")));
+              add_1140851314(tmp_486541141, tmp_486541142);
+              add_1140851314(tmp_486541140, tmp_486541141);
+              if (allowTake_486541096(p_486541191)) {
+              var tmp_486541143 = tree_1140851377(37, []);
+              tmp_486541143.class = "nav-item";
+              var tmp_486541144 = tree_1140851377(44, []);
+              tmp_486541144.class = "nav-link";
+              setAttr_1140851240(tmp_486541144, "href", "#takeModal");
+              setAttr_1140851240(tmp_486541144, "data-toggle", "modal");
+              setAttr_1140851240(tmp_486541144, "data-target", "#takeModal");
+              addEventHandler_1124074665(tmp_486541144, 0, clckProccSect_486541040(p_486541191), kxi_1124073536[0]);
+              add_1140851314(tmp_486541144, text_1140851429(makeNimstrLit("\xD0\x92\xD0\xB7\xD1\x8F\xD1\x82\xD1\x8C")));
+              add_1140851314(tmp_486541143, tmp_486541144);
+              add_1140851314(tmp_486541140, tmp_486541143);
               }
               else {
-                if (!(p_486541196.user_id == currUser_620757022[0].id)) Temporary6 = false; else {                  Temporary6 = onlyMySectors_486539634[0];                }              if (Temporary6) {
-              var tmp_486541150 = tree_1140851377(37, []);
-              tmp_486541150.class = "nav-item";
-              var tmp_486541151 = tree_1140851377(44, []);
-              tmp_486541151.class = "nav-link";
-              setAttr_1140851240(tmp_486541151, "href", "#gBackModal");
-              setAttr_1140851240(tmp_486541151, "data-toggle", "modal");
-              setAttr_1140851240(tmp_486541151, "data-target", "#gBackModal");
-              addEventHandler_1124074665(tmp_486541151, 0, clckProccSect_486541045(p_486541196), kxi_1124073536[0]);
-              add_1140851314(tmp_486541151, text_1140851429(makeNimstrLit("\xD0\xA1\xD0\xB4\xD0\xB0\xD1\x82\xD1\x8C")));
-              add_1140851314(tmp_486541150, tmp_486541151);
-              add_1140851314(tmp_486541145, tmp_486541150);
+                if (!(p_486541191.user_id == currUser_620757022[0].id)) Temporary6 = false; else {                  Temporary6 = onlyMySectors_486539627[0];                }              if (Temporary6) {
+              var tmp_486541145 = tree_1140851377(37, []);
+              tmp_486541145.class = "nav-item";
+              var tmp_486541146 = tree_1140851377(44, []);
+              tmp_486541146.class = "nav-link";
+              setAttr_1140851240(tmp_486541146, "href", "#gBackModal");
+              setAttr_1140851240(tmp_486541146, "data-toggle", "modal");
+              setAttr_1140851240(tmp_486541146, "data-target", "#gBackModal");
+              addEventHandler_1124074665(tmp_486541146, 0, clckProccSect_486541040(p_486541191), kxi_1124073536[0]);
+              add_1140851314(tmp_486541146, text_1140851429(makeNimstrLit("\xD0\xA1\xD0\xB4\xD0\xB0\xD1\x82\xD1\x8C")));
+              add_1140851314(tmp_486541145, tmp_486541146);
+              add_1140851314(tmp_486541140, tmp_486541145);
               }
               }
-              add_1140851314(tmp_486541144, tmp_486541145);
-              add_1140851314(tmp_486541143, tmp_486541144);
-              var tmp_486541152 = tree_1140851377(43, []);
-              tmp_486541152.class = "card-body";
-              var tmp_486541153 = tree_1140851377(26, []);
-              tmp_486541153.class = "card-title";
-              add_1140851314(tmp_486541153, text_1140851429(p_486541196.name));
-              add_1140851314(tmp_486541152, tmp_486541153);
-              var tmp_486541154 = tree_1140851377(43, []);
-              tmp_486541154.class = clsCol_486541124;
-              add_1140851314(tmp_486541154, text_1140851429(stDate_486541197));
-              add_1140851314(tmp_486541152, tmp_486541154);
-              var tmp_486541155 = tree_1140851377(43, []);
-              tmp_486541155.class = clsCol_486541124;
-              add_1140851314(tmp_486541155, text_1140851429(finDate_486541198));
-              add_1140851314(tmp_486541152, tmp_486541155);
-              add_1140851314(tmp_486541143, tmp_486541152);
-              add_1140851314(tmp_486541142, tmp_486541143);
-              i_486542679 = addInt(i_486542679, 1);
-              if (!(((allSectProc_486539626[0]).length == L_486542680))) {
+              add_1140851314(tmp_486541139, tmp_486541140);
+              add_1140851314(tmp_486541138, tmp_486541139);
+              var tmp_486541147 = tree_1140851377(43, []);
+              tmp_486541147.class = "card-body";
+              var tmp_486541148 = tree_1140851377(26, []);
+              tmp_486541148.class = "card-title";
+              add_1140851314(tmp_486541148, text_1140851429(p_486541191.name));
+              add_1140851314(tmp_486541147, tmp_486541148);
+              var tmp_486541149 = tree_1140851377(43, []);
+              tmp_486541149.class = clsCol_486541119;
+              add_1140851314(tmp_486541149, text_1140851429(stDate_486541192));
+              add_1140851314(tmp_486541147, tmp_486541149);
+              var tmp_486541150 = tree_1140851377(43, []);
+              tmp_486541150.class = clsCol_486541119;
+              add_1140851314(tmp_486541150, text_1140851429(finDate_486541193));
+              add_1140851314(tmp_486541147, tmp_486541150);
+              add_1140851314(tmp_486541138, tmp_486541147);
+              add_1140851314(tmp_486541137, tmp_486541138);
+              i_486542675 = addInt(i_486542675, 1);
+              if (!(((allSectProc_486539619[0]).length == L_486542676))) {
               failedAssertImpl_218103864(makeNimstrLit("iterators.nim(240, 11) `len(a) == L` the length of the seq changed while iterating over it"));
               }
               
             }
         } while (false);
       } while (false);
-      add_1140851314(tmp_486541127, tmp_486541142);
+      add_1140851314(tmp_486541122, tmp_486541137);
     }
     
-    result_486541105 = tmp_486541127;
+    result_486541100 = tmp_486541122;
 
-  return result_486541105;
+  return result_486541100;
 
 }
 
-function createDom_486541455() {
-  var result_486541456 = null;
+function createDom_486541450() {
+  var result_486541451 = null;
 
-    var tmp_486541457 = tree_1140851377(43, []);
-    tmp_486541457.class = "main-root";
-    add_1140851314(tmp_486541457, toggleSpinner_486541213());
-    add_1140851314(tmp_486541457, toggleProgress_486541219());
-    add_1140851314(tmp_486541457, showConfirm_486540646(makeNimstrLit("takeModal"), takeSectModalBody_486540619()));
-    add_1140851314(tmp_486541457, showConfirm_486540646(makeNimstrLit("gBackModal"), giveBackModalBody_486540627()));
-    add_1140851314(tmp_486541457, showConfirm_486540646(makeNimstrLit("isProccessedModal"), proccessedModalBody_486540634()));
+    var tmp_486541452 = tree_1140851377(43, []);
+    tmp_486541452.class = "main-root";
+    add_1140851314(tmp_486541452, toggleSpinner_486541208());
+    add_1140851314(tmp_486541452, toggleProgress_486541214());
+    add_1140851314(tmp_486541452, showConfirm_486540639(makeNimstrLit("takeModal"), takeSectModalBody_486540612()));
+    add_1140851314(tmp_486541452, showConfirm_486540639(makeNimstrLit("gBackModal"), giveBackModalBody_486540620()));
+    add_1140851314(tmp_486541452, showConfirm_486540639(makeNimstrLit("isProccessedModal"), proccessedModalBody_486540627()));
     if (eqStrings(currUser_620757022[0].token, [])) {
-    add_1140851314(tmp_486541457, loginDialog_486539886());
+    add_1140851314(tmp_486541452, loginDialog_486539879());
     }
     else {
     if (isShowNavMap_620757026[0]) {
-    var tmp_486541458 = tree_1140851377(18, []);
-    tmp_486541458.class = "navbar fixed-top navbar-expand navbar-light bg-light shadow p-1 mb-0 bg-white rounded overflow-auto";
-    var tmp_486541459 = tree_1140851377(106, []);
-    tmp_486541459.class = "navbar-toggler";
-    setAttr_1140851240(tmp_486541459, "type", "button");
-    setAttr_1140851240(tmp_486541459, "data-toggle", "collapse");
-    setAttr_1140851240(tmp_486541459, "data-target", "#navbarTogglerMap");
-    setAttr_1140851240(tmp_486541459, "aria-controls", "navbarTogglerMap");
-    setAttr_1140851240(tmp_486541459, "aria-expanded", "false");
-    setAttr_1140851240(tmp_486541459, "aria-label", "Toggle navigation");
-    var tmp_486541460 = tree_1140851377(70, []);
-    tmp_486541460.class = "navbar-toggler-icon";
+    var tmp_486541453 = tree_1140851377(18, []);
+    tmp_486541453.class = "navbar fixed-top navbar-expand navbar-light bg-light shadow p-1 mb-0 bg-white rounded overflow-auto";
+    var tmp_486541454 = tree_1140851377(106, []);
+    tmp_486541454.class = "navbar-toggler";
+    setAttr_1140851240(tmp_486541454, "type", "button");
+    setAttr_1140851240(tmp_486541454, "data-toggle", "collapse");
+    setAttr_1140851240(tmp_486541454, "data-target", "#navbarTogglerMap");
+    setAttr_1140851240(tmp_486541454, "aria-controls", "navbarTogglerMap");
+    setAttr_1140851240(tmp_486541454, "aria-expanded", "false");
+    setAttr_1140851240(tmp_486541454, "aria-label", "Toggle navigation");
+    var tmp_486541455 = tree_1140851377(70, []);
+    tmp_486541455.class = "navbar-toggler-icon";
+    add_1140851314(tmp_486541454, tmp_486541455);
+    add_1140851314(tmp_486541453, tmp_486541454);
+    var tmp_486541456 = tree_1140851377(44, []);
+    tmp_486541456.class = "navbar-brand mw-75 overflow-auto";
+    add_1140851314(tmp_486541456, text_1140851429(currProcess_486539618[0].name));
+    add_1140851314(tmp_486541453, tmp_486541456);
+    var tmp_486541457 = tree_1140851377(43, []);
+    tmp_486541457.class = "collapse navbar-collapse";
+    tmp_486541457.id = "navbarTogglerMap";
+    var tmp_486541458 = tree_1140851377(36, []);
+    tmp_486541458.class = "navbar-nav mr-auto";
+    if (allowTake_486541096(currProcess_486539618[0])) {
+    var tmp_486541459 = tree_1140851377(37, []);
+    tmp_486541459.class = "nav-item";
+    var tmp_486541460 = tree_1140851377(44, []);
+    tmp_486541460.class = "nav-link";
+    setAttr_1140851240(tmp_486541460, "href", "#takeModal");
+    setAttr_1140851240(tmp_486541460, "data-toggle", "modal");
+    setAttr_1140851240(tmp_486541460, "data-target", "#takeModal");
+    add_1140851314(tmp_486541460, text_1140851429(makeNimstrLit("\xD0\x92\xD0\xB7\xD1\x8F\xD1\x82\xD1\x8C")));
     add_1140851314(tmp_486541459, tmp_486541460);
     add_1140851314(tmp_486541458, tmp_486541459);
-    var tmp_486541461 = tree_1140851377(44, []);
-    tmp_486541461.class = "navbar-brand mw-75 overflow-auto";
-    add_1140851314(tmp_486541461, text_1140851429(currProcess_486539625[0].name));
+    }
+    
+    if ((onlyMySectors_486539627[0] && !(showStreetsEnabled_486539622[0]))) {
+    var tmp_486541461 = tree_1140851377(37, []);
+    tmp_486541461.class = "nav-item";
+    var tmp_486541462 = tree_1140851377(44, []);
+    tmp_486541462.id = "show-streets";
+    tmp_486541462.class = "nav-link";
+    addEventHandler_1124074665(tmp_486541462, 0, showStreetsEnable_486540748, kxi_1124073536[0]);
+    add_1140851314(tmp_486541462, text_1140851429(makeNimstrLit("\xD0\xA3\xD0\xBB\xD0\xB8\xD1\x86\xD1\x8B")));
+    add_1140851314(tmp_486541461, tmp_486541462);
     add_1140851314(tmp_486541458, tmp_486541461);
-    var tmp_486541462 = tree_1140851377(43, []);
-    tmp_486541462.class = "collapse navbar-collapse";
-    tmp_486541462.id = "navbarTogglerMap";
-    var tmp_486541463 = tree_1140851377(36, []);
-    tmp_486541463.class = "navbar-nav mr-auto";
-    if (allowTake_486541101(currProcess_486539625[0])) {
-    var tmp_486541464 = tree_1140851377(37, []);
-    tmp_486541464.class = "nav-item";
-    var tmp_486541465 = tree_1140851377(44, []);
-    tmp_486541465.class = "nav-link";
-    setAttr_1140851240(tmp_486541465, "href", "#takeModal");
-    setAttr_1140851240(tmp_486541465, "data-toggle", "modal");
-    setAttr_1140851240(tmp_486541465, "data-target", "#takeModal");
-    add_1140851314(tmp_486541465, text_1140851429(makeNimstrLit("\xD0\x92\xD0\xB7\xD1\x8F\xD1\x82\xD1\x8C")));
-    add_1140851314(tmp_486541464, tmp_486541465);
+    if ((count_486541467(dwnloadedMaps_620757052[0], currProcess_486539618[0].sector_internal_id) == 0)) {
+    var tmp_486541463 = tree_1140851377(37, []);
+    tmp_486541463.class = "nav-item";
+    var tmp_486541464 = tree_1140851377(44, []);
+    tmp_486541464.id = "map-download";
+    tmp_486541464.class = "nav-link";
+    addEventHandler_1124074665(tmp_486541464, 0, mapDownload_486541238, kxi_1124073536[0]);
+    add_1140851314(tmp_486541464, text_1140851429(makeNimstrLit("\xD0\xA1\xD0\xBA\xD0\xB0\xD1\x87\xD0\xB0\xD1\x82\xD1\x8C")));
     add_1140851314(tmp_486541463, tmp_486541464);
-    }
-    
-    if ((onlyMySectors_486539634[0] && !(showStreetsEnabled_486539629[0]))) {
-    var tmp_486541466 = tree_1140851377(37, []);
-    tmp_486541466.class = "nav-item";
-    var tmp_486541467 = tree_1140851377(44, []);
-    tmp_486541467.id = "show-streets";
-    tmp_486541467.class = "nav-link";
-    addEventHandler_1124074665(tmp_486541467, 0, showStreetsEnable_486540755, kxi_1124073536[0]);
-    add_1140851314(tmp_486541467, text_1140851429(makeNimstrLit("\xD0\xA3\xD0\xBB\xD0\xB8\xD1\x86\xD1\x8B")));
-    add_1140851314(tmp_486541466, tmp_486541467);
-    add_1140851314(tmp_486541463, tmp_486541466);
-    if ((count_486541472(dwnloadedMaps_620757052[0], currProcess_486539625[0].sector_internal_id) == 0)) {
-    var tmp_486541468 = tree_1140851377(37, []);
-    tmp_486541468.class = "nav-item";
-    var tmp_486541469 = tree_1140851377(44, []);
-    tmp_486541469.id = "map-download";
-    tmp_486541469.class = "nav-link";
-    addEventHandler_1124074665(tmp_486541469, 0, mapDownload_486541243, kxi_1124073536[0]);
-    add_1140851314(tmp_486541469, text_1140851429(makeNimstrLit("\xD0\xA1\xD0\xBA\xD0\xB0\xD1\x87\xD0\xB0\xD1\x82\xD1\x8C")));
-    add_1140851314(tmp_486541468, tmp_486541469);
-    add_1140851314(tmp_486541463, tmp_486541468);
+    add_1140851314(tmp_486541458, tmp_486541463);
     }
     
     }
     
-    if (!(showStreetsEnabled_486539629[0])) {
-    var tmp_486541470 = tree_1140851377(37, []);
-    tmp_486541470.class = "nav-item";
-    var tmp_486541471 = tree_1140851377(44, []);
-    tmp_486541471.id = "cl-map";
-    tmp_486541471.class = "nav-link";
-    addEventHandler_1124074665(tmp_486541471, 0, closeMap_486539835, kxi_1124073536[0]);
-    add_1140851314(tmp_486541471, text_1140851429(makeNimstrLit("\xD0\x97\xD0\xB0\xD0\xBA\xD1\x80.\xD0\xBA\xD0\xB0\xD1\x80\xD1\x82\xD1\x83")));
-    add_1140851314(tmp_486541470, tmp_486541471);
-    add_1140851314(tmp_486541463, tmp_486541470);
+    if (!(showStreetsEnabled_486539622[0])) {
+    var tmp_486541465 = tree_1140851377(37, []);
+    tmp_486541465.class = "nav-item";
+    var tmp_486541466 = tree_1140851377(44, []);
+    tmp_486541466.id = "cl-map";
+    tmp_486541466.class = "nav-link";
+    addEventHandler_1124074665(tmp_486541466, 0, closeMap_486539828, kxi_1124073536[0]);
+    add_1140851314(tmp_486541466, text_1140851429(makeNimstrLit("\xD0\x97\xD0\xB0\xD0\xBA\xD1\x80.\xD0\xBA\xD0\xB0\xD1\x80\xD1\x82\xD1\x83")));
+    add_1140851314(tmp_486541465, tmp_486541466);
+    add_1140851314(tmp_486541458, tmp_486541465);
     }
     
-    add_1140851314(tmp_486541462, tmp_486541463);
-    add_1140851314(tmp_486541458, tmp_486541462);
-    add_1140851314(tmp_486541458, noInternet_486540744());
-    add_1140851314(tmp_486541458, showErrMsg_486540748());
     add_1140851314(tmp_486541457, tmp_486541458);
-    if (showStreetsEnabled_486539629[0]) {
-    add_1140851314(tmp_486541457, showStreets_486540976());
+    add_1140851314(tmp_486541453, tmp_486541457);
+    add_1140851314(tmp_486541453, noInternet_486540737());
+    add_1140851314(tmp_486541453, showErrMsg_486540741());
+    add_1140851314(tmp_486541452, tmp_486541453);
+    if (showStreetsEnabled_486539622[0]) {
+    add_1140851314(tmp_486541452, showStreets_486540969());
     }
     
     }
     else {
-    add_1140851314(tmp_486541457, showAllProc_486541104());
+    add_1140851314(tmp_486541452, showAllProc_486541099());
     }
     }
-    result_486541456 = tmp_486541457;
+    result_486541451 = tmp_486541452;
 
-  return result_486541456;
+  return result_486541451;
 
 }
 
-function chgUiState_486540398(chgEl_486540399) {
+function chgUiState_486540391(chgEl_486540392) {
     
-function getValues_486540401() {
+function getValues_486540394() {
         
-function innerHEX60gensym189_486540424() {
-          var result_486540425 = null;
+function innerHEX60gensym189_486540417() {
+          var result_486540418 = null;
 
           BeforeRet: do {
-            var a_486540426 = null;
-            a_486540426 = {};
-            a_486540426.inpSearch = (document.getElementById(("searchSector")).value);
-            a_486540426.isOwnSect = onlyMySectors_486539634[0];
-            result_486540425 = a_486540426;
+            var a_486540419 = null;
+            a_486540419 = {};
+            a_486540419.inpSearch = (document.getElementById(("searchSector")).value);
+            a_486540419.isOwnSect = onlyMySectors_486539627[0];
+            result_486540418 = a_486540419;
             break BeforeRet;
           } while (false);
 
-          return result_486540425;
+          return result_486540418;
 
         }
 
-      var result_486540402 = null;
+      var result_486540395 = null;
 
       BeforeRet: do {
-        onlyMySectors_486539634[0] = (document.getElementById(("ownSectors")).checked);
-        currUiSt_486539657[0] = innerHEX60gensym189_486540424();
-        result_486540402 = currUiSt_486539657[0];
+        onlyMySectors_486539627[0] = (document.getElementById(("ownSectors")).checked);
+        currUiSt_486539650[0] = innerHEX60gensym189_486540417();
+        result_486540395 = currUiSt_486539650[0];
         break BeforeRet;
       } while (false);
 
-      return result_486540402;
+      return result_486540395;
 
     }
 
-  var result_486540400 = null;
+  var result_486540393 = null;
 
-    result_486540400 = Kefir.fromEvents((chgEl_486540399), ("input"), (getValues_486540401)).toProperty((getValues_486540401));
+    result_486540393 = Kefir.fromEvents((chgEl_486540392), ("input"), (getValues_486540394)).toProperty((getValues_486540394));
 
-  return result_486540400;
+  return result_486540393;
 
 }
 
-function getAllProccess2_486541485(myS_486541486, sectorName_486541487) {
+function getAllProccess2_486541480(myS_486541481, sectorName_486541482) {
     var Temporary1;
     var Temporary2;
 
-  var result_486541488 = null;
+  var result_486541483 = null;
 
-    if (!(myS_486541486)) {
+    if (!(myS_486541481)) {
     Temporary1 = [];
     }
     else {
-      var fmtRes_486541489 = [mnewString(0)];
-      fmtRes_486541489[0].push.apply(fmtRes_486541489[0], makeNimstrLit("&userId="));;
-      formatValue_1761607743(fmtRes_486541489, 0, currUser_620757022[0].id, []);
-    Temporary1 = fmtRes_486541489[0];
+      var fmtRes_486541484 = [mnewString(0)];
+      fmtRes_486541484[0].push.apply(fmtRes_486541484[0], makeNimstrLit("&userId="));;
+      formatValue_1761607743(fmtRes_486541484, 0, currUser_620757022[0].id, []);
+    Temporary1 = fmtRes_486541484[0];
     }
     
-    var rUid_486541495 = nimCopy(null, Temporary1, NTI33554439);
-    if (!(eqStrings(sectorName_486541487, []))) {
-    var fmtRes_486541496 = [mnewString(0)];
-    fmtRes_486541496[0].push.apply(fmtRes_486541496[0], makeNimstrLit("&sectorName="));;
-    formatValue_1493172386(fmtRes_486541496, 0, sectorName_486541487, []);
-    Temporary2 = fmtRes_486541496[0];
+    var rUid_486541490 = nimCopy(null, Temporary1, NTI33554439);
+    if (!(eqStrings(sectorName_486541482, []))) {
+    var fmtRes_486541491 = [mnewString(0)];
+    fmtRes_486541491[0].push.apply(fmtRes_486541491[0], makeNimstrLit("&sectorName="));;
+    formatValue_1493172386(fmtRes_486541491, 0, sectorName_486541482, []);
+    Temporary2 = fmtRes_486541491[0];
     }
     else {
     Temporary2 = [];
     }
     
-    var sName_486541497 = nimCopy(null, Temporary2, NTI33554439);
-    var fmtRes_486541498 = [mnewString(0)];
-    fmtRes_486541498[0].push.apply(fmtRes_486541498[0], makeNimstrLit("token="));;
-    formatValue_1493172386(fmtRes_486541498, 0, currUser_620757022[0].token, []);
-    result_486541488 = sendRequest_620757128(makeNimstrLit("GET"), (makeNimstrLit("/sector/process?") || []).concat(fmtRes_486541498[0] || [],rUid_486541495 || [],sName_486541497 || []), [], []);
+    var sName_486541492 = nimCopy(null, Temporary2, NTI33554439);
+    var fmtRes_486541493 = [mnewString(0)];
+    fmtRes_486541493[0].push.apply(fmtRes_486541493[0], makeNimstrLit("token="));;
+    formatValue_1493172386(fmtRes_486541493, 0, currUser_620757022[0].token, []);
+    result_486541483 = sendRequest_620757128(makeNimstrLit("GET"), (makeNimstrLit("/sector/process?") || []).concat(fmtRes_486541493[0] || [],rUid_486541490 || [],sName_486541492 || []), [], []);
 
-  return result_486541488;
+  return result_486541483;
 
 }
 
-function bindSearchSector_486541686() {
+function bindSearchSector_486541681() {
     
-function wrpS_486541732(vS_486541733) {
-      var result_486541734 = null;
+function wrpS_486541727(vS_486541728) {
+      var result_486541729 = null;
 
-        spinnerOn_486539630[0] = true;
-        allSectProc_486539626[0] = nimCopy(null, newSeq_486539911(0), NTI486539669);
+        spinnerOn_486539623[0] = true;
+        allSectProc_486539619[0] = nimCopy(null, newSeq_486539904(0), NTI486539660);
         redraw_1124074477(kxi_1124073536[0]);
-        result_486541734 = getAllProccess2_486541485((vS_486541733.isOwnSect), cstrToNimstr((vS_486541733.inpSearch)));
+        result_486541729 = getAllProccess2_486541480((vS_486541728.isOwnSect), cstrToNimstr((vS_486541728.inpSearch)));
 
-      return result_486541734;
+      return result_486541729;
 
     }
     
-function HEX3Aanonymous_486541770(value_486541771) {
-        allSectProc_486539626[0] = nimCopy(null, parseResp_486539933(value_486541771.Field2).resp, NTI486539683);
-        spinnerOn_486539630[0] = false;
+function HEX3Aanonymous_486541765(value_486541766) {
+        allSectProc_486539619[0] = nimCopy(null, parseResp_486539926(value_486541766.Field2).resp, NTI486539674);
+        spinnerOn_486539623[0] = false;
         redraw_1124074477(kxi_1124073536[0]);
 
       
     }
     
-function HEX3Aanonymous_486541783(error_486541784) {
-        console.log(("error:"), (error_486541784.Field0));
+function HEX3Aanonymous_486541778(error_486541779) {
+        console.log(("error:"), (error_486541779.Field0));
 
       
     }
     
-function HEX3Aanonymous_486541809() {
+function HEX3Aanonymous_486541804() {
       
     }
 
   BeforeRet: do {
-    var searchEl_486541698 = document.getElementById(("searchSector"));
-    var isOwnSectEl_486541710 = document.getElementById(("ownSectors"));
-    if ((searchEl_486541698 == null)) {
-    setEvtInpSearchSect_486539636[0] = false;
+    var searchEl_486541693 = document.getElementById(("searchSector"));
+    var isOwnSectEl_486541705 = document.getElementById(("ownSectors"));
+    if ((searchEl_486541693 == null)) {
+    setEvtInpSearchSect_486539629[0] = false;
     break BeforeRet;
     }
     
-    if (setEvtInpSearchSect_486539636[0]) {
+    if (setEvtInpSearchSect_486539629[0]) {
     break BeforeRet;
     }
     
-    setEvtInpSearchSect_486539636[0] = true;
-    var stmSearchEl_486541715 = chgUiState_486540398(searchEl_486541698);
-    var stmOwnSect_486541716 = chgUiState_486540398(isOwnSectEl_486541710);
-    var stmUiChg_486541731 = Kefir.merge((([stmSearchEl_486541715, stmOwnSect_486541716])));
-    var stmResult_486541769 = stmUiChg_486541731.flatMapLatest((wrpS_486541732));
-    stmResult_486541769.observe((HEX3Aanonymous_486541770), (HEX3Aanonymous_486541783), (HEX3Aanonymous_486541809));
+    setEvtInpSearchSect_486539629[0] = true;
+    var stmSearchEl_486541710 = chgUiState_486540391(searchEl_486541693);
+    var stmOwnSect_486541711 = chgUiState_486540391(isOwnSectEl_486541705);
+    var stmUiChg_486541726 = Kefir.merge((([stmSearchEl_486541710, stmOwnSect_486541711])));
+    var stmResult_486541764 = stmUiChg_486541726.flatMapLatest((wrpS_486541727));
+    stmResult_486541764.observe((HEX3Aanonymous_486541765), (HEX3Aanonymous_486541778), (HEX3Aanonymous_486541804));
   } while (false);
 
   
 }
 
-function initFromJson_486542083(dst_486542085, dst_486542085_Idx, jsonNode_486542086, jsonPath_486542087, jsonPath_486542087_Idx) {
+function initFromJson_486542078(dst_486542080, dst_486542080_Idx, jsonNode_486542081, jsonPath_486542082, jsonPath_486542082_Idx) {
     var Temporary1;
 
-    if (HEX3DHEX3D_1325402129(jsonNode_486542086, null)) {
-    raiseException({message: (makeNimstrLit("key not found: ") || []).concat(jsonPath_486542087[jsonPath_486542087_Idx] || []), parent: null, m_type: NTI33555126, name: null, trace: [], up: null}, "KeyError");
+    if (HEX3DHEX3D_1325402129(jsonNode_486542081, null)) {
+    raiseException({message: (makeNimstrLit("key not found: ") || []).concat(jsonPath_486542082[jsonPath_486542082_Idx] || []), parent: null, m_type: NTI33555126, name: null, trace: [], up: null}, "KeyError");
     }
     else {
-    if (!((ConstSet58[jsonNode_486542086.kind] != undefined))) {
-    var msgHEX60gensym487_486542104 = nsuFormatOpenArray(makeNimstrLit("Incorrect JSON kind. Wanted \'$1\' in \'$2\' but got \'$3\'."), [HEX24_1325405514(ConstSet59), nimCopy(null, jsonPath_486542087[jsonPath_486542087_Idx], NTI33554439), reprEnum(jsonNode_486542086.kind, NTI1325400067)]);
-    raiseException({message: nimCopy(null, msgHEX60gensym487_486542104, NTI33554439), parent: null, m_type: NTI1392508936, name: null, trace: [], up: null}, "JsonKindError");
+    if (!((ConstSet58[jsonNode_486542081.kind] != undefined))) {
+    var msgHEX60gensym487_486542099 = nsuFormatOpenArray(makeNimstrLit("Incorrect JSON kind. Wanted \'$1\' in \'$2\' but got \'$3\'."), [HEX24_1325405514(ConstSet59), nimCopy(null, jsonPath_486542082[jsonPath_486542082_Idx], NTI33554439), reprEnum(jsonNode_486542081.kind, NTI1325400067)]);
+    raiseException({message: nimCopy(null, msgHEX60gensym487_486542099, NTI33554439), parent: null, m_type: NTI1392508936, name: null, trace: [], up: null}, "JsonKindError");
     }
     }
-    var Temporary1 = jsonNode_486542086;
+    var Temporary1 = jsonNode_486542081;
     if (ConstSet60[Temporary1.kind]===undefined) { raiseFieldError2(makeNimstrLit("field \'num\' is not accessible for type \'JsonNodeObj\' using \'kind = "), reprDiscriminant(Temporary1.kind, NTI1325400067)); }
-    dst_486542085[dst_486542085_Idx] = Temporary1.num;
+    dst_486542080[dst_486542080_Idx] = Temporary1.num;
 
   
 }
 
-function initFromJson_486542112(dst_486542114, dst_486542114_Idx, jsonNode_486542115, jsonPath_486542116, jsonPath_486542116_Idx) {
-    if (HEX3DHEX3D_1325402129(jsonNode_486542115, null)) {
-    raiseException({message: (makeNimstrLit("key not found: ") || []).concat(jsonPath_486542116[jsonPath_486542116_Idx] || []), parent: null, m_type: NTI33555126, name: null, trace: [], up: null}, "KeyError");
+function initFromJson_486542107(dst_486542109, dst_486542109_Idx, jsonNode_486542110, jsonPath_486542111, jsonPath_486542111_Idx) {
+    if (HEX3DHEX3D_1325402129(jsonNode_486542110, null)) {
+    raiseException({message: (makeNimstrLit("key not found: ") || []).concat(jsonPath_486542111[jsonPath_486542111_Idx] || []), parent: null, m_type: NTI33555126, name: null, trace: [], up: null}, "KeyError");
     }
     else {
-    if (!((ConstSet61[jsonNode_486542115.kind] != undefined))) {
-    var msgHEX60gensym491_486542129 = nsuFormatOpenArray(makeNimstrLit("Incorrect JSON kind. Wanted \'$1\' in \'$2\' but got \'$3\'."), [HEX24_1325405514(ConstSet62), nimCopy(null, jsonPath_486542116[jsonPath_486542116_Idx], NTI33554439), reprEnum(jsonNode_486542115.kind, NTI1325400067)]);
-    raiseException({message: nimCopy(null, msgHEX60gensym491_486542129, NTI33554439), parent: null, m_type: NTI1392508936, name: null, trace: [], up: null}, "JsonKindError");
+    if (!((ConstSet61[jsonNode_486542110.kind] != undefined))) {
+    var msgHEX60gensym491_486542124 = nsuFormatOpenArray(makeNimstrLit("Incorrect JSON kind. Wanted \'$1\' in \'$2\' but got \'$3\'."), [HEX24_1325405514(ConstSet62), nimCopy(null, jsonPath_486542111[jsonPath_486542111_Idx], NTI33554439), reprEnum(jsonNode_486542110.kind, NTI1325400067)]);
+    raiseException({message: nimCopy(null, msgHEX60gensym491_486542124, NTI33554439), parent: null, m_type: NTI1392508936, name: null, trace: [], up: null}, "JsonKindError");
     }
     }
-    dst_486542114[dst_486542114_Idx] = parseEnum_486540761(getStr_1325400202(jsonNode_486542115, []));
+    dst_486542109[dst_486542109_Idx] = parseEnum_486540754(getStr_1325400202(jsonNode_486542110, []));
 
   
 }
 
-function initFromJson_486542044(dst_486542046, jsonNode_486542047, jsonPath_486542048, jsonPath_486542048_Idx) {
-    var originalJsonPathLen_486542050 = (jsonPath_486542048[jsonPath_486542048_Idx]).length;
-    jsonPath_486542048[jsonPath_486542048_Idx].push.apply(jsonPath_486542048[jsonPath_486542048_Idx], makeNimstrLit(".id"));;
-    initFromJson_1761607947(dst_486542046, "id", getOrDefault_1325403580(jsonNode_486542047, makeNimstrLit("id")), jsonPath_486542048, jsonPath_486542048_Idx);
-    (jsonPath_486542048[jsonPath_486542048_Idx].length = chckRange(originalJsonPathLen_486542050, 0, 2147483647));
-    jsonPath_486542048[jsonPath_486542048_Idx].push.apply(jsonPath_486542048[jsonPath_486542048_Idx], makeNimstrLit(".sector_id"));;
-    initFromJson_1761607947(dst_486542046, "sector_id", getOrDefault_1325403580(jsonNode_486542047, makeNimstrLit("sector_id")), jsonPath_486542048, jsonPath_486542048_Idx);
-    (jsonPath_486542048[jsonPath_486542048_Idx].length = chckRange(originalJsonPathLen_486542050, 0, 2147483647));
-    jsonPath_486542048[jsonPath_486542048_Idx].push.apply(jsonPath_486542048[jsonPath_486542048_Idx], makeNimstrLit(".name"));;
-    initFromJson_1325405435(dst_486542046, "name", getOrDefault_1325403580(jsonNode_486542047, makeNimstrLit("name")), jsonPath_486542048, jsonPath_486542048_Idx);
-    (jsonPath_486542048[jsonPath_486542048_Idx].length = chckRange(originalJsonPathLen_486542050, 0, 2147483647));
-    jsonPath_486542048[jsonPath_486542048_Idx].push.apply(jsonPath_486542048[jsonPath_486542048_Idx], makeNimstrLit(".geometry"));;
-    initFromJson_1325405435(dst_486542046, "geometry", getOrDefault_1325403580(jsonNode_486542047, makeNimstrLit("geometry")), jsonPath_486542048, jsonPath_486542048_Idx);
-    (jsonPath_486542048[jsonPath_486542048_Idx].length = chckRange(originalJsonPathLen_486542050, 0, 2147483647));
-    jsonPath_486542048[jsonPath_486542048_Idx].push.apply(jsonPath_486542048[jsonPath_486542048_Idx], makeNimstrLit(".totalFamilies"));;
-    initFromJson_486542083(dst_486542046, "totalFamilies", getOrDefault_1325403580(jsonNode_486542047, makeNimstrLit("totalFamilies")), jsonPath_486542048, jsonPath_486542048_Idx);
-    (jsonPath_486542048[jsonPath_486542048_Idx].length = chckRange(originalJsonPathLen_486542050, 0, 2147483647));
-    jsonPath_486542048[jsonPath_486542048_Idx].push.apply(jsonPath_486542048[jsonPath_486542048_Idx], makeNimstrLit(".sectorName"));;
-    initFromJson_1325405435(dst_486542046, "sectorName", getOrDefault_1325403580(jsonNode_486542047, makeNimstrLit("sectorName")), jsonPath_486542048, jsonPath_486542048_Idx);
-    (jsonPath_486542048[jsonPath_486542048_Idx].length = chckRange(originalJsonPathLen_486542050, 0, 2147483647));
-    jsonPath_486542048[jsonPath_486542048_Idx].push.apply(jsonPath_486542048[jsonPath_486542048_Idx], makeNimstrLit(".status"));;
-    initFromJson_486542112(dst_486542046, "status", getOrDefault_1325403580(jsonNode_486542047, makeNimstrLit("status")), jsonPath_486542048, jsonPath_486542048_Idx);
-    (jsonPath_486542048[jsonPath_486542048_Idx].length = chckRange(originalJsonPathLen_486542050, 0, 2147483647));
+function initFromJson_486542039(dst_486542041, jsonNode_486542042, jsonPath_486542043, jsonPath_486542043_Idx) {
+    var originalJsonPathLen_486542045 = (jsonPath_486542043[jsonPath_486542043_Idx]).length;
+    jsonPath_486542043[jsonPath_486542043_Idx].push.apply(jsonPath_486542043[jsonPath_486542043_Idx], makeNimstrLit(".id"));;
+    initFromJson_1761607947(dst_486542041, "id", getOrDefault_1325403580(jsonNode_486542042, makeNimstrLit("id")), jsonPath_486542043, jsonPath_486542043_Idx);
+    (jsonPath_486542043[jsonPath_486542043_Idx].length = chckRange(originalJsonPathLen_486542045, 0, 2147483647));
+    jsonPath_486542043[jsonPath_486542043_Idx].push.apply(jsonPath_486542043[jsonPath_486542043_Idx], makeNimstrLit(".sector_id"));;
+    initFromJson_1761607947(dst_486542041, "sector_id", getOrDefault_1325403580(jsonNode_486542042, makeNimstrLit("sector_id")), jsonPath_486542043, jsonPath_486542043_Idx);
+    (jsonPath_486542043[jsonPath_486542043_Idx].length = chckRange(originalJsonPathLen_486542045, 0, 2147483647));
+    jsonPath_486542043[jsonPath_486542043_Idx].push.apply(jsonPath_486542043[jsonPath_486542043_Idx], makeNimstrLit(".name"));;
+    initFromJson_1325405435(dst_486542041, "name", getOrDefault_1325403580(jsonNode_486542042, makeNimstrLit("name")), jsonPath_486542043, jsonPath_486542043_Idx);
+    (jsonPath_486542043[jsonPath_486542043_Idx].length = chckRange(originalJsonPathLen_486542045, 0, 2147483647));
+    jsonPath_486542043[jsonPath_486542043_Idx].push.apply(jsonPath_486542043[jsonPath_486542043_Idx], makeNimstrLit(".geometry"));;
+    initFromJson_1325405435(dst_486542041, "geometry", getOrDefault_1325403580(jsonNode_486542042, makeNimstrLit("geometry")), jsonPath_486542043, jsonPath_486542043_Idx);
+    (jsonPath_486542043[jsonPath_486542043_Idx].length = chckRange(originalJsonPathLen_486542045, 0, 2147483647));
+    jsonPath_486542043[jsonPath_486542043_Idx].push.apply(jsonPath_486542043[jsonPath_486542043_Idx], makeNimstrLit(".totalFamilies"));;
+    initFromJson_486542078(dst_486542041, "totalFamilies", getOrDefault_1325403580(jsonNode_486542042, makeNimstrLit("totalFamilies")), jsonPath_486542043, jsonPath_486542043_Idx);
+    (jsonPath_486542043[jsonPath_486542043_Idx].length = chckRange(originalJsonPathLen_486542045, 0, 2147483647));
+    jsonPath_486542043[jsonPath_486542043_Idx].push.apply(jsonPath_486542043[jsonPath_486542043_Idx], makeNimstrLit(".sectorName"));;
+    initFromJson_1325405435(dst_486542041, "sectorName", getOrDefault_1325403580(jsonNode_486542042, makeNimstrLit("sectorName")), jsonPath_486542043, jsonPath_486542043_Idx);
+    (jsonPath_486542043[jsonPath_486542043_Idx].length = chckRange(originalJsonPathLen_486542045, 0, 2147483647));
+    jsonPath_486542043[jsonPath_486542043_Idx].push.apply(jsonPath_486542043[jsonPath_486542043_Idx], makeNimstrLit(".status"));;
+    initFromJson_486542107(dst_486542041, "status", getOrDefault_1325403580(jsonNode_486542042, makeNimstrLit("status")), jsonPath_486542043, jsonPath_486542043_Idx);
+    (jsonPath_486542043[jsonPath_486542043_Idx].length = chckRange(originalJsonPathLen_486542045, 0, 2147483647));
 
   
 }
 
-function initFromJson_486542015(dst_486542017, dst_486542017_Idx, jsonNode_486542018, jsonPath_486542019, jsonPath_486542019_Idx) {
+function initFromJson_486542010(dst_486542012, dst_486542012_Idx, jsonNode_486542013, jsonPath_486542014, jsonPath_486542014_Idx) {
     var Temporary1;
 
-    if (HEX3DHEX3D_1325402129(jsonNode_486542018, null)) {
-    raiseException({message: (makeNimstrLit("key not found: ") || []).concat(jsonPath_486542019[jsonPath_486542019_Idx] || []), parent: null, m_type: NTI33555126, name: null, trace: [], up: null}, "KeyError");
+    if (HEX3DHEX3D_1325402129(jsonNode_486542013, null)) {
+    raiseException({message: (makeNimstrLit("key not found: ") || []).concat(jsonPath_486542014[jsonPath_486542014_Idx] || []), parent: null, m_type: NTI33555126, name: null, trace: [], up: null}, "KeyError");
     }
     else {
-    if (!((ConstSet56[jsonNode_486542018.kind] != undefined))) {
-    var msgHEX60gensym475_486542032 = nsuFormatOpenArray(makeNimstrLit("Incorrect JSON kind. Wanted \'$1\' in \'$2\' but got \'$3\'."), [HEX24_1325405514(ConstSet57), nimCopy(null, jsonPath_486542019[jsonPath_486542019_Idx], NTI33554439), reprEnum(jsonNode_486542018.kind, NTI1325400067)]);
-    raiseException({message: nimCopy(null, msgHEX60gensym475_486542032, NTI33554439), parent: null, m_type: NTI1392508936, name: null, trace: [], up: null}, "JsonKindError");
+    if (!((ConstSet56[jsonNode_486542013.kind] != undefined))) {
+    var msgHEX60gensym475_486542027 = nsuFormatOpenArray(makeNimstrLit("Incorrect JSON kind. Wanted \'$1\' in \'$2\' but got \'$3\'."), [HEX24_1325405514(ConstSet57), nimCopy(null, jsonPath_486542014[jsonPath_486542014_Idx], NTI33554439), reprEnum(jsonNode_486542013.kind, NTI1325400067)]);
+    raiseException({message: nimCopy(null, msgHEX60gensym475_486542027, NTI33554439), parent: null, m_type: NTI1392508936, name: null, trace: [], up: null}, "JsonKindError");
     }
     }
-    if (dst_486542017[dst_486542017_Idx].length < (Temporary1 = chckRange(len_1325403066(jsonNode_486542018), 0, 2147483647), Temporary1)) { for (var i = dst_486542017[dst_486542017_Idx].length ; i < Temporary1 ; ++i) dst_486542017[dst_486542017_Idx].push(({id: 0, sector_id: 0, name: [], geometry: [], totalFamilies: 0, sectorName: [], status: 0})); }
-               else { dst_486542017[dst_486542017_Idx].length = Temporary1; };
-    var orignalJsonPathLen_486542038 = (jsonPath_486542019[jsonPath_486542019_Idx]).length;
+    if (dst_486542012[dst_486542012_Idx].length < (Temporary1 = chckRange(len_1325403066(jsonNode_486542013), 0, 2147483647), Temporary1)) { for (var i = dst_486542012[dst_486542012_Idx].length ; i < Temporary1 ; ++i) dst_486542012[dst_486542012_Idx].push(({id: 0, sector_id: 0, name: [], geometry: [], totalFamilies: 0, sectorName: [], status: 0})); }
+               else { dst_486542012[dst_486542012_Idx].length = Temporary1; };
+    var orignalJsonPathLen_486542033 = (jsonPath_486542014[jsonPath_486542014_Idx]).length;
     Label2: do {
-      var i_486542043 = 0;
-      var colontmp__486542733 = 0;
-      colontmp__486542733 = len_1325403066(jsonNode_486542018);
-      var i_486542734 = 0;
+      var i_486542038 = 0;
+      var colontmp__486542729 = 0;
+      colontmp__486542729 = len_1325403066(jsonNode_486542013);
+      var i_486542730 = 0;
       Label3: do {
           Label4: while (true) {
-          if (!(i_486542734 < colontmp__486542733)) break Label4;
-            i_486542043 = i_486542734;
-            addChar(jsonPath_486542019[jsonPath_486542019_Idx], 91);;
-            addInt_251658457(jsonPath_486542019, jsonPath_486542019_Idx, i_486542043);
-            addChar(jsonPath_486542019[jsonPath_486542019_Idx], 93);;
-            initFromJson_486542044(dst_486542017[dst_486542017_Idx][chckIndx(i_486542043, 0, (dst_486542017[dst_486542017_Idx]).length - 1)], HEX5BHEX5D_1325403199(jsonNode_486542018, i_486542043), jsonPath_486542019, jsonPath_486542019_Idx);
-            (jsonPath_486542019[jsonPath_486542019_Idx].length = chckRange(orignalJsonPathLen_486542038, 0, 2147483647));
-            i_486542734 = addInt(i_486542734, 1);
+          if (!(i_486542730 < colontmp__486542729)) break Label4;
+            i_486542038 = i_486542730;
+            addChar(jsonPath_486542014[jsonPath_486542014_Idx], 91);;
+            addInt_251658457(jsonPath_486542014, jsonPath_486542014_Idx, i_486542038);
+            addChar(jsonPath_486542014[jsonPath_486542014_Idx], 93);;
+            initFromJson_486542039(dst_486542012[dst_486542012_Idx][chckIndx(i_486542038, 0, (dst_486542012[dst_486542012_Idx]).length - 1)], HEX5BHEX5D_1325403199(jsonNode_486542013, i_486542038), jsonPath_486542014, jsonPath_486542014_Idx);
+            (jsonPath_486542014[jsonPath_486542014_Idx].length = chckRange(orignalJsonPathLen_486542033, 0, 2147483647));
+            i_486542730 = addInt(i_486542730, 1);
           }
       } while (false);
     } while (false);
@@ -17418,339 +11184,330 @@ function initFromJson_486542015(dst_486542017, dst_486542017_Idx, jsonNode_48654
   
 }
 
-function initFromJson_486541991(dst_486541993, jsonNode_486541994, jsonPath_486541995, jsonPath_486541995_Idx) {
-    var originalJsonPathLen_486541998 = (jsonPath_486541995[jsonPath_486541995_Idx]).length;
-    jsonPath_486541995[jsonPath_486541995_Idx].push.apply(jsonPath_486541995[jsonPath_486541995_Idx], makeNimstrLit(".status"));;
-    initFromJson_1761607848(dst_486541993, "status", getOrDefault_1325403580(jsonNode_486541994, makeNimstrLit("status")), jsonPath_486541995, jsonPath_486541995_Idx);
-    (jsonPath_486541995[jsonPath_486541995_Idx].length = chckRange(originalJsonPathLen_486541998, 0, 2147483647));
-    jsonPath_486541995[jsonPath_486541995_Idx].push.apply(jsonPath_486541995[jsonPath_486541995_Idx], makeNimstrLit(".message"));;
-    initFromJson_1325405435(dst_486541993, "message", getOrDefault_1325403580(jsonNode_486541994, makeNimstrLit("message")), jsonPath_486541995, jsonPath_486541995_Idx);
-    (jsonPath_486541995[jsonPath_486541995_Idx].length = chckRange(originalJsonPathLen_486541998, 0, 2147483647));
-    jsonPath_486541995[jsonPath_486541995_Idx].push.apply(jsonPath_486541995[jsonPath_486541995_Idx], makeNimstrLit(".resp"));;
-    initFromJson_486542015(dst_486541993, "resp", getOrDefault_1325403580(jsonNode_486541994, makeNimstrLit("resp")), jsonPath_486541995, jsonPath_486541995_Idx);
-    (jsonPath_486541995[jsonPath_486541995_Idx].length = chckRange(originalJsonPathLen_486541998, 0, 2147483647));
+function initFromJson_486541986(dst_486541988, jsonNode_486541989, jsonPath_486541990, jsonPath_486541990_Idx) {
+    var originalJsonPathLen_486541993 = (jsonPath_486541990[jsonPath_486541990_Idx]).length;
+    jsonPath_486541990[jsonPath_486541990_Idx].push.apply(jsonPath_486541990[jsonPath_486541990_Idx], makeNimstrLit(".status"));;
+    initFromJson_1761607848(dst_486541988, "status", getOrDefault_1325403580(jsonNode_486541989, makeNimstrLit("status")), jsonPath_486541990, jsonPath_486541990_Idx);
+    (jsonPath_486541990[jsonPath_486541990_Idx].length = chckRange(originalJsonPathLen_486541993, 0, 2147483647));
+    jsonPath_486541990[jsonPath_486541990_Idx].push.apply(jsonPath_486541990[jsonPath_486541990_Idx], makeNimstrLit(".message"));;
+    initFromJson_1325405435(dst_486541988, "message", getOrDefault_1325403580(jsonNode_486541989, makeNimstrLit("message")), jsonPath_486541990, jsonPath_486541990_Idx);
+    (jsonPath_486541990[jsonPath_486541990_Idx].length = chckRange(originalJsonPathLen_486541993, 0, 2147483647));
+    jsonPath_486541990[jsonPath_486541990_Idx].push.apply(jsonPath_486541990[jsonPath_486541990_Idx], makeNimstrLit(".resp"));;
+    initFromJson_486542010(dst_486541988, "resp", getOrDefault_1325403580(jsonNode_486541989, makeNimstrLit("resp")), jsonPath_486541990, jsonPath_486541990_Idx);
+    (jsonPath_486541990[jsonPath_486541990_Idx].length = chckRange(originalJsonPathLen_486541993, 0, 2147483647));
 
   
 }
 
-function to_486541967(node_486541970) {
-  var result_486541972 = [({status: 0, message: [], resp: []})];
+function to_486541962(node_486541965) {
+  var result_486541967 = [({status: 0, message: [], resp: []})];
 
-    var jsonPath_486541973 = [[]];
-    initFromJson_486541991(result_486541972[0], node_486541970, jsonPath_486541973, 0);
+    var jsonPath_486541968 = [[]];
+    initFromJson_486541986(result_486541967[0], node_486541965, jsonPath_486541968, 0);
 
-  return result_486541972[0];
+  return result_486541967[0];
 
 }
 
-function parseResp_486541962(bdy_486541964) {
-  var result_486541966 = ({status: 0, message: [], resp: []});
+function parseResp_486541957(bdy_486541959) {
+  var result_486541961 = ({status: 0, message: [], resp: []});
 
-    result_486541966 = nimCopy(result_486541966, to_486541967(parseJson_1325405409(bdy_486541964)), NTI486541080);
-    if (eqStrings(reprEnum(result_486541966.status, NTI1526726661), makeNimstrLit("loggedOut"))) {
+    result_486541961 = nimCopy(result_486541961, to_486541962(parseJson_1325405409(bdy_486541959)), NTI486541077);
+    if (eqStrings(reprEnum(result_486541961.status, NTI1526726661), makeNimstrLit("loggedOut"))) {
     currUser_620757022[0].token = nimCopy(null, [], NTI33554439);
     isShowNavMap_620757026[0] = false;
-    var elMap_486542150 = $(("#map-container"))[0];
-    elMap_486542150.classList.remove(("show-map"));
+    var elMap_486542145 = $(("#map-container"))[0];
+    elMap_486542145.classList.remove(("show-map"));
     redraw_1124074477(kxi_1124073536[0]);
     }
     
 
-  return result_486541966;
+  return result_486541961;
 
 }
 
-function bindEvtsMapScreen_486541835() {
+function bindEvtsMapScreen_486541830() {
     
-function HEX3Aanonymous_486541917() {
-      var result_486541918 = false;
+function HEX3Aanonymous_486541912() {
+      var result_486541913 = false;
 
-        result_486541918 = true;
+        result_486541913 = true;
 
-      return result_486541918;
+      return result_486541913;
 
     }
     
-function getStreets_486541856(interrupt_486541857) {
-      var result_486541858 = null;
+function getStreets_486541851(interrupt_486541852) {
+      var result_486541853 = null;
 
       BeforeRet: do {
-        if (interrupt_486541857) {
-        result_486541858 = Kefir.never();
+        if (interrupt_486541852) {
+        result_486541853 = Kefir.never();
         break BeforeRet;
         }
         
-        var fmtRes_486541863 = [mnewString(0)];
-        fmtRes_486541863[0].push.apply(fmtRes_486541863[0], makeNimstrLit("token="));;
-        formatValue_1493172386(fmtRes_486541863, 0, currUser_620757022[0].token, []);
-        fmtRes_486541863[0].push.apply(fmtRes_486541863[0], makeNimstrLit("&sectorId="));;
-        formatValue_1761607743(fmtRes_486541863, 0, currProcess_486539625[0].sector_id, []);
-        result_486541858 = sendRequest_620757128(makeNimstrLit("GET"), (makeNimstrLit("/sector/streets?") || []).concat(fmtRes_486541863[0] || []), [], []);
+        var fmtRes_486541858 = [mnewString(0)];
+        fmtRes_486541858[0].push.apply(fmtRes_486541858[0], makeNimstrLit("token="));;
+        formatValue_1493172386(fmtRes_486541858, 0, currUser_620757022[0].token, []);
+        fmtRes_486541858[0].push.apply(fmtRes_486541858[0], makeNimstrLit("&sectorId="));;
+        formatValue_1761607743(fmtRes_486541858, 0, currProcess_486539618[0].sector_id, []);
+        result_486541853 = sendRequest_620757128(makeNimstrLit("GET"), (makeNimstrLit("/sector/streets?") || []).concat(fmtRes_486541858[0] || []), [], []);
       } while (false);
 
-      return result_486541858;
+      return result_486541853;
 
     }
     
-function HEX3Aanonymous_486541956(value_486541957) {
+function HEX3Aanonymous_486541951(value_486541952) {
                         
-function innerHEX60gensym520_486542300() {
-                          var result_486542301 = null;
+function innerHEX60gensym520_486542295() {
+                          var result_486542296 = null;
 
                           BeforeRet: do {
-                            var a_486542302 = null;
-                            a_486542302 = {};
-                            a_486542302.data = strt_486542200.id;
-                            result_486542301 = a_486542302;
+                            var a_486542297 = null;
+                            a_486542297 = {};
+                            a_486542297.data = strt_486542195.id;
+                            result_486542296 = a_486542297;
                             break BeforeRet;
                           } while (false);
 
-                          return result_486542301;
+                          return result_486542296;
 
                         }
         
-function innerHEX60gensym538_486542362() {
-          var result_486542363 = null;
+function innerHEX60gensym538_486542357() {
+          var result_486542358 = null;
 
           BeforeRet: do {
-            var a_486542364 = null;
-            a_486542364 = {};
-            a_486542364.bounds = sectStreetGrp_486539671[0].getBoundingBox();
-            result_486542363 = a_486542364;
+            var a_486542359 = null;
+            a_486542359 = {};
+            a_486542359.bounds = sectStreetGrp_486539664[0].getBoundingBox();
+            result_486542358 = a_486542359;
             break BeforeRet;
           } while (false);
 
-          return result_486542363;
+          return result_486542358;
 
         }
 
       BeforeRet: do {
-        var respSect_486542175 = parseResp_486541962(value_486541957.Field2);
-        var sectStrts_486542176 = nimCopy(null, respSect_486542175.resp, NTI486541075);
-        currStreets_486539627[0] = nimCopy(null, sectStrts_486542176, NTI486541075);
-        currStreetsTmp_486539628[0] = nimCopy(null, sectStrts_486542176, NTI486541075);
-        if (((sectStrts_486542176).length == 0)) {
+        var respSect_486542170 = parseResp_486541957(value_486541952.Field2);
+        var sectStrts_486542171 = nimCopy(null, respSect_486542170.resp, NTI486541072);
+        currStreets_486539620[0] = nimCopy(null, sectStrts_486542171, NTI486541072);
+        currStreetsTmp_486539621[0] = nimCopy(null, sectStrts_486542171, NTI486541072);
+        if (((sectStrts_486542171).length == 0)) {
         break BeforeRet;
         }
         
         Label1: do {
-          var strt_486542200 = null;
-          var i_486542729 = 0;
-          var L_486542730 = (sectStrts_486542176).length;
+          var strt_486542195 = null;
+          var i_486542725 = 0;
+          var L_486542726 = (sectStrts_486542171).length;
           Label2: do {
               Label3: while (true) {
-              if (!(i_486542729 < L_486542730)) break Label3;
-                strt_486542200 = sectStrts_486542176[chckIndx(i_486542729, 0, (sectStrts_486542176).length - 1)];
-                var stStat_486542214 = parseEnum_486540761(reprEnum(strt_486542200.status, NTI1526726662));
-                var coords_486542215 = nsuSplitString(strt_486542200.geometry, makeNimstrLit(";"), -1);
+              if (!(i_486542725 < L_486542726)) break Label3;
+                strt_486542195 = sectStrts_486542171[chckIndx(i_486542725, 0, (sectStrts_486542171).length - 1)];
+                var stStat_486542209 = parseEnum_486540754(reprEnum(strt_486542195.status, NTI1526726662));
+                var coords_486542210 = nsuSplitString(strt_486542195.geometry, makeNimstrLit(";"), -1);
                 Label4: do {
-                  var latlng_486542236 = null;
-                  var latlng_486542236_Idx = 0;
-                  var i_486542725 = 0;
-                  var L_486542726 = (coords_486542215).length;
+                  var latlng_486542231 = null;
+                  var latlng_486542231_Idx = 0;
+                  var i_486542721 = 0;
+                  var L_486542722 = (coords_486542210).length;
                   Label5: do {
                       Label6: while (true) {
-                      if (!(i_486542725 < L_486542726)) break Label6;
-                        latlng_486542236 = coords_486542215; latlng_486542236_Idx = chckIndx(i_486542725, 0, (coords_486542215).length - 1);
-                        var lnStr_486542248 = (new H.geo.LineString());
-                        var c_486542249 = nsuSplitString(latlng_486542236[latlng_486542236_Idx], makeNimstrLit(","), -1);
+                      if (!(i_486542721 < L_486542722)) break Label6;
+                        latlng_486542231 = coords_486542210; latlng_486542231_Idx = chckIndx(i_486542721, 0, (coords_486542210).length - 1);
+                        var lnStr_486542243 = (new H.geo.LineString());
+                        var c_486542244 = nsuSplitString(latlng_486542231[latlng_486542231_Idx], makeNimstrLit(","), -1);
                         Label7: do {
-                          var i_486542258 = 0;
-                          var colontmp__486542721 = 0;
-                          colontmp__486542721 = (c_486542249).length - 1;
-                          var res_486542722 = 0;
+                          var i_486542253 = 0;
+                          var colontmp__486542717 = 0;
+                          colontmp__486542717 = (c_486542244).length - 1;
+                          var res_486542718 = 0;
                           Label8: do {
                               Label9: while (true) {
-                              if (!(res_486542722 <= colontmp__486542721)) break Label9;
-                                i_486542258 = res_486542722;
-                                lnStr_486542248.pushLatLngAlt((((toJSStr(c_486542249[chckIndx(i_486542258, 0, (c_486542249).length - 1)])))), (((toJSStr(c_486542249[chckIndx(addInt(i_486542258, 1), 0, (c_486542249).length - 1)])))), (1.0));
-                                res_486542722 = addInt(res_486542722, 2);
+                              if (!(res_486542718 <= colontmp__486542717)) break Label9;
+                                i_486542253 = res_486542718;
+                                lnStr_486542243.pushLatLngAlt((((toJSStr(c_486542244[chckIndx(i_486542253, 0, (c_486542244).length - 1)])))), (((toJSStr(c_486542244[chckIndx(addInt(i_486542253, 1), 0, (c_486542244).length - 1)])))), (1.0));
+                                res_486542718 = addInt(res_486542718, 2);
                               }
                           } while (false);
                         } while (false);
-                        var pOpt_486542318 = innerHEX60gensym520_486542300();
-                        var pl_486542344 = (new H.map.Polyline((lnStr_486542248), (pOpt_486542318)));
-                        setPolyStyleByStat_620757622(pl_486542344, strt_486542200.status);
-                        sectStreetGrp_486539671[0].addObject((pl_486542344));
-                        i_486542725 = addInt(i_486542725, 1);
-                        if (!(((coords_486542215).length == L_486542726))) {
+                        var pOpt_486542313 = innerHEX60gensym520_486542295();
+                        var pl_486542339 = (new H.map.Polyline((lnStr_486542243), (pOpt_486542313)));
+                        setPolyStyleByStat_620757622(pl_486542339, strt_486542195.status);
+                        sectStreetGrp_486539664[0].addObject((pl_486542339));
+                        i_486542721 = addInt(i_486542721, 1);
+                        if (!(((coords_486542210).length == L_486542722))) {
                         failedAssertImpl_218103864(makeNimstrLit("iterators.nim(240, 11) `len(a) == L` the length of the seq changed while iterating over it"));
                         }
                         
                       }
                   } while (false);
                 } while (false);
-                i_486542729 = addInt(i_486542729, 1);
-                if (!(((sectStrts_486542176).length == L_486542730))) {
+                i_486542725 = addInt(i_486542725, 1);
+                if (!(((sectStrts_486542171).length == L_486542726))) {
                 failedAssertImpl_218103864(makeNimstrLit("iterators.nim(240, 11) `len(a) == L` the length of the seq changed while iterating over it"));
                 }
                 
               }
           } while (false);
         } while (false);
-        map.getViewModel().setLookAtData((innerHEX60gensym538_486542362()));
-        spinnerOn_486539630[0] = false;
+        map.getViewModel().setLookAtData((innerHEX60gensym538_486542357()));
+        spinnerOn_486539623[0] = false;
         redraw_1124074477(kxi_1124073536[0]);
       } while (false);
 
       
     }
     
-function HEX3Aanonymous_486542410(error_486542411) {
-        console.log(("error:"), (error_486542411.Field0));
+function HEX3Aanonymous_486542405(error_486542406) {
+        console.log(("error:"), (error_486542406.Field0));
         redraw_1124074477(kxi_1124073536[0]);
 
       
     }
     
-function HEX3Aanonymous_486542436() {
+function HEX3Aanonymous_486542431() {
       
     }
 
   BeforeRet: do {
-    var clMapEl_486541847 = document.getElementById(("cl-map"));
-    if ((clMapEl_486541847 == null)) {
-    stmClMap_486541834[0] = null;
+    var clMapEl_486541842 = document.getElementById(("cl-map"));
+    if ((clMapEl_486541842 == null)) {
+    stmClMap_486541829[0] = null;
     break BeforeRet;
     }
     
-    if (!((stmClMap_486541834[0] == null))) {
+    if (!((stmClMap_486541829[0] == null))) {
     break BeforeRet;
     }
     
-    var stmOpenMapScr_486541880 = Kefir.constant((false));
-    stmClMap_486541834[0] = Kefir.fromEvents((clMapEl_486541847), ("click"));
-    stmClMap_486541834[0] = stmClMap_486541834[0].map((HEX3Aanonymous_486541917));
-    var stmGetStreet_486541955 = Kefir.merge((([stmOpenMapScr_486541880, stmClMap_486541834[0]]))).flatMapLatest((getStreets_486541856));
-    stmGetStreet_486541955.observe((HEX3Aanonymous_486541956), (HEX3Aanonymous_486542410), (HEX3Aanonymous_486542436));
+    var stmOpenMapScr_486541875 = Kefir.constant((false));
+    stmClMap_486541829[0] = Kefir.fromEvents((clMapEl_486541842), ("click"));
+    stmClMap_486541829[0] = stmClMap_486541829[0].map((HEX3Aanonymous_486541912));
+    var stmGetStreet_486541950 = Kefir.merge((([stmOpenMapScr_486541875, stmClMap_486541829[0]]))).flatMapLatest((getStreets_486541851));
+    stmGetStreet_486541950.observe((HEX3Aanonymous_486541951), (HEX3Aanonymous_486542405), (HEX3Aanonymous_486542431));
   } while (false);
 
   
 }
 
-function HEX3Aanonymous_486542452() {
+function HEX3Aanonymous_486542447() {
     
-function innerHEX60gensym584_486542504() {
-      var result_486542505 = null;
+function innerHEX60gensym584_486542499() {
+      var result_486542500 = null;
 
       BeforeRet: do {
-        var a_486542506 = null;
-        a_486542506 = {};
-        a_486542506.behavior = "auto";
-        a_486542506.block = "start";
-        a_486542506.inline = "nearest";
-        result_486542505 = a_486542506;
+        var a_486542501 = null;
+        a_486542501 = {};
+        a_486542501.behavior = "auto";
+        a_486542501.block = "start";
+        a_486542501.inline = "nearest";
+        result_486542500 = a_486542501;
         break BeforeRet;
       } while (false);
 
-      return result_486542505;
+      return result_486542500;
 
     }
 
   BeforeRet: do {
     currDate_486539284[0] = nimCopy(null, format_1543506676(now_1543505314(), normalDateFmt_486539283, DefaultLocale_1543505479), NTI33554439);
     if (!((document.getElementById(("ownSectors")) == null))) {
-    document.getElementById(("ownSectors")).checked = onlyMySectors_486539634[0];
+    document.getElementById(("ownSectors")).checked = onlyMySectors_486539627[0];
     }
     
-    bindSearchSector_486541686();
-    bindEvtsMapScreen_486541835();
-    if (!((scrollToSectId_486539633[0] == 0))) {
-    var sIdEl_486542493 = $((toJSStr(nsuJoinSep([makeNimstrLit("#"), HEX24_335544323(scrollToSectId_486539633[0]), makeNimstrLit(".card")], []))));
-    if (((sIdEl_486542493.length) == 0)) {
+    bindSearchSector_486541681();
+    bindEvtsMapScreen_486541830();
+    if (!((scrollToSectId_486539626[0] == 0))) {
+    var sIdEl_486542488 = $((toJSStr(nsuJoinSep([makeNimstrLit("#"), HEX24_335544323(scrollToSectId_486539626[0]), makeNimstrLit(".card")], []))));
+    if (((sIdEl_486542488.length) == 0)) {
     break BeforeRet;
     }
     
-    scrollToSectId_486539633[0] = 0;
-    sIdEl_486542493[0].scrollIntoView((innerHEX60gensym584_486542504()));
+    scrollToSectId_486539626[0] = 0;
+    sIdEl_486542488[0].scrollIntoView((innerHEX60gensym584_486542499()));
     }
     
   } while (false);
 
   
 }
-var F = {procname: "module ministryjs", prev: framePtr, filename: "ministryjs.nim", line: 0};
-framePtr = F;
-setRenderer_1124074608(createDom_486541455, "main-control-container", HEX3Aanonymous_486542452);
-framePtr = F.prev;
-var F = {procname: "module ministryjs", prev: framePtr, filename: "ministryjs.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module ministryjs", prev: framePtr, filename: "ministryjs.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
+setRenderer_1124074608(createDom_486541450, "main-control-container", HEX3Aanonymous_486542447);
 
-function bindMap_486539420(engineType_486539421) {
+function bindMap_486539413(engineType_486539414) {
     
-function innerHEX60gensym601_486542744() {
-      var result_486542745 = null;
+function innerHEX60gensym601_486542740() {
+      var result_486542741 = null;
 
       BeforeRet: do {
-        var a_486542746 = null;
-        a_486542746 = {};
-        a_486542746.apikey = toJSStr(currUser_620757022[0].apiKey);
-        a_486542746.useHTTPS = true;
-        result_486542745 = a_486542746;
+        var a_486542742 = null;
+        a_486542742 = {};
+        a_486542742.apikey = toJSStr(currUser_620757022[0].apiKey);
+        a_486542742.useHTTPS = true;
+        result_486542741 = a_486542742;
         break BeforeRet;
       } while (false);
 
-      return result_486542745;
+      return result_486542741;
 
     }
     var Temporary1;
     
-function innerHEX60gensym618_486542811() {
-      var result_486542812 = null;
+function innerHEX60gensym618_486542807() {
+      var result_486542808 = null;
 
       BeforeRet: do {
-        var a_486542813 = null;
-        a_486542813 = {};
-        a_486542813.tileSize = 512;
-        a_486542813.pois = true;
-        result_486542812 = a_486542813;
+        var a_486542809 = null;
+        a_486542809 = {};
+        a_486542809.tileSize = 512;
+        a_486542809.pois = true;
+        result_486542808 = a_486542809;
         break BeforeRet;
       } while (false);
 
-      return result_486542812;
+      return result_486542808;
 
     }
     
-function innerHEX60gensym632_486542858() {
-      var result_486542859 = null;
+function innerHEX60gensym632_486542854() {
+      var result_486542855 = null;
 
       BeforeRet: do {
-        var a_486542860 = null;
-        a_486542860 = {};
-        a_486542860.engineType = engineType_486539421;
-        a_486542860.pixelRatio = pixelRatio_486542807;
-        a_486542860.noWrap = true;
-        result_486542859 = a_486542860;
+        var a_486542856 = null;
+        a_486542856 = {};
+        a_486542856.engineType = engineType_486539414;
+        a_486542856.pixelRatio = pixelRatio_486542803;
+        a_486542856.noWrap = true;
+        result_486542855 = a_486542856;
         break BeforeRet;
       } while (false);
 
-      return result_486542859;
+      return result_486542855;
 
     }
     var Temporary2;
     
-function innerHEX60gensym698_486543139() {
-      var result_486543140 = null;
+function innerHEX60gensym698_486543135() {
+      var result_486543136 = null;
 
       BeforeRet: do {
-        var a_486543141 = null;
-        a_486543141 = {};
-        a_486543141.label = "<h6>Растр</h6>";
-        result_486543140 = a_486543141;
+        var a_486543137 = null;
+        a_486543137 = {};
+        a_486543137.label = "<h6>Растр</h6>";
+        result_486543136 = a_486543137;
         break BeforeRet;
       } while (false);
 
-      return result_486543140;
+      return result_486543136;
 
     }
     var Temporary3;
     
-function HEX3Aanonymous_486543313(evt_486543314) {
-        if ((evt_486543314.target.getState() == uiButton_486543271.State.UP)) {
+function HEX3Aanonymous_486543309(evt_486543310) {
+        if ((evt_486543310.target.getState() == uiButton_486543267.State.UP)) {
         curEngineType_620757051[0] = engineTypes_620757050[0].WEBGL;
         }
         else {
@@ -17758,19 +11515,19 @@ function HEX3Aanonymous_486543313(evt_486543314) {
         }
         
         localStorage.setItem(("engineType"), (curEngineType_620757051[0]));
-        bindMap_486539420(curEngineType_620757051[0]);
+        bindMap_486539413(curEngineType_620757051[0]);
 
       
     }
     
-function HEX3Aanonymous_486543380() {
-        var vp_486543385 = map.getViewPort();
-        vp_486543385.resize();
+function HEX3Aanonymous_486543376() {
+        var vp_486543381 = map.getViewPort();
+        vp_486543381.resize();
 
       
     }
 
-    var platform_486542791 = (new H.service.Platform((innerHEX60gensym601_486542744())));
+    var platform_486542787 = (new H.service.Platform((innerHEX60gensym601_486542740())));
     if ((window.devicePixelRatio === undefined)) {
     Temporary1 = 1.0;
     }
@@ -17778,59 +11535,59 @@ function HEX3Aanonymous_486543380() {
     Temporary1 = (window.devicePixelRatio);
     }
     
-    var pixelRatio_486542807 = Temporary1;
-    var hidpi_486542808 = (1.0 < pixelRatio_486542807);
-    var layerOpts_486542844 = innerHEX60gensym618_486542811();
-    if (hidpi_486542808) {
-    layerOpts_486542844.ppi = 320;
+    var pixelRatio_486542803 = Temporary1;
+    var hidpi_486542804 = (1.0 < pixelRatio_486542803);
+    var layerOpts_486542840 = innerHEX60gensym618_486542807();
+    if (hidpi_486542804) {
+    layerOpts_486542840.ppi = 320;
     }
     
-    var mapOpts_486542906 = innerHEX60gensym632_486542858();
-    var defLayers_486542918 = platform_486542791.createDefaultLayers((layerOpts_486542844));
-    var mapContainer_486542922 = $(("#map-container"))[0];
-    if ((engineType_486539421 == engineTypes_620757050[0].P2D)) {
-    Temporary2 = defLayers_486542918.raster.normal;
+    var mapOpts_486542902 = innerHEX60gensym632_486542854();
+    var defLayers_486542914 = platform_486542787.createDefaultLayers((layerOpts_486542840));
+    var mapContainer_486542918 = $(("#map-container"))[0];
+    if ((engineType_486539414 == engineTypes_620757050[0].P2D)) {
+    Temporary2 = defLayers_486542914.raster.normal;
     }
     else {
-    Temporary2 = defLayers_486542918.vector.normal;
+    Temporary2 = defLayers_486542914.vector.normal;
     }
     
-    var mapType_486542947 = Temporary2;
-    mapContainer_486542922.innerHTML = [];
-    map = (new H.Map((mapContainer_486542922), (mapType_486542947.map), (mapOpts_486542906)));
+    var mapType_486542943 = Temporary2;
+    mapContainer_486542918.innerHTML = [];
+    map = (new H.Map((mapContainer_486542918), (mapType_486542943.map), (mapOpts_486542902)));
     map.getBaseLayer().setMax((20));
-    var behavior_486543042 = (new H.mapevents.Behavior(((new H.mapevents.MapEvents((map))))));
-    var hUi_486543047 = H.ui;
-    glbUi = hUi_486543047.UI.createDefault((map), (defLayers_486542918));
+    var behavior_486543038 = (new H.mapevents.Behavior(((new H.mapevents.MapEvents((map))))));
+    var hUi_486543043 = H.ui;
+    glbUi = hUi_486543043.UI.createDefault((map), (defLayers_486542914));
     glbUi.removeControl(("zoom"));
-    var cntrRMap_486543088 = (new hUi_486543047.Control());
-    var cntrNoMy_486543096 = (new hUi_486543047.Control());
-    var layoutAligm_486543101 = hUi_486543047.LayoutAlignment;
-    var uiBase_486543106 = hUi_486543047.base;
-    cntrRMap_486543088.setAlignment((layoutAligm_486543101.RIGHT_BOTTOM));
-    cntrNoMy_486543096.setAlignment((layoutAligm_486543101.TOP_CENTER));
-    var cntrRMapBtn_486543182 = (new uiBase_486543106.PushButton((innerHEX60gensym698_486543139()))).addClass(("d-flex align-items-center justify-content-center"));
-    var noMyMsg_486543204 = (new uiBase_486543106.Element(("h5"), ("d-flex align-items-center justify-content-center pt-4 text-danger")));
-    cntrRMap_486543088.addChild((cntrRMapBtn_486543182));
-    cntrNoMy_486543096.addChild((noMyMsg_486543204));
-    glbUi.addControl(("rastr"), (cntrRMap_486543088));
-    glbUi.addControl(("noMyMsg"), (cntrNoMy_486543096));
-    noMyMsgEl_486539672[0] = noMyMsg_486543204.getElement();
-    showNoMyMsg_486539838();
-    var uiButton_486543271 = uiBase_486543106.Button;
+    var cntrRMap_486543084 = (new hUi_486543043.Control());
+    var cntrNoMy_486543092 = (new hUi_486543043.Control());
+    var layoutAligm_486543097 = hUi_486543043.LayoutAlignment;
+    var uiBase_486543102 = hUi_486543043.base;
+    cntrRMap_486543084.setAlignment((layoutAligm_486543097.RIGHT_BOTTOM));
+    cntrNoMy_486543092.setAlignment((layoutAligm_486543097.TOP_CENTER));
+    var cntrRMapBtn_486543178 = (new uiBase_486543102.PushButton((innerHEX60gensym698_486543135()))).addClass(("d-flex align-items-center justify-content-center"));
+    var noMyMsg_486543200 = (new uiBase_486543102.Element(("h5"), ("d-flex align-items-center justify-content-center pt-4 text-danger")));
+    cntrRMap_486543084.addChild((cntrRMapBtn_486543178));
+    cntrNoMy_486543092.addChild((noMyMsg_486543200));
+    glbUi.addControl(("rastr"), (cntrRMap_486543084));
+    glbUi.addControl(("noMyMsg"), (cntrNoMy_486543092));
+    noMyMsgEl_486539665[0] = noMyMsg_486543200.getElement();
+    showNoMyMsg_486539831();
+    var uiButton_486543267 = uiBase_486543102.Button;
     if ((curEngineType_620757051[0] == engineTypes_620757050[0].WEBGL)) {
-    Temporary3 = uiButton_486543271.State.UP;
+    Temporary3 = uiButton_486543267.State.UP;
     }
     else {
-    Temporary3 = uiButton_486543271.State.DOWN;
+    Temporary3 = uiButton_486543267.State.DOWN;
     }
     
-    cntrRMapBtn_486543182.setState((Temporary3));
-    cntrRMapBtn_486543182.addEventListener(("statechange"), (HEX3Aanonymous_486543313));
-    var mpRef_486543373 = map;
-    window.addEventListener(("resize"), (HEX3Aanonymous_486543380));
-    map.addObject((currentPosM_486539423));
-    map.addObject((sectStreetGrp_486539671[0]));
+    cntrRMapBtn_486543178.setState((Temporary3));
+    cntrRMapBtn_486543178.addEventListener(("statechange"), (HEX3Aanonymous_486543309));
+    var mpRef_486543369 = map;
+    window.addEventListener(("resize"), (HEX3Aanonymous_486543376));
+    map.addObject((currentPosM_486539416));
+    map.addObject((sectStreetGrp_486539664[0]));
 
   
 }
@@ -17839,104 +11596,95 @@ function getElemCoords_620757071(elem_620757072) {
   var result_620757075 = {Field0: 0.0, Field1: 0.0};
 
     var box_620757084 = elem_620757072.getBoundingClientRect();
-    var colontmp__486543510 = ((box_620757084.top + pageYOffset));
-    var colontmp__486543511 = ((box_620757084.left + pageXOffset));
-    result_620757075 = nimCopy(result_620757075, {Field0: colontmp__486543510, Field1: colontmp__486543511}, NTI620757021);
+    var colontmp__486543506 = ((box_620757084.top + pageYOffset));
+    var colontmp__486543507 = ((box_620757084.left + pageXOffset));
+    result_620757075 = nimCopy(result_620757075, {Field0: colontmp__486543506, Field1: colontmp__486543507}, NTI620757021);
 
   return result_620757075;
 
 }
 
-function setEventsModalMap_486541343() {
+function setEventsModalMap_486541338() {
     
-function HEX3Aanonymous_486541347(e_486541348) {
-        var mapBody_486541363 = $((".map-body")).get((0));
-        var elC_486541364 = getElemCoords_620757071(mapBody_486541363);
-        var elMap_486541368 = $(("#map-container"))[0];
-        elMap_486541368.style.top = "0px";
-        elMap_486541368.style.left = "0px";
-        mapBody_486541363.style.height = toJSStr((HEX24_33557369(((screen.height) - 200.0)) || []).concat(makeNimstrLit("px") || []));
-        mapBody_486541363.appendChild((elMap_486541368));
+function HEX3Aanonymous_486541342(e_486541343) {
+        var mapBody_486541358 = $((".map-body")).get((0));
+        var elC_486541359 = getElemCoords_620757071(mapBody_486541358);
+        var elMap_486541363 = $(("#map-container"))[0];
+        elMap_486541363.style.top = "0px";
+        elMap_486541363.style.left = "0px";
+        mapBody_486541358.style.height = toJSStr((HEX24_33557369(((screen.height) - 200.0)) || []).concat(makeNimstrLit("px") || []));
+        mapBody_486541358.appendChild((elMap_486541363));
 
       
     }
 
-    $(("#mapModal")).on(("shown.bs.modal"), (HEX3Aanonymous_486541347));
+    $(("#mapModal")).on(("shown.bs.modal"), (HEX3Aanonymous_486541342));
 
   
 }
 
-function getAllProccess_486539831(myS_486539832, sectorName_486539833) {
+function getAllProccess_486539824(myS_486539825, sectorName_486539826) {
     var Temporary1;
     var Temporary2;
     
-function HEX3Aanonymous_486543447(value_486543448) {
-        allSectProc_486539626[0] = nimCopy(null, parseResp_486539933(value_486543448.Field2).resp, NTI486539683);
+function HEX3Aanonymous_486543443(value_486543444) {
+        allSectProc_486539619[0] = nimCopy(null, parseResp_486539926(value_486543444.Field2).resp, NTI486539674);
 
       
     }
     
-function HEX3Aanonymous_486543460(error_486543461) {
-        console.log(("error:"), (error_486543461.Field0));
+function HEX3Aanonymous_486543456(error_486543457) {
+        console.log(("error:"), (error_486543457.Field0));
 
       
     }
     
-function HEX3Aanonymous_486543486() {
-        spinnerOn_486539630[0] = false;
+function HEX3Aanonymous_486543482() {
+        spinnerOn_486539623[0] = false;
         redraw_1124074477(kxi_1124073536[0]);
 
       
     }
 
-    spinnerOn_486539630[0] = true;
-    allSectProc_486539626[0] = nimCopy(null, newSeq_486539911(0), NTI486539669);
+    spinnerOn_486539623[0] = true;
+    allSectProc_486539619[0] = nimCopy(null, newSeq_486539904(0), NTI486539660);
     redraw_1124074477(kxi_1124073536[0]);
-    if (!(myS_486539832)) {
+    if (!(myS_486539825)) {
     Temporary1 = [];
     }
     else {
-      var fmtRes_486543436 = [mnewString(0)];
-      fmtRes_486543436[0].push.apply(fmtRes_486543436[0], makeNimstrLit("&userId="));;
-      formatValue_1761607743(fmtRes_486543436, 0, currUser_620757022[0].id, []);
-    Temporary1 = fmtRes_486543436[0];
+      var fmtRes_486543432 = [mnewString(0)];
+      fmtRes_486543432[0].push.apply(fmtRes_486543432[0], makeNimstrLit("&userId="));;
+      formatValue_1761607743(fmtRes_486543432, 0, currUser_620757022[0].id, []);
+    Temporary1 = fmtRes_486543432[0];
     }
     
-    var rUid_486543442 = nimCopy(null, Temporary1, NTI33554439);
-    if (!(eqStrings(sectorName_486539833, []))) {
-    var fmtRes_486543443 = [mnewString(0)];
-    fmtRes_486543443[0].push.apply(fmtRes_486543443[0], makeNimstrLit("&sectorName="));;
-    formatValue_1493172386(fmtRes_486543443, 0, sectorName_486539833, []);
-    Temporary2 = fmtRes_486543443[0];
+    var rUid_486543438 = nimCopy(null, Temporary1, NTI33554439);
+    if (!(eqStrings(sectorName_486539826, []))) {
+    var fmtRes_486543439 = [mnewString(0)];
+    fmtRes_486543439[0].push.apply(fmtRes_486543439[0], makeNimstrLit("&sectorName="));;
+    formatValue_1493172386(fmtRes_486543439, 0, sectorName_486539826, []);
+    Temporary2 = fmtRes_486543439[0];
     }
     else {
     Temporary2 = [];
     }
     
-    var sName_486543444 = nimCopy(null, Temporary2, NTI33554439);
-    var fmtRes_486543445 = [mnewString(0)];
-    fmtRes_486543445[0].push.apply(fmtRes_486543445[0], makeNimstrLit("token="));;
-    formatValue_1493172386(fmtRes_486543445, 0, currUser_620757022[0].token, []);
-    var stmLogin_486543446 = sendRequest_620757128(makeNimstrLit("GET"), (makeNimstrLit("/sector/process?") || []).concat(fmtRes_486543445[0] || [],rUid_486543442 || [],sName_486543444 || []), [], []);
-    stmLogin_486543446.observe((HEX3Aanonymous_486543447), (HEX3Aanonymous_486543460), (HEX3Aanonymous_486543486));
+    var sName_486543440 = nimCopy(null, Temporary2, NTI33554439);
+    var fmtRes_486543441 = [mnewString(0)];
+    fmtRes_486543441[0].push.apply(fmtRes_486543441[0], makeNimstrLit("token="));;
+    formatValue_1493172386(fmtRes_486543441, 0, currUser_620757022[0].token, []);
+    var stmLogin_486543442 = sendRequest_620757128(makeNimstrLit("GET"), (makeNimstrLit("/sector/process?") || []).concat(fmtRes_486543441[0] || [],rUid_486543438 || [],sName_486543440 || []), [], []);
+    stmLogin_486543442.observe((HEX3Aanonymous_486543443), (HEX3Aanonymous_486543456), (HEX3Aanonymous_486543482));
 
   
 }
-var F = {procname: "module ministryjs", prev: framePtr, filename: "ministryjs.nim", line: 0};
-framePtr = F;
 if (!(eqStrings(currUser_620757022[0].token, []))) {
-allSectProc_486539626[0] = nimCopy(null, newSeq_486539911(0), NTI486539669);
-spinnerOn_486539630[0] = true;
+allSectProc_486539619[0] = nimCopy(null, newSeq_486539904(0), NTI486539660);
+spinnerOn_486539623[0] = true;
 redraw_1124074477(kxi_1124073536[0]);
-bindMap_486539420(curEngineType_620757051[0]);
-setEventsModalMap_486541343();
-getAllProccess_486539831(false, []);
+bindMap_486539413(curEngineType_620757051[0]);
+setEventsModalMap_486541338();
+getAllProccess_486539824(false, []);
 }
 
-framePtr = F.prev;
-var F = {procname: "module ministryjs", prev: framePtr, filename: "ministryjs.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;
-var F = {procname: "module ministryjs", prev: framePtr, filename: "ministryjs.nim", line: 0};
-framePtr = F;
-framePtr = F.prev;

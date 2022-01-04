@@ -504,6 +504,7 @@ proc showStreets(): VNode =
                         cityName = arrSectName[1]
                         ci = encodeUrl(fmt"{pc} {cityName}")
                         st = encodeUrl(str.name, true)
+                        dasOertl = fmt"https://www.dasoertliche.de/?zvo_ok=0&ci={ci}&st={st}&radius=0&form_name=search_nat_ext"
                     if sSt == StreetStatus.strStarted:
                         strSt = (color: "primary".cstring, stDescr: " - не закончена".cstring)
                     elif sSt == StreetStatus.strFinished:
@@ -517,9 +518,13 @@ proc showStreets(): VNode =
                                 ):
                             text str.name
                         span(class = "tel-book"):
-                            a(href = fmt"https://www.dasoertliche.de/?zvo_ok=0&ci={ci}&st={st}&radius=0&form_name=search_nat_ext".cstring,
+                            text "Das Örtl.:"
+                            a(class = "pl-2", href = dasOertl.cstring,
                                     target = "_blank"):
-                                text "das Örtl."
+                                text "Alle"
+                            a(class = "pl-2",href = [dasOertl, "atfilter=1"].join("&").cstring,
+                                    target = "_blank"):
+                                text "Private"
                             #discard dbg: console.log("street:->", str)
                         #[input(`type`="number", #[inputmode="numeric",]# class="col-1 mr-2 px-1", id="strfam" & ($i & $tf).cstring,
                                                 value = tf, oninput = setStrTotFam(i))]#
