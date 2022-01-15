@@ -12,6 +12,6 @@ bin           = @["ministry"]
 # Dependencies
 
 requires "nim >= 0.20.2"
-requires "jester >= 0.4.3"
+requires "jester >= 0.5.0"
 requires "flatty"
 requires "supersnappy"
