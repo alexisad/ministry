@@ -569,7 +569,7 @@ proc allowTake(p: SectorProcess): bool =
         return true
     if p.date_finish == "":
         return false
-    if ((now() - 1.weeks).format normalDateFmt) > $p.date_finish:
+    if ((now() - 4.months).format normalDateFmt) > $p.date_finish:
         return true
 
 
