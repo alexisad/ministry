@@ -1,4 +1,4 @@
-import json, db_sqlite, times, strutils, tables, hashes, parsecsv, streams, unicode
+import json, db_sqlite, times, strutils, sequtils, tables, hashes, parsecsv, streams, unicode
 import util/[types, utils]
 import flatty, supersnappy
 
@@ -40,6 +40,72 @@ proc initTblTotFamByStreet(): Table[Hash, Natural] =
     result[street.hash] = parser.rowEntry("TotalFamilies").parseInt
   parser.close()
   strm.close()
+
+
+proc strTblTotalFamByStreet(): Table[string, Natural] =
+  result = initTable[string, Natural]()
+  var
+    parser: CsvParser
+    fn = "resAllStreets.csv"
+    strm = newFileStream(fn, fmRead)
+
+  parser.open(strm, fn, '|', '0')
+  ## Need calling `readHeaderRow`.
+  parser.readHeaderRow()
+  while parser.readRow():
+    let strN = unicode.strip parser.rowEntry("Street")
+    if strN == "": continue
+    let city = unicode.strip parser.rowEntry("City")
+    let dstr = unicode.strip parser.rowEntry("District")
+    let district =
+      if dstr == city:
+        ""
+      else: dstr
+    let
+      plz = unicode.strip parser.rowEntry("Plz")
+    var arrStrAdm = @[plz, city, district, strN]
+    if district == "":
+      arrStrAdm.delete 2
+    let strKey = unicode.toLower(arrStrAdm.join(" "))
+    result[strKey] = parser.rowEntry("TotalFamilies").parseInt
+  parser.close()
+  strm.close()
+
+
+proc setFamCount*(db: DbConn): bool =
+  result = false
+  let totalFam = strTblTotalFamByStreet()
+  let sectRows = db.getAllRows(sql"""SELECT street.id as street_id, sector.name as sector_adm, street.name as street_name, sector.plz as plz
+                                    FROM sector, street
+                                    WHERE sector.id = street.sector_id AND inactive = 0 AND corpus_id = 1""")
+  db.exec(sql"BEGIN")
+  for r in sectRows:
+    let
+      streetId = r[0]
+    var
+      arrStrAdm = r[1].split(" ")
+    arrStrAdm.delete 0
+    arrStrAdm = concat(@[r[3]], arrStrAdm, @[r[2]])
+    let strAdm = unicode.toLower arrStrAdm.join(" ")
+    #echo "strAdm:", strAdm
+    let cntFam =
+      if totalFam.hasKey(strAdm):
+        #echo "total:", totalFam[strAdm]
+        totalFam[strAdm]
+      else:
+        #echo "not found"
+        0
+    db.exec(sql"""UPDATE street
+      SET total_families = ?
+      WHERE id = ?""",
+            cntFam, streetId)
+  if not db.tryExec(sql"COMMIT"):
+    db.exec(sql"ROLLBACK")
+    return result
+  else:
+    result = true
+  #for k, v in totalFam:
+    #echo "k:", k
 
 
 proc uploadSector*(db: DbConn, corpusId: int,
