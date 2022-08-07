@@ -7842,7 +7842,7 @@ function loginDialog_33555047() {
     add_1107296882(tmp_33555060, tmp_33555061);
     var tmp_33555062 = tree_1107296945(31, []);
     tmp_33555062.class = "mt-5 mb-3 text-muted text-center";
-    add_1107296882(tmp_33555062, text_1107296997(makeNimstrLit("\xC2\xA9 2019-2021")));
+    add_1107296882(tmp_33555062, text_1107296997(makeNimstrLit("\xC2\xA9 2019-2022")));
     add_1107296882(tmp_33555060, tmp_33555062);
     add_1107296882(tmp_33555051, tmp_33555060);
     result_33555048 = tmp_33555051;

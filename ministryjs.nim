@@ -233,7 +233,7 @@ proc loginDialog(): VNode =
             button(class="btn btn-lg btn-primary btn-block", `type`="submit", onclick = login(".form-signin .btn")):
                 text "Войти"
             p(class="mt-5 mb-3 text-muted text-center"):
-                text "© 2019-2021"
+                text "© 2019-2022"
 
 proc updProcc(): proc() =
     result = proc() =
