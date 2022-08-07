@@ -528,7 +528,7 @@ proc showStreets(): VNode =
                             #discard dbg: console.log("street:->", str)
                         span:
                             text "; семей:"
-                        input(`type`="number", inputmode="numeric", class="col-1 ml-1 mr-2 px-1", id="strfam" & ($i & $tf).cstring,
+                        input(`type`="number", #[inputmode="numeric",]# class="col-1 ml-1 mr-2 px-1", id="strfam" & ($i & $tf).cstring,
                                                 value = tf, oninput = setStrTotFam(i))
                     #[tdiv(class="overflow-auto text-nowrap border-bottom pb-2 mt-n3"):
                         text strSt.stDescr]#
