@@ -526,9 +526,9 @@ proc showStreets(): VNode =
                                     target = "_blank"):
                                 text "Private"
                             #discard dbg: console.log("street:->", str)
-                        span:
-                            text " - семей:"
-                        input(`type`="number", inputmode="numeric", class="col-1 ml-1 mr-2 px-1", min="0", max="100",
+                        span(class="ml-1"):
+                            text "- семей:"
+                        input(`type`="number", inputmode="numeric", class="col-2 ml-1 mr-2 px-1", min="0", max="100",
                                                 id="strfam" & ($i & $tf).cstring,
                                                 value = tf, oninput = setStrTotFam(i))
                     #[tdiv(class="overflow-auto text-nowrap border-bottom pb-2 mt-n3"):
