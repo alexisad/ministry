@@ -511,7 +511,7 @@ proc showStreets(): VNode =
                         strSt = (color: "success".cstring, stDescr: " - пройдена".cstring)
                     else:
                         strSt = (color: "danger".cstring, stDescr: " - не начата".cstring)
-                    tdiv(class="py-2 row"):
+                    tdiv(class="py-2 row border-bottom"):
                         button(`type`="button",
                                     class=fmt"text-nowrap overflow-auto ml-2 mr-2 btn btn-outline-{strSt.color} btn-sm".cstring,
                                     onclick = setStrStatus(i)
@@ -527,8 +527,9 @@ proc showStreets(): VNode =
                                 text "Private"
                             #discard dbg: console.log("street:->", str)
                         span:
-                            text "; семей:"
-                        input(`type`="number", #[inputmode="numeric",]# class="col-1 ml-1 mr-2 px-1", id="strfam" & ($i & $tf).cstring,
+                            text " - семей:"
+                        input(`type`="number", inputmode="numeric", class="col-1 ml-1 mr-2 px-1", min="0", max="100",
+                                                id="strfam" & ($i & $tf).cstring,
                                                 value = tf, oninput = setStrTotFam(i))
                     #[tdiv(class="overflow-auto text-nowrap border-bottom pb-2 mt-n3"):
                         text strSt.stDescr]#

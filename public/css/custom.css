@@ -41,6 +41,10 @@ body {
 	/*max-width: 13rem;*/
 }
 
+input[type='number'] {
+	width: 80px;
+}
+
 #map-container {
 	position: absolute;
 	left: -99999px;

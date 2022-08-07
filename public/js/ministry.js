@@ -8749,7 +8749,7 @@ function showStreets_33556137() {
             }
             }
             var tmp_33556145 = tree_1107296945(43, []);
-            tmp_33556145.class = "py-2 row";
+            tmp_33556145.class = "py-2 row border-bottom";
             var tmp_33556146 = tree_1107296945(106, []);
             setAttr_1107296808(tmp_33556146, "type", "button");
             var fmtRes_33556207 = [mnewString(0)];
@@ -8776,11 +8776,14 @@ function showStreets_33556137() {
             add_1107296882(tmp_33556147, tmp_33556149);
             add_1107296882(tmp_33556145, tmp_33556147);
             var tmp_33556150 = tree_1107296945(70, []);
-            add_1107296882(tmp_33556150, text_1107296997(makeNimstrLit("; \xD1\x81\xD0\xB5\xD0\xBC\xD0\xB5\xD0\xB9:")));
+            add_1107296882(tmp_33556150, text_1107296997(makeNimstrLit(" - \xD1\x81\xD0\xB5\xD0\xBC\xD0\xB5\xD0\xB9:")));
             add_1107296882(tmp_33556145, tmp_33556150);
             var tmp_33556151 = tree_1107296945(105, []);
             setAttr_1107296808(tmp_33556151, "type", "number");
+            setAttr_1107296808(tmp_33556151, "inputmode", "numeric");
             tmp_33556151.class = "col-1 ml-1 mr-2 px-1";
+            setAttr_1107296808(tmp_33556151, "min", "0");
+            setAttr_1107296808(tmp_33556151, "max", "100");
             tmp_33556151.id = ("strfam" + toJSStr((HEX24_369098755(i_33556159) || []).concat(cstrToNimstr(tf_33556161) || [])));
             valueHEX3D_1107296586(tmp_33556151, tf_33556161);
             setAttr_1107296808(tmp_33556151, "value", tf_33556161);
