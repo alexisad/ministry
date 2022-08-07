@@ -518,7 +518,7 @@ proc showStreets(): VNode =
                                 ):
                             text str.name
                         span(class = "tel-book"):
-                            text "Das Örtl.:"
+                            #text "Das Örtl.:"
                             a(class = "pl-2", href = dasOertl.cstring,
                                     target = "_blank"):
                                 text "Alle"
@@ -526,8 +526,10 @@ proc showStreets(): VNode =
                                     target = "_blank"):
                                 text "Private"
                             #discard dbg: console.log("street:->", str)
-                        #[input(`type`="number", #[inputmode="numeric",]# class="col-1 mr-2 px-1", id="strfam" & ($i & $tf).cstring,
-                                                value = tf, oninput = setStrTotFam(i))]#
+                        span:
+                            text "; семей:"
+                        input(`type`="number", inputmode="numeric", class="col-1 ml-1 mr-2 px-1", id="strfam" & ($i & $tf).cstring,
+                                                value = tf, oninput = setStrTotFam(i))
                     #[tdiv(class="overflow-auto text-nowrap border-bottom pb-2 mt-n3"):
                         text strSt.stDescr]#
             tdiv:
@@ -595,7 +597,7 @@ proc showAllProc(): VNode =
                     input(`type`="checkbox", class="custom-control-input", id="ownSectors")
                     label(class="custom-control-label", `for`="ownSectors"):
                         text "Мои"
-                input(`type`="text", class="form-control mw-50", id="searchSector",
+                input(`type`="text", class="form-control ml-1 mw-50", id="searchSector",
                             aria-describedby="searchHelp", placeholder="искать...",
                             value = currUiSt.inpSearch.to(kstring)
                     )
@@ -644,17 +646,21 @@ proc showAllProc(): VNode =
                                     #discard dbg:
                                         #console.log("currDate > $p.date_finish", currDate, p.date_finish)
                         tdiv(class="card-body"):
-                            h6(class="card-title"):
+                            h5(class="card-title"):
                                 text p.name
                             tdiv(class = clsCol):
                                 text(stDate)
                             tdiv(class = clsCol):
                                 text(finDate)
-                            when false:
+                            when true:
                                 tdiv(class = clsCol & " d-flex justify-content-end"):
-                                    h5:
-                                        span(class = "badge badge-primary"):
+                                    span:
+                                        text kstring("Всего семей:")
+                                    span(class="ml-1"):
+                                        strong:
                                             text kstring($p.totalFamilies)
+                                    #span(class = "badge badge-primary"):
+                                        #text ($p.totalFamilies)
         
 
 

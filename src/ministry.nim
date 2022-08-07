@@ -530,6 +530,9 @@ router mrouter:
     elif @"action" == "streets":
       let sectStreets = getSectStreets(db, @"token", @"sectorId")
       resp %*sectStreets
+    elif @"action" == "setFamCount":
+      checkAdminToken ifAdmin
+      resp %*{"success": db.setFamCount()}
     else:
       halt()
   get "/streets/status/@action":
