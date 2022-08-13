@@ -1,6 +1,6 @@
 //This is the service worker with the Advanced caching
 
-const CACHE = "pwabuilder-adv-cache-v0.4.0-4";
+const CACHE = "pwabuilder-adv-cache-v0.4.0-5";
 const precacheFiles = [
     /* Add an array of files to precache for your app */
     './',
