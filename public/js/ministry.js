@@ -11520,7 +11520,7 @@ function innerHEX60gensym602_33557916() {
     }
     var Temporary1;
     
-function innerHEX60gensym621_33557983() {
+function innerHEX60gensym620_33557983() {
       var result_33557984 = null;
 
       BeforeRet: do {
@@ -11537,7 +11537,7 @@ function innerHEX60gensym621_33557983() {
 
     }
     
-function innerHEX60gensym637_33558045() {
+function innerHEX60gensym636_33558045() {
       var result_33558046 = null;
 
       BeforeRet: do {
@@ -11555,7 +11555,7 @@ function innerHEX60gensym637_33558045() {
     }
     var Temporary2;
     
-function innerHEX60gensym703_33558326() {
+function innerHEX60gensym702_33558326() {
       var result_33558327 = null;
 
       BeforeRet: do {
@@ -11601,13 +11601,13 @@ function HEX3Aanonymous_33558556() {
     }
     
     var pixelRatio_33557979 = Temporary1;
-    var hidpi_33557980 = (1.0 < pixelRatio_33557979);
-    var layerOpts_33558031 = innerHEX60gensym621_33557983();
+    var hidpi_33557980 = true;
+    var layerOpts_33558031 = innerHEX60gensym620_33557983();
     if (hidpi_33557980) {
     layerOpts_33558031.ppi = 500;
     }
     
-    var mapOpts_33558093 = innerHEX60gensym637_33558045();
+    var mapOpts_33558093 = innerHEX60gensym636_33558045();
     var defLayers_33558105 = platform_33557963.createDefaultLayers((layerOpts_33558031));
     var mapContainer_33558109 = $(("#map-container"))[0];
     if ((engineType_33554586 == engineTypes_587202618[0].P2D)) {
@@ -11631,7 +11631,7 @@ function HEX3Aanonymous_33558556() {
     var uiBase_33558293 = hUi_33558234.base;
     cntrRMap_33558275.setAlignment((layoutAligm_33558288.RIGHT_BOTTOM));
     cntrNoMy_33558283.setAlignment((layoutAligm_33558288.TOP_CENTER));
-    var cntrRMapBtn_33558369 = (new uiBase_33558293.PushButton((innerHEX60gensym703_33558326()))).addClass(("d-flex align-items-center justify-content-center"));
+    var cntrRMapBtn_33558369 = (new uiBase_33558293.PushButton((innerHEX60gensym702_33558326()))).addClass(("d-flex align-items-center justify-content-center"));
     var noMyMsg_33558391 = (new uiBase_33558293.Element(("h5"), ("d-flex align-items-center justify-content-center pt-4 text-danger")));
     cntrNoMy_33558283.addChild((noMyMsg_33558391));
     glbUi.addControl(("rastr"), (cntrRMap_33558275));
