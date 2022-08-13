@@ -930,7 +930,7 @@ proc bindMap(engineType: JsObject = curEngineType) =
             )
         )
     let pixelRatio = if window.devicePixelRatio.isUndefined: 1.float else: window.devicePixelRatio.to(float)
-    let hidpi = pixelRatio > 1.float
+    let hidpi = true #pixelRatio > 1.float
     var layerOpts = JsObject{
             tileSize: 512, #if hidpi: 512 else: 256,
             pois: true,
