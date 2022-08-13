@@ -11528,7 +11528,7 @@ function innerHEX60gensym621_33557983() {
         a_33557985 = {};
         a_33557985.tileSize = 512;
         a_33557985.pois = true;
-        a_33557985.ppi = 72;
+        a_33557985.ppi = 500;
         result_33557984 = a_33557985;
         break BeforeRet;
       } while (false);
@@ -11537,72 +11537,72 @@ function innerHEX60gensym621_33557983() {
 
     }
     
-function innerHEX60gensym637_33558045() {
-      var result_33558046 = null;
+function innerHEX60gensym636_33558034() {
+      var result_33558035 = null;
 
       BeforeRet: do {
-        var a_33558047 = null;
-        a_33558047 = {};
-        a_33558047.engineType = engineType_33554586;
-        a_33558047.pixelRatio = pixelRatio_33557979;
-        a_33558047.noWrap = true;
-        result_33558046 = a_33558047;
+        var a_33558036 = null;
+        a_33558036 = {};
+        a_33558036.engineType = engineType_33554586;
+        a_33558036.pixelRatio = pixelRatio_33557979;
+        a_33558036.noWrap = true;
+        result_33558035 = a_33558036;
         break BeforeRet;
       } while (false);
 
-      return result_33558046;
+      return result_33558035;
 
     }
     var Temporary2;
     
-function innerHEX60gensym657_33558137() {
-      var result_33558138 = null;
+function innerHEX60gensym656_33558126() {
+      var result_33558127 = null;
 
       BeforeRet: do {
-        var a_33558139 = null;
-        a_33558139 = {};
-        a_33558139.type = "base";
-        result_33558138 = a_33558139;
+        var a_33558128 = null;
+        a_33558128 = {};
+        a_33558128.type = "base";
+        result_33558127 = a_33558128;
         break BeforeRet;
       } while (false);
 
-      return result_33558138;
+      return result_33558127;
 
     }
     
-function innerHEX60gensym663_33558154() {
-      var result_33558155 = null;
+function innerHEX60gensym662_33558143() {
+      var result_33558144 = null;
 
       BeforeRet: do {
-        var a_33558156 = null;
-        a_33558156 = {};
-        a_33558156.ppi = 250;
-        result_33558155 = a_33558156;
+        var a_33558145 = null;
+        a_33558145 = {};
+        a_33558145.ppi = 250;
+        result_33558144 = a_33558145;
         break BeforeRet;
       } while (false);
 
-      return result_33558155;
+      return result_33558144;
 
     }
     
-function innerHEX60gensym729_33558412() {
-      var result_33558413 = null;
+function innerHEX60gensym729_33558405() {
+      var result_33558406 = null;
 
       BeforeRet: do {
-        var a_33558414 = null;
-        a_33558414 = {};
-        a_33558414.label = "<h6>Растр</h6>";
-        result_33558413 = a_33558414;
+        var a_33558407 = null;
+        a_33558407 = {};
+        a_33558407.label = "<h6>Растр</h6>";
+        result_33558406 = a_33558407;
         break BeforeRet;
       } while (false);
 
-      return result_33558413;
+      return result_33558406;
 
     }
     var Temporary3;
     
-function HEX3Aanonymous_33558575(evt_33558576) {
-        if ((evt_33558576.target.getState() == uiButton_33558533.State.UP)) {
+function HEX3Aanonymous_33558568(evt_33558569) {
+        if ((evt_33558569.target.getState() == uiButton_33558526.State.UP)) {
         curEngineType_587202619[0] = engineTypes_587202618[0].WEBGL;
         }
         else {
@@ -11615,9 +11615,9 @@ function HEX3Aanonymous_33558575(evt_33558576) {
       
     }
     
-function HEX3Aanonymous_33558642() {
-        var vp_33558647 = map.getViewPort();
-        vp_33558647.resize();
+function HEX3Aanonymous_33558635() {
+        var vp_33558640 = map.getViewPort();
+        vp_33558640.resize();
 
       
     }
@@ -11633,57 +11633,53 @@ function HEX3Aanonymous_33558642() {
     var pixelRatio_33557979 = Temporary1;
     var hidpi_33557980 = (1.0 < pixelRatio_33557979);
     var layerOpts_33558031 = innerHEX60gensym621_33557983();
-    if (hidpi_33557980) {
-    layerOpts_33558031.ppi = 320;
-    }
-    
-    var mapOpts_33558093 = innerHEX60gensym637_33558045();
-    var defLayers_33558105 = platform_33557963.createDefaultLayers((layerOpts_33558031));
-    var mapContainer_33558109 = $(("#map-container"))[0];
+    var mapOpts_33558082 = innerHEX60gensym636_33558034();
+    var defLayers_33558094 = platform_33557963.createDefaultLayers((layerOpts_33558031));
+    var mapContainer_33558098 = $(("#map-container"))[0];
     if ((engineType_33554586 == engineTypes_587202618[0].P2D)) {
-    Temporary2 = defLayers_33558105.raster.normal;
+    Temporary2 = defLayers_33558094.raster.normal;
     }
     else {
-    Temporary2 = defLayers_33558105.vector.normal;
+    Temporary2 = defLayers_33558094.vector.normal;
     }
     
-    var mapType_33558134 = Temporary2;
-    var mtServOpt_33558151 = innerHEX60gensym657_33558137();
-    var mtlayerOpt_33558172 = innerHEX60gensym663_33558154();
-    var mtServ_33558184 = platform_33557963.getMapTileService((mtServOpt_33558151));
-    var pedestMobLayer_33558224 = mtServ_33558184.createTileLayer(("maptile"), ("pedestrian.day.mobile"), (512), ("png8"), (mtlayerOpt_33558172));
-    mapContainer_33558109.innerHTML = [];
-    map = (new H.Map((mapContainer_33558109), (pedestMobLayer_33558224), (mapOpts_33558093)));
+    var mapType_33558123 = Temporary2;
+    var mtServOpt_33558140 = innerHEX60gensym656_33558126();
+    var mtlayerOpt_33558161 = innerHEX60gensym662_33558143();
+    var mtServ_33558173 = platform_33557963.getMapTileService((mtServOpt_33558140));
+    var pedestMobLayer_33558213 = mtServ_33558173.createTileLayer(("maptile"), ("pedestrian.day.mobile"), (512), ("png8"), (mtlayerOpt_33558161));
+    mapContainer_33558098.innerHTML = [];
+    map = (new H.Map((mapContainer_33558098), (mapType_33558123.map), (mapOpts_33558082)));
     map.getBaseLayer().setMax((20));
-    var behavior_33558315 = (new H.mapevents.Behavior(((new H.mapevents.MapEvents((map))))));
-    var hUi_33558320 = H.ui;
-    glbUi = hUi_33558320.UI.createDefault((map), (defLayers_33558105));
+    var behavior_33558308 = (new H.mapevents.Behavior(((new H.mapevents.MapEvents((map))))));
+    var hUi_33558313 = H.ui;
+    glbUi = hUi_33558313.UI.createDefault((map), (defLayers_33558094));
     glbUi.removeControl(("zoom"));
-    var cntrRMap_33558361 = (new hUi_33558320.Control());
-    var cntrNoMy_33558369 = (new hUi_33558320.Control());
-    var layoutAligm_33558374 = hUi_33558320.LayoutAlignment;
-    var uiBase_33558379 = hUi_33558320.base;
-    cntrRMap_33558361.setAlignment((layoutAligm_33558374.RIGHT_BOTTOM));
-    cntrNoMy_33558369.setAlignment((layoutAligm_33558374.TOP_CENTER));
-    var cntrRMapBtn_33558455 = (new uiBase_33558379.PushButton((innerHEX60gensym729_33558412()))).addClass(("d-flex align-items-center justify-content-center"));
-    var noMyMsg_33558477 = (new uiBase_33558379.Element(("h5"), ("d-flex align-items-center justify-content-center pt-4 text-danger")));
-    cntrNoMy_33558369.addChild((noMyMsg_33558477));
-    glbUi.addControl(("rastr"), (cntrRMap_33558361));
-    glbUi.addControl(("noMyMsg"), (cntrNoMy_33558369));
-    noMyMsgEl_33554837[0] = noMyMsg_33558477.getElement();
+    var cntrRMap_33558354 = (new hUi_33558313.Control());
+    var cntrNoMy_33558362 = (new hUi_33558313.Control());
+    var layoutAligm_33558367 = hUi_33558313.LayoutAlignment;
+    var uiBase_33558372 = hUi_33558313.base;
+    cntrRMap_33558354.setAlignment((layoutAligm_33558367.RIGHT_BOTTOM));
+    cntrNoMy_33558362.setAlignment((layoutAligm_33558367.TOP_CENTER));
+    var cntrRMapBtn_33558448 = (new uiBase_33558372.PushButton((innerHEX60gensym729_33558405()))).addClass(("d-flex align-items-center justify-content-center"));
+    var noMyMsg_33558470 = (new uiBase_33558372.Element(("h5"), ("d-flex align-items-center justify-content-center pt-4 text-danger")));
+    cntrNoMy_33558362.addChild((noMyMsg_33558470));
+    glbUi.addControl(("rastr"), (cntrRMap_33558354));
+    glbUi.addControl(("noMyMsg"), (cntrNoMy_33558362));
+    noMyMsgEl_33554837[0] = noMyMsg_33558470.getElement();
     showNoMyMsg_33555003();
-    var uiButton_33558533 = uiBase_33558379.Button;
+    var uiButton_33558526 = uiBase_33558372.Button;
     if ((curEngineType_587202619[0] == engineTypes_587202618[0].WEBGL)) {
-    Temporary3 = uiButton_33558533.State.UP;
+    Temporary3 = uiButton_33558526.State.UP;
     }
     else {
-    Temporary3 = uiButton_33558533.State.DOWN;
+    Temporary3 = uiButton_33558526.State.DOWN;
     }
     
-    cntrRMapBtn_33558455.setState((Temporary3));
-    cntrRMapBtn_33558455.addEventListener(("statechange"), (HEX3Aanonymous_33558575));
-    var mpRef_33558635 = map;
-    window.addEventListener(("resize"), (HEX3Aanonymous_33558642));
+    cntrRMapBtn_33558448.setState((Temporary3));
+    cntrRMapBtn_33558448.addEventListener(("statechange"), (HEX3Aanonymous_33558568));
+    var mpRef_33558628 = map;
+    window.addEventListener(("resize"), (HEX3Aanonymous_33558635));
     map.addObject((currentPosM_33554588));
     map.addObject((sectStreetGrp_33554836[0]));
 
@@ -11694,9 +11690,9 @@ function getElemCoords_587202639(elem_587202640) {
   var result_587202643 = {Field0: 0.0, Field1: 0.0};
 
     var box_587202652 = elem_587202640.getBoundingClientRect();
-    var colontmp__33558772 = ((box_587202652.top + pageYOffset));
-    var colontmp__33558773 = ((box_587202652.left + pageXOffset));
-    result_587202643 = nimCopy(result_587202643, {Field0: colontmp__33558772, Field1: colontmp__33558773}, NTI587202589);
+    var colontmp__33558765 = ((box_587202652.top + pageYOffset));
+    var colontmp__33558766 = ((box_587202652.left + pageXOffset));
+    result_587202643 = nimCopy(result_587202643, {Field0: colontmp__33558765, Field1: colontmp__33558766}, NTI587202589);
 
   return result_587202643;
 
@@ -11725,19 +11721,19 @@ function getAllProccess_33554996(myS_33554997, sectorName_33554998) {
     var Temporary1;
     var Temporary2;
     
-function HEX3Aanonymous_33558709(value_33558710) {
-        allSectProc_33554791[0] = nimCopy(null, parseResp_33555098(value_33558710.Field2).resp, NTI33554843);
+function HEX3Aanonymous_33558702(value_33558703) {
+        allSectProc_33554791[0] = nimCopy(null, parseResp_33555098(value_33558703.Field2).resp, NTI33554843);
 
       
     }
     
-function HEX3Aanonymous_33558722(error_33558723) {
-        console.log(("error:"), (error_33558723.Field0));
+function HEX3Aanonymous_33558715(error_33558716) {
+        console.log(("error:"), (error_33558716.Field0));
 
       
     }
     
-function HEX3Aanonymous_33558748() {
+function HEX3Aanonymous_33558741() {
         spinnerOn_33554795[0] = false;
         redraw_1090520045(kxi_1090519104[0]);
 
@@ -11751,29 +11747,29 @@ function HEX3Aanonymous_33558748() {
     Temporary1 = [];
     }
     else {
-      var fmtRes_33558698 = [mnewString(0)];
-      fmtRes_33558698[0].push.apply(fmtRes_33558698[0], makeNimstrLit("&userId="));;
-      formatValue_1728053311(fmtRes_33558698, 0, currUser_587202590[0].id, []);
-    Temporary1 = fmtRes_33558698[0];
+      var fmtRes_33558691 = [mnewString(0)];
+      fmtRes_33558691[0].push.apply(fmtRes_33558691[0], makeNimstrLit("&userId="));;
+      formatValue_1728053311(fmtRes_33558691, 0, currUser_587202590[0].id, []);
+    Temporary1 = fmtRes_33558691[0];
     }
     
-    var rUid_33558704 = nimCopy(null, Temporary1, NTI50331655);
+    var rUid_33558697 = nimCopy(null, Temporary1, NTI50331655);
     if (!(eqStrings(sectorName_33554998, []))) {
-    var fmtRes_33558705 = [mnewString(0)];
-    fmtRes_33558705[0].push.apply(fmtRes_33558705[0], makeNimstrLit("&sectorName="));;
-    formatValue_1459617954(fmtRes_33558705, 0, sectorName_33554998, []);
-    Temporary2 = fmtRes_33558705[0];
+    var fmtRes_33558698 = [mnewString(0)];
+    fmtRes_33558698[0].push.apply(fmtRes_33558698[0], makeNimstrLit("&sectorName="));;
+    formatValue_1459617954(fmtRes_33558698, 0, sectorName_33554998, []);
+    Temporary2 = fmtRes_33558698[0];
     }
     else {
     Temporary2 = [];
     }
     
-    var sName_33558706 = nimCopy(null, Temporary2, NTI50331655);
-    var fmtRes_33558707 = [mnewString(0)];
-    fmtRes_33558707[0].push.apply(fmtRes_33558707[0], makeNimstrLit("token="));;
-    formatValue_1459617954(fmtRes_33558707, 0, currUser_587202590[0].token, []);
-    var stmLogin_33558708 = sendRequest_587202696(makeNimstrLit("GET"), (makeNimstrLit("/sector/process?") || []).concat(fmtRes_33558707[0] || [],rUid_33558704 || [],sName_33558706 || []), [], []);
-    stmLogin_33558708.observe((HEX3Aanonymous_33558709), (HEX3Aanonymous_33558722), (HEX3Aanonymous_33558748));
+    var sName_33558699 = nimCopy(null, Temporary2, NTI50331655);
+    var fmtRes_33558700 = [mnewString(0)];
+    fmtRes_33558700[0].push.apply(fmtRes_33558700[0], makeNimstrLit("token="));;
+    formatValue_1459617954(fmtRes_33558700, 0, currUser_587202590[0].token, []);
+    var stmLogin_33558701 = sendRequest_587202696(makeNimstrLit("GET"), (makeNimstrLit("/sector/process?") || []).concat(fmtRes_33558700[0] || [],rUid_33558697 || [],sName_33558699 || []), [], []);
+    stmLogin_33558701.observe((HEX3Aanonymous_33558702), (HEX3Aanonymous_33558715), (HEX3Aanonymous_33558741));
 
   
 }

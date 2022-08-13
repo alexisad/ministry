@@ -934,9 +934,9 @@ proc bindMap(engineType: JsObject = curEngineType) =
     var layerOpts = JsObject{
             tileSize: 512, #if hidpi: 512 else: 256,
             pois: true,
-            ppi: 72
+            ppi: 500
     }
-    if hidpi: layerOpts.ppi = 320
+    #if hidpi: layerOpts.ppi = 320
     var mapOpts = JsObject{
         engineType: engineType,
         #pixelRatio: if hidpi: 2 else: 1,
@@ -968,7 +968,7 @@ proc bindMap(engineType: JsObject = curEngineType) =
     mapContainer.innerHTML = ""
     map = jsNew H.Map(
             mapContainer,
-            pedestMobLayer, #mapType.map,
+            mapType.map, #pedestMobLayer,
             mapOpts
         )
     #map.setBaseLayer(custBaseLayer)
