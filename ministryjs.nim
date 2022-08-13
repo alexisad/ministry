@@ -29,6 +29,7 @@ curEngineType =
         curEngineType
     else:
         engineTypes.WEBGL
+curEngineType = engineTypes.P2D #hard coded to use always raster
 localStorage.setItem("engineType", curEngineType)
 dwnloadedMaps = jsonParse(localStorage.getItem("dwnloadedMaps").to(cstring)).to(seq[string])
 dwnloadedMaps =
@@ -932,7 +933,8 @@ proc bindMap(engineType: JsObject = curEngineType) =
     let hidpi = pixelRatio > 1.float
     var layerOpts = JsObject{
             tileSize: 512, #if hidpi: 512 else: 256,
-            pois: true
+            pois: true,
+            ppi: 72
     }
     if hidpi: layerOpts.ppi = 320
     var mapOpts = JsObject{
@@ -974,7 +976,7 @@ proc bindMap(engineType: JsObject = curEngineType) =
         cntrRMapBtn = (jsNew uiBase.PushButton(JsObject{label: cstring"<h6>Растр</h6>"}))
             .addClass(cstring"d-flex align-items-center justify-content-center")
         noMyMsg = jsNew uiBase.Element(cstring"h5", cstring"d-flex align-items-center justify-content-center pt-4 text-danger")
-    cntrRMap.addChild cntrRMapBtn
+    #cntrRMap.addChild cntrRMapBtn #<-- don't need raster on/off button because should always raster tiles
     cntrNoMy.addChild noMyMsg
     glbUi.addControl("rastr", cntrRMap)
     glbUi.addControl("noMyMsg", cntrNoMy)
