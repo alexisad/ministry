@@ -957,7 +957,7 @@ proc bindMap(engineType: JsObject = curEngineType) =
             `type`: "base".cstring
         }
         mtlayerOpt = JsObject{
-            ppi: if hidpi: 320 else: 250
+            ppi: 250
         }
         mtServ = platform.getMapTileService(mtServOpt)
         pedestMobLayer = mtServ.createTileLayer("maptile".cstring,

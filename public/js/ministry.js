@@ -11571,21 +11571,12 @@ function innerHEX60gensym657_33558137() {
     }
     
 function innerHEX60gensym663_33558154() {
-        var Temporary1;
-
       var result_33558155 = null;
 
       BeforeRet: do {
         var a_33558156 = null;
         a_33558156 = {};
-        if (hidpi_33557980) {
-        Temporary1 = 320;
-        }
-        else {
-        Temporary1 = 250;
-        }
-        
-        a_33558156.ppi = Temporary1;
+        a_33558156.ppi = 250;
         result_33558155 = a_33558156;
         break BeforeRet;
       } while (false);
