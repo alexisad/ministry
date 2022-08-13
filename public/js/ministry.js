@@ -11604,7 +11604,7 @@ function HEX3Aanonymous_33558556() {
     var hidpi_33557980 = true;
     var layerOpts_33558031 = innerHEX60gensym620_33557983();
     if (hidpi_33557980) {
-    layerOpts_33558031.ppi = 500;
+    layerOpts_33558031.ppi = 320;
     }
     
     var mapOpts_33558093 = innerHEX60gensym636_33558045();

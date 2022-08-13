@@ -936,7 +936,7 @@ proc bindMap(engineType: JsObject = curEngineType) =
             pois: true,
             ppi: 72
     }
-    if hidpi: layerOpts.ppi = 500
+    if hidpi: layerOpts.ppi = 320
     var mapOpts = JsObject{
         engineType: engineType,
         #pixelRatio: if hidpi: 2 else: 1,
