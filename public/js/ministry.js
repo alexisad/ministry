@@ -11619,7 +11619,7 @@ function HEX3Aanonymous_33558556() {
     
     var mapType_33558134 = Temporary2;
     mapContainer_33558109.innerHTML = [];
-    map = (new H.Map((mapContainer_33558109), (mapType_33558134.map), (mapOpts_33558093)));
+    map = (new H.Map((mapContainer_33558109), (mapType_33558134.mapnight), (mapOpts_33558093)));
     map.getBaseLayer().setMax((20));
     var behavior_33558229 = (new H.mapevents.Behavior(((new H.mapevents.MapEvents((map))))));
     var hUi_33558234 = H.ui;

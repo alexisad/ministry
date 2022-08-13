@@ -954,7 +954,7 @@ proc bindMap(engineType: JsObject = curEngineType) =
     mapContainer.innerHTML = ""
     map = jsNew H.Map(
             mapContainer,
-            mapType.map,
+            mapType.mapnight,
             mapOpts
         )
     #map.setBaseLayer(custBaseLayer)
