@@ -11520,7 +11520,7 @@ function innerHEX60gensym602_33557916() {
     }
     var Temporary1;
     
-function innerHEX60gensym620_33557983() {
+function innerHEX60gensym621_33557983() {
       var result_33557984 = null;
 
       BeforeRet: do {
@@ -11537,7 +11537,7 @@ function innerHEX60gensym620_33557983() {
 
     }
     
-function innerHEX60gensym636_33558045() {
+function innerHEX60gensym637_33558045() {
       var result_33558046 = null;
 
       BeforeRet: do {
@@ -11555,24 +11555,63 @@ function innerHEX60gensym636_33558045() {
     }
     var Temporary2;
     
-function innerHEX60gensym702_33558326() {
-      var result_33558327 = null;
+function innerHEX60gensym657_33558137() {
+      var result_33558138 = null;
 
       BeforeRet: do {
-        var a_33558328 = null;
-        a_33558328 = {};
-        a_33558328.label = "<h6>Растр</h6>";
-        result_33558327 = a_33558328;
+        var a_33558139 = null;
+        a_33558139 = {};
+        a_33558139.type = "base";
+        result_33558138 = a_33558139;
         break BeforeRet;
       } while (false);
 
-      return result_33558327;
+      return result_33558138;
+
+    }
+    
+function innerHEX60gensym663_33558154() {
+        var Temporary1;
+
+      var result_33558155 = null;
+
+      BeforeRet: do {
+        var a_33558156 = null;
+        a_33558156 = {};
+        if (hidpi_33557980) {
+        Temporary1 = 320;
+        }
+        else {
+        Temporary1 = 250;
+        }
+        
+        a_33558156.ppi = Temporary1;
+        result_33558155 = a_33558156;
+        break BeforeRet;
+      } while (false);
+
+      return result_33558155;
+
+    }
+    
+function innerHEX60gensym729_33558412() {
+      var result_33558413 = null;
+
+      BeforeRet: do {
+        var a_33558414 = null;
+        a_33558414 = {};
+        a_33558414.label = "<h6>Растр</h6>";
+        result_33558413 = a_33558414;
+        break BeforeRet;
+      } while (false);
+
+      return result_33558413;
 
     }
     var Temporary3;
     
-function HEX3Aanonymous_33558489(evt_33558490) {
-        if ((evt_33558490.target.getState() == uiButton_33558447.State.UP)) {
+function HEX3Aanonymous_33558575(evt_33558576) {
+        if ((evt_33558576.target.getState() == uiButton_33558533.State.UP)) {
         curEngineType_587202619[0] = engineTypes_587202618[0].WEBGL;
         }
         else {
@@ -11585,9 +11624,9 @@ function HEX3Aanonymous_33558489(evt_33558490) {
       
     }
     
-function HEX3Aanonymous_33558556() {
-        var vp_33558561 = map.getViewPort();
-        vp_33558561.resize();
+function HEX3Aanonymous_33558642() {
+        var vp_33558647 = map.getViewPort();
+        vp_33558647.resize();
 
       
     }
@@ -11601,13 +11640,13 @@ function HEX3Aanonymous_33558556() {
     }
     
     var pixelRatio_33557979 = Temporary1;
-    var hidpi_33557980 = true;
-    var layerOpts_33558031 = innerHEX60gensym620_33557983();
+    var hidpi_33557980 = (1.0 < pixelRatio_33557979);
+    var layerOpts_33558031 = innerHEX60gensym621_33557983();
     if (hidpi_33557980) {
     layerOpts_33558031.ppi = 320;
     }
     
-    var mapOpts_33558093 = innerHEX60gensym636_33558045();
+    var mapOpts_33558093 = innerHEX60gensym637_33558045();
     var defLayers_33558105 = platform_33557963.createDefaultLayers((layerOpts_33558031));
     var mapContainer_33558109 = $(("#map-container"))[0];
     if ((engineType_33554586 == engineTypes_587202618[0].P2D)) {
@@ -11618,38 +11657,42 @@ function HEX3Aanonymous_33558556() {
     }
     
     var mapType_33558134 = Temporary2;
+    var mtServOpt_33558151 = innerHEX60gensym657_33558137();
+    var mtlayerOpt_33558172 = innerHEX60gensym663_33558154();
+    var mtServ_33558184 = platform_33557963.getMapTileService((mtServOpt_33558151));
+    var pedestMobLayer_33558224 = mtServ_33558184.createTileLayer(("maptile"), ("pedestrian.day.mobile"), (512), ("png8"), (mtlayerOpt_33558172));
     mapContainer_33558109.innerHTML = [];
-    map = (new H.Map((mapContainer_33558109), (mapType_33558134.map), (mapOpts_33558093)));
+    map = (new H.Map((mapContainer_33558109), (pedestMobLayer_33558224), (mapOpts_33558093)));
     map.getBaseLayer().setMax((20));
-    var behavior_33558229 = (new H.mapevents.Behavior(((new H.mapevents.MapEvents((map))))));
-    var hUi_33558234 = H.ui;
-    glbUi = hUi_33558234.UI.createDefault((map), (defLayers_33558105));
+    var behavior_33558315 = (new H.mapevents.Behavior(((new H.mapevents.MapEvents((map))))));
+    var hUi_33558320 = H.ui;
+    glbUi = hUi_33558320.UI.createDefault((map), (defLayers_33558105));
     glbUi.removeControl(("zoom"));
-    var cntrRMap_33558275 = (new hUi_33558234.Control());
-    var cntrNoMy_33558283 = (new hUi_33558234.Control());
-    var layoutAligm_33558288 = hUi_33558234.LayoutAlignment;
-    var uiBase_33558293 = hUi_33558234.base;
-    cntrRMap_33558275.setAlignment((layoutAligm_33558288.RIGHT_BOTTOM));
-    cntrNoMy_33558283.setAlignment((layoutAligm_33558288.TOP_CENTER));
-    var cntrRMapBtn_33558369 = (new uiBase_33558293.PushButton((innerHEX60gensym702_33558326()))).addClass(("d-flex align-items-center justify-content-center"));
-    var noMyMsg_33558391 = (new uiBase_33558293.Element(("h5"), ("d-flex align-items-center justify-content-center pt-4 text-danger")));
-    cntrNoMy_33558283.addChild((noMyMsg_33558391));
-    glbUi.addControl(("rastr"), (cntrRMap_33558275));
-    glbUi.addControl(("noMyMsg"), (cntrNoMy_33558283));
-    noMyMsgEl_33554837[0] = noMyMsg_33558391.getElement();
+    var cntrRMap_33558361 = (new hUi_33558320.Control());
+    var cntrNoMy_33558369 = (new hUi_33558320.Control());
+    var layoutAligm_33558374 = hUi_33558320.LayoutAlignment;
+    var uiBase_33558379 = hUi_33558320.base;
+    cntrRMap_33558361.setAlignment((layoutAligm_33558374.RIGHT_BOTTOM));
+    cntrNoMy_33558369.setAlignment((layoutAligm_33558374.TOP_CENTER));
+    var cntrRMapBtn_33558455 = (new uiBase_33558379.PushButton((innerHEX60gensym729_33558412()))).addClass(("d-flex align-items-center justify-content-center"));
+    var noMyMsg_33558477 = (new uiBase_33558379.Element(("h5"), ("d-flex align-items-center justify-content-center pt-4 text-danger")));
+    cntrNoMy_33558369.addChild((noMyMsg_33558477));
+    glbUi.addControl(("rastr"), (cntrRMap_33558361));
+    glbUi.addControl(("noMyMsg"), (cntrNoMy_33558369));
+    noMyMsgEl_33554837[0] = noMyMsg_33558477.getElement();
     showNoMyMsg_33555003();
-    var uiButton_33558447 = uiBase_33558293.Button;
+    var uiButton_33558533 = uiBase_33558379.Button;
     if ((curEngineType_587202619[0] == engineTypes_587202618[0].WEBGL)) {
-    Temporary3 = uiButton_33558447.State.UP;
+    Temporary3 = uiButton_33558533.State.UP;
     }
     else {
-    Temporary3 = uiButton_33558447.State.DOWN;
+    Temporary3 = uiButton_33558533.State.DOWN;
     }
     
-    cntrRMapBtn_33558369.setState((Temporary3));
-    cntrRMapBtn_33558369.addEventListener(("statechange"), (HEX3Aanonymous_33558489));
-    var mpRef_33558549 = map;
-    window.addEventListener(("resize"), (HEX3Aanonymous_33558556));
+    cntrRMapBtn_33558455.setState((Temporary3));
+    cntrRMapBtn_33558455.addEventListener(("statechange"), (HEX3Aanonymous_33558575));
+    var mpRef_33558635 = map;
+    window.addEventListener(("resize"), (HEX3Aanonymous_33558642));
     map.addObject((currentPosM_33554588));
     map.addObject((sectStreetGrp_33554836[0]));
 
@@ -11660,9 +11703,9 @@ function getElemCoords_587202639(elem_587202640) {
   var result_587202643 = {Field0: 0.0, Field1: 0.0};
 
     var box_587202652 = elem_587202640.getBoundingClientRect();
-    var colontmp__33558686 = ((box_587202652.top + pageYOffset));
-    var colontmp__33558687 = ((box_587202652.left + pageXOffset));
-    result_587202643 = nimCopy(result_587202643, {Field0: colontmp__33558686, Field1: colontmp__33558687}, NTI587202589);
+    var colontmp__33558772 = ((box_587202652.top + pageYOffset));
+    var colontmp__33558773 = ((box_587202652.left + pageXOffset));
+    result_587202643 = nimCopy(result_587202643, {Field0: colontmp__33558772, Field1: colontmp__33558773}, NTI587202589);
 
   return result_587202643;
 
@@ -11691,19 +11734,19 @@ function getAllProccess_33554996(myS_33554997, sectorName_33554998) {
     var Temporary1;
     var Temporary2;
     
-function HEX3Aanonymous_33558623(value_33558624) {
-        allSectProc_33554791[0] = nimCopy(null, parseResp_33555098(value_33558624.Field2).resp, NTI33554843);
+function HEX3Aanonymous_33558709(value_33558710) {
+        allSectProc_33554791[0] = nimCopy(null, parseResp_33555098(value_33558710.Field2).resp, NTI33554843);
 
       
     }
     
-function HEX3Aanonymous_33558636(error_33558637) {
-        console.log(("error:"), (error_33558637.Field0));
+function HEX3Aanonymous_33558722(error_33558723) {
+        console.log(("error:"), (error_33558723.Field0));
 
       
     }
     
-function HEX3Aanonymous_33558662() {
+function HEX3Aanonymous_33558748() {
         spinnerOn_33554795[0] = false;
         redraw_1090520045(kxi_1090519104[0]);
 
@@ -11717,29 +11760,29 @@ function HEX3Aanonymous_33558662() {
     Temporary1 = [];
     }
     else {
-      var fmtRes_33558612 = [mnewString(0)];
-      fmtRes_33558612[0].push.apply(fmtRes_33558612[0], makeNimstrLit("&userId="));;
-      formatValue_1728053311(fmtRes_33558612, 0, currUser_587202590[0].id, []);
-    Temporary1 = fmtRes_33558612[0];
+      var fmtRes_33558698 = [mnewString(0)];
+      fmtRes_33558698[0].push.apply(fmtRes_33558698[0], makeNimstrLit("&userId="));;
+      formatValue_1728053311(fmtRes_33558698, 0, currUser_587202590[0].id, []);
+    Temporary1 = fmtRes_33558698[0];
     }
     
-    var rUid_33558618 = nimCopy(null, Temporary1, NTI50331655);
+    var rUid_33558704 = nimCopy(null, Temporary1, NTI50331655);
     if (!(eqStrings(sectorName_33554998, []))) {
-    var fmtRes_33558619 = [mnewString(0)];
-    fmtRes_33558619[0].push.apply(fmtRes_33558619[0], makeNimstrLit("&sectorName="));;
-    formatValue_1459617954(fmtRes_33558619, 0, sectorName_33554998, []);
-    Temporary2 = fmtRes_33558619[0];
+    var fmtRes_33558705 = [mnewString(0)];
+    fmtRes_33558705[0].push.apply(fmtRes_33558705[0], makeNimstrLit("&sectorName="));;
+    formatValue_1459617954(fmtRes_33558705, 0, sectorName_33554998, []);
+    Temporary2 = fmtRes_33558705[0];
     }
     else {
     Temporary2 = [];
     }
     
-    var sName_33558620 = nimCopy(null, Temporary2, NTI50331655);
-    var fmtRes_33558621 = [mnewString(0)];
-    fmtRes_33558621[0].push.apply(fmtRes_33558621[0], makeNimstrLit("token="));;
-    formatValue_1459617954(fmtRes_33558621, 0, currUser_587202590[0].token, []);
-    var stmLogin_33558622 = sendRequest_587202696(makeNimstrLit("GET"), (makeNimstrLit("/sector/process?") || []).concat(fmtRes_33558621[0] || [],rUid_33558618 || [],sName_33558620 || []), [], []);
-    stmLogin_33558622.observe((HEX3Aanonymous_33558623), (HEX3Aanonymous_33558636), (HEX3Aanonymous_33558662));
+    var sName_33558706 = nimCopy(null, Temporary2, NTI50331655);
+    var fmtRes_33558707 = [mnewString(0)];
+    fmtRes_33558707[0].push.apply(fmtRes_33558707[0], makeNimstrLit("token="));;
+    formatValue_1459617954(fmtRes_33558707, 0, currUser_587202590[0].token, []);
+    var stmLogin_33558708 = sendRequest_587202696(makeNimstrLit("GET"), (makeNimstrLit("/sector/process?") || []).concat(fmtRes_33558707[0] || [],rUid_33558704 || [],sName_33558706 || []), [], []);
+    stmLogin_33558708.observe((HEX3Aanonymous_33558709), (HEX3Aanonymous_33558722), (HEX3Aanonymous_33558748));
 
   
 }

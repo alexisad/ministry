@@ -930,7 +930,7 @@ proc bindMap(engineType: JsObject = curEngineType) =
             )
         )
     let pixelRatio = if window.devicePixelRatio.isUndefined: 1.float else: window.devicePixelRatio.to(float)
-    let hidpi = true#pixelRatio > 1.float
+    let hidpi = pixelRatio > 1.float
     var layerOpts = JsObject{
             tileSize: 512, #if hidpi: 512 else: 256,
             pois: true,
@@ -951,10 +951,24 @@ proc bindMap(engineType: JsObject = curEngineType) =
                 defLayers.raster.normal
             else:
                 defLayers.vector.normal
+    
+    let
+        mtServOpt = JsObject{
+            `type`: "base".cstring
+        }
+        mtlayerOpt = JsObject{
+            ppi: if hidpi: 320 else: 250
+        }
+        mtServ = platform.getMapTileService(mtServOpt)
+        pedestMobLayer = mtServ.createTileLayer("maptile".cstring,
+                "pedestrian.day.mobile".cstring, 512, "png8".cstring,
+                mtlayerOpt
+            ) 
+    
     mapContainer.innerHTML = ""
     map = jsNew H.Map(
             mapContainer,
-            mapType.map,
+            pedestMobLayer, #mapType.map,
             mapOpts
         )
     #map.setBaseLayer(custBaseLayer)
