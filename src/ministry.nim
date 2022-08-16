@@ -1,7 +1,7 @@
 # nimble build --stackTrace:off --threads:on --opt:speed -d:noSignalHandler -d:release --cpu:amd64 --os:linux --compileOnly --genScript
 #import htmlgen
 import asyncdispatch, jester
-import db_sqlite, md5, times, random, strutils, json
+import std / [db_sqlite, md5, times, random, strutils, json]
 from uri import encodeUrl
 import posix#, sdnotify
 import util/types
@@ -523,7 +523,7 @@ router mrouter:
       #echo $getTblRows("sector")
       resp Http200, [("Content-Type","application/json")], $(%*resp)
     elif @"action" == "process":
-      let sectProcess = getSectProcess(db, @"token", @"sectorId", @"userId", @"sectorName", @"inactive")
+      let sectProcess = getSectProcess(db, @"token", @"sectorId", @"userId", @"sectorName", @"streetName", @"inactive")
       #if sectProcess.status == false:
         #halt()
       resp %*sectProcess

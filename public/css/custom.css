@@ -117,3 +117,7 @@ body {
 .custom-control.custom-switch {
 	/*border: 1px #ccc solid;*/
 }
+
+.no-wrap {
+	white-space: nowrap;
+}

@@ -137,8 +137,8 @@ proc getAllProccess(myS = false, sectorName = "")
 proc hndlUpdOwnSect()
 proc closeMap()
 proc onMsgClck(): proc()
-proc showNoMyMsg() =
-    if not onlyMySectors:
+proc showNoMyMsg(uId: int) =
+    if not onlyMySectors and uId != currUser.id:
         noMyMsgEl.innerHTML = cstring"<span>Внимание: этот участок&nbsp;</span><strong>не твой!</strong>"
     else:
         noMyMsgEl.innerHTML = cstring""
@@ -236,9 +236,15 @@ proc loginDialog(): VNode =
             p(class="mt-5 mb-3 text-muted text-center"):
                 text "© 2019-2022"
 
+proc clearSearchTxt() =
+    currUiSt.inpSearch = ""
+    document.getElementById("searchSector").value = ""
+
+
 proc updProcc(): proc() =
     result = proc() =
         spinnerOn = true
+        clearSearchTxt()
         allSectProc = newSeq[SectorProcess]()
         let p = currProcess
         setTs()
@@ -271,6 +277,7 @@ proc updProcc(): proc() =
 proc delProcc(): proc() =
     result = proc() =
         spinnerOn = true
+        clearSearchTxt()
         allSectProc = newSeq[SectorProcess]()
         let p = currProcess
         setTs()
@@ -303,8 +310,9 @@ proc delProcc(): proc() =
 proc chgUiState(chgEl: JsObject): JsObject =
     proc getValues(): JsObject =
         onlyMySectors = document.getElementById("ownSectors").checked.to(bool)
+        let searchByStreet = document.getElementById("byStreet").checked.to(bool)
         currUiSt = JsObject{inpSearch: document.getElementById("searchSector").value.to(cstring),
-                    isOwnSect: onlyMySectors}
+                    isOwnSect: onlyMySectors, byStreet: searchByStreet}
         return currUiSt
     result = Kefir.fromEvents(chgEl, "input", getValues).toProperty(getValues)
 
@@ -312,6 +320,7 @@ proc chgUiState(chgEl: JsObject): JsObject =
 proc confirmTakeSect(): proc() = 
     result = proc() =
         spinnerOn = true
+        clearSearchTxt()
         allSectProc = newSeq[SectorProcess]()
         dbg: console.log("confirmTakeSect: ", currProcess)
         let p = currProcess
@@ -341,7 +350,7 @@ proc confirmTakeSect(): proc() =
                 redraw()
                 dbg: console.log("end")
         )
-    
+
 
 proc takeSectModalBody(): VNode =
     result = buildHtml tdiv(class="modal-body"):
@@ -567,7 +576,7 @@ proc logout() =
     document.location.replace("/")
 
 proc allowTake(p: SectorProcess): bool =
-    showNoMyMsg()
+    showNoMyMsg(p.user_id)
     result = false
     if p.date_start == "":
         return true
@@ -581,7 +590,7 @@ proc showAllProc(): VNode =
     #for p in allSectProc:
         #discard# console.log("p.name:", $(p.name))
     #currUser.role = "superadmin".cstring
-    console.log("role:".cstring, currUser.role.cstring)
+    #console.log("roleA:".cstring, currUser.role.cstring)
     let
         clsCol = "card-text".cstring#"col-sm-auto themed-grid-col"
         superadmin = "superadmin".cstring
@@ -603,6 +612,10 @@ proc showAllProc(): VNode =
                             aria-describedby="searchHelp", placeholder="искать...",
                             value = currUiSt.inpSearch.to(kstring)
                     )
+                tdiv(class="custom-control custom-switch py-1 border"):
+                    input(`type`="checkbox", class="custom-control-input", id="byStreet")
+                    label(class="custom-control-label", `for`="byStreet"):
+                        text "иск.ул."
                 #discard dbg: console.log("currUser:", currUser)
                 if uRole == superadmin:
                     ul(class="navbar-nav mr-auto"):
@@ -620,6 +633,7 @@ proc showAllProc(): VNode =
             tdiv(class="card-deck"):
                 for p in allSectProc:
                     #discard console.log("p.name:", p)
+                    var wasBy = ""
                     let stDate =
                         if p.date_start != "":
                             "Взят: " & p.startDate.format( initTimeFormat("dd'.'MM'.'yyyy") )
@@ -627,9 +641,11 @@ proc showAllProc(): VNode =
                             ""
                     let finDate =
                         if p.date_finish != "":
+                            wasBy = "Был у: "
                             "Сдан: " & p.finishDate.format( initTimeFormat("dd'.'MM'.'yyyy") )
                         else:
-                            [p.firstname, p.lastname].join(" ")
+                            ""
+                    let owner = [p.firstname, p.lastname].join(" ")
                     let sectId = kstring($p.sector_id)
                     tdiv(id=sectId, class="card mb-3 c-sect shadow p-3 bg-white rounded"):
                         tdiv(class="card-header"):
@@ -652,6 +668,8 @@ proc showAllProc(): VNode =
                                 text p.name
                             tdiv(class = clsCol):
                                 text(stDate)
+                            tdiv(class = &"{clsCol} no-wrap overflow-auto"):
+                                text(wasBy & owner)
                             tdiv(class = clsCol):
                                 text(finDate)
                             when true:
@@ -762,13 +780,16 @@ proc createDom(): VNode =
             showAllProc()
 
 
-proc getAllProccess2(myS = false, sectorName = ""): JsObject =
+proc getAllProccess2(myS = false, searchTxt = "", byStreet = false): JsObject =
     let rUid =
         if not myS: ""
         else: &"&userId={currUser.id}"
     let sName =
-        if sectorName != "":
-            &"&sectorName={sectorName}"
+        if searchTxt != "":
+            if byStreet:
+                &"&streetName={searchTxt}"
+            else:
+                &"&sectorName={searchTxt}"
         else: ""
     result = sendRequest(
         "GET",
@@ -801,24 +822,28 @@ proc bindGps() =
 bindGps()
 
 proc bindSearchSector() =
-    let searchEl = document.getElementById("searchSector")
-    let isOwnSectEl = document.getElementById("ownSectors")
+    let
+        searchEl = document.getElementById("searchSector")
+        isOwnSectEl = document.getElementById("ownSectors")
+        isByStreetEl = document.getElementById("byStreet")
     if searchEl == nil:
         setEvtInpSearchSect = false
         return
     if setEvtInpSearchSect:
         return# input event already set
     setEvtInpSearchSect = true
-    let stmSearchEl = chgUiState(searchEl)
-    let stmOwnSect = chgUiState(isOwnSectEl)
+    let
+        stmSearchEl = chgUiState(searchEl)
+        stmOwnSect = chgUiState(isOwnSectEl)
+        stmByStreet = chgUiState(isByStreetEl)
     #stmOwnSect.log()
-    var stmUiChg = Kefir.merge(toJs [stmSearchEl, stmOwnSect])
+    var stmUiChg = Kefir.merge(toJs [stmSearchEl, stmOwnSect, stmByStreet])
     #stmUiChg.log()
     proc wrpS(vS: JsObject): JsObject =
         spinnerOn = true
         allSectProc = newSeq[SectorProcess]()
         redraw()
-        result = getAllProccess2(vS.isOwnSect.to(bool), $vS.inpSearch.to(cstring))
+        result = getAllProccess2(vS.isOwnSect.to(bool), $vS.inpSearch.to(cstring), vS.byStreet.to(bool))
     let stmResult = stmUiChg.flatMapLatest(wrpS)
     stmResult.observe(
         proc (value: Response) =
@@ -995,7 +1020,7 @@ proc bindMap(engineType: JsObject = curEngineType) =
     glbUi.addControl("rastr", cntrRMap)
     glbUi.addControl("noMyMsg", cntrNoMy)
     noMyMsgEl = noMyMsg.getElement()
-    showNoMyMsg()
+    #showNoMyMsg()
     dbg: console.log("noMyMsg:", noMyMsg.getElement())
     let uiButton = uiBase.Button
     cntrRMapBtn.setState(

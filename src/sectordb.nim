@@ -1,4 +1,4 @@
-import json, db_sqlite, times, strutils, sequtils, tables, hashes, parsecsv, streams, unicode
+import std / [json, db_sqlite, times, strutils, sequtils, tables, hashes, parsecsv, streams, unicode, strformat]
 import util/[types, utils]
 import flatty, supersnappy
 
@@ -261,7 +261,7 @@ proc uploadSectorOld*(db: DbConn, corpusId: int): StatusResp[int] =
   result.status = stOk
 
 
-proc getSectProcess*(db: DbConn, t = "", sId = "", uId = "", sName="", inactive = ""): StatusResp[seq[SectorProcess]] =
+proc getSectProcess*(db: DbConn, t = "", sId = "", uId = "", sectorName="", streetName="", inactive = ""): StatusResp[seq[SectorProcess]] =
   result.status = stUnknown
   result.resp = newSeq[SectorProcess]()
   var rChck: tuple[isOk: bool, rowToken: Row]
@@ -275,11 +275,27 @@ proc getSectProcess*(db: DbConn, t = "", sId = "", uId = "", sName="", inactive 
   let dFinCond =
     if uId != "": "AND user_sector.date_finish is NULL" else: ""
   let vSearchSect =
-    if sName != "": "AND sector.name LIKE '%" & sName & "%'" else: ""
+    if sectorName != "": "AND sector.name LIKE '%" & sectorName & "%'" else: ""
+  let vSearchStreet =
+    if streetName != "":
+      &", (SELECT count(*) FROM street WHERE sector_id = sector.id AND name LIKE '%{streetName}%') as cnt_str"
+      else:
+        ""
+  let vCnttreet =
+    if streetName != "":
+      &"AND cnt_str <> 0"
+      else:
+        ""
   var sqlStr = """SELECT name as sectorName, sector_internal_id, firstname, lastname,
           MAX(date_start), date_finish, user_id,
           sector.id as sector_id, user_sector.id, plz, pfix,
-          (SELECT SUM(total_families) FROM street WHERE sector_id = sector.id) as total_families
+          (SELECT SUM(total_families) FROM street WHERE sector_id = sector.id) as total_families,
+          (CASE
+            WHEN date_finish IS NULL
+              THEN '1'
+              ELSE '0'
+          END) as flag_d_finish
+          {*vSearchStreet*}
           FROM sector
           LEFT JOIN user_sector ON user_sector.sector_id = sector.id {*d_f_c*}
           LEFT JOIN user ON user.id = user_sector.user_id AND user.id *vuId_c* ?
@@ -287,15 +303,18 @@ proc getSectProcess*(db: DbConn, t = "", sId = "", uId = "", sName="", inactive 
             sector.corpus_id = ?
             {*vInactive*}
             {*v_search_sector*}
+            {*vCnttreet*}
             AND sector.id *vsId_c* ?
           GROUP BY sector.id
-          ORDER BY date_finish ASC, plz, pfix
+          ORDER BY flag_d_finish, date_finish ASC, plz, pfix
         """
           .replace("{*vInactive*}", vInactive)
           .replace("*vsId_c*", vsId[0])
           .replace("*vuId_c*", vuId[0])
           .replace("{*d_f_c*}", dFinCond)
           .replace("{*v_search_sector*}", vSearchSect)
+          .replace("{*vSearchStreet*}", vSearchStreet)
+          .replace("{*vCnttreet*}", vCnttreet)
   if uId != "":
     sqlStr = sqlStr.replace("LEFT", "")
   dbg:
@@ -308,8 +327,8 @@ proc getSectProcess*(db: DbConn, t = "", sId = "", uId = "", sName="", inactive 
   result.status = stOk
   result.resp = newSeqOfCap[SectorProcess](sectRows.len)
   for r in sectRows:
-    if uId == "" and r[5] == "": #in case show all should no show sector if is not returned yet
-      continue
+    #if uId == "" and r[5] == "": #in case show all should no show sector if is not returned yet
+      #continue
     var sectP = SectorProcess(name: r[0], sector_internal_id: r[1], firstName: r[2], lastName: r[3],
             date_start: r[4], date_finish: r[5],
             user_id: -1, sector_id: r[7].parseInt, id: -1,
