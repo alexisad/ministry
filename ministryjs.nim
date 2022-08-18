@@ -113,6 +113,7 @@ var
     progressProc: int
 var scrollToSectId = 0
 var onlyMySectors = false
+var isSearchByStreet = false
 var serchSectByName: string
 var setEvtInpSearchSect = false
 var currUiSt = JsObject{inpSearch: kstring""}
@@ -238,7 +239,9 @@ proc loginDialog(): VNode =
 
 proc clearSearchTxt() =
     currUiSt.inpSearch = ""
-    document.getElementById("searchSector").value = ""
+    let serachEl = document.getElementById("searchSector")
+    if serachEl != nil:
+        document.getElementById("searchSector").value = ""
 
 
 proc updProcc(): proc() =
@@ -310,9 +313,9 @@ proc delProcc(): proc() =
 proc chgUiState(chgEl: JsObject): JsObject =
     proc getValues(): JsObject =
         onlyMySectors = document.getElementById("ownSectors").checked.to(bool)
-        let searchByStreet = document.getElementById("byStreet").checked.to(bool)
+        isSearchByStreet = document.getElementById("byStreet").checked.to(bool)
         currUiSt = JsObject{inpSearch: document.getElementById("searchSector").value.to(cstring),
-                    isOwnSect: onlyMySectors, byStreet: searchByStreet}
+                    isOwnSect: onlyMySectors, byStreet: isSearchByStreet}
         return currUiSt
     result = Kefir.fromEvents(chgEl, "input", getValues).toProperty(getValues)
 
@@ -931,6 +934,8 @@ setRenderer createDom, "main-control-container", proc() =
             currDate = now().format normalDateFmt
             if document.getElementById("ownSectors") != nil:
                 document.getElementById("ownSectors").checked = onlyMySectors    
+            if document.getElementById("byStreet") != nil:
+                document.getElementById("byStreet").checked = isSearchByStreet    
             bindSearchSector()
             bindEvtsMapScreen()
             if scrollToSectId != 0:
@@ -1000,6 +1005,7 @@ proc bindMap(engineType: JsObject = curEngineType) =
     map.getBaseLayer().setMax(20)
     dbg: console.log("platform:: ", platform)
     var behavior = jsNew H.mapevents.Behavior(jsNew H.mapevents.MapEvents(map))
+    behavior.disable(H.mapevents.Behavior.Feature.FRACTIONAL_ZOOM)
     let hUi = H.ui
     glbUi = hUi.UI.createDefault(map, defLayers)
     glbUi.removeControl("zoom")
