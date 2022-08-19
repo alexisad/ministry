@@ -193,6 +193,8 @@ proc reDb() =
             user_id INTEGER NOT NULL,
             date_start TEXT NOT NULL,
             date_finish TEXT,
+            time_start TEXT NOT NULL,
+            time_finish TEXT,
             FOREIGN KEY (sector_id)
                   REFERENCES sector (id)
                     ON UPDATE CASCADE

@@ -159,9 +159,9 @@ proc uploadSector*(db: DbConn, corpusId: int,
         VALUES(?,?,?,0,?,?)
         """, corpusId, sIntId, sectName, postalCode, pFix)
     db.exec(sql"""INSERT INTO user_sector
-              (sector_id, user_id, date_start, date_finish)
-              VALUES(?,?,?,?)
-        """, dbSId, userId, fromDate, toDate)
+              (sector_id, user_id, date_start, date_finish, time_start, time_finish)
+              VALUES(?,?,?,?,?,?)
+        """, dbSId, userId, fromDate, toDate, fromDate, toDate)
     for street in sector.streets:
       let ns = street.street
       var streetCoords = newSeqOfCap[string](street.roadlinks.len)
@@ -391,9 +391,9 @@ proc newSectProcess*(db: DbConn, t, sId, uId, startDate: string): StatusResp[seq
             WHERE sector_id = ?""",
                 sId)
   var sqlIns = """INSERT INTO user_sector
-          (user_id, sector_id, date_start)
+          (user_id, sector_id, date_start, time_start)
           VALUES(
-            *??*, ?, ?
+            *??*, ?, ?, ?
           )"""
   let sPrId =
         if uId != "":
@@ -414,7 +414,7 @@ proc newSectProcess*(db: DbConn, t, sId, uId, startDate: string): StatusResp[seq
               db.exec(sql"ROLLBACK")
               return result
           db.tryInsertID(sqlIns.replace("*??*", "(SELECT user_id FROM token WHERE token = ?)").sql,
-                t, sId, sDate)
+                t, sId, sDate, $now())
   if sPrId == -1 or not db.tryExec(sql"COMMIT"):
     db.exec(sql"ROLLBACK")
     return result
@@ -475,9 +475,10 @@ proc updProcess*(db: DbConn, t, pId, sDate, fDate: string): StatusResp[seq[Secto
   db.exec(sql"BEGIN")
   let shOne = db.execAffectedRows(sql"""UPDATE user_sector
           SET date_start = ?,
-              date_finish = ?
+              date_finish = ?,
+              time_finish = ?
           WHERE id = ?""",
-            vsDate, vfDate, pId)
+            vsDate, vfDate, $now(), pId)
   if shOne == 0:
     db.exec(sql"ROLLBACK")
     result.message = "Процесс обработки " & pId & " не обновился, причина неизвестна"
