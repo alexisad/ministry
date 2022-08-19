@@ -624,7 +624,7 @@ proc showAllProc(): VNode =
                     ul(class="navbar-nav mr-auto"):
                         li(class="nav-item"):
                             a(class="nav-link", onclick = editUsers()):
-                                text "Возвещатели"
+                                text "Возвещ."
                 ul(class="navbar-nav mr-auto"):
                     li(class="nav-item"):
                         a(class="nav-link", onclick = logout):
@@ -964,7 +964,7 @@ proc bindMap(engineType: JsObject = curEngineType) =
     var layerOpts = JsObject{
             tileSize: 512, #if hidpi: 512 else: 256,
             pois: true,
-            ppi: 500
+            ppi: 250#500
     }
     #if hidpi: layerOpts.ppi = 320
     var mapOpts = JsObject{
@@ -998,7 +998,7 @@ proc bindMap(engineType: JsObject = curEngineType) =
     mapContainer.innerHTML = ""
     map = jsNew H.Map(
             mapContainer,
-            mapType.map, #pedestMobLayer,
+            pedestMobLayer, #mapType.map,
             mapOpts
         )
     #map.setBaseLayer(custBaseLayer)
