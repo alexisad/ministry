@@ -121,3 +121,8 @@ body {
 .no-wrap {
 	white-space: nowrap;
 }
+
+.navi-btn {
+	width: 2rem;
+	height: 2rem;
+}

@@ -45,7 +45,9 @@ proc bindMap(engineType: JsObject = curEngineType)
 
 
 let pIndicator* = newPositionIndicator(20)
-let currentPosM = pIndicator.marker
+let
+    currentPosM = pIndicator.marker
+var currPosition = ""
 
 utiljs.pIndicator = pIndicator
 let stmAnime = Kefir.interval(20, 1)
@@ -71,7 +73,7 @@ stmCheckInternet.observe(
         )
         stm.observe(
             proc (value: Response) =
-                dbg: console.log("value:", value.statusCode, value)
+                dbg: console.log("HEAD value:", value.statusCode, value)
                 let old = isInternet
                 isInternet = true
                 if old != isInternet:
@@ -518,6 +520,8 @@ proc showStreets(): VNode =
                         ci = encodeUrl(fmt"{pc} {cityName}")
                         st = encodeUrl(str.name, true)
                         dasOertl = fmt"https://www.dasoertliche.de/?zvo_ok=0&ci={ci}&st={st}&radius=0&form_name=search_nat_ext"
+                        seqStrCoord = str.geometry.split(";")[0].split(",")
+                        streetCoord = @[seqStrCoord[0], seqStrCoord[1]].join(",") #"53.0999803,8.8352297"
                     if sSt == StreetStatus.strStarted:
                         strSt = (color: "primary".cstring, stDescr: " - не закончена".cstring)
                     elif sSt == StreetStatus.strFinished:
@@ -530,6 +534,11 @@ proc showStreets(): VNode =
                                     onclick = setStrStatus(i)
                                 ):
                             text str.name
+                        #button(class = "btn btn-default p-0 m-0"):
+                        a(href = (&"https://share.here.com/r/{currPosition}/{streetCoord}").cstring, class=" p-0 m-0 ml-1", target = "_blank"):
+                            img(src = "images/icons/here_button.png", class = "navi-btn")
+                        a(href = (&"https://www.google.com/maps/dir/?api=1&origin={currPosition}&destination={streetCoord}").cstring, class=" p-0 m-0 ml-3", target = "_blank"):
+                            img(src = "images/icons/google_button.png", class = "navi-btn")
                         span(class = "tel-book"):
                             #text "Das Örtl.:"
                             a(class = "pl-2", href = dasOertl.cstring,
@@ -671,7 +680,7 @@ proc showAllProc(): VNode =
                                 text p.name
                             tdiv(class = clsCol):
                                 text(stDate)
-                            tdiv(class = &"{clsCol} no-wrap overflow-auto"):
+                            tdiv(class = (&"{clsCol} no-wrap overflow-auto").cstring):
                                 text(wasBy & owner)
                             tdiv(class = clsCol):
                                 text(finDate)
@@ -808,6 +817,7 @@ proc bindGps() =
             lat: position.coords.latitude,
             lng: position.coords.longitude
         }
+        currPosition = @[newGeoPos.lat.to(float), newGeoPos.lng.to(float)].join(",")
         let dist = currentPosM.getGeometry().distance(newGeoPos).to(float)
         if curEngineType == engineTypes.P2D and #if P2D then change marker pos if > 10 meter diff 
                     dist > 10.00 and
@@ -818,10 +828,16 @@ proc bindGps() =
         if curEngineType == engineTypes.WEBGL:
             currentPosM.setGeometry(newGeoPos)
         dbg: console.log("position: ", map, position, currentPosM.getGeometry(), map.geoToScreen(currentPosM.getGeometry()))
+        redraw()
     proc errorHandler(errorObj: JsObject) =
         #discard
         console.log cstring($errorObj.code.to(int) & ": " & $errorObj.message.to(cstring))
-    navigator.geolocation.watchPosition(getPos, errorHandler)
+    let geoOpts = JsObject{
+        enableHighAccuracy: false,
+        timeout: 5000,
+        maximumAge: 0
+    }    
+    navigator.geolocation.watchPosition(getPos, errorHandler, geoOpts)
 bindGps()
 
 proc bindSearchSector() =
