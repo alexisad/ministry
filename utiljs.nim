@@ -178,6 +178,7 @@ proc setPolyStyleByStat*(p: JsObject, stat: StreetStatus) =
             "0.3"
         else:
             "0.5"
+    dbg: console.log("setPolyStyleByStat proc")
     p.setStyle(JsObject{
         strokeColor: fmt"rgba({mClr}, {opas})".cstring,
         #fillColor: cstring"rgba(" & mClr & ", 0.4)",

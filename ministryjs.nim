@@ -484,6 +484,7 @@ proc saveStreets(): proc() =
             for p in polyStrts:
                 let pStrtId = p.getData().to(int)
                 if id == pStrtId:
+                    dbg: console.log("setPolyStyleByStat")
                     setPolyStyleByStat(p, str.status)
         let setStr = streets.join(";")
         dbg: console.log("setStr:", setStr)
@@ -908,6 +909,7 @@ proc bindEvtsMapScreen() =
             #dbg: console.log("resp status:", cstring($respSect.status), cstring"loggedOut")
             if sectStrts.len == 0:
                 return
+            sectStreetGrp.removeAll()
             for strt in sectStrts:
                 dbg: console.log("street:", strt.name)
                 let stStat = ord parseEnum[StreetStatus]($strt.status)
@@ -925,7 +927,7 @@ proc bindEvtsMapScreen() =
                     let pl = jsNew H.map.Polyline(lnStr, pOpt)
                     setPolyStyleByStat(pl, strt.status)
                     sectStreetGrp.addObject pl
-                    dbg: console.log("pOpt:", pl.getData())
+                    dbg: console.log("pOpt add poly:", pl.getData())
             #map.setViewBounds(sectStreetGrp.getBounds(), true)
             map.getViewModel().setLookAtData(JsObject{
                 bounds: sectStreetGrp.getBoundingBox()
