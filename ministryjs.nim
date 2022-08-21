@@ -1066,6 +1066,46 @@ proc bindMap(engineType: JsObject = curEngineType) =
                             )
     map.addObject currentPosM
     map.addObject sectStreetGrp
+    map.addEventListener("tap", proc(evt: JsObject) =
+            if not onlyMySectors:
+                return
+            let
+                currPoint = evt.currentPointer
+                mapPoint = map.screenToGeo(currPoint.viewportX.to(int), currPoint.viewportY.to(int))
+                urlMapPoint = @[mapPoint.lat.to(float), mapPoint.lng.to(float)].join(",").encodeUrl
+            dbg: console.log("""map.addEventListener("tap")""", map.screenToGeo(evt.currentPointer.viewportX.to(int), evt.currentPointer.viewportY.to(int)))
+            let stmRevGeo = sendRequest(
+                "GET",
+                &"https://search.hereapi.com/v1/revgeocode?at={urlMapPoint}&limit=1&lang=de-DE&apikey={currUser.apiKey}"
+            )
+            stmRevGeo.observe(
+                proc (value: Response) =
+                    dbg: console.log("stmRevGeo value:", value.body)
+                    var
+                        respLocsJsn = value.body.parseJson
+                    if not respLocsJsn.hasKey("items") or respLocsJsn["items"].len == 0:
+                        respLocsJsn["items"]  = %* [{"address":{"street": "", "houseNumber": ""}}]
+                    var addressJsn = respLocsJsn["items"][0]["address"]
+                    if not addressJsn.hasKey("street"):
+                        addressJsn["street"] = %* ""
+                    if not addressJsn.hasKey("houseNumber"):
+                        addressJsn["houseNumber"] = newJString("")
+                    let
+                        address = addressJsn.to(Address)
+                        streetNumber = @[address.street, address.houseNumber].join(" ").strip
+                    if streetNumber != "":
+                        let htmlStreet = ["<span class='no-wrap inf-bubble'>", streetNumber, "</span>"].join("")
+                        let infoBubStreet = jsNew H.ui.InfoBubble(mapPoint, JsObject{"content": htmlStreet.cstring})
+                        glbUi.addBubble(infoBubStreet)
+                ,
+                proc (error: Response) =
+                    console.log("error:", error.statusCode)
+                ,
+                proc () =
+                    dbg: console.log("end")
+            )
+
+    )
 
 
 

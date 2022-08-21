@@ -133,7 +133,14 @@ type
       cachedTiles*: tables.Table[string, ref object]
       allSectors*: OrderedTable[string, Sector]
       lastPostfix*: tables.Table[string, int]
-      
+
+type
+  Locations* = object
+    items*: seq[Location]
+  Location* = object
+    address*: Address
+  Address* = object
+    street*, houseNumber*: string
 
 proc startDate*(s: SectorProcess): DateTime =
   s.date_start.parse(initTimeFormat("yyyy-MM-dd"))
