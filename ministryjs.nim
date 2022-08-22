@@ -536,9 +536,9 @@ proc showStreets(): VNode =
                                 ):
                             text str.name
                         #button(class = "btn btn-default p-0 m-0"):
-                        a(href = (&"https://share.here.com/r/{currPosition}/{streetCoord}").cstring, class=" p-0 m-0 ml-1", target = "_blank"):
+                        a(href = (&"https://share.here.com/r/{currPosition}/{streetCoord}").cstring, class=" p-0 m-0 ml-1"):#, target = "_blank"
                             img(src = "images/icons/here_button.png", class = "navi-btn")
-                        a(href = (&"https://www.google.com/maps/dir/?api=1&origin={currPosition}&destination={streetCoord}").cstring, class=" p-0 m-0 ml-3", target = "_blank"):
+                        a(href = (&"https://www.google.com/maps/dir/?api=1&origin={currPosition}&destination={streetCoord}").cstring, class=" p-0 m-0 ml-3"):
                             img(src = "images/icons/google_button.png", class = "navi-btn")
                         span(class = "tel-book"):
                             #text "Das Örtl.:"

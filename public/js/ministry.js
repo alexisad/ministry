@@ -8848,7 +8848,6 @@ function showStreets_33556228() {
             formatValue_1459617954(fmtRes_33556309, 0, streetCoord_33556289, []);
             setAttr_1107296808(tmp_33556238, "href", toJSStr(fmtRes_33556309[0]));
             tmp_33556238.class = " p-0 m-0 ml-1";
-            setAttr_1107296808(tmp_33556238, "target", "_blank");
             var tmp_33556239 = tree_1107296945(75, []);
             setAttr_1107296808(tmp_33556239, "src", "images/icons/here_button.png");
             tmp_33556239.class = "navi-btn";
@@ -8862,7 +8861,6 @@ function showStreets_33556228() {
             formatValue_1459617954(fmtRes_33556310, 0, streetCoord_33556289, []);
             setAttr_1107296808(tmp_33556240, "href", toJSStr(fmtRes_33556310[0]));
             tmp_33556240.class = " p-0 m-0 ml-3";
-            setAttr_1107296808(tmp_33556240, "target", "_blank");
             var tmp_33556241 = tree_1107296945(75, []);
             setAttr_1107296808(tmp_33556241, "src", "images/icons/google_button.png");
             tmp_33556241.class = "navi-btn";
