@@ -14,8 +14,6 @@ import strformat, strutils, times, sequtils, json
 import usersjs
 
 const normalDateFmt = initTimeFormat("yyyy-MM-dd")
-var currDate = now().format normalDateFmt
-var window {.importjs, nodecl.}: JsObject
 var screen {.importjs, nodecl.}: JsObject
 var JSON {.importjs, nodecl.}: JsObject
 var localStorage {.importjs, nodecl.}: JsObject
@@ -106,6 +104,7 @@ else:
 currUser.token = token#.cstring
 var currProcess: SectorProcess
 var allSectProc: seq[SectorProcess]
+var dbTs: int64
 var currStreets: seq[SectorStreets]
 var currStreetsTmp: seq[SectorStreets]
 var showStreetsEnabled = false
@@ -595,7 +594,8 @@ proc allowTake(p: SectorProcess): bool =
         return true
     if p.date_finish == "":
         return false
-    if ((now() - 4.months).format normalDateFmt) > $p.date_finish:
+    if ((fromUnix(dbTs).utc - 4.months).format normalDateFmt) > p.date_finish or
+                p.date_finish < "2022-09-01":
         return true
 
 
@@ -630,18 +630,26 @@ proc showAllProc(): VNode =
                     label(class="custom-control-label", `for`="byStreet"):
                         text "иск.ул."
                 #discard dbg: console.log("currUser:", currUser)
+                ul(class="navbar-nav mr-auto"):
+                    li(class="nav-item"):
+                        a(class="nav-link", onclick = logout):
+                            text "Выйти"
                 if uRole == superadmin:
                     ul(class="navbar-nav mr-auto"):
                         li(class="nav-item"):
                             a(class="nav-link", onclick = editUsers()):
                                 text "Возвещ."
-                ul(class="navbar-nav mr-auto"):
-                    li(class="nav-item"):
-                        a(class="nav-link", onclick = logout):
-                            text "Выйти"
+                    ul(class="navbar-nav mr-auto"):
+                        li(class="nav-item"):
+                            a(class="nav-link", onclick = showProcessed()):
+                                text "Обработ."
             noInternet()
         if isShowUsers:
             showUsers()
+        elif isShowReport:
+            for p in reportProcessed:
+                tdiv:
+                    text p
         else:
             tdiv(class="card-deck"):
                 for p in allSectProc:
@@ -868,7 +876,9 @@ proc bindSearchSector() =
     stmResult.observe(
         proc (value: Response) =
             dbg: console.log("value:", value.statusCode, value)
-            allSectProc = parseResp(value.body, StatusResp[seq[SectorProcess]]).resp
+            let respProcessStatus = parseResp(value.body, StatusResp[seq[SectorProcess]])
+            dbTs = respProcessStatus.ts
+            allSectProc = respProcessStatus.resp
             spinnerOn = false
             redraw()
         ,
@@ -949,7 +959,6 @@ proc bindEvtsMapScreen() =
 
 setRenderer createDom, "main-control-container", proc() =
             dbg: console.log("post render!!!")
-            currDate = now().format normalDateFmt
             if document.getElementById("ownSectors") != nil:
                 document.getElementById("ownSectors").checked = onlyMySectors    
             if document.getElementById("byStreet") != nil:
@@ -1130,7 +1139,9 @@ proc getAllProccess(myS = false, sectorName = "") =
     stmLogin.observe(
         proc (value: Response) =
             dbg: console.log("value:", value.statusCode, value)
-            allSectProc = parseResp(value.body, StatusResp[seq[SectorProcess]]).resp
+            let respProcessStatus = parseResp(value.body, StatusResp[seq[SectorProcess]])
+            dbTs = respProcessStatus.ts
+            allSectProc = respProcessStatus.resp
         ,
             #redraw(),
         proc (error: Response) =

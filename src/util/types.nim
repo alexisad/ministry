@@ -25,6 +25,7 @@ type
     status*: StatusType
     message*: string
     resp*: T
+    ts*: int64
   SectorProcess* = object
     name*: string
     sector_internal_id*: string
@@ -32,6 +33,11 @@ type
     date_start*, date_finish*: string
     id*, user_id*, sector_id*: int
     totalFamilies*: int
+  SectorProcessed* = object
+    name*: string
+    firstname*, lastname*: string
+    time_start*, time_finish*: string
+    user_id*, sector_id*: int
   SectorStreets* = object
     id*, sector_id*: int
     name*: string

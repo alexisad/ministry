@@ -57,3 +57,13 @@ proc row2User*(rowU: Row, showPass = false): User =
     if showPass:
         result.password = rowU[5]
     result.role_id = rowU[6].parseInt
+
+
+proc row2Processed*(row: Row): SectorProcessed =
+    result.sector_id = row[0].parseInt
+    result.name = row[1]
+    result.user_id = row[2].parseInt
+    result.firstname = row[3]
+    result.lastname = row[4]
+    result.time_start = row[5]
+    result.time_finish = row[6]

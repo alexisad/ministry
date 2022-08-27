@@ -114,6 +114,7 @@ proc uploadSector*(db: DbConn, corpusId: int,
                           userId: int,
                           fromDate: string,
                           toDate: string): StatusResp[int] =
+  result.ts = toUnix getTime()
   result.status = stUnknown
   if admName == "" or fromDate == "" or toDate == "" or userId == 0:
     return result
@@ -183,6 +184,7 @@ proc uploadSector*(db: DbConn, corpusId: int,
 
 
 proc uploadSectorOld*(db: DbConn, corpusId: int): StatusResp[int] =
+  result.ts = toUnix getTime()
   result.status = stUnknown
   let tblTotFam = initTblTotFamByStreet()
   let sectorJsn = parseFile("Büdingen_Exp_2020-04-10T23_11_24+02_00.json")
@@ -262,6 +264,7 @@ proc uploadSectorOld*(db: DbConn, corpusId: int): StatusResp[int] =
 
 
 proc getSectProcess*(db: DbConn, t = "", sId = "", uId = "", sectorName="", streetName="", inactive = ""): StatusResp[seq[SectorProcess]] =
+  result.ts = toUnix getTime()
   result.status = stUnknown
   result.resp = newSeq[SectorProcess]()
   var rChck: tuple[isOk: bool, rowToken: Row]
@@ -340,6 +343,7 @@ proc getSectProcess*(db: DbConn, t = "", sId = "", uId = "", sectorName="", stre
     result.resp.add sectP
 
 proc newSectProcess*(db: DbConn, t, sId, uId, startDate: string): StatusResp[seq[SectorProcess]] =
+  result.ts = toUnix getTime()
   result.status = stUnknown
   var rChck: tuple[isOk: bool, rowToken: Row]
   resultCheckToken(db, t)
@@ -422,6 +426,7 @@ proc newSectProcess*(db: DbConn, t, sId, uId, startDate: string): StatusResp[seq
 
 
 proc delProcess*(db: DbConn, t, pId: string): StatusResp[int] =
+  result.ts = toUnix getTime()
   result.status = stUnknown
   var rChck: tuple[isOk: bool, rowToken: Row]
   resultCheckToken(db, t)
@@ -446,6 +451,7 @@ proc delProcess*(db: DbConn, t, pId: string): StatusResp[int] =
     result.message = errMsg
 
 proc updProcess*(db: DbConn, t, pId, sDate, fDate: string): StatusResp[seq[SectorProcess]] =
+  result.ts = toUnix getTime()
   result.status = stUnknown
   var rChck: tuple[isOk: bool, rowToken: Row]
   resultCheckToken(db, t)
@@ -491,6 +497,7 @@ proc updProcess*(db: DbConn, t, pId, sDate, fDate: string): StatusResp[seq[Secto
 
 
 proc getSectStreets*(db: DbConn, t, sId: string): StatusResp[seq[SectorStreets]] =
+  result.ts = toUnix getTime()
   result.status = stUnknown
   var rChck: tuple[isOk: bool, rowToken: Row]
   resultCheckToken(db, t)
@@ -510,6 +517,7 @@ proc getSectStreets*(db: DbConn, t, sId: string): StatusResp[seq[SectorStreets]]
 
 
 proc setStatusStreets*(db: DbConn, t, strsStatus: string): StatusResp[int] =
+  result.ts = toUnix getTime()
   result.status = stUnknown
   var rChck: tuple[isOk: bool, rowToken: Row]
   resultCheckToken(db, t)
@@ -522,6 +530,7 @@ proc setStatusStreets*(db: DbConn, t, strsStatus: string): StatusResp[int] =
   result.status = stOk
 
 proc getUserList*(db: DbConn, corpus_id: int): StatusResp[seq[User]] = 
+  result.ts = toUnix getTime()
   result.status = stUnknown
   let rowUs = db.getAllRows(sql"""SELECT 
                 user.*, role.role
@@ -530,3 +539,15 @@ proc getUserList*(db: DbConn, corpus_id: int): StatusResp[seq[User]] =
   for u in rowUs:
     result.resp.add(row2User(u))
   #result = (isOk: true, user: row2User(rowU))              
+
+
+proc processed*(db: DbConn, reportFromDate: string): StatusResp[seq[SectorProcessed]] = 
+  result.ts = toUnix getTime()
+  result.status = stUnknown
+  let rows = db.getAllRows(sql"""SELECT user_sector.id, name as sector_name, user.id, firstname, lastname, time_start, time_finish
+              FROM sector
+              JOIN user_sector ON user_sector.sector_id = sector.id AND user_sector.time_finish is not NULL AND time_start > ? 
+              JOIN user ON user.id = user_sector.user_id
+              WHERE sector.corpus_id = 1""", reportFromDate)
+  for r in rows:
+    result.resp.add(row2Processed(r))

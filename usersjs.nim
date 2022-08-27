@@ -7,9 +7,11 @@ import async_http_request#, asyncjs
 #from sugar import `=>`, `->`
 #from uri import decodeUrl
 import src/util/types
-import strformat, strutils, uri
+import std/[strformat, strutils, uri, times]
 
 proc editUsers*(): proc()
+proc showProcessed*(): proc()
+
 
 proc chgUser(u: User): proc() = 
     result = proc() =
@@ -108,4 +110,35 @@ proc editUsers*(): proc() =
             proc (error: Response) =
                 console.log("error:", error.statusCode)
         )
+
+proc showProcessed*(): proc() = 
+    result = proc() =
+        let reportFromDate = window.location.search.substr(1).split("&")[0].split("=")[1].to(cstring)
+        dbg: console.log("reportFromDate:", reportFromDate)
+        let rStm = sendRequest(
+            "GET",
+            "/report/processed?" & &"token={currUser.token}&reportFromDate={$reportFromDate}"
+        )
+        rStm.observe(
+            proc (value: Response) =
+                dbg: console.log("value body:", value.statusCode, $(value.body))
+                let respPrc = parseResp($(value.body), StatusResp[seq[SectorProcessed]])
+                errMsg = $respPrc.message
+                let prcss = respPrc.resp
+                for prc in prcss:
+                    let
+                        tStart = parse(prc.time_start, "yyyy-MM-dd'T'HH:mm:sszzz")
+                        tFinish = parse(prc.time_finish, "yyyy-MM-dd'T'HH:mm:sszzz")
+                        diff = tFinish - tStart
+                    if diff < initDuration(hours = 2):
+                        reportProcessed.add [$prc, " - diff:", $diff].join("")
+                    dbg: console.log("reportFromDate:, prc:", prc, ($diff).cstring)
+                #reportProcessed = respPrc.resp
+                isShowReport = true
+                redraw()
+            ,
+            proc (error: Response) =
+                console.log("error:", error.statusCode)
+        )
+
 

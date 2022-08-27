@@ -24,6 +24,9 @@ proc jqData*(obj: JsObject, hndlrs: cstring): JsObject {.importjs: "$$._data(#,#
 #type
     #ContStreamEvts = object
         #inpSearchByName: JsObject
+
+var window* {.importjs, nodecl.}: JsObject
+
 type
     PositionIndicator* = object
         size*: Natural
@@ -35,8 +38,10 @@ var
     timeStamp*: string
     errMsg*: string
     isShowUsers* = false
+    isShowReport* = false
     isShowNavMap* = false
     allUsers*: seq[User]
+    reportProcessed*: seq[string]
 var pageYOffset {.importjs, nodecl.}: JsObject
 var pageXOffset {.importjs, nodecl.}: JsObject
 var engineTypes* = H.map.render.RenderEngine.EngineType

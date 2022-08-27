@@ -319,6 +319,7 @@ proc getUser(uName: string): tuple[isOk: bool, user: User] =
 
 proc addUser(u: User): StatusResp[User] =
   dbg: echo "addUser:: ", u
+  result.ts = toUnix getTime()
   result.status = stUnknown
   if u.firstname == "" or u.lastname == "" or u.email == "" or u.role == "":
     return result
@@ -357,6 +358,7 @@ proc addUser(u: User): StatusResp[User] =
 
 
 proc getUser(t, e: string): StatusResp[User] =
+  result.ts = toUnix getTime()
   result.status = stUnknown
   var rChck: tuple[isOk: bool, rowToken: Row]
   resultCheckToken(db, t)
@@ -370,6 +372,7 @@ proc getUser(t, e: string): StatusResp[User] =
   result.resp = row2User rowU
 
 proc delUser(e: string): StatusResp[int] =
+  result.ts = toUnix getTime()
   result.status = stUnknown
   db.exec(sql"BEGIN")
   if not db.tryExec(sql"""DELETE FROM user WHERE email = ?""", e):
@@ -381,6 +384,7 @@ proc delUser(e: string): StatusResp[int] =
   result.status = stOk
 
 proc updUser(id, firstname, lastname, email, password, role_id, active, apiKey: string): StatusResp[User] =
+  result.ts = toUnix getTime()
   result.status = stUnknown
   var u =
     if id == "":
@@ -563,8 +567,11 @@ router mrouter:
       resp Http200, [("Content-Type","application/json")], $(%*updStat)
     else:
       halt()
-
-
+  get "/report/@action":
+    checkAdminToken ifAdmin
+    if @"action" == "processed":
+      let listProcessed = processed(db, @"reportFromDate")
+      resp Http200, [("Content-Type","application/json")], $(%*listProcessed)
 
 proc main() =
   db = open("ministry.db", "", "", "")
