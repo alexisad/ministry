@@ -5281,7 +5281,7 @@ var spinnerOn_33554773 = [false];
 var progressOn_33554774 = [false];
 var progressProc_33554775 = [0];
 var scrollToSectId_33554776 = [0];
-var onlyMySectors_33554777 = [false];
+var onlyMySectors_33554777 = [true];
 var isSearchByStreet_33554778 = [false];
 var serchSectByName_33554779 = [[]];
 var setEvtInpSearchSect_33554780 = [false];
@@ -12051,8 +12051,8 @@ function initFromJson_33557547(dst_33557549, dst_33557549_Idx, jsonNode_33557550
     }
     else {
     if (!((ConstSet64[jsonNode_33557550.kind] != undefined))) {
-    var msgHEX60gensym539_33557568 = nsuFormatOpenArray(makeNimstrLit("Incorrect JSON kind. Wanted \'$1\' in \'$2\' but got \'$3\'."), [HEX24_1291851082(ConstSet65), nimCopy(null, jsonPath_33557551[jsonPath_33557551_Idx], NTI50331655), reprEnum(jsonNode_33557550.kind, NTI1291845635)]);
-    raiseException({message: nimCopy(null, msgHEX60gensym539_33557568, NTI50331655), parent: null, m_type: NTI1358954504, name: null, trace: [], up: null}, "JsonKindError");
+    var msgHEX60gensym540_33557568 = nsuFormatOpenArray(makeNimstrLit("Incorrect JSON kind. Wanted \'$1\' in \'$2\' but got \'$3\'."), [HEX24_1291851082(ConstSet65), nimCopy(null, jsonPath_33557551[jsonPath_33557551_Idx], NTI50331655), reprEnum(jsonNode_33557550.kind, NTI1291845635)]);
+    raiseException({message: nimCopy(null, msgHEX60gensym540_33557568, NTI50331655), parent: null, m_type: NTI1358954504, name: null, trace: [], up: null}, "JsonKindError");
     }
     }
     var Temporary1 = jsonNode_33557550;
@@ -12068,8 +12068,8 @@ function initFromJson_33557576(dst_33557578, dst_33557578_Idx, jsonNode_33557579
     }
     else {
     if (!((ConstSet67[jsonNode_33557579.kind] != undefined))) {
-    var msgHEX60gensym543_33557593 = nsuFormatOpenArray(makeNimstrLit("Incorrect JSON kind. Wanted \'$1\' in \'$2\' but got \'$3\'."), [HEX24_1291851082(ConstSet68), nimCopy(null, jsonPath_33557580[jsonPath_33557580_Idx], NTI50331655), reprEnum(jsonNode_33557579.kind, NTI1291845635)]);
-    raiseException({message: nimCopy(null, msgHEX60gensym543_33557593, NTI50331655), parent: null, m_type: NTI1358954504, name: null, trace: [], up: null}, "JsonKindError");
+    var msgHEX60gensym544_33557593 = nsuFormatOpenArray(makeNimstrLit("Incorrect JSON kind. Wanted \'$1\' in \'$2\' but got \'$3\'."), [HEX24_1291851082(ConstSet68), nimCopy(null, jsonPath_33557580[jsonPath_33557580_Idx], NTI50331655), reprEnum(jsonNode_33557579.kind, NTI1291845635)]);
+    raiseException({message: nimCopy(null, msgHEX60gensym544_33557593, NTI50331655), parent: null, m_type: NTI1358954504, name: null, trace: [], up: null}, "JsonKindError");
     }
     }
     dst_33557578[dst_33557578_Idx] = parseEnum_33556024(getStr_1291845770(jsonNode_33557579, []));
@@ -12112,8 +12112,8 @@ function initFromJson_33557479(dst_33557481, dst_33557481_Idx, jsonNode_33557482
     }
     else {
     if (!((ConstSet62[jsonNode_33557482.kind] != undefined))) {
-    var msgHEX60gensym527_33557496 = nsuFormatOpenArray(makeNimstrLit("Incorrect JSON kind. Wanted \'$1\' in \'$2\' but got \'$3\'."), [HEX24_1291851082(ConstSet63), nimCopy(null, jsonPath_33557483[jsonPath_33557483_Idx], NTI50331655), reprEnum(jsonNode_33557482.kind, NTI1291845635)]);
-    raiseException({message: nimCopy(null, msgHEX60gensym527_33557496, NTI50331655), parent: null, m_type: NTI1358954504, name: null, trace: [], up: null}, "JsonKindError");
+    var msgHEX60gensym528_33557496 = nsuFormatOpenArray(makeNimstrLit("Incorrect JSON kind. Wanted \'$1\' in \'$2\' but got \'$3\'."), [HEX24_1291851082(ConstSet63), nimCopy(null, jsonPath_33557483[jsonPath_33557483_Idx], NTI50331655), reprEnum(jsonNode_33557482.kind, NTI1291845635)]);
+    raiseException({message: nimCopy(null, msgHEX60gensym528_33557496, NTI50331655), parent: null, m_type: NTI1358954504, name: null, trace: [], up: null}, "JsonKindError");
     }
     }
     if (dst_33557481[dst_33557481_Idx].length < (Temporary1 = chckRange(len_1291848634(jsonNode_33557482), 0, 2147483647), Temporary1)) { for (var i = dst_33557481[dst_33557481_Idx].length ; i < Temporary1 ; ++i) dst_33557481[dst_33557481_Idx].push(({id: 0, sector_id: 0, name: [], geometry: [], totalFamilies: 0, sectorName: [], status: 0})); }
@@ -12220,7 +12220,7 @@ function getStreets_33557318(interrupt_33557319) {
     
 function HEX3Aanonymous_33557418(value_33557419) {
                         
-function innerHEX60gensym571_33557762() {
+function innerHEX60gensym572_33557762() {
                           var result_33557763 = null;
 
                           BeforeRet: do {
@@ -12235,7 +12235,7 @@ function innerHEX60gensym571_33557762() {
 
                         }
         
-function innerHEX60gensym589_33557824() {
+function innerHEX60gensym590_33557824() {
           var result_33557825 = null;
 
           BeforeRet: do {
@@ -12294,7 +12294,7 @@ function innerHEX60gensym589_33557824() {
                               }
                           } while (false);
                         } while (false);
-                        var pOpt_33557780 = innerHEX60gensym571_33557762();
+                        var pOpt_33557780 = innerHEX60gensym572_33557762();
                         var pl_33557806 = (new H.map.Polyline((lnStr_33557710), (pOpt_33557780)));
                         setPolyStyleByStat_587203193(pl_33557806, strt_33557679.status);
                         sectStreetGrp_33554815[0].addObject((pl_33557806));
@@ -12314,7 +12314,7 @@ function innerHEX60gensym589_33557824() {
               }
           } while (false);
         } while (false);
-        map.getViewModel().setLookAtData((innerHEX60gensym589_33557824()));
+        map.getViewModel().setLookAtData((innerHEX60gensym590_33557824()));
         spinnerOn_33554773[0] = false;
         redraw_1090520045(kxi_1090519104[0]);
       } while (false);
@@ -12356,7 +12356,7 @@ function HEX3Aanonymous_33557898() {
 
 function HEX3Aanonymous_33557923() {
     
-function innerHEX60gensym647_33558012() {
+function innerHEX60gensym648_33558012() {
       var result_33558013 = null;
 
       BeforeRet: do {
@@ -12391,7 +12391,7 @@ function innerHEX60gensym647_33558012() {
     }
     
     scrollToSectId_33554776[0] = 0;
-    sIdEl_33558001[0].scrollIntoView((innerHEX60gensym647_33558012()));
+    sIdEl_33558001[0].scrollIntoView((innerHEX60gensym648_33558012()));
     }
     
   } while (false);
@@ -12536,7 +12536,7 @@ function nsuStrip(s_654313691, leading_654313692, trailing_654313693, chars_6543
 
 function bindMap_33554561(engineType_33554562) {
     
-function innerHEX60gensym664_33558302() {
+function innerHEX60gensym665_33558302() {
       var result_33558303 = null;
 
       BeforeRet: do {
@@ -12553,7 +12553,7 @@ function innerHEX60gensym664_33558302() {
     }
     var Temporary1;
     
-function innerHEX60gensym683_33558369() {
+function innerHEX60gensym684_33558369() {
       var result_33558370 = null;
 
       BeforeRet: do {
@@ -12570,7 +12570,7 @@ function innerHEX60gensym683_33558369() {
 
     }
     
-function innerHEX60gensym698_33558420() {
+function innerHEX60gensym699_33558420() {
       var result_33558421 = null;
 
       BeforeRet: do {
@@ -12588,7 +12588,7 @@ function innerHEX60gensym698_33558420() {
     }
     var Temporary2;
     
-function innerHEX60gensym718_33558512() {
+function innerHEX60gensym719_33558512() {
       var result_33558513 = null;
 
       BeforeRet: do {
@@ -12603,7 +12603,7 @@ function innerHEX60gensym718_33558512() {
 
     }
     
-function innerHEX60gensym724_33558529() {
+function innerHEX60gensym725_33558529() {
       var result_33558530 = null;
 
       BeforeRet: do {
@@ -12618,7 +12618,7 @@ function innerHEX60gensym724_33558529() {
 
     }
     
-function innerHEX60gensym797_33558814() {
+function innerHEX60gensym798_33558814() {
       var result_33558815 = null;
 
       BeforeRet: do {
@@ -12659,7 +12659,7 @@ function HEX3Aanonymous_33559094(evt_33559095) {
         
 function HEX3Aanonymous_33559163(value_33559164) {
             
-function innerHEX60gensym903_33559271() {
+function innerHEX60gensym904_33559271() {
               var result_33559272 = null;
 
               BeforeRet: do {
@@ -12692,7 +12692,7 @@ function innerHEX60gensym903_33559271() {
             var streetNumber_33559257 = nsuStrip(nsuJoinSep([nimCopy(null, address_33559252.street, NTI50331655), nimCopy(null, address_33559252.houseNumber, NTI50331655)], makeNimstrLit(" ")), true, true, ConstSet71);
             if (!(eqStrings(streetNumber_33559257, []))) {
             var htmlStreet_33559258 = nsuJoinSep([makeNimstrLit("<span class=\'no-wrap inf-bubble\'>"), nimCopy(null, streetNumber_33559257, NTI50331655), makeNimstrLit("</span>")], []);
-            var infoBubStreet_33559299 = (new H.ui.InfoBubble((mapPoint_33559135), (innerHEX60gensym903_33559271())));
+            var infoBubStreet_33559299 = (new H.ui.InfoBubble((mapPoint_33559135), (innerHEX60gensym904_33559271())));
             glbUi.addBubble((infoBubStreet_33559299));
             }
             
@@ -12730,7 +12730,7 @@ function HEX3Aanonymous_33559388() {
       
     }
 
-    var platform_33558349 = (new H.service.Platform((innerHEX60gensym664_33558302())));
+    var platform_33558349 = (new H.service.Platform((innerHEX60gensym665_33558302())));
     if ((window.devicePixelRatio === undefined)) {
     Temporary1 = 1.0;
     }
@@ -12740,8 +12740,8 @@ function HEX3Aanonymous_33559388() {
     
     var pixelRatio_33558365 = Temporary1;
     var hidpi_33558366 = (1.0 < pixelRatio_33558365);
-    var layerOpts_33558417 = innerHEX60gensym683_33558369();
-    var mapOpts_33558468 = innerHEX60gensym698_33558420();
+    var layerOpts_33558417 = innerHEX60gensym684_33558369();
+    var mapOpts_33558468 = innerHEX60gensym699_33558420();
     var defLayers_33558480 = platform_33558349.createDefaultLayers((layerOpts_33558417));
     var mapContainer_33558484 = $(("#map-container"))[0];
     if ((engineType_33554562 == engineTypes_587202621[0].P2D)) {
@@ -12752,8 +12752,8 @@ function HEX3Aanonymous_33559388() {
     }
     
     var mapType_33558509 = Temporary2;
-    var mtServOpt_33558526 = innerHEX60gensym718_33558512();
-    var mtlayerOpt_33558547 = innerHEX60gensym724_33558529();
+    var mtServOpt_33558526 = innerHEX60gensym719_33558512();
+    var mtlayerOpt_33558547 = innerHEX60gensym725_33558529();
     var mtServ_33558559 = platform_33558349.getMapTileService((mtServOpt_33558526));
     var pedestMobLayer_33558599 = mtServ_33558559.createTileLayer(("maptile"), ("pedestrian.day.mobile"), (512), ("png8"), (mtlayerOpt_33558547));
     mapContainer_33558484.innerHTML = [];
@@ -12770,7 +12770,7 @@ function HEX3Aanonymous_33559388() {
     var uiBase_33558781 = hUi_33558722.base;
     cntrRMap_33558763.setAlignment((layoutAligm_33558776.RIGHT_BOTTOM));
     cntrNoMy_33558771.setAlignment((layoutAligm_33558776.TOP_CENTER));
-    var cntrRMapBtn_33558857 = (new uiBase_33558781.PushButton((innerHEX60gensym797_33558814()))).addClass(("d-flex align-items-center justify-content-center"));
+    var cntrRMapBtn_33558857 = (new uiBase_33558781.PushButton((innerHEX60gensym798_33558814()))).addClass(("d-flex align-items-center justify-content-center"));
     var noMyMsg_33558879 = (new uiBase_33558781.Element(("h5"), ("d-flex align-items-center justify-content-center pt-4 text-danger")));
     cntrNoMy_33558771.addChild((noMyMsg_33558879));
     glbUi.addControl(("rastr"), (cntrRMap_33558763));
@@ -12825,6 +12825,14 @@ function HEX3Aanonymous_33556643(e_33556644) {
 
   
 }
+if (!(eqStrings(currUser_587202591[0].token, []))) {
+allSectProc_33554768[0] = nimCopy(null, newSeq_33555114(0), NTI33554829);
+spinnerOn_33554773[0] = true;
+redraw_1090520045(kxi_1090519104[0]);
+bindMap_33554561(curEngineType_587202622[0]);
+setEventsModalMap_33556639();
+}
+
 
 function getAllProccess_33554983(myS_33554984, sectorName_33554985) {
     var Temporary1;
@@ -12884,12 +12892,3 @@ function HEX3Aanonymous_33559480() {
 
   
 }
-if (!(eqStrings(currUser_587202591[0].token, []))) {
-allSectProc_33554768[0] = nimCopy(null, newSeq_33555114(0), NTI33554829);
-spinnerOn_33554773[0] = true;
-redraw_1090520045(kxi_1090519104[0]);
-bindMap_33554561(curEngineType_587202622[0]);
-setEventsModalMap_33556639();
-getAllProccess_33554983(false, []);
-}
-

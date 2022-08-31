@@ -113,7 +113,7 @@ var
     progressOn = false
     progressProc: int
 var scrollToSectId = 0
-var onlyMySectors = false
+var onlyMySectors = true
 var isSearchByStreet = false
 var serchSectByName: string
 var setEvtInpSearchSect = false
@@ -868,6 +868,7 @@ proc bindSearchSector() =
     var stmUiChg = Kefir.merge(toJs [stmSearchEl, stmOwnSect, stmByStreet])
     #stmUiChg.log()
     proc wrpS(vS: JsObject): JsObject =
+        dbg: console.log("run wrpS:")
         spinnerOn = true
         allSectProc = newSeq[SectorProcess]()
         redraw()
@@ -1162,7 +1163,7 @@ if currUser.token != "":
     redraw()
     bindMap()
     setEventsModalMap()
-    getAllProccess()
+    #getAllProccess()
 
 
 
