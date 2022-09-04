@@ -425,7 +425,7 @@ proc newSectProcess*(db: DbConn, t, sId, uId, startDate: string): StatusResp[seq
   result = db.getSectProcess(t, sId)
 
 
-proc delProcess*(db: DbConn, t, pId: string): StatusResp[int] =
+proc delProcess*(db: DbConn, t, pId: string, ifAdmin = false): StatusResp[int] =
   result.ts = toUnix getTime()
   result.status = stUnknown
   var rChck: tuple[isOk: bool, rowToken: Row]
@@ -434,10 +434,15 @@ proc delProcess*(db: DbConn, t, pId: string): StatusResp[int] =
   let uId = rChck.rowToken[2]
   db.exec(sql"BEGIN")
   try:
-    db.exec(sql"""DELETE
-          FROM user_sector
-            WHERE id = ? AND
-              user_id = ?""", pId, uId)
+    if ifAdmin:
+      db.exec(sql"""DELETE
+            FROM user_sector
+              WHERE id = ?""", pId)
+    else:
+      db.exec(sql"""DELETE
+            FROM user_sector
+              WHERE id = ? AND
+                user_id = ?""", pId, uId)
   except:
     errMsg = "Ошибка: " & getCurrentExceptionMsg()
     db.exec(sql"ROLLBACK")

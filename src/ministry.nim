@@ -438,7 +438,7 @@ proc updUser(id, firstname, lastname, email, password, role_id, active, apiKey: 
 template checkAdminToken(ifAdmin: untyped): untyped =
   if @"token" == "":
     halt()
-  let ifAdmin = checkAdmin(@"token")  
+  let ifAdmin = checkAdmin(@"token")
   if not ifAdmin.isAdmin:
     halt()
 
@@ -555,8 +555,8 @@ router mrouter:
                     @"sectorId", @"userId", @"startDate")
       resp %*sectProcess
     if @"action" == "delete":
-      #checkAdminToken ifAdmin
-      let delStat = delProcess(db, @"token", @"processId")
+      let ifAdmin = checkAdmin(@"token")
+      let delStat = delProcess(db, @"token", @"processId", ifAdmin.isAdmin)
       resp Http200, [("Content-Type","application/json")], $(%*delStat)
     elif @"action" == "update":
       if @"startDate" != "" or @"finishDate" != "":
