@@ -60,7 +60,7 @@ proc row2User*(rowU: Row, showPass = false): User =
 
 
 proc row2Processed*(row: Row): SectorProcessed =
-    result.sector_id = row[0].parseInt
+    result.id = row[0].parseInt
     result.name = row[1]
     result.user_id = row[2].parseInt
     result.firstname = row[3]

@@ -34,10 +34,11 @@ type
     id*, user_id*, sector_id*: int
     totalFamilies*: int
   SectorProcessed* = object
+    id*: int
     name*: string
     firstname*, lastname*: string
     time_start*, time_finish*: string
-    user_id*, sector_id*: int
+    user_id*: int
   SectorStreets* = object
     id*, sector_id*: int
     name*: string
