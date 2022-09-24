@@ -8708,7 +8708,7 @@ function innerHEX60gensym117_587203217() {
     }
     var mClr_587203205 = nimCopy(null, Temporary1, NTI50331655);
     if ((curEngineType_587202622[0] == engineTypes_587202621[0].P2D)) {
-    Temporary2 = makeNimstrLit("0.7");
+    Temporary2 = makeNimstrLit("0.6");
     }
     else {
     Temporary2 = makeNimstrLit("0.5");
