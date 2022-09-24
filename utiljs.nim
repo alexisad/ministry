@@ -180,7 +180,7 @@ proc setPolyStyleByStat*(p: JsObject, stat: StreetStatus) =
             "0, 255, 0"
     let opas =
         if curEngineType == engineTypes.P2D:
-            "0.3"
+            "0.7"
         else:
             "0.5"
     dbg: console.log("setPolyStyleByStat proc")
