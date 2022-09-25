@@ -589,8 +589,8 @@ proc yearReportTxt*(db: DbConn, dTo: string): string =
   let cntPrcsHalfYear = db.periodCntProcessed(dFromDtM.format("yyyy-MM-dd"), dTo)
   result = fmt"""
   Всего участков: {cntS}
-  Обработано в течении 6 мес. с {dFromDtM.format("dd'.'MM'.'yyyy")}: {cntPrcsHalfYear} участков = {(cntPrcsHalfYear * 100 / cntS).toInt}%
-  Обработано в течении года с {dFromDtY.format("dd'.'MM'.'yyyy")}: {cntPrcsYear} участков = {(cntPrcsYear * 100 / cntS).toInt}%
+  Обработано в течении 6 мес. с {dFromDtM.format("dd'.'MM'.'yyyy")}: {cntPrcsHalfYear} участков = {(cntPrcsHalfYear * 100 / cntS):6.3f}%
+  Обработано в течении года с {dFromDtY.format("dd'.'MM'.'yyyy")}: {cntPrcsYear} участков = {(cntPrcsYear * 100 / cntS):6.3f}%
   """
 
 
