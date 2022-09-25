@@ -572,7 +572,17 @@ router mrouter:
     if @"action" == "processed":
       let listProcessed = processed(db, @"reportFromDate")
       resp Http200, [("Content-Type","application/json")], $(%*listProcessed)
-
+    elif @"action" == "year":
+      let txt = yearReportTxt(db, @"toDate")
+      resp Http200, [("Content-Type","text/plain; charset=UTF-8")], txt
+    elif @"action" == "portfolio":
+      let rHtml = portfolio db
+      resp Http200, [("Content-Type","text/html; charset=UTF-8")], rHtml
+    elif @"action" == "lastprocess":
+      let rHtml = lastProcessed db
+      resp Http200, [("Content-Type","text/html; charset=UTF-8")], rHtml
+    else:
+      halt()
 proc main() =
   db = open("ministry.db", "", "", "")
   db.exec(sql"PRAGMA foreign_keys = ON")

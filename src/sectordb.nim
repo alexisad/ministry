@@ -1,5 +1,6 @@
-import std / [json, db_sqlite, times, strutils, sequtils, tables, hashes, parsecsv, streams, unicode, strformat]
+import std / [json, db_sqlite, times, strutils, sequtils, tables, hashes, parsecsv, streams, unicode, strformat, algorithm]
 import util/[types, utils]
+import karax / [karaxdsl, vdom]
 import flatty, supersnappy
 
 const normalDateFmt = initTimeFormat("yyyy-MM-dd")
@@ -556,3 +557,153 @@ proc processed*(db: DbConn, reportFromDate: string): StatusResp[seq[SectorProces
               WHERE sector.corpus_id = 1""", reportFromDate)
   for r in rows:
     result.resp.add(row2Processed(r))
+
+
+proc cntSectors(db: DbConn): int =
+  var sqlTxt = """SELECT COUNT(*)
+      FROM sector
+      WHERE sector.corpus_id = 1 AND sector.inactive = 0"""
+  let row = db.getRow(sql sqlTxt)
+  row[0].parseInt
+
+
+proc periodCntProcessed(db: DbConn, dFrom, dTo: string): int =
+  var sqlTxt = """SELECT COUNT(*)
+          FROM (SELECT 'x'
+          FROM user_sector as usrsect
+          INNER JOIN sector on sector.id = usrsect.sector_id AND sector.corpus_id = 1 AND sector.inactive = 0
+          WHERE date_finish >= ? and date_finish <= ? and date_finish = date_start 
+          GROUP BY sector_id
+          )
+      """
+  let row = db.getRow(sql sqlTxt, dFrom, dTo)
+  row[0].parseInt
+
+
+proc yearReportTxt*(db: DbConn, dTo: string): string =
+  let cntS = db.cntSectors
+  let dToDt = parse(dTo, "yyyy-MM-dd")
+  let dFromDtY = dToDt - 1.years
+  let cntPrcsYear = db.periodCntProcessed(dFromDtY.format("yyyy-MM-dd"), dTo)
+  let dFromDtM = dToDt - 6.months
+  let cntPrcsHalfYear = db.periodCntProcessed(dFromDtM.format("yyyy-MM-dd"), dTo)
+  result = fmt"""
+  Всего участков: {cntS}
+  Обработано в течении 6 мес. с {dFromDtM.format("dd-MM-yyyy")}: {cntPrcsHalfYear} участков = {(cntPrcsHalfYear * 100 / cntS).toInt}%
+  Обработано в течении года с {dFromDtY.format("dd-MM-yyyy")}: {cntPrcsYear} участков = {(cntPrcsYear * 100 / cntS).toInt}%
+  """
+
+
+proc lastProcessed*(db: DbConn): string =
+  var sqlTxt = """SELECT sector_internal_id, sector.name, firstname, lastname, date_start, date_finish
+          FROM user_sector as usrsect
+          INNER JOIN sector on sector.id = usrsect.sector_id AND sector.corpus_id = 1 AND sector.inactive = 0
+          INNER JOIN user on usrsect.user_id = user.id
+          ORDER BY sector_internal_id, date_start DESC
+      """
+  let rows = db.getAllRows(sql sqlTxt)
+  var
+    seqSectorIds = newSeq[string]()
+    tblSectrProcess = initTable[string, SectorProcess]()
+    sectIdTmp: string
+  for r in rows.items():
+    let
+      arrSctId = r[0].split("-")
+      idx = repeat('0', 4 - arrSctId[1].len) & arrSctId[1]
+      nSectrId = [arrSctId[0], idx].join("-")
+    let sectrPrc = SectorProcess(sector_internal_id: r[0], name: r[1], firstname: r[2], lastname: r[3], date_start: r[4], date_finish: r[5])
+    if sectIdTmp != nSectrId:
+      sectIdTmp = nSectrId
+      seqSectorIds.add sectIdTmp
+      tblSectrProcess[sectIdTmp] = sectrPrc
+  seqSectorIds = seqSectorIds.deduplicate
+  seqSectorIds.sort
+  var resp = buildHtml table(border = "1", cellpadding="5", cellspacing="1"):
+    tr:
+      th:
+        text "Участок"
+      th:
+        text "Возвещатель"
+      th:
+        text "Взят"
+      th:
+        text "Обработан"
+    for sId in seqSectorIds:
+        tr:
+          td:
+            text tblSectrProcess[sId].name
+          td:
+            text tblSectrProcess[sId].lastname & " " & tblSectrProcess[sId].firstname
+          td:
+            text tblSectrProcess[sId].date_start
+          td:
+            text tblSectrProcess[sId].date_finish
+  $resp
+
+
+proc portfolio*(db: DbConn): string =
+  var sqlTxt = """SELECT sector_internal_id, firstname, lastname, date_start, date_finish  
+          FROM user_sector as usrsect
+          INNER JOIN sector on sector.id = usrsect.sector_id AND sector.corpus_id = 1 AND sector.inactive = 0
+          INNER JOIN user on usrsect.user_id = user.id
+          ORDER BY date_start
+      """
+  let rows = db.getAllRows(sql sqlTxt)
+  var
+    seqSectorIds = newSeq[string]()
+    tblSectrProcess = initTable[string, seq[SectorProcess]]()
+  for r in rows:
+    let
+      arrSctId = r[0].split("-")
+      idx = repeat('0', 4 - arrSctId[1].len) & arrSctId[1]
+      nSectrId = [arrSctId[0], idx].join("-")
+      sectrPrc = SectorProcess(sector_internal_id: r[0], firstname: r[1], lastname: r[2], date_start: r[3], date_finish: r[4])
+    seqSectorIds.add nSectrId
+    discard tblSectrProcess.hasKeyOrPut(nSectrId, newSeq[SectorProcess]())
+    tblSectrProcess[nSectrId].add sectrPrc
+  seqSectorIds = seqSectorIds.deduplicate
+  seqSectorIds.sort
+
+  proc buildSectrTbl(sectorId: string, tblSectrProcess: Table[string, seq[SectorProcess]]): VNode =
+    let tFmt = initTimeFormat("dd'.'MM'.'yyyy")
+    result = buildHtml table(border = "1", cellpadding="5", cellspacing="1"):
+      tr:
+        td(colspan = "2", align = "center"):
+          strong:
+            text tblSectrProcess[sectorId][0].sector_internal_id
+      for v in tblSectrProcess[sectorId]:
+        let
+          dStart = v.date_start.parse("yyyy-MM-dd").format(tFmt)
+          dFinish = if v.date_finish != "": v.date_finish.parse("yyyy-MM-dd").format(tFmt) else: ""
+        tr:
+          td(colspan = "2", align = "center"):
+            text fmt"{v.firstname} {v.lastname}"
+        tr:
+          td:
+            text fmt"{dStart}"
+          td:
+            text fmt"{dFinish}"
+  var sectrHtmlTbls: seq[VNode]
+  for sectr in seqSectorIds:
+    sectrHtmlTbls.add buildSectrTbl(sectr, tblSectrProcess)
+  let tblsLen = sectrHtmlTbls.len
+  var cntTr = 5
+  var idx: int
+  let tab = buildHtml html():
+    body:
+      table:
+        while tblsLen > idx:
+          #var sHtmTbl = sectrHtmlTbls[idx]
+          #if cntTr == 0:
+          #cntTr = 5
+          tr(valign = "top"):
+            while tblsLen > idx and cntTr > 0:
+              let sHtmTbl = sectrHtmlTbls[idx]
+              td:
+                br:
+                  discard
+                sHtmTbl
+              inc idx
+              dec cntTr
+            cntTr = 5
+  ["<!DOCTYPE html>", $tab].join("")
