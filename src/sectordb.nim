@@ -374,7 +374,7 @@ proc newSectProcess*(db: DbConn, t, sId, uId, startDate: string): StatusResp[seq
   dbg:
     echo "rChck.rowToken: ", rChck.rowToken
   let cntOnHand = sPrCntRow[0].parseInt
-  if cntOnHand >= 8:
+  if cntOnHand >= 4:
     result.message = "Неудачно: сегодня на руках не может быть больше 4-х участков"
     return result
   let
