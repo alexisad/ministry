@@ -484,7 +484,7 @@ proc saveStreets(): proc() =
                 let pStrtId = p.getData().to(int)
                 if id == pStrtId:
                     dbg: console.log("setPolyStyleByStat")
-                    setPolyStyleByStat(p, str.status)
+                    setPolyStyleByStat(p, str.status, onlyMySectors, currProcess)
         let setStr = streets.join(";")
         dbg: console.log("setStr:", setStr)
         setTs()
@@ -936,7 +936,7 @@ proc bindEvtsMapScreen() =
                             data: strt.id
                         }
                     let pl = jsNew H.map.Polyline(lnStr, pOpt)
-                    setPolyStyleByStat(pl, strt.status)
+                    setPolyStyleByStat(pl, strt.status, onlyMySectors, currProcess)
                     sectStreetGrp.addObject pl
                     dbg: console.log("pOpt add poly:", pl.getData())
             #map.setViewBounds(sectStreetGrp.getBounds(), true)

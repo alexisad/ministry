@@ -8669,33 +8669,34 @@ function HEX3Aanonymous_33556101(ev_33556102, n_33556103) {
 
 }
 
-function setPolyStyleByStat_587203193(p_587203194, stat_587203195) {
+function setPolyStyleByStat_587203193(p_587203194, stat_587203195, onlyMySectors_587203196, currProcess_587203197) {
     var Temporary1;
-    var Temporary2;
+      var Temporary2;
+    var Temporary3;
     
-function innerHEX60gensym117_587203217() {
-      var result_587203218 = null;
+function innerHEX60gensym118_587203219() {
+      var result_587203220 = null;
 
       BeforeRet: do {
-        var a_587203219 = null;
-        a_587203219 = {};
-        var fmtRes_587203232 = [mnewString(0)];
-        fmtRes_587203232[0].push.apply(fmtRes_587203232[0], makeNimstrLit("rgba("));;
-        formatValue_1459617954(fmtRes_587203232, 0, mClr_587203205, []);
-        fmtRes_587203232[0].push.apply(fmtRes_587203232[0], makeNimstrLit(", "));;
-        formatValue_1459617954(fmtRes_587203232, 0, opas_587203214, []);
-        fmtRes_587203232[0].push.apply(fmtRes_587203232[0], makeNimstrLit(")"));;
-        a_587203219.strokeColor = toJSStr(fmtRes_587203232[0]);
-        a_587203219.lineWidth = 10;
-        result_587203218 = a_587203219;
+        var a_587203221 = null;
+        a_587203221 = {};
+        var fmtRes_587203234 = [mnewString(0)];
+        fmtRes_587203234[0].push.apply(fmtRes_587203234[0], makeNimstrLit("rgba("));;
+        formatValue_1459617954(fmtRes_587203234, 0, mClr_587203207, []);
+        fmtRes_587203234[0].push.apply(fmtRes_587203234[0], makeNimstrLit(", "));;
+        formatValue_1459617954(fmtRes_587203234, 0, opas_587203216, []);
+        fmtRes_587203234[0].push.apply(fmtRes_587203234[0], makeNimstrLit(")"));;
+        a_587203221.strokeColor = toJSStr(fmtRes_587203234[0]);
+        a_587203221.lineWidth = 10;
+        result_587203220 = a_587203221;
         break BeforeRet;
       } while (false);
 
-      return result_587203218;
+      return result_587203220;
 
     }
 
-    if ((stat_587203195 == 0)) {
+      if ((stat_587203195 == 0)) Temporary2 = true; else {        Temporary2 = !(eqStrings(currProcess_587203197.date_finish, []));      }    if (Temporary2) {
     Temporary1 = makeNimstrLit("255, 0, 0");
     }
     else {
@@ -8706,16 +8707,16 @@ function innerHEX60gensym117_587203217() {
     Temporary1 = makeNimstrLit("0, 255, 0");
     }
     }
-    var mClr_587203205 = nimCopy(null, Temporary1, NTI50331655);
+    var mClr_587203207 = nimCopy(null, Temporary1, NTI50331655);
     if ((curEngineType_587202622[0] == engineTypes_587202621[0].P2D)) {
-    Temporary2 = makeNimstrLit("0.6");
+    Temporary3 = makeNimstrLit("0.6");
     }
     else {
-    Temporary2 = makeNimstrLit("0.5");
+    Temporary3 = makeNimstrLit("0.5");
     }
     
-    var opas_587203214 = nimCopy(null, Temporary2, NTI50331655);
-    p_587203194.setStyle((innerHEX60gensym117_587203217()));
+    var opas_587203216 = nimCopy(null, Temporary3, NTI50331655);
+    p_587203194.setStyle((innerHEX60gensym118_587203219()));
 
   
 }
@@ -8766,7 +8767,7 @@ function HEX3Aanonymous_33556223() {
                   p_33556176 = v_33558196;
                   var pStrtId_33556185 = (p_33556176.getData());
                   if ((id_33556157 == pStrtId_33556185)) {
-                  setPolyStyleByStat_587203193(p_33556176, str_33556156.status);
+                  setPolyStyleByStat_587203193(p_33556176, str_33556156.status, onlyMySectors_33554777[0], currProcess_33554767[0]);
                   }
                   
                   }
@@ -12296,7 +12297,7 @@ function innerHEX60gensym590_33557824() {
                         } while (false);
                         var pOpt_33557780 = innerHEX60gensym572_33557762();
                         var pl_33557806 = (new H.map.Polyline((lnStr_33557710), (pOpt_33557780)));
-                        setPolyStyleByStat_587203193(pl_33557806, strt_33557679.status);
+                        setPolyStyleByStat_587203193(pl_33557806, strt_33557679.status, onlyMySectors_33554777[0], currProcess_33554767[0]);
                         sectStreetGrp_33554815[0].addObject((pl_33557806));
                         i_33558283 = addInt(i_33558283, 1);
                         if (!(((coords_33557694).length == L_33558284))) {

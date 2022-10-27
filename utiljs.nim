@@ -169,10 +169,10 @@ proc newPositionIndicator*(size: Natural): PositionIndicator =
         }
     )
 
-proc setPolyStyleByStat*(p: JsObject, stat: StreetStatus) =
+proc setPolyStyleByStat*(p: JsObject, stat: StreetStatus, onlyMySectors: bool, currProcess: SectorProcess) =
     #let stStat = ord parseEnum[StreetStatus]($stat)
     let mClr =
-        if stat == strNotStarted:
+        if stat == strNotStarted or currProcess.date_finish != "":#(not onlyMySectors and currProcess.user_id != currUser.id):
             "255, 0, 0"
         elif stat == strStarted:
             "0, 0, 255"
