@@ -222,7 +222,7 @@ proc loginDialog(): VNode =
             h1(class="h3 mb-3 font-weight-normal"):
                 text "Войти"
         tdiv(class="form-label-group"):
-            input(`type`="text", name = "email", id="inputEmail", class="form-control", placeholder = plEmail, required="", autofocus="")
+            input(`type`="text", name = "email", id="inputEmail", class="form-control", placeholder = plEmail, required="", autofocus="", autocomplete="off")
             label(`for`="inputEmail"):
                 text plEmail
         tdiv(class="form-label-group"):

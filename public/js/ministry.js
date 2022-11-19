@@ -7120,6 +7120,7 @@ function loginDialog_33555039() {
     setAttr_1107296808(tmp_33555047, "placeholder", plEmail_33555041);
     setAttr_1107296808(tmp_33555047, "required", "");
     setAttr_1107296808(tmp_33555047, "autofocus", "");
+    setAttr_1107296808(tmp_33555047, "autocomplete", "off");
     add_1107296882(tmp_33555046, tmp_33555047);
     var tmp_33555048 = tree_1107296945(104, []);
     setAttr_1107296808(tmp_33555048, "for", "inputEmail");
