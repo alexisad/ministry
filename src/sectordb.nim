@@ -594,6 +594,17 @@ proc yearReportTxt*(db: DbConn, dTo: string): string =
   """
 
 
+
+#[
+SELECT sector_internal_id, sector.name, firstname, lastname, date_start, date_finish
+          FROM user_sector as usrsect
+          INNER JOIN sector on sector.id = usrsect.sector_id AND sector.corpus_id = 1 AND sector.inactive = 0
+          INNER JOIN user on usrsect.user_id = user.id
+          WHERE date_finish is null
+          ORDER BY date_start, sector_internal_id DESC]#
+
+
+
 proc lastProcessed*(db: DbConn): string =
   var sqlTxt = """SELECT sector_internal_id, sector.name, firstname, lastname, date_start, date_finish
           FROM user_sector as usrsect

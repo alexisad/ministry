@@ -78,7 +78,7 @@ proc sendRequest*(meth, url: string, body = "", headers: openarray[(string, stri
                 #console.log("resp:", oReq.`type`.toJs, oReq.status.toJs, oReq.statusText.toJs, oReq.responseText.toJs)
                 let stts = oReq.status
                 let resp = Response((oReq.status, $oReq.statusText,  $oReq.responseText))
-                if stts == 0 or stts in {100..199} or stts in {400..600}:
+                if stts == 0 or stts in {100.int..199.int} or stts in {400.int..600.int}:
                     emitter.error(resp)
                 else:    
                     emitter.emit(resp)
