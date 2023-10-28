@@ -2,6 +2,7 @@
 # nim -o:public/js/ministry.js js --debuginfo:on --oldgensym:on ministryjs.nim
 # browser-sync start --proxy "http://127.0.0.1:5000" --files "public/js/*.js"
 
+
 import utiljs
 #include karax / prelude
 import karax / [kbase, karaxdsl, vstyles, karax, vdom, jstrutils]
@@ -548,11 +549,6 @@ proc showStreets(): VNode =
                                     target = "_blank"):
                                 text "Private"
                             #discard dbg: console.log("street:->", str)
-                        span(class="ml-1"):
-                            text "- семей:"
-                        input(`type`="number", inputmode="numeric", class="col-2 ml-1 mr-2 px-1", min="0", max="100",
-                                                id="strfam" & ($i & $tf).cstring,
-                                                value = tf, oninput = setStrTotFam(i))
                     #[tdiv(class="overflow-auto text-nowrap border-bottom pb-2 mt-n3"):
                         text strSt.stDescr]#
             tdiv:
@@ -693,15 +689,6 @@ proc showAllProc(): VNode =
                                 text(wasBy & owner)
                             tdiv(class = clsCol):
                                 text(finDate)
-                            when true:
-                                tdiv(class = clsCol & " d-flex justify-content-end"):
-                                    span:
-                                        text kstring("Всего семей:")
-                                    span(class="ml-1"):
-                                        strong:
-                                            text kstring($p.totalFamilies)
-                                    #span(class = "badge badge-primary"):
-                                        #text ($p.totalFamilies)
         
 
 
