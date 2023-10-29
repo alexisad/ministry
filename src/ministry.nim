@@ -1,7 +1,9 @@
 # nimble build --stackTrace:off --threads:on --opt:speed -d:noSignalHandler -d:release --cpu:amd64 --os:linux --compileOnly --genScript
 #import htmlgen
 import asyncdispatch, jester
-import std / [db_sqlite, md5, times, random, strutils, json]
+import std / [times, random, strutils, json]
+import checksums/md5
+import db_connector/db_sqlite
 from uri import encodeUrl
 import posix#, sdnotify
 import util/types
@@ -588,7 +590,7 @@ proc main() =
   db.exec(sql"PRAGMA foreign_keys = ON")
   dbg:
     echo "db connected!!!!!!!!!!!!!"
-  let settings = newSettings(port = Port(5000))
+  let settings = newSettings(port = Port(80))
   var jester = initJester(mrouter, settings=settings)
   jester.serve()
 

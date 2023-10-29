@@ -1,4 +1,5 @@
-import std / [json, db_sqlite, times, strutils, sequtils, tables, hashes, parsecsv, streams, unicode, strformat, algorithm]
+import std / [json, times, strutils, sequtils, tables, hashes, parsecsv, streams, unicode, strformat, algorithm]
+import db_connector/db_sqlite
 import util/[types, utils]
 import karax / [karaxdsl, vdom]
 import flatty, supersnappy

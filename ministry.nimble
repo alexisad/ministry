@@ -13,6 +13,8 @@ bin           = @["ministry"]
 
 requires "nim >= 1.6.2"
 requires "jester >= 0.5.0"
+requires "db_connector"
+requires "checksums"
 requires "flatty"
 requires "supersnappy"
 requires "karax"

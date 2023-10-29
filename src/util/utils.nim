@@ -1,4 +1,4 @@
-import db_sqlite, times, types, random, strutils
+import db_connector/db_sqlite, times, types, random, strutils
 
 proc allPasswordLetters(): string =
     let sl = {'a'..'h', 'j'..'k', 'm'..'n', 'p'..'z', '2'..'9'}
