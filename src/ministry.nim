@@ -610,7 +610,7 @@ proc main() =
   db.exec(sql"PRAGMA foreign_keys = ON")
   dbg:
     echo "db connected!!!!!!!!!!!!!"
-  let settings = newSettings(port = Port(80))
+  let settings = newSettings(port = Port(5000))
   var jester = initJester(mrouter, settings=settings)
   jester.serve()
 
