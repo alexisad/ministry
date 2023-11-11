@@ -4,10 +4,10 @@ var excHandler = 0;
 var lastJSError = null;
 var NTI704643089 = {size: 0, kind: 18, base: null, node: null, finalizer: null};
 var NTI1660944596 = {size: 0, kind: 18, base: null, node: null, finalizer: null};
+var NTI570428119 = {size: 0, kind: 18, base: null, node: null, finalizer: null};
 var NTI570428121 = {size: 0, kind: 18, base: null, node: null, finalizer: null};
-var NTI570428123 = {size: 0, kind: 18, base: null, node: null, finalizer: null};
-var NTI570427377 = {size: 0, kind: 24, base: null, node: null, finalizer: null};
-var NTI570427382 = {size: 0, kind: 18, base: null, node: null, finalizer: null};
+var NTI570427375 = {size: 0, kind: 24, base: null, node: null, finalizer: null};
+var NTI570427380 = {size: 0, kind: 18, base: null, node: null, finalizer: null};
 var NTI1912602712 = {size: 0, kind: 18, base: null, node: null, finalizer: null};
 var NTI1677721635 = {size: 0, kind: 14, base: null, node: null, finalizer: null};
 var NTI1577058324 = {size: 0, kind: 17, base: null, node: null, finalizer: null};
@@ -1389,18 +1389,18 @@ var NNI1912602712 = {kind: 2, len: 4, offset: 0, typ: null, name: null, sons: [{
 {kind: 1, offset: "resp", len: 0, typ: NTI1660944387, name: "resp", sons: null}, 
 {kind: 1, offset: "ts", len: 0, typ: NTI33554439, name: "ts", sons: null}]};
 NTI1912602712.node = NNI1912602712;
-NTI570427377.base = NTI1660944394;
-var NNI570427382 = {kind: 2, len: 4, offset: 0, typ: null, name: null, sons: [{kind: 1, offset: "status", len: 0, typ: NTI1660944389, name: "status", sons: null}, 
+NTI570427375.base = NTI1660944394;
+var NNI570427380 = {kind: 2, len: 4, offset: 0, typ: null, name: null, sons: [{kind: 1, offset: "status", len: 0, typ: NTI1660944389, name: "status", sons: null}, 
 {kind: 1, offset: "message", len: 0, typ: NTI33554449, name: "message", sons: null}, 
-{kind: 1, offset: "resp", len: 0, typ: NTI570427377, name: "resp", sons: null}, 
+{kind: 1, offset: "resp", len: 0, typ: NTI570427375, name: "resp", sons: null}, 
 {kind: 1, offset: "ts", len: 0, typ: NTI33554439, name: "ts", sons: null}]};
-NTI570427382.node = NNI570427382;
-var NNI570428123 = {kind: 2, len: 2, offset: 0, typ: null, name: null, sons: [{kind: 1, offset: "Field0", len: 0, typ: NTI33554449, name: "Field0", sons: null}, 
-{kind: 1, offset: "Field1", len: 0, typ: NTI1459617796, name: "Field1", sons: null}]};
-NTI570428123.node = NNI570428123;
+NTI570427380.node = NNI570427380;
 var NNI570428121 = {kind: 2, len: 2, offset: 0, typ: null, name: null, sons: [{kind: 1, offset: "Field0", len: 0, typ: NTI33554449, name: "Field0", sons: null}, 
 {kind: 1, offset: "Field1", len: 0, typ: NTI1459617796, name: "Field1", sons: null}]};
 NTI570428121.node = NNI570428121;
+var NNI570428119 = {kind: 2, len: 2, offset: 0, typ: null, name: null, sons: [{kind: 1, offset: "Field0", len: 0, typ: NTI33554449, name: "Field0", sons: null}, 
+{kind: 1, offset: "Field1", len: 0, typ: NTI1459617796, name: "Field1", sons: null}]};
+NTI570428119.node = NNI570428119;
 var NNI1660944596 = {kind: 2, len: 2, offset: 0, typ: null, name: null, sons: [{kind: 1, offset: "street", len: 0, typ: NTI33554449, name: "street", sons: null}, 
 {kind: 1, offset: "houseNumber", len: 0, typ: NTI33554449, name: "houseNumber", sons: null}]};
 NTI1660944596.node = NNI1660944596;
@@ -11756,7 +11756,7 @@ function showAllProc_570427253() {
               var wasBy_570427356 = [];
               var stDate_570427357 = [];
               var finDate_570427358 = [];
-              var owner_570427359 = nsuJoinSep([nimCopy(null, p_570427355.firstname, NTI33554449), nimCopy(null, p_570427355.lastname, NTI33554449)], [32]);
+              var owner_570427359 = [];
               var sectId_570427360 = toJSStr(HEX24_385875976(p_570427355.sector_id));
               var tmp_570427281 = tree_1258292066(44, []);
               tmp_570427281.id = sectId_570427360;
@@ -12256,7 +12256,7 @@ function to_570428359(node_570428362) {
   var result_570428364 = [({status: 0, message: [], resp: [], ts: 0n})];
 
     var jsonPath_570428365 = [[]];
-    result_570428364[0] = nimCopy(result_570428364[0], ({status: 0, message: [], resp: [], ts: 0n}), NTI570427382);
+    result_570428364[0] = nimCopy(result_570428364[0], ({status: 0, message: [], resp: [], ts: 0n}), NTI570427380);
     initFromJson_570428388(result_570428364[0], node_570428362, jsonPath_570428365, 0);
 
   return result_570428364[0];
@@ -12266,7 +12266,7 @@ function to_570428359(node_570428362) {
 function parseResp_570428354(bdy_570428356) {
   var result_570428358 = ({status: 0, message: [], resp: [], ts: 0n});
 
-    result_570428358 = nimCopy(result_570428358, to_570428359(parseJson_1459623311(bdy_570428356)), NTI570427382);
+    result_570428358 = nimCopy(result_570428358, to_570428359(parseJson_1459623311(bdy_570428356)), NTI570427380);
     if (eqStrings(reprEnum(result_570428358.status, NTI1660944389), [108,111,103,103,101,100,79,117,116])) {
     currUser_704643103[0].token = nimCopy(null, [], NTI33554449);
     isShowNavMap_704643108[0] = false;
@@ -12348,9 +12348,9 @@ function innerHEX60gensym600_570428770() {
 
       BeforeRet: {
         var respSect_570428595 = parseResp_570428354(value_570428348.Field2);
-        var sectStrts_570428596 = nimCopy(null, respSect_570428595.resp, NTI570427377);
-        currStreets_570425685[0] = nimCopy(null, sectStrts_570428596, NTI570427377);
-        currStreetsTmp_570425686[0] = nimCopy(null, sectStrts_570428596, NTI570427377);
+        var sectStrts_570428596 = nimCopy(null, respSect_570428595.resp, NTI570427375);
+        currStreets_570425685[0] = nimCopy(null, sectStrts_570428596, NTI570427375);
+        currStreetsTmp_570425686[0] = nimCopy(null, sectStrts_570428596, NTI570427375);
         if (((sectStrts_570428596).length == 0)) {
         break BeforeRet;
         }
@@ -12727,7 +12727,7 @@ function innerHEX60gensym915_570430031() {
 
             var respLocsJsn_570429903 = parseJson_1459623311(value_570429902.Field2);
             if ((!(hasKey_1459621114(respLocsJsn_570429903, [105,116,101,109,115])) || (len_1459620943(HEX5BHEX5D_1459620997(respLocsJsn_570429903, [105,116,101,109,115])) == 0))) {
-            HEX5BHEX5DHEX3D_1459619825(respLocsJsn_570429903, [105,116,101,109,115], HEX25_570429963([HEX25_1459619706([nimCopy(null, {Field0: [97,100,100,114,101,115,115], Field1: HEX25_1459619706([nimCopy(null, {Field0: [115,116,114,101,101,116], Field1: HEX25_1459619677([])}, NTI570428123), nimCopy(null, {Field0: [104,111,117,115,101,78,117,109,98,101,114], Field1: HEX25_1459619677([])}, NTI570428123)])}, NTI570428121)])]));
+            HEX5BHEX5DHEX3D_1459619825(respLocsJsn_570429903, [105,116,101,109,115], HEX25_570429963([HEX25_1459619706([nimCopy(null, {Field0: [97,100,100,114,101,115,115], Field1: HEX25_1459619706([nimCopy(null, {Field0: [115,116,114,101,101,116], Field1: HEX25_1459619677([])}, NTI570428121), nimCopy(null, {Field0: [104,111,117,115,101,78,117,109,98,101,114], Field1: HEX25_1459619677([])}, NTI570428121)])}, NTI570428119)])]));
             }
             
             var addressJsn_570429971 = HEX5BHEX5D_1459620997(HEX5BHEX5D_1459621076(HEX5BHEX5D_1459620997(respLocsJsn_570429903, [105,116,101,109,115]), 0), [97,100,100,114,101,115,115]);

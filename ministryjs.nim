@@ -664,7 +664,7 @@ proc showAllProc(): VNode =
                             "Сдан: " & p.finishDate.format( initTimeFormat("dd'.'MM'.'yyyy") )
                         else:
                             ""]#
-                    let owner = [p.firstname, p.lastname].join(" ")
+                    let owner = "" # [p.firstname, p.lastname].join(" ")
                     let sectId = kstring($p.sector_id)
                     tdiv(id=sectId, class="card mb-3 c-sect shadow p-3 bg-white rounded"):
                         tdiv(class="card-header"):
