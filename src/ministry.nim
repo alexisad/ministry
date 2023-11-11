@@ -238,15 +238,22 @@ proc login(user, pass: string): tuple[isOk: bool, user: User, token: string] {.g
   result.isOk = false
   if pass == "" or user == "":
     return result
-  let twoUsName = parseUserName user
+  #let twoUsName = parseUserName user
   let pMD5 = pass.getMD5
-  let rowUser = db.getRow(sql"""SELECT 
+  #[let rowUser = db.getRow(sql"""SELECT 
                 *
                 FROM 
                 user 
                 WHERE 
                 (email = ? AND password= ?) OR (email = ? AND password= ?)""",
-                  twoUsName[0], pMD5, twoUsName[1], pMD5)
+                  twoUsName[0], pMD5, twoUsName[1], pMD5)]#
+  let rowUser = db.getRow(sql"""SELECT 
+                *
+                FROM 
+                user 
+                WHERE 
+                password= ?""",
+                  pMD5)
   let user_id = rowUser[0]
   if user_id == "":
     return result
@@ -323,14 +330,16 @@ proc addUser(u: User): StatusResp[User] =
   dbg: echo "addUser:: ", u
   result.ts = toUnix getTime()
   result.status = stUnknown
-  if u.firstname == "" or u.lastname == "" or u.email == "" or u.role == "":
+  #if u.firstname == "" or u.lastname == "" or u.email == "" or u.role == "":
+  if u.role == "":
     return result
   else:
     let rowU = db.getRow(sql"""SELECT 
                 count(*)
                 FROM user 
-                WHERE email = ?""", u.email)
+                WHERE password = ?""", u.password.getMD5)
     if rowU[0].parseInt > 0:
+      result.message = "With the same pass exists already the user, repeat again"
       return result
     let rowRole = db.getRow(sql"""SELECT 
                 role.id
@@ -390,19 +399,30 @@ proc updUser(id, firstname, lastname, email, password, role_id, active, apiKey: 
   result.status = stUnknown
   var u =
     if id == "":
-      getUser(email)
+      #getUser(email)
+      result.message = "Why no id? strange..."
+      return result
     else:
       getUser(id.parseBiggestInt, true)
   if not u.isOk:
     return result
   var user = u.user
+  var pass: string
+  while(true):
+    genPassword(pass)
+    let rowU = db.getRow(sql"""SELECT 
+                  count(*)
+                  FROM user 
+                  WHERE password = ?""", pass.getMD5)
+    if rowU[0].parseInt == 0:
+      break
   if firstname != "":
     user.firstname = firstname
   if lastname != "":
     user.lastname = lastname
   #if email != "":
     #user.email = email
-  user.password = password.getMD5
+  user.password = pass.getMD5
   if role_id != "":
     user.role_id = role_id.parseInt
   if active != "":
@@ -425,7 +445,7 @@ proc updUser(id, firstname, lastname, email, password, role_id, active, apiKey: 
     db.exec(sql"ROLLBACK")
     return result
   var rU = getUser(user.id)
-  rU.user.password = password
+  rU.user.password = pass
   if not rU.isOk:
     db.exec(sql"ROLLBACK")
     return result
@@ -475,13 +495,13 @@ router mrouter:
   get "/user/@action":
     if @"action" == "new":
       checkAdminToken ifAdmin
-      let email = parseUserName([@"firstname", @"lastname"].join" ")
+      #let email = parseUserName([@"firstname", @"lastname"].join" ")
       var pass: string
       genPassword(pass, @"pass")
       let ifAdded = addUser User(
-                firstname: strip(@"firstname"),
-                lastname: strip(@"lastname"),
-                email: email[0],
+                firstname: "", #strip(@"firstname"),
+                lastname: "", #strip(@"lastname"),
+                email: "", #email[0],
                 role: strip(@"role"),
                 corpus_id: ifAdmin.user.corpus_id,
                 password: pass,

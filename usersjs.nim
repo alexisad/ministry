@@ -58,7 +58,7 @@ proc showUsers*(): VNode =
             let
                 headingId = ("heading" & $u.id).cstring
                 collapseId = ("collapse" & $u.id).cstring
-                uName = [u.firstname, u.lastname].join" "
+                uName = [$u.id, u.firstname, u.lastname].join" "
                 inpFirstNameId = ("inputFirstName" & $u.id).cstring
                 inpLastNameId = ("inputLastName" & $u.id).cstring
                 inpApiKeyId = ("inpApiKey" & $u.id).cstring

@@ -179,6 +179,32 @@ when false:
     )
 
 
+proc onSubmitForm(ev: Event; n: VNode) =
+    discard
+
+proc supmit(): proc(ev: Event; n: VNode) =
+    result = proc(ev: Event; n: VNode) =
+        #window.alert("!!!")
+        let evJs = ev.toJs()
+        let frm = evJs.target
+        ev.toJs().preventDefault()
+        dbg:
+            console.log("onSubmit:", frm.elements["email"].value)
+        frm.elements["email"].value = "*";
+        dbg:
+            console.log("onSubmit:", frm.elements["email"].value)
+        frm.submit()
+        #n.toJs().submit()
+        dbg:
+            console.log("onSubmit:", evJs.target)
+        #window.alert("!!!")
+
+when false:
+    proc supmit(): proc(e: JsObject) =
+        result = proc(e: JsObject) =
+            dbg:
+                console.log("onSubmit:", e)
+
 proc login(btnClass: kstring): proc() =
     result = proc() =
         spinnerOn = true
@@ -218,7 +244,7 @@ proc loginDialog(): VNode =
     dbg:
         console.log("plsHolders:", plEmail, plPass)
         console.log("H.Map:", jsNew H.geo.Point(1, 51))
-    result = buildHtml form(class="form-signin", action="", `method` = "post"):
+    result = buildHtml form(class="form-signin", action="", `method` = "post", onsubmit = supmit()):
         tdiv(class="text-center mb-4"):
             h1(class="h3 mb-3 font-weight-normal"):
                 text "Войти"
