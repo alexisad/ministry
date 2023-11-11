@@ -652,16 +652,18 @@ proc showAllProc(): VNode =
                     #discard console.log("p.name:", p)
                     var wasBy = ""
                     let stDate =
-                        if p.date_start != "":
+                        ""
+                        #[if p.date_start != "":
                             "Взят: " & p.startDate.format( initTimeFormat("dd'.'MM'.'yyyy") )
                         else:
-                            ""
+                            ""]#
                     let finDate =
-                        if p.date_finish != "":
+                        ""
+                        #[if p.date_finish != "":
                             wasBy = "Был у: "
                             "Сдан: " & p.finishDate.format( initTimeFormat("dd'.'MM'.'yyyy") )
                         else:
-                            ""
+                            ""]#
                     let owner = [p.firstname, p.lastname].join(" ")
                     let sectId = kstring($p.sector_id)
                     tdiv(id=sectId, class="card mb-3 c-sect shadow p-3 bg-white rounded"):
