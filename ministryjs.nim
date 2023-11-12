@@ -182,7 +182,7 @@ when false:
 proc onSubmitForm(ev: Event; n: VNode) =
     discard
 
-proc supmit(): proc(ev: Event; n: VNode) =
+proc submit(): proc(ev: Event; n: VNode) =
     result = proc(ev: Event; n: VNode) =
         #window.alert("!!!")
         let evJs = ev.toJs()
@@ -190,7 +190,7 @@ proc supmit(): proc(ev: Event; n: VNode) =
         ev.toJs().preventDefault()
         dbg:
             console.log("onSubmit:", frm.elements["email"].value)
-        frm.elements["email"].value = "*";
+        frm.elements["email"].value = cstring"*";
         dbg:
             console.log("onSubmit:", frm.elements["email"].value)
         frm.submit()
@@ -244,7 +244,7 @@ proc loginDialog(): VNode =
     dbg:
         console.log("plsHolders:", plEmail, plPass)
         console.log("H.Map:", jsNew H.geo.Point(1, 51))
-    result = buildHtml form(class="form-signin", action="", `method` = "post", onsubmit = supmit()):
+    result = buildHtml form(class="form-signin", action="", `method` = "post", onsubmit = submit()):
         tdiv(class="text-center mb-4"):
             h1(class="h3 mb-3 font-weight-normal"):
                 text "Войти"
@@ -252,6 +252,8 @@ proc loginDialog(): VNode =
             input(`type`="text", name = "email", id="inputEmail", class="form-control", placeholder = plEmail, required="", autofocus="", autocomplete="off")
             label(`for`="inputEmail"):
                 text plEmail
+            tdiv(class="text-small "):
+                text "Имя пользователя не будет отправлено в интернет (Защита персональных данных)"
         tdiv(class="form-label-group"):
             input(`type`="password", name = "pass", id="inputPassword", class="form-control", placeholder = plPass, required="")
             label(`for`="inputPassword"):
@@ -263,7 +265,7 @@ proc loginDialog(): VNode =
             button(class="btn btn-lg btn-primary btn-block", `type`="submit", onclick = login(".form-signin .btn")):
                 text "Войти"
             p(class="mt-5 mb-3 text-muted text-center"):
-                text "© 2019-2022"
+                text "© 2019-2023"
 
 proc clearSearchTxt() =
     currUiSt.inpSearch = ""
@@ -800,10 +802,10 @@ proc createDom(): VNode =
                             li(class="nav-item"):
                                 a(id="show-streets", class="nav-link", onclick = showStreetsEnable):
                                     text "Улицы"
-                            if dwnloadedMaps.count($currProcess.sector_internal_id) == 0:
+                            #[if dwnloadedMaps.count($currProcess.sector_internal_id) == 0:
                                 li(class="nav-item"):
                                     a(id="map-download", class="nav-link", onclick = mapDownload):
-                                        text "Скачать"
+                                        text "Скачать"]#
                         if not showStreetsEnabled:
                             li(class="nav-item"):
                                 a(id="cl-map", class="nav-link", onclick = closeMap):

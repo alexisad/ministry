@@ -36,7 +36,7 @@ template resultCheckToken*(db: DbConn, t: string): untyped =
         result.status = stLoggedOut
         return result
 
-template genPassword*(pass: typed, defPass = "", cnt = 5): untyped =
+template genPassword*(pass: typed, defPass = "", cnt = 6): untyped =
     if defPass != "":
         pass = defPass
     else:

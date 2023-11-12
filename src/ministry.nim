@@ -339,7 +339,7 @@ proc addUser(u: User): StatusResp[User] =
                 FROM user 
                 WHERE password = ?""", u.password.getMD5)
     if rowU[0].parseInt > 0:
-      result.message = "With the same pass exists already the user, repeat again"
+      result.message = "With the same pass exists already the user, repeat please again"
       return result
     let rowRole = db.getRow(sql"""SELECT 
                 role.id
@@ -439,7 +439,7 @@ proc updUser(id, firstname, lastname, email, password, role_id, active, apiKey: 
             active = ?,
             api_key = ?
           WHERE id = ?""",
-            user.firstname, user.lastname, [user.firstname, user.lastname].join".".toLowerAscii() & "@m2414.de",
+            user.firstname, user.lastname, ($result.ts).getMD5#[[user.firstname, user.lastname].join".".toLowerAscii() & "@m2414.de"]#,
             user.password, user.role_id, user.active, user.apiKey, user.id
         ):
     db.exec(sql"ROLLBACK")
@@ -501,7 +501,7 @@ router mrouter:
       let ifAdded = addUser User(
                 firstname: "", #strip(@"firstname"),
                 lastname: "", #strip(@"lastname"),
-                email: "", #email[0],
+                email: ($(toUnix getTime())).getMD5, #email[0],
                 role: strip(@"role"),
                 corpus_id: ifAdmin.user.corpus_id,
                 password: pass,

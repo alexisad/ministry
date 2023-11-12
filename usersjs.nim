@@ -75,11 +75,11 @@ proc showUsers*(): VNode =
                         tdiv(class="form-group"):
                             label(`for` = inpFirstNameId):
                                 text "Имя"
-                            input(`type`="text", class="form-control", id = inpFirstNameId, placeholder="Имя", value = u.firstname.cstring)
+                            input(disabled=true, `type`="text", class="form-control", id = inpFirstNameId, placeholder="Имя", value = u.firstname.cstring)
                         tdiv(class="form-group"):
                             label(`for` = inpLastNameId):
                                 text "Фамилия"
-                            input(`type`="text", class="form-control", id = inpLastNameId, placeholder="Фамилия", value = u.lastname.cstring)
+                            input(disabled=true, `type`="text", class="form-control", id = inpLastNameId, placeholder="Фамилия", value = u.lastname.cstring)
                         tdiv(class="form-group"):
                             label(`for` = inpApiKeyId):
                                 text "apiKey"
