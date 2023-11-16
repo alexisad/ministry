@@ -327,6 +327,7 @@ proc getSectProcess*(db: DbConn, t = "", sId = "", uId = "", sectorName="", stre
   let sectRows = db.getAllRows(
       sqlStr.sql,
         vuId[1], rChck.rowToken[3], vsId[1] )
+  echo "sectRows:", sectRows
   if sectRows.len == 0 or sectRows[0][0] == "":
     return result
   result.status = stOk
@@ -339,9 +340,9 @@ proc getSectProcess*(db: DbConn, t = "", sId = "", uId = "", sectorName="", stre
             user_id: -1, sector_id: r[7].parseInt, id: -1,
             totalFamilies: r[11].parseInt
         )
-    if sectP.firstname != "": #someone took this sector
-      sectP.user_id = r[6].parseInt
-      sectP.id = r[8].parseInt
+    #if sectP.firstname != "": #someone took this sector - why if statement here???
+    sectP.user_id = r[6].parseInt
+    sectP.id = r[8].parseInt
     result.resp.add sectP
 
 proc newSectProcess*(db: DbConn, t, sId, uId, startDate: string): StatusResp[seq[SectorProcess]] =
