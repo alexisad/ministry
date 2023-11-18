@@ -327,7 +327,7 @@ proc getSectProcess*(db: DbConn, t = "", sId = "", uId = "", sectorName="", stre
   let sectRows = db.getAllRows(
       sqlStr.sql,
         vuId[1], rChck.rowToken[3], vsId[1] )
-  echo "sectRows:", sectRows
+  #echo "sectRows:", sectRows
   if sectRows.len == 0 or sectRows[0][0] == "":
     return result
   result.status = stOk
