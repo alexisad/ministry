@@ -104,6 +104,7 @@ else:
     console.log("2.currUser.role:", currUser.role.cstring)
 currUser.token = token#.cstring
 var currProcess: SectorProcess
+var currReciever = -1
 var allSectProc: seq[SectorProcess]
 var dbTs: int64
 var currStreets: seq[SectorStreets]
@@ -137,6 +138,7 @@ var noMyMsgEl: JsObject
 )]#
 
 proc getAllProccess(myS = false, sectorName = "")
+proc setCurrReciever(): proc(ev: Event; n: VNode)
 proc hndlUpdOwnSect()
 proc closeMap()
 proc onMsgClck(): proc()
@@ -350,17 +352,23 @@ proc chgUiState(chgEl: JsObject): JsObject =
     result = Kefir.fromEvents(chgEl, "input", getValues).toProperty(getValues)
 
 
-proc confirmTakeSect(): proc() = 
+proc confirmTakeSect(): proc() =
     result = proc() =
         spinnerOn = true
         clearSearchTxt()
         allSectProc = newSeq[SectorProcess]()
-        dbg: console.log("confirmTakeSect: ", currProcess)
+        dbg: console.log("confirmTakeSect: ", currProcess, currReciever)
         let p = currProcess
         setTs()
+        let uIdPrm =
+            if currReciever != -1:
+                &"&userId={currReciever}"
+            else:
+                ""
+        currReciever = -1
         let stmNewPrc = sendRequest(
             "GET",
-            "/sector/process/new?" & &"token={$currUser.token}&sectorId={p.sector_id}"
+            "/sector/process/new?" & &"token={$currUser.token}&sectorId={p.sector_id}{uIdPrm}"
         )
         stmNewPrc.observe(
             proc (value: Response) =
@@ -394,6 +402,21 @@ proc takeSectModalBody(): VNode =
                 text "Да"
             button(`type`="button", class="btn btn-danger float-right", data-dismiss="modal"):
                 text "Нет"
+
+proc giveSectModalBody(): VNode =
+    result = buildHtml tdiv(class="modal-body"):
+        tdiv:
+            span:
+                text "Дать участок на обработку? Кому?:"
+            span:
+                #input(`type`="text", name = "id", id="id", class="form-control", required="")
+                input(`type`="number", inputmode="numeric", class="col-2 ml-1 mr-2 px-1", min="0", max="1000", oninput = setCurrReciever())
+        tdiv(class="mx-auto"):
+            button(`type`="button", class="btn btn-success float-left", data-dismiss="modal", onclick = confirmTakeSect()):
+                text "Да"
+            button(`type`="button", class="btn btn-danger float-right", data-dismiss="modal"):
+                text "Нет"
+
 
 proc giveBackModalBody(): VNode =
     result = buildHtml tdiv(class="modal-body"):
@@ -497,6 +520,11 @@ proc setStrTotFam(iStr: int): proc(ev: Event; n: VNode) =
     result = proc(ev: Event; n: VNode) =
         currStreetsTmp[iStr].totalFamilies = if n.text == "": 0 else: n.text.parseInt
         dbg: console.log("currStreets:", iStr, n.text.parseInt, currStreets[iStr].totalFamilies)
+
+proc setCurrReciever(): proc(ev: Event; n: VNode) =
+    result = proc(ev: Event; n: VNode) =
+        currReciever = if n.text == "": -1 else: n.text.parseInt
+        dbg: console.log("currReciever:", currReciever)
 
 
 proc saveStreets(): proc() =
@@ -640,8 +668,13 @@ proc showAllProc(): VNode =
                 span(class="navbar-toggler-icon")
             #a(class="navbar-brand mw-75 overflow-auto"):
                 #text currProcess.name
+            let showMyChkbox =
+                if currUser.role == "user":
+                    "d-none"
+                else:
+                    ""
             tdiv(class="collapse navbar-collapse", id="navbarTogglerSectors"):
-                tdiv(class="custom-control custom-switch py-3"):
+                tdiv(class="custom-control custom-switch py-3 " & showMyChkbox):
                     input(`type`="checkbox", class="custom-control-input", id="ownSectors")
                     label(class="custom-control-label", `for`="ownSectors"):
                         text "Мои"
@@ -696,6 +729,10 @@ proc showAllProc(): VNode =
                     let sectId = kstring($p.sector_id)
                     tdiv(id=sectId, class="card mb-3 c-sect shadow p-3 bg-white rounded"):
                         tdiv(class="card-header"):
+                            tdiv():
+                                if currUser.role != "user":
+                                    span:
+                                        text ["id:", $p.userId].join(" ").cstring
                             ul(class="nav nav-pills card-header-pills"):
                                 li(class="nav-item"):
                                     a(class="nav-link", href="#mapModal", data-toggle="modal", data-target="#mapModal", onclick = clckOpenMap(p)):
@@ -704,7 +741,11 @@ proc showAllProc(): VNode =
                                     li(class="nav-item"):
                                         a(class="nav-link", href="#takeModal", data-toggle="modal", data-target="#takeModal", onclick = clckProccSect(p)):
                                             text "Взять"
-                                elif p.userId == currUser.id and onlyMySectors:
+                                    li(class="nav-item"):
+                                        a(class="nav-link", href="#giveModal", data-toggle="modal", data-target="#giveModal", onclick = clckProccSect(p)):
+                                            text "Дать"
+                                elif (p.userId == currUser.id and onlyMySectors and currUser.role != "user") or
+                                            (p.userId != currUser.id and not onlyMySectors and p.date_finish == ""):
                                     li(class="nav-item"):
                                         a(class="nav-link", href="#gBackModal", data-toggle="modal", data-target="#gBackModal", onclick = clckProccSect(p)):
                                             text "Сдать"
@@ -781,6 +822,7 @@ proc createDom(): VNode =
         toggleSpinner()
         toggleProgress()
         showConfirm "takeModal", takeSectModalBody()
+        showConfirm "giveModal", giveSectModalBody()
         showConfirm "gBackModal", giveBackModalBody()
         showConfirm "isProccessedModal", proccessedModalBody()
         if currUser.token == "":
@@ -798,6 +840,9 @@ proc createDom(): VNode =
                             li(class="nav-item"):
                                 a(class="nav-link", href="#takeModal", data-toggle="modal", data-target="#takeModal"):
                                     text "Взять"
+                            li(class="nav-item"):
+                                a(class="nav-link", href="#giveModal", data-toggle="modal", data-target="#giveModal"):
+                                    text "Дать"
                         if onlyMySectors and not showStreetsEnabled:
                             li(class="nav-item"):
                                 a(id="show-streets", class="nav-link", onclick = showStreetsEnable):

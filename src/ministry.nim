@@ -573,6 +573,7 @@ router mrouter:
     if @"action" == "new":
       if @"userId" != "" or @"startDate" != "":
         checkAdminToken ifAdmin
+      dbg: echo "userId:", @"userId"
       let sectProcess = newSectProcess(db, @"token",
                     @"sectorId", @"userId", @"startDate")
       resp %*sectProcess
@@ -610,7 +611,7 @@ proc main() =
   db.exec(sql"PRAGMA foreign_keys = ON")
   dbg:
     echo "db connected!!!!!!!!!!!!!"
-  let settings = newSettings(port = Port(5000))
+  let settings = newSettings(port = Port(80))
   var jester = initJester(mrouter, settings=settings)
   jester.serve()
 
