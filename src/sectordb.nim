@@ -655,7 +655,7 @@ proc lastProcessed*(db: DbConn): string =
 
 
 proc portfolio*(db: DbConn): StatusResp[seq[SectorProcess]] =
-  var sqlTxt = """SELECT sector_internal_id, firstname, lastname, date_start, date_finish, id, user_id 
+  var sqlTxt = """SELECT sector_internal_id, firstname, lastname, date_start, date_finish, usrsect.id, usrsect.user_id 
           FROM user_sector as usrsect
           INNER JOIN sector on sector.id = usrsect.sector_id AND sector.corpus_id = 1 AND sector.inactive = 0
           INNER JOIN user on usrsect.user_id = user.id
