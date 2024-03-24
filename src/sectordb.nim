@@ -655,7 +655,7 @@ proc lastProcessed*(db: DbConn): string =
 
 
 proc portfolio*(db: DbConn): StatusResp[seq[SectorProcess]] =
-  var sqlTxt = """SELECT sector_internal_id, firstname, lastname, date_start, date_finish  
+  var sqlTxt = """SELECT sector_internal_id, firstname, lastname, date_start, date_finish, id, user_id 
           FROM user_sector as usrsect
           INNER JOIN sector on sector.id = usrsect.sector_id AND sector.corpus_id = 1 AND sector.inactive = 0
           INNER JOIN user on usrsect.user_id = user.id
@@ -670,7 +670,8 @@ proc portfolio*(db: DbConn): StatusResp[seq[SectorProcess]] =
       #arrSctId = r[0].split("-")
       #idx = repeat('0', 4 - arrSctId[1].len) & arrSctId[1]
       #nSectrId = [arrSctId[0], idx].join("-")
-      sectrPrc = SectorProcess(sector_internal_id: r[0], firstname: r[1], lastname: r[2], date_start: r[3], date_finish: r[4])
+      sectrPrc = SectorProcess(sector_internal_id: r[0], firstname: r[1], lastname: r[2],
+          date_start: r[3], date_finish: r[4], id: r[5].parseInt, user_id: r[6].parseInt)
     result.resp.add sectrPrc
     #seqSectorIds.add nSectrId
     #discard tblSectrProcess.hasKeyOrPut(nSectrId, newSeq[SectorProcess]())
