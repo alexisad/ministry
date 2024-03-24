@@ -599,8 +599,8 @@ router mrouter:
       let txt = yearReportTxt(db, @"toDate")
       resp Http200, [("Content-Type","text/plain; charset=UTF-8")], txt
     elif @"action" == "portfolio":
-      let rHtml = portfolio db
-      resp Http200, [("Content-Type","text/html; charset=UTF-8")], rHtml
+      let r = portfolio db
+      resp %*r
     elif @"action" == "lastprocess":
       let rHtml = lastProcessed db
       resp Http200, [("Content-Type","text/html; charset=UTF-8")], rHtml

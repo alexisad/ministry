@@ -654,7 +654,33 @@ proc lastProcessed*(db: DbConn): string =
   $resp
 
 
-proc portfolio*(db: DbConn): string =
+proc portfolio*(db: DbConn): StatusResp[seq[SectorProcess]] =
+  var sqlTxt = """SELECT sector_internal_id, firstname, lastname, date_start, date_finish  
+          FROM user_sector as usrsect
+          INNER JOIN sector on sector.id = usrsect.sector_id AND sector.corpus_id = 1 AND sector.inactive = 0
+          INNER JOIN user on usrsect.user_id = user.id
+          ORDER BY date_start
+      """
+  let rows = db.getAllRows(sql sqlTxt)
+  #[var
+    seqSectorIds = newSeq[string]()
+    tblSectrProcess = initTable[string, seq[SectorProcess]]()]#
+  for r in rows:
+    let
+      #arrSctId = r[0].split("-")
+      #idx = repeat('0', 4 - arrSctId[1].len) & arrSctId[1]
+      #nSectrId = [arrSctId[0], idx].join("-")
+      sectrPrc = SectorProcess(sector_internal_id: r[0], firstname: r[1], lastname: r[2], date_start: r[3], date_finish: r[4])
+    result.resp.add sectrPrc
+    #seqSectorIds.add nSectrId
+    #discard tblSectrProcess.hasKeyOrPut(nSectrId, newSeq[SectorProcess]())
+    #tblSectrProcess[nSectrId].add sectrPrc
+  #seqSectorIds = seqSectorIds.deduplicate
+  #seqSectorIds.sort
+  result.status = stOk
+
+
+proc portfolio_bkp*(db: DbConn): string =
   var sqlTxt = """SELECT sector_internal_id, firstname, lastname, date_start, date_finish  
           FROM user_sector as usrsect
           INNER JOIN sector on sector.id = usrsect.sector_id AND sector.corpus_id = 1 AND sector.inactive = 0
